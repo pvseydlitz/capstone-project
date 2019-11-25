@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 import placeholder from './Placeholder.svg'
+const messages = require('./messages.json')
 
 export default function Message() {
   const Message = styled.div`
@@ -31,16 +32,13 @@ export default function Message() {
     bottom: 27px;
   `
 
-  return (
-    <Message>
-      <Headline>Schadensmeldung</Headline>
+  return messages.map((message, index) => (
+    <Message key={index}>
+      <Headline>{message.category}</Headline>
       <Wrapper>
-        <Description>
-          Lorem iDescriptionsum dolor sit amet consectetur adipisicing elit.
-          Necessitatibus rerum totam odio quos eum nihil iste.
-        </Description>
+        <Description>{message.description}</Description>
         <Picture src={placeholder}></Picture>
       </Wrapper>
     </Message>
-  )
+  ))
 }
