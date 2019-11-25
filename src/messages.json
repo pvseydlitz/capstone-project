@@ -1,0 +1,26 @@
+[
+  {
+    "category": "Schadensmeldung",
+    "description": "Beschreibung der Meldung: Lorem iDescriptionsum dolor sit amet consectetur adipisicing elit.",
+    "content": "",
+    "isBookmarked": true
+  },
+  {
+    "category": "Ankündigung",
+    "description": "Beschreibung der Meldung: Lorem iDescriptionsum dolor sit amet consectetur adipisicing elit.",
+    "content": "",
+    "doPractice": true
+  },
+  {
+    "category": "Schadensmeldung",
+    "description": "Beschreibung der Meldung: Lorem iDescriptionsum dolor sit amet consectetur adipisicing elit.",
+    "content": "",
+    "isBookmarked": true
+  },
+  {
+    "category": "Ankündigung",
+    "description": "Beschreibung der Meldung: Lorem iDescriptionsum dolor sit amet consectetur adipisicing elit.",
+    "content": "",
+    "isBookmarked": true
+  }
+]
