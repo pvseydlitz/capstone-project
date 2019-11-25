@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components/macro'
 import placeholder from './Placeholder.svg'
 import messages from './messages'
+import ShowMoreButton from './ShowMoreButton'
 
 export default function Message() {
   const Message = styled.div`
@@ -39,6 +40,7 @@ export default function Message() {
         <Description>{message.description}</Description>
         <Picture src={placeholder}></Picture>
       </Wrapper>
+      <ShowMoreButton></ShowMoreButton>
     </Message>
   ))
 }

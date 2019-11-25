@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <Globalstyles></Globalstyles>
-      <Message></Message>
+      {/* <Message></Message> */}
     </div>
   )
 }

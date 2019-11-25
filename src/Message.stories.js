@@ -9,4 +9,4 @@ export default {
   decorators: [withKnobs],
 }
 
-export const standard = () => <Message />
+export const standard = () => <Message></Message>
