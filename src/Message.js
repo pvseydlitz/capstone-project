@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 import placeholder from './Placeholder.svg'
-const messages = require('./messages.json')
+import messages from './messages'
 
 export default function Message() {
   const Message = styled.div`
