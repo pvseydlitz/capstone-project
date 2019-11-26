@@ -50,7 +50,6 @@ export default function Message({ message }) {
       <Wrapper>
         <Description>{message.description}</Description>
         <Picture src={placeholder}></Picture>
-
         <Content>{showContent ? message.content : ''}</Content>
       </Wrapper>
       <ShowMoreButton onClick={() => setShowContent(!showContent)}>
