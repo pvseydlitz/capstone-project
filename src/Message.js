@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import placeholder from './Placeholder.svg'
 import messages from './messages'
@@ -22,7 +22,7 @@ export default function Message() {
     display: grid;
     grid-template-columns: auto 100px;
   `
-  const Description = styled.p`
+  const Content = styled.p`
     margin: 0;
     font-size: 16px;
     color: rgb(107, 107, 107);
@@ -32,15 +32,20 @@ export default function Message() {
     right: 22px;
     bottom: 27px;
   `
+  const [showContent, setShowContent] = useState(false)
 
   return messages.map((message, index) => (
     <Message key={index}>
       <Headline>{message.category}</Headline>
       <Wrapper>
-        <Description>{message.description}</Description>
+        <Content>{message.description}</Content>
         <Picture src={placeholder}></Picture>
       </Wrapper>
+      <Content></Content>
       <ShowMoreButton></ShowMoreButton>
     </Message>
   ))
 }
+
+//onClick={setShowContent(!showContent)}
+//{showContent ? message.content : ''}
