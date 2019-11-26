@@ -7,4 +7,15 @@ export default {
   decorators: [withKnobs],
 }
 
-export const standard = () => <ShowMoreButton />
+export const standard = () => (
+  <div
+    style={{
+      position: 'relative',
+      background: 'grey',
+      height: '150px',
+      width: '200px',
+    }}
+  >
+    <ShowMoreButton>Show more</ShowMoreButton>
+  </div>
+)
