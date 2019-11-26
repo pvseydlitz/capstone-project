@@ -7,8 +7,12 @@ function App() {
   return (
     <div className="App">
       <Globalstyles></Globalstyles>
-      {messages.map((message, index) => (
-        <Message message={message} key={index}></Message>
+      {messages.map((message, index, isBookmarked) => (
+        <Message
+          message={message}
+          key={index}
+          isBookmarked={isBookmarked}
+        ></Message>
       ))}
     </div>
   )

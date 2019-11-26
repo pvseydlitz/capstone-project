@@ -5,13 +5,12 @@ import ShowMoreButton from './ShowMoreButton'
 import Bookmark from './Bookmark'
 import bookmarkIcon from './icons/bookmark.svg'
 
-export default function Message({ message }) {
+export default function Message({ message, isBookmarked }) {
   const Message = styled.div`
     margin: 50px 20px;
     padding: 10px 20px;
     position: relative;
     min-height: 180px;
-
     background: rgb(238, 238, 238);
     border-radius: 10px;
   `
@@ -48,7 +47,7 @@ export default function Message({ message }) {
 
   return (
     <Message>
-      <Bookmark src={bookmarkIcon} color="green"></Bookmark>
+      <Bookmark src={bookmarkIcon}></Bookmark>
       <Headline>{message.category}</Headline>
       <Wrapper>
         <Description>{message.description}</Description>

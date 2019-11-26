@@ -1,11 +1,18 @@
 import styled from 'styled-components/macro'
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
 export default function Bookmark(props) {
+  const Bookmark = styled.svg`
+    position: absolute;
+    top: -15px;
+    right: 31px;
+  `
   const color = props.color
+  const [isBookmarked, setIsBookmarked] = useState(false)
   return (
-    <svg
+    <Bookmark
+      onClick={() => setIsBookmarked(!isBookmarked)}
       width="26px"
       height="34px"
       viewBox="0 0 26 34"
@@ -22,9 +29,9 @@ export default function Bookmark(props) {
       <g
         id="Page-1"
         stroke="none"
-        stroke-width="1"
+        strokeWidth="1"
         fill="none"
-        fill-rule="evenodd"
+        fillRule="evenodd"
       >
         <g id="Home-screen" transform="translate(-338.000000, -140.000000)">
           <g id="Card" transform="translate(20.000000, 135.000000)">
@@ -34,22 +41,18 @@ export default function Bookmark(props) {
               </mask>
               <use
                 id="🎨-Icon-Сolor"
-                fill={color}
-                fill-rule="evenodd"
+                fill={isBookmarked ? 'red' : '#6B6B6B'}
+                fillRule="evenodd"
                 xlinkHref="#path-1"
               ></use>
             </g>
           </g>
         </g>
       </g>
-    </svg>
+    </Bookmark>
   )
 }
 
 Bookmark.propTypes = {
   color: PropTypes.string,
-}
-
-Bookmark.defaultProps = {
-  color: ' #6B6B6B',
 }
