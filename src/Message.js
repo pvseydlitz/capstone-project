@@ -8,7 +8,8 @@ export default function Message({ message }) {
     margin: 50px 20px;
     padding: 10px 20px;
     position: relative;
-    height: 180px;
+    min-height: 180px;
+
     background: rgb(238, 238, 238);
     border-radius: 10px;
   `
@@ -19,9 +20,11 @@ export default function Message({ message }) {
   `
   const Wrapper = styled.div`
     display: grid;
-    grid-template-columns: auto 100px;
+    grid-template-columns: auto 85px;
+    grid-template-rows: 83px auto 29px;
+    grid-gap: 15px;
   `
-  const Content = styled.p`
+  const Description = styled.p`
     margin: 0;
     font-size: 16px;
     color: rgb(107, 107, 107);
@@ -29,18 +32,27 @@ export default function Message({ message }) {
   const Picture = styled.img`
     position: absolute;
     right: 22px;
-    bottom: 27px;
+    top: 40px;
   `
+  const Content = styled.p`
+    margin: 0;
+    font-size: 16px;
+    color: rgb(107, 107, 107);
+    grid-column-start: 1;
+    grid-column-end: 3;
+  `
+
   const [showContent, setShowContent] = useState(false)
 
   return (
     <Message>
       <Headline>{message.category}</Headline>
       <Wrapper>
-        <Content>{message.description}</Content>
+        <Description>{message.description}</Description>
         <Picture src={placeholder}></Picture>
+
+        <Content>{showContent ? message.content : ''}</Content>
       </Wrapper>
-      <Content>{showContent ? message.content : ''}</Content>
       <ShowMoreButton onClick={() => setShowContent(!showContent)}>
         {showContent ? 'Show less' : 'Show more'}
       </ShowMoreButton>
