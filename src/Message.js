@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import placeholder from './Placeholder.svg'
-import messages from './messages'
 import ShowMoreButton from './ShowMoreButton'
 
-export default function Message() {
+export default function Message({ message }) {
   const Message = styled.div`
     margin: 50px 20px;
     padding: 10px 20px;
@@ -34,18 +33,17 @@ export default function Message() {
   `
   const [showContent, setShowContent] = useState(false)
 
-  return messages.map((message, index) => (
-    <Message key={index}>
+  return (
+    <Message>
       <Headline>{message.category}</Headline>
       <Wrapper>
         <Content>{message.description}</Content>
         <Picture src={placeholder}></Picture>
       </Wrapper>
-      <Content></Content>
-      <ShowMoreButton></ShowMoreButton>
+      <Content>{showContent ? message.content : ''}</Content>
+      <ShowMoreButton onClick={() => setShowContent(!showContent)}>
+        {showContent ? 'Show less' : 'Show more'}
+      </ShowMoreButton>
     </Message>
-  ))
+  )
 }
-
-//onClick={setShowContent(!showContent)}
-//{showContent ? message.content : ''}
