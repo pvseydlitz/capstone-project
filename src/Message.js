@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import placeholder from './Placeholder.svg'
 import ShowMoreButton from './ShowMoreButton'
+import Bookmark from './Bookmark'
+import bookmarkIcon from './icons/bookmark.svg'
 
 export default function Message({ message }) {
   const Message = styled.div`
@@ -46,6 +48,7 @@ export default function Message({ message }) {
 
   return (
     <Message>
+      <Bookmark src={bookmarkIcon}></Bookmark>
       <Headline>{message.category}</Headline>
       <Wrapper>
         <Description>{message.description}</Description>
