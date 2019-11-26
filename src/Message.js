@@ -48,7 +48,7 @@ export default function Message({ message }) {
 
   return (
     <Message>
-      <Bookmark src={bookmarkIcon}></Bookmark>
+      <Bookmark src={bookmarkIcon} color="green"></Bookmark>
       <Headline>{message.category}</Headline>
       <Wrapper>
         <Description>{message.description}</Description>
