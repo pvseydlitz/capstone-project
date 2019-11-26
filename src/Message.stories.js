@@ -1,12 +1,14 @@
 import React from 'react'
-import { withKnobs } from '@storybook/addon-knobs'
-//import { action } from '@storybook/addon-actions'
+import { withKnobs, text } from '@storybook/addon-knobs'
 import Message from './Message'
-//import styled from 'styled-components/macro'
+import messages from './messages'
 
 export default {
   title: 'Message',
   decorators: [withKnobs],
 }
 
-export const standard = () => <Message />
+export const standard = () =>
+  messages.map((message, index) => (
+    <Message message={message} key={index}></Message>
+  ))[0]

@@ -15,4 +15,8 @@ addDecorator(storyFn => (
   </>
 ))
 
-const Wrapper = styled.div``
+const Wrapper = styled.div`
+  height: 667px;
+  width: 375px;
+  border: black 5px solid;
+`

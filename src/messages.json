@@ -1,26 +1,26 @@
 [
   {
     "category": "Schadensmeldung",
-    "description": "Beschreibung der Meldung: Lorem iDescriptionsum dolor sit amet consectetur adipisicing elit.",
-    "content": "",
+    "description": "Beschreibung der Meldung: Lorem iDescriptionsum dolor sit amet consectetur.",
+    "content": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis architecto, vero debitis non laborum ab labore cupiditate. Suscipit, odio delectus.",
     "isBookmarked": true
   },
   {
     "category": "Ankündigung",
-    "description": "Beschreibung der Meldung: Lorem iDescriptionsum dolor sit amet consectetur adipisicing elit.",
-    "content": "",
+    "description": "Beschreibung der Meldung: Lorem iDescriptionsum dolor sit amet consectetur.",
+    "content": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis architecto, vero debitis non laborum ab labore cupiditate. Suscipit, odio delectus.",
     "doPractice": true
   },
   {
     "category": "Schadensmeldung",
-    "description": "Beschreibung der Meldung: Lorem iDescriptionsum dolor sit amet consectetur adipisicing elit.",
-    "content": "",
+    "description": "Beschreibung der Meldung: Lorem iDescriptionsum dolor sit amet consectetur.",
+    "content": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis architecto, vero debitis non laborum ab labore cupiditate. Suscipit, odio delectus.",
     "isBookmarked": true
   },
   {
     "category": "Ankündigung",
-    "description": "Beschreibung der Meldung: Lorem iDescriptionsum dolor sit amet consectetur adipisicing elit.",
-    "content": "",
+    "description": "Beschreibung der Meldung: Lorem iDescriptionsum dolor sit amet consectetur.",
+    "content": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis architecto, vero debitis non laborum ab labore cupiditate. Suscipit, odio delectus.",
     "isBookmarked": true
   }
 ]
