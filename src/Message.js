@@ -3,9 +3,8 @@ import styled from 'styled-components/macro'
 import placeholder from './Placeholder.svg'
 import ShowMoreButton from './ShowMoreButton'
 import Bookmark from './Bookmark'
-import bookmarkIcon from './icons/bookmark.svg'
 
-export default function Message({ message, isBookmarked }) {
+export default function Message({ message }) {
   const Message = styled.div`
     margin: 50px 20px;
     padding: 10px 20px;
@@ -47,7 +46,7 @@ export default function Message({ message, isBookmarked }) {
 
   return (
     <Message>
-      <Bookmark src={bookmarkIcon}></Bookmark>
+      <Bookmark></Bookmark>
       <Headline>{message.category}</Headline>
       <Wrapper>
         <Description>{message.description}</Description>

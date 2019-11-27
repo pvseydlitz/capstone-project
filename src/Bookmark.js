@@ -1,14 +1,12 @@
 import styled from 'styled-components/macro'
 import React, { useState } from 'react'
-import PropTypes from 'prop-types'
 
-export default function Bookmark(props) {
+export default function Bookmark() {
   const Bookmark = styled.svg`
     position: absolute;
     top: -15px;
     right: 31px;
   `
-  const color = props.color
   const [isBookmarked, setIsBookmarked] = useState(false)
   return (
     <Bookmark
@@ -51,8 +49,4 @@ export default function Bookmark(props) {
       </g>
     </Bookmark>
   )
-}
-
-Bookmark.propTypes = {
-  color: PropTypes.string,
 }
