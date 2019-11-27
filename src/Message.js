@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import placeholder from './Placeholder.svg'
 import ShowMoreButton from './ShowMoreButton'
+import Bookmark from './Bookmark'
 
 export default function Message({ message }) {
   const Message = styled.div`
@@ -9,7 +10,6 @@ export default function Message({ message }) {
     padding: 10px 20px;
     position: relative;
     min-height: 180px;
-
     background: rgb(238, 238, 238);
     border-radius: 10px;
   `
@@ -46,6 +46,7 @@ export default function Message({ message }) {
 
   return (
     <Message>
+      <Bookmark></Bookmark>
       <Headline>{message.category}</Headline>
       <Wrapper>
         <Description>{message.description}</Description>
