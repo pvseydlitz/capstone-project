@@ -3,8 +3,9 @@ import styled from 'styled-components/macro'
 import FilterButton from './FilterButton'
 import logo from './icons/logo.svg'
 import FilterMenu from './FilterMenu'
+import filterIcon from './icons/filterbutton.svg'
 
-export default function Header({ isClicked }) {
+export default function Header() {
   const Line = styled.div`
     height: 97px;
     border: solid 2px transparent;
@@ -16,10 +17,13 @@ export default function Header({ isClicked }) {
   const Logo = styled.img`
     z-index: -1;
   `
-
+  const [isClicked, setIsClicked] = useState(false)
   return (
     <Line>
-      <FilterButton isClicked={isClicked}></FilterButton>
+      <FilterButton
+        src={filterIcon}
+        onClick={() => setIsClicked(!isClicked)}
+      ></FilterButton>
       <Logo src={logo}></Logo>
       {isClicked ? <FilterMenu></FilterMenu> : ''}
     </Line>
