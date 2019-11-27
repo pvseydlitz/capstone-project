@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro'
 import React from 'react'
-import BookmarkIcon from './icons/BookmarkIcon'
+import BookmarkIcon from './BookmarkIcon'
 
 export default function Bookmark() {
   const Bookmark = styled.div`

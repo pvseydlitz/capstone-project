@@ -19,7 +19,7 @@ function App() {
           <Message message={message} key={index}></Message>
         ))}
       </MessageWrapper>
-      <div style={{ background: 'black', height: '91px' }}></div>
+      <div style={{ background: 'lightgrey', height: '91px' }}></div>
     </Grid>
   )
 }

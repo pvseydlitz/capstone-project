@@ -46,7 +46,7 @@ export default function Message({ message }) {
 
   return (
     <Message>
-      <Bookmark></Bookmark>
+      <Bookmark />
       <Headline>{message.category}</Headline>
       <Wrapper>
         <Description>{message.description}</Description>
