@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
-import placeholder from './Placeholder.svg'
+import placeholder from './icons/Placeholder.svg'
 import ShowMoreButton from './ShowMoreButton'
 import Bookmark from './Bookmark'
 

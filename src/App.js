@@ -2,19 +2,23 @@ import React from 'react'
 import Message from './Message'
 import Globalstyles from './Globalstyles'
 import messages from './messages'
+import Header from './Header'
+import styled from 'styled-components/macro'
 
 function App() {
+  const App = styled.div`
+    display: grid;
+    grid-template-rows: 97px auto 91px;
+  `
   return (
-    <div className="App">
+    <App>
       <Globalstyles></Globalstyles>
-      {messages.map((message, index, isBookmarked) => (
-        <Message
-          message={message}
-          key={index}
-          isBookmarked={isBookmarked}
-        ></Message>
+      <Header></Header>
+      {messages.map((message, index) => (
+        <Message message={message} key={index}></Message>
       ))}
-    </div>
+      <div style={{ background: 'black', height: '91px' }}></div>
+    </App>
   )
 }
 
