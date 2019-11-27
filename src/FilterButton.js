@@ -12,7 +12,10 @@ export default function FilterButton() {
   `
   return (
     <Icon>
-      <FilterIcon></FilterIcon>
+      <FilterIcon
+        onClick={() => setIsClicked(!isClicked)}
+        isClicked={isClicked}
+      ></FilterIcon>
     </Icon>
   )
 }

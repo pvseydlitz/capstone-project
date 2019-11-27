@@ -19,7 +19,7 @@ export default function Header({ isClicked }) {
 
   return (
     <Line>
-      <FilterButton></FilterButton>
+      <FilterButton isClicked={isClicked}></FilterButton>
       <Logo src={logo}></Logo>
       {isClicked ? <FilterMenu></FilterMenu> : ''}
     </Line>
