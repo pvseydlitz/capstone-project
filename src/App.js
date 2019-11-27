@@ -3,22 +3,24 @@ import Message from './Message'
 import Globalstyles from './Globalstyles'
 import messages from './messages'
 import Header from './Header'
+import Grid from './Grid'
 import styled from 'styled-components/macro'
 
 function App() {
-  const App = styled.div`
-    display: grid;
-    grid-template-rows: 97px auto 91px;
+  const MessageWrapper = styled.div`
+    overflow-y: scroll;
   `
   return (
-    <App>
+    <Grid>
       <Globalstyles></Globalstyles>
       <Header></Header>
-      {messages.map((message, index) => (
-        <Message message={message} key={index}></Message>
-      ))}
+      <MessageWrapper>
+        {messages.map((message, index) => (
+          <Message message={message} key={index}></Message>
+        ))}
+      </MessageWrapper>
       <div style={{ background: 'black', height: '91px' }}></div>
-    </App>
+    </Grid>
   )
 }
 
