@@ -2,10 +2,6 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 
 export default function FilterMenu({ handleClick, filterActive }) {
-  const onButtonClick = () => {
-    handleClick()
-  }
-
   const Menu = styled.div`
     position: absolute;
     top: 75px;
@@ -35,33 +31,29 @@ export default function FilterMenu({ handleClick, filterActive }) {
     display: none;
   `
   const Slider = styled.span`
-    
-    border: solid 1px black; 
-    /* background-color: ${props => (props.filterActive ? 'green' : 'red')}; */
-        /* Grundfläche */
+    border: solid 1px black;
     position: absolute;
     cursor: pointer;
-    top: 1.5em; 
+    top: 1.5em;
     left: 2em;
     width: 2em;
     height: 1em;
-    background-color:  ${props =>
-      props.filterActive ? 'green' : 'lightgrey'}; /* red */
-    border-radius: 1em; 
-    transition: all .3s ease-in-out;
+    background-color: ${props => (props.filterActive ? 'green' : 'lightgrey')};
+    border-radius: 1em;
+    transition: all 0.8s ease-in-out;
 
-   &::before {  /* verschiebbarer Button */
-    position: absolute;
-    content: "";
-    height: 0.6em;
-    width: 0.6em;
-    left: 0.1em;
-    bottom: 0.1em;
-    background-color: white;
-    border-radius: 50%;
-    transition: all .3s ease-in-out;
-    transform:   ${props => (props.filterActive ? 'translateX(0.9em)' : '')};
-  }
+    &::before {
+      position: absolute;
+      content: '';
+      height: 0.6em;
+      width: 0.6em;
+      left: 0.1em;
+      bottom: 0.1em;
+      background-color: white;
+      border-radius: 50%;
+      transition: all 0.8s ease-in-out;
+      transform: ${props => (props.filterActive ? 'translateX(0.9em)' : '')};
+    }
   `
 
   const Wrapper = styled.div`
@@ -83,8 +75,7 @@ export default function FilterMenu({ handleClick, filterActive }) {
 
           <Label
             onClick={() => {
-              onButtonClick()
-              //onClick()
+              handleClick()
             }}
           >
             <Checkbox type="checkbox"></Checkbox>
