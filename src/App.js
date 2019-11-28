@@ -19,20 +19,33 @@ function App() {
       { ...message, isBookmarked: !message.isBookmarked },
       ...messages.slice(index + 1),
     ])
-    console.log(index)
+    console.log(messages)
   }
+  const [isOnlyBookmarkShown, setIsOnlyBookmarkShown] = useState(false)
   return (
     <Grid>
       <Globalstyles></Globalstyles>
-      <Header></Header>
+      <Header
+        filterMessages={() => setIsOnlyBookmarkShown(!isOnlyBookmarkShown)}
+      ></Header>
       <MessageWrapper>
-        {messages.map((message, index) => (
-          <Message
-            message={message}
-            key={index}
-            toggleBookmarked={() => toggleBookmarked(index)}
-          ></Message>
-        ))}
+        {isOnlyBookmarkShown
+          ? messages
+              .filter(message => message.isBookmarked === true)
+              .map((message, index) => (
+                <Message
+                  message={message}
+                  key={index}
+                  toggleBookmarked={() => toggleBookmarked(index)}
+                ></Message>
+              ))
+          : messages.map((message, index) => (
+              <Message
+                message={message}
+                key={index}
+                toggleBookmarked={() => toggleBookmarked(index)}
+              ></Message>
+            ))}
       </MessageWrapper>
       <Footer></Footer>
     </Grid>

@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 
-export default function FilterMenu() {
+export default function FilterMenu({ onClick }) {
+  const [color, setColor] = useState(false)
+  const onButtonClick = () => {
+    setColor(!color)
+  }
+
   const Menu = styled.div`
     position: absolute;
     top: 75px;
@@ -21,7 +26,7 @@ export default function FilterMenu() {
     top: 48px;
     left: 65px;
   `
-  const Checkbox = styled.input`
+  const Checkbox = styled.div`
     height: 18px;
     width: 18px;
   `
@@ -42,7 +47,13 @@ export default function FilterMenu() {
         <Wrapper>
           <Text>Show only bookmarked</Text>
 
-          <Checkbox type="checkbox"></Checkbox>
+          <Checkbox
+            onClick={() => {
+              onClick()
+              onButtonClick()
+            }}
+            style={{ background: color ? 'green' : 'red' }}
+          ></Checkbox>
         </Wrapper>
       </Menu>
       <Arrow></Arrow>
