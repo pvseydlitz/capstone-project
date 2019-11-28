@@ -1,22 +1,18 @@
 import styled from 'styled-components/macro'
-import React, { useState } from 'react'
+import React from 'react'
 import bookmarkGrey from './icons/bookmark-grey.svg'
 import bookmarkRed from './icons/bookmark-red.svg'
 
-export default function Bookmark() {
+export default function Bookmark({ active, onClick }) {
   const Bookmark = styled.div`
     position: absolute;
     top: -15px;
     right: 31px;
   `
-  const [isBookmarked, setIsBookmarked] = useState(false)
+
   return (
-    <Bookmark onClick={() => setIsBookmarked(!isBookmarked)}>
-      {isBookmarked ? (
-        <img src={bookmarkRed}></img>
-      ) : (
-        <img src={bookmarkGrey}></img>
-      )}
+    <Bookmark>
+      <img src={active ? bookmarkGrey : bookmarkRed} onClick={onClick} />
     </Bookmark>
   )
 }
