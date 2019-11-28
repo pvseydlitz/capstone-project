@@ -1,0 +1,23 @@
+
+<svg width="70px" height="14px" viewBox="0 0 70 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <path d="M21.5,28.6666667 C21.0915,28.6666667 20.6847917,28.5287083 20.3533333,28.251 L9.60333333,19.2926667 C8.84366667,18.6602083 8.73975,17.5296667 9.374,16.77 C10.0064583,16.0103333 11.1352083,15.9082083 11.8966667,16.5406667 L21.5197083,24.5601667 L31.126625,16.829125 C31.8970417,16.2092083 33.0257917,16.3310417 33.6457083,17.1014583 C34.265625,17.871875 34.1437917,18.9988333 33.373375,19.6205417 L22.623375,28.2707083 C22.2955,28.5340833 21.89775,28.6666667 21.5,28.6666667" id="path-1"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Second-screen" transform="translate(-76.000000, -770.000000)">
+            <g id="Group-3" transform="translate(68.000000, 755.000000)">
+                <g id="Group-4" transform="translate(7.000000, 0.000000)">
+                    <g id="arrow-ios-down" transform="translate(36.000000, 0.000000)">
+                        <mask id="mask-2" fill="white">
+                            <use xlink:href="#path-1"></use>
+                        </mask>
+                        <use id="🎨-Icon-Сolor" fill="#6B6B6B" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    </g>
+                    <text id="Filter" fill="#6B6B6B" font-family="Helvetica" font-size="18" font-weight="normal">
+                        <tspan x="0" y="28">Filter</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,20 +1,27 @@
 import React from 'react'
-import Message from './Message'
+import styled from 'styled-components/macro'
 import Globalstyles from './Globalstyles'
+import Grid from './Grid'
+import Header from './Header'
+import Message from './Message'
 import messages from './messages'
+import Footer from './Footer'
 
 function App() {
+  const MessageWrapper = styled.div`
+    overflow-y: scroll;
+  `
   return (
-    <div className="App">
+    <Grid>
       <Globalstyles></Globalstyles>
-      {messages.map((message, index, isBookmarked) => (
-        <Message
-          message={message}
-          key={index}
-          isBookmarked={isBookmarked}
-        ></Message>
-      ))}
-    </div>
+      <Header></Header>
+      <MessageWrapper>
+        {messages.map((message, index) => (
+          <Message message={message} key={index}></Message>
+        ))}
+      </MessageWrapper>
+      <Footer></Footer>
+    </Grid>
   )
 }
 

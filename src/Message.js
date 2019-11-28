@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
-import placeholder from './Placeholder.svg'
+import placeholder from './icons/Placeholder.svg'
 import ShowMoreButton from './ShowMoreButton'
 import Bookmark from './Bookmark'
 
@@ -46,7 +46,7 @@ export default function Message({ message }) {
 
   return (
     <Message>
-      <Bookmark></Bookmark>
+      <Bookmark />
       <Headline>{message.category}</Headline>
       <Wrapper>
         <Description>{message.description}</Description>
