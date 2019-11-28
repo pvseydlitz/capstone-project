@@ -13,7 +13,7 @@ export default function FilterMenu({ handleClick, filterActive }) {
     z-index: 1;
     background: rgb(174 172 172);
     opacity: 80%;
-    width: 250px;
+    width: 200px;
     height: 150px;
     padding: 10px 20px;
   `
@@ -25,31 +25,42 @@ export default function FilterMenu({ handleClick, filterActive }) {
     top: 48px;
     left: 65px;
   `
+  const Label = styled.label`
+    position: relative;
+    display: inline-block;
+    width: 10em;
+    height: 3.5em;
+  `
   const Checkbox = styled.input`
-    height: 18px;
-    width: 18px;
-    border: solid 1px black;
+    display: none;
+  `
+  const Slider = styled.span`
+    
+    border: solid 1px black; 
     /* background-color: ${props => (props.filterActive ? 'green' : 'red')}; */
         /* Grundfläche */
     position: absolute;
     cursor: pointer;
     top: 1.5em; 
     left: 2em;
-    width: 4em;
-    height: 2em;
-    background-color: #c32e04; /* red */
+    width: 2em;
+    height: 1em;
+    background-color:  ${props =>
+      props.filterActive ? 'green' : 'lightgrey'}; /* red */
     border-radius: 1em; 
     transition: all .3s ease-in-out;
-   :before {  /* verschiebbarer Button */
+
+   &::before {  /* verschiebbarer Button */
     position: absolute;
     content: "";
-    height: 1.6em;
-    width: 1.6em;
-    left: 0.2em;
-    bottom: 0.2em;
+    height: 0.6em;
+    width: 0.6em;
+    left: 0.1em;
+    bottom: 0.1em;
     background-color: white;
     border-radius: 50%;
     transition: all .3s ease-in-out;
+    transform:   ${props => (props.filterActive ? 'translateX(0.9em)' : '')};
   }
   `
 
@@ -70,15 +81,15 @@ export default function FilterMenu({ handleClick, filterActive }) {
         <Wrapper>
           <Text>Show only bookmarked</Text>
 
-          <Checkbox
-            className="slider"
+          <Label
             onClick={() => {
               onButtonClick()
               //onClick()
             }}
-            type="checkbox"
-            filterActive={filterActive}
-          ></Checkbox>
+          >
+            <Checkbox type="checkbox"></Checkbox>
+            <Slider filterActive={filterActive}></Slider>
+          </Label>
         </Wrapper>
       </Menu>
       <Arrow></Arrow>
