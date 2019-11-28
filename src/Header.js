@@ -5,7 +5,7 @@ import FilterMenu from './FilterMenu'
 import logo from './icons/logo.svg'
 import filterIcon from './icons/filterbutton.svg'
 
-export default function Header({ filterMessages }) {
+export default function Header({ filterMessages, filterActive }) {
   const Line = styled.div`
     height: 97px;
     border: solid 2px transparent;
@@ -25,7 +25,14 @@ export default function Header({ filterMessages }) {
         onClick={() => setIsClicked(!isClicked)}
       ></FilterButton>
       <Logo src={logo}></Logo>
-      {isClicked ? <FilterMenu onClick={filterMessages}></FilterMenu> : ''}
+      {isClicked ? (
+        <FilterMenu
+          handleClick={filterMessages}
+          filterActive={filterActive}
+        ></FilterMenu>
+      ) : (
+        ''
+      )}
     </Line>
   )
 }

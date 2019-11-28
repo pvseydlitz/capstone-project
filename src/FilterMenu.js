@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 
-export default function FilterMenu({ onClick }) {
-  const [color, setColor] = useState(false)
+export default function FilterMenu({ handleClick, filterActive }) {
   const onButtonClick = () => {
-    setColor(!color)
+    handleClick()
   }
 
   const Menu = styled.div`
@@ -26,10 +25,34 @@ export default function FilterMenu({ onClick }) {
     top: 48px;
     left: 65px;
   `
-  const Checkbox = styled.div`
+  const Checkbox = styled.input`
     height: 18px;
     width: 18px;
+    border: solid 1px black;
+    /* background-color: ${props => (props.filterActive ? 'green' : 'red')}; */
+        /* Grundfläche */
+    position: absolute;
+    cursor: pointer;
+    top: 1.5em; 
+    left: 2em;
+    width: 4em;
+    height: 2em;
+    background-color: #c32e04; /* red */
+    border-radius: 1em; 
+    transition: all .3s ease-in-out;
+   :before {  /* verschiebbarer Button */
+    position: absolute;
+    content: "";
+    height: 1.6em;
+    width: 1.6em;
+    left: 0.2em;
+    bottom: 0.2em;
+    background-color: white;
+    border-radius: 50%;
+    transition: all .3s ease-in-out;
+  }
   `
+
   const Wrapper = styled.div`
     display: flex;
     flex-direction: row;
@@ -48,11 +71,13 @@ export default function FilterMenu({ onClick }) {
           <Text>Show only bookmarked</Text>
 
           <Checkbox
+            className="slider"
             onClick={() => {
-              onClick()
               onButtonClick()
+              //onClick()
             }}
-            style={{ background: color ? 'green' : 'red' }}
+            type="checkbox"
+            filterActive={filterActive}
           ></Checkbox>
         </Wrapper>
       </Menu>

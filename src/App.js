@@ -27,6 +27,7 @@ function App() {
       <Globalstyles></Globalstyles>
       <Header
         filterMessages={() => setIsOnlyBookmarkShown(!isOnlyBookmarkShown)}
+        filterActive={isOnlyBookmarkShown}
       ></Header>
       <MessageWrapper>
         {isOnlyBookmarkShown
