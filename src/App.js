@@ -1,10 +1,11 @@
 import React from 'react'
-import Message from './Message'
-import Globalstyles from './Globalstyles'
-import messages from './messages'
-import Header from './Header'
-import Grid from './Grid'
 import styled from 'styled-components/macro'
+import Globalstyles from './Globalstyles'
+import Grid from './Grid'
+import Header from './Header'
+import Message from './Message'
+import messages from './messages'
+import Footer from './Footer'
 
 function App() {
   const MessageWrapper = styled.div`
@@ -19,7 +20,7 @@ function App() {
           <Message message={message} key={index}></Message>
         ))}
       </MessageWrapper>
-      <div style={{ background: 'lightgrey', height: '91px' }}></div>
+      <Footer></Footer>
     </Grid>
   )
 }

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import FilterButton from './FilterButton'
-import logo from './icons/logo.svg'
 import FilterMenu from './FilterMenu'
+import logo from './icons/logo.svg'
 import filterIcon from './icons/filterbutton.svg'
 
 export default function Header() {
