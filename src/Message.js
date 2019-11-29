@@ -4,7 +4,7 @@ import placeholder from './icons/Placeholder.svg'
 import ShowMoreButton from './ShowMoreButton'
 import Bookmark from './Bookmark'
 
-export default function Message({ message }) {
+export default function Message({ message, toggleBookmarked }) {
   const Message = styled.div`
     margin: 50px 20px;
     padding: 10px 20px;
@@ -46,7 +46,10 @@ export default function Message({ message }) {
 
   return (
     <Message>
-      <Bookmark />
+      <Bookmark
+        onClick={toggleBookmarked}
+        active={message.isBookmarked}
+      ></Bookmark>
       <Headline>{message.category}</Headline>
       <Wrapper>
         <Description>{message.description}</Description>

@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components/macro'
+import ToggleButton from './ToggleButton'
 
-export default function FilterMenu() {
+export default function FilterMenu({ handleClick, filterActive }) {
   const Menu = styled.div`
     position: absolute;
     top: 75px;
@@ -9,21 +10,9 @@ export default function FilterMenu() {
     z-index: 1;
     background: rgb(174 172 172);
     opacity: 80%;
-    width: 250px;
+    width: 200px;
     height: 150px;
     padding: 10px 20px;
-  `
-  const Arrow = styled.div`
-    border: 15px solid transparent;
-    border-bottom-color: rgb(174 172 172);
-    opacity: 80%;
-    position: absolute;
-    top: 48px;
-    left: 65px;
-  `
-  const Checkbox = styled.input`
-    height: 18px;
-    width: 18px;
   `
   const Wrapper = styled.div`
     display: flex;
@@ -35,14 +24,24 @@ export default function FilterMenu() {
   const Text = styled.p`
     color: rgb(57, 57, 57);
   `
+  const Arrow = styled.div`
+    border: 15px solid transparent;
+    border-bottom-color: rgb(174 172 172);
+    opacity: 80%;
+    position: absolute;
+    top: 48px;
+    left: 65px;
+  `
 
   return (
     <div>
       <Menu>
         <Wrapper>
           <Text>Show only bookmarked</Text>
-
-          <Checkbox type="checkbox"></Checkbox>
+          <ToggleButton
+            handleClick={handleClick}
+            filterActive={filterActive}
+          ></ToggleButton>
         </Wrapper>
       </Menu>
       <Arrow></Arrow>
