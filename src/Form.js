@@ -5,6 +5,7 @@ export default function From() {
   const Wrapper = styled.div`
     position: relative;
     margin: 0 20px;
+    overflow-y: scroll;
   `
 
   const Headline = styled.h1`
@@ -28,18 +29,105 @@ export default function From() {
     font-size: 18px;
   `
   const Input = styled.input`
-    height: 40px;
+    height: 32px;
     width: auto;
     border: solid 2px rgb(201 193 171);
   `
-
+  const GridWer = styled.div`
+    display: grid;
+    grid-template-rows: 43px 28px 53px 28px 53px 28px 32px;
+    width: 100%;
+    position: absolute;
+    top: 170px;
+  `
+  const Headline3 = styled.h3`
+    margin: 0;
+    color: rgb(107, 107, 107);
+    font-size: 16px;
+  `
+  const GridWo = styled.div`
+    display: grid;
+    grid-template-rows: 75px 28px 53px 28px 53px 28px 32px;
+    width: 100%;
+    position: absolute;
+    top: 460px;
+  `
+  const GridCheckboxes = styled.div`
+    position: absolute;
+    top: 787px;
+    display: grid;
+    grid-template-rows: repeat(4, 32px);
+    grid-template-columns: 30px 1fr;
+    grid-gap: 20px;
+    align-items: center;
+  `
+  const Checkbox = styled.input`
+    height: 20px;
+    width: 20px;
+    border-style: none;
+    border: solid 2px rgb(201 193 171);
+  `
+  const Headline3Boxes = styled.h3`
+    margin: 0;
+    color: rgb(107, 107, 107);
+    font-size: 16px;
+    grid-column-start: 2;
+  `
+  const GridDescription = styled.div`
+    display: grid;
+    grid-template-rows: 32px auto;
+    width: 100%;
+    position: absolute;
+    top: 1018px;
+  `
+  const Description = styled.textarea`
+    border: solid 2px rgb(201 193 171);
+    resize: vertical;
+  `
+  const Note = styled.p`
+    border: solid 2px rgb(201 193 171);
+    margin: 0;
+    position: absolute;
+  `
   return (
     <Wrapper>
       <Headline>Neue Meldung erstellen</Headline>
       <Category>
         <Headline2>Kategorie der Meldung</Headline2>
-        <Input type="text"></Input>
+        <Input style={{ height: '40px' }} type="text"></Input>
       </Category>
+      <GridWer>
+        <Headline2>Wer hat den Mangel festgestellt?</Headline2>
+        <Headline3>Name</Headline3>
+        <Input type="text"></Input>
+        <Headline3>Telefonnummer</Headline3>
+        <Input type="text"></Input>
+        <Headline3>E-Mail Adresse</Headline3>
+        <Input type="text"></Input>
+      </GridWer>
+      <GridWo>
+        <Headline2>Wann und wo wurde der Mangel festgelstellt?</Headline2>
+        <Headline3>Datum</Headline3>
+        <Input type="text"></Input>
+        <Headline3>Etage/Wohnung</Headline3>
+        <Input type="text"></Input>
+        <Headline3>Raumbezeichnung</Headline3>
+        <Input type="text"></Input>
+      </GridWo>
+      <GridCheckboxes>
+        <Checkbox type="checkbox"></Checkbox>
+        <Headline3Boxes>Mangel im Innenbereich</Headline3Boxes>
+        <Checkbox type="checkbox"></Checkbox>
+        <Headline3Boxes>Mangel im Außenbereich</Headline3Boxes>
+        <Checkbox type="checkbox"></Checkbox>
+        <Headline3Boxes>Mangel Gemeinschaftseigentum</Headline3Boxes>
+        <Checkbox type="checkbox"></Checkbox>
+        <Headline3Boxes>Mangel Sondereigentum</Headline3Boxes>
+      </GridCheckboxes>
+      <GridDescription>
+        <Headline2>Genaue Mangelbeschreibung</Headline2>
+        <Description rows="5"></Description>
+      </GridDescription>
     </Wrapper>
   )
 }
