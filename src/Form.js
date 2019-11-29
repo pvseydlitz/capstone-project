@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components/macro'
+import uploadIcon from './icons/upload.svg'
 
 export default function From() {
   const Wrapper = styled.div`
@@ -75,7 +76,7 @@ export default function From() {
   `
   const GridDescription = styled.div`
     display: grid;
-    grid-template-rows: 32px auto;
+    grid-template-rows: 32px 100px;
     width: 100%;
     position: absolute;
     top: 1018px;
@@ -85,9 +86,37 @@ export default function From() {
     resize: vertical;
   `
   const Note = styled.p`
-    border: solid 2px rgb(201 193 171);
+    border: solid 2px rgb(107, 107, 107);
+    padding: 5px;
     margin: 0;
     position: absolute;
+    top: 1193px;
+    color: rgb(107, 107, 107);
+    font-size: 14px;
+  `
+  const Headline3Upload = styled.h3`
+    margin: 0;
+    color: rgb(107, 107, 107);
+    font-size: 16px;
+  `
+  const UploadWrapper = styled.div`
+    display: grid;
+    grid-template-columns: 170px 1fr;
+    align-items: center;
+    position: absolute;
+    top: 1330px;
+  `
+  const FinishButton = styled.button`
+    padding: 4px 24px;
+    border-radius: 5px;
+    font-size: 16px;
+    background: rgb(201 193 171);
+    color: rgb(253 252 251);
+    position: absolute;
+    top: 1407px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
   `
   return (
     <Wrapper>
@@ -128,6 +157,16 @@ export default function From() {
         <Headline2>Genaue Mangelbeschreibung</Headline2>
         <Description rows="5"></Description>
       </GridDescription>
+      <UploadWrapper>
+        <Headline3Upload>Foto Hochladen</Headline3Upload>
+        <img src={uploadIcon}></img>
+      </UploadWrapper>
+      <Note>
+        Hinweis: Für den Fall, dass es sich nicht um einen Gewährleistungsmangel
+        handelt, ist der Aufwand für Anfahrtsund Untersuchungskosten dem
+        Architekturbüro und / oder der handwerksfirma zu erstatten.
+      </Note>
+      <FinishButton>Meldung hochladen</FinishButton>
     </Wrapper>
   )
 }
