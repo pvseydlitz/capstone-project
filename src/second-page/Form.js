@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components/macro'
-import uploadIcon from './icons/upload.svg'
+import uploadIcon from '../icons/upload.svg'
+import dropdownIcon from '../icons/dropdown.svg'
 
 export default function From() {
   const Wrapper = styled.div`
@@ -8,7 +9,6 @@ export default function From() {
     margin: 0 20px;
     overflow-y: scroll;
   `
-
   const Headline = styled.h1`
     color: rgb(187 179 163);
     font-size: 21px;
@@ -19,8 +19,7 @@ export default function From() {
   `
   const Category = styled.div`
     display: grid;
-    grid-template-rows: 32px 40px;
-    width: 100%;
+    grid-template-rows: 32px 32px;
     position: absolute;
     top: 55px;
   `
@@ -29,10 +28,25 @@ export default function From() {
     color: rgb(107, 107, 107);
     font-size: 18px;
   `
-  const Input = styled.input`
-    height: 32px;
-    width: auto;
-    border: solid 2px rgb(201 193 171);
+  const DropDown = styled.select`
+    background: rgb(201 193 171);
+    color: rgb(107 107 107);
+    font-size: 18px;
+    width: 250px;
+    border: none;
+    padding-left: 5px;
+    -webkit-appearance: button;
+    appearance: button;
+    outline: none;
+    position: relative;
+  `
+  const DropdownIcon = styled.img`
+    position: absolute;
+    top: 34px;
+    right: 5px;
+    text-align: center;
+    display: inline;
+    pointer-events: none;
   `
   const GridWer = styled.div`
     display: grid;
@@ -40,6 +54,12 @@ export default function From() {
     width: 100%;
     position: absolute;
     top: 170px;
+  `
+
+  const Input = styled.input`
+    height: 32px;
+    width: auto;
+    border: solid 2px rgb(201 193 171);
   `
   const Headline3 = styled.h3`
     margin: 0;
@@ -101,7 +121,7 @@ export default function From() {
   `
   const UploadWrapper = styled.div`
     display: grid;
-    grid-template-columns: 170px 1fr;
+    grid-template-columns: 150px 1fr;
     align-items: center;
     position: absolute;
     top: 1330px;
@@ -123,7 +143,14 @@ export default function From() {
       <Headline>Neue Meldung erstellen</Headline>
       <Category>
         <Headline2>Kategorie der Meldung</Headline2>
-        <Input style={{ height: '40px' }} type="text"></Input>
+        <DropDown name="select">
+          <option selected value="1">
+            Bitte auswählen
+          </option>
+          <option value="2">Gewährleistungsmangel</option>
+          <option value="3">Ankündigung</option>
+        </DropDown>
+        <DropdownIcon src={dropdownIcon}></DropdownIcon>
       </Category>
       <GridWer>
         <Headline2>Wer hat den Mangel festgestellt?</Headline2>
@@ -157,16 +184,20 @@ export default function From() {
         <Headline2>Genaue Mangelbeschreibung</Headline2>
         <Description rows="5"></Description>
       </GridDescription>
-      <UploadWrapper>
-        <Headline3Upload>Foto Hochladen</Headline3Upload>
-        <img src={uploadIcon}></img>
-      </UploadWrapper>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <UploadWrapper>
+          <Headline3Upload>Foto Hochladen</Headline3Upload>
+          <img src={uploadIcon}></img>
+        </UploadWrapper>
+      </div>
       <Note>
         Hinweis: Für den Fall, dass es sich nicht um einen Gewährleistungsmangel
         handelt, ist der Aufwand für Anfahrtsund Untersuchungskosten dem
-        Architekturbüro und / oder der handwerksfirma zu erstatten.
+        Architekturbüro und / oder der Handwerksfirma zu erstatten.
       </Note>
-      <FinishButton>Meldung hochladen</FinishButton>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <FinishButton>Meldung hochladen</FinishButton>
+      </div>
     </Wrapper>
   )
 }
