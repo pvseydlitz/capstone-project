@@ -1,26 +1,47 @@
 [
   {
-    "category": "Schadensmeldung",
-    "description": "Beschreibung der Meldung: Lorem iDescriptionsum dolor sit amet consectetur.",
-    "content": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis architecto, vero debitis non laborum ab labore cupiditate. Suscipit, odio delectus.",
+    "kategorie": "Schadensmeldung",
+    "name": "Philipp von Seydlitz",
+    "telefonnummer": "0172 525 96 45",
+    "email": "philipp@seydlitz.com",
+    "datum": "02.12.19",
+    "wohnung": "Wohnung 36",
+    "raumbezeichunung": "Wohnzimmer",
+    "innenbereich": false,
+    "außenbereich": true,
+    "gemeinschaftseigentum": false,
+    "sondereigentum": false,
+    "beschreibung": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis architecto, vero debitis non laborum ab labore cupiditate. Suscipit, odio delectus.",
     "isBookmarked": false
   },
   {
-    "category": "Ankündigung",
-    "description": "Beschreibung der Meldung: Lorem iDescriptionsum dolor sit amet consectetur.",
-    "content": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis architecto, vero debitis non laborum ab labore cupiditate. Suscipit, odio delectus.",
+    "kategorie": "Schadensmeldung",
+    "name": "Philipp von Seydlitz",
+    "telefonnummer": "0172 525 96 45",
+    "email": "philipp@seydlitz.com",
+    "datum": "02.12.19",
+    "wohnung": "Wohnung 36",
+    "raumbezeichunung": "Wohnzimmer",
+    "innenbereich": false,
+    "außenbereich": true,
+    "gemeinschaftseigentum": false,
+    "sondereigentum": false,
+    "beschreibung": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis architecto, vero debitis non laborum ab labore cupiditate. Suscipit, odio delectus.",
     "isBookmarked": false
   },
   {
-    "category": "Schadensmeldung",
-    "description": "Beschreibung der Meldung: Lorem iDescriptionsum dolor sit amet consectetur.",
-    "content": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis architecto, vero debitis non laborum ab labore cupiditate. Suscipit, odio delectus.",
-    "isBookmarked": false
-  },
-  {
-    "category": "Ankündigung",
-    "description": "Beschreibung der Meldung: Lorem iDescriptionsum dolor sit amet consectetur.",
-    "content": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis architecto, vero debitis non laborum ab labore cupiditate. Suscipit, odio delectus.",
+    "kategorie": "Schadensmeldung",
+    "name": "Philipp von Seydlitz",
+    "telefonnummer": "0172 525 96 45",
+    "email": "philipp@seydlitz.com",
+    "datum": "02.12.19",
+    "wohnung": "Wohnung 36",
+    "raumbezeichunung": "Wohnzimmer",
+    "innenbereich": false,
+    "außenbereich": true,
+    "gemeinschaftseigentum": false,
+    "sondereigentum": false,
+    "beschreibung": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis architecto, vero debitis non laborum ab labore cupiditate. Suscipit, odio delectus.",
     "isBookmarked": false
   }
 ]

@@ -20,8 +20,7 @@ export default function Message({ message, toggleBookmarked }) {
   `
   const Wrapper = styled.div`
     display: grid;
-    grid-template-columns: auto 85px;
-    grid-template-rows: 83px auto 29px;
+    grid-template-rows: 16px 16px 16px 16px 16px 16px 16px 16px auto 29px;
     grid-gap: 15px;
   `
   const Description = styled.p`
@@ -38,8 +37,8 @@ export default function Message({ message, toggleBookmarked }) {
     margin: 0;
     font-size: 16px;
     color: rgb(107, 107, 107);
-    grid-column-start: 1;
-    grid-column-end: 3;
+    /* grid-column-start: 1;
+    grid-column-end: 3; */
   `
 
   const [showContent, setShowContent] = useState(false)
@@ -50,11 +49,27 @@ export default function Message({ message, toggleBookmarked }) {
         onClick={toggleBookmarked}
         active={message.isBookmarked}
       ></Bookmark>
-      <Headline>{message.category}</Headline>
+      <Headline>{message.kategorie}</Headline>
       <Wrapper>
-        <Description>{message.description}</Description>
-        <Picture src={placeholder}></Picture>
-        <Content>{showContent ? message.content : ''}</Content>
+        <p
+          style={{ margin: '0', color: 'rgb(107, 107, 107)', fontSize: '16px' }}
+        >
+          Ort des Schadens:
+        </p>
+        <Description>{message.wohnung}</Description>
+        <Description>{message.raumbezeichunung}</Description>
+        <Description>{message.datum}</Description>
+
+        <p
+          style={{ margin: '0', color: 'rgb(107, 107, 107)', fontSize: '16px' }}
+        >
+          Wer hat den Schaden gemeldet?
+        </p>
+        <Description>{message.name}</Description>
+        <Description>{message.telefonnummer}</Description>
+        <Description>{message.email}</Description>
+        {/*  <Picture src={placeholder}></Picture> */}
+        <Content>{showContent ? message.beschreibung : ''}</Content>
       </Wrapper>
       <ShowMoreButton onClick={() => setShowContent(!showContent)}>
         {showContent ? 'Show less' : 'Show more'}
