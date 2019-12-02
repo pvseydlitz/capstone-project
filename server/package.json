@@ -7,7 +7,7 @@
     "start": "nodemon --inspect --watch server.js server.js"
   },
   "keywords": [],
-  "author": "Jeremias Erbs <jerry@badabam.de> (http://www.badabam.de/)",
+  "author": "Philipp von Seydlitz",
   "license": "UNLICENSED",
   "dependencies": {
     "all": "0.0.0",

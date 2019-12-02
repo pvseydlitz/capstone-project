@@ -19,7 +19,7 @@ app.get('/messages', (req, res) => {
     .catch(err => res.json(err))
 })
 
-/* app.get('/messages/:id', (req, res) => {
+app.get('/messages/:id', (req, res) => {
   Message.findById(req.params.id)
     .then(message => res.json(message))
     .catch(err => res.json(err))
@@ -42,4 +42,3 @@ app.delete('/messages/:id', (req, res) => {
     .then(message => res.json(message))
     .catch(err => res.json(err))
 })
- */
