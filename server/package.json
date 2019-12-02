@@ -10,9 +10,11 @@
   "author": "Jeremias Erbs <jerry@badabam.de> (http://www.badabam.de/)",
   "license": "UNLICENSED",
   "dependencies": {
+    "all": "0.0.0",
     "express": "4.17.1",
     "mongoose": "5.7.10",
     "nodemon": "1.19.4",
+    "run": "^1.4.0",
     "uid": "0.0.2"
   }
 }
