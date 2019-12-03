@@ -5,8 +5,19 @@ import FinishButton from './FinishButton'
 import Checkboxes from './Checkboxes'
 import uploadIcon from '../icons/upload.svg'
 
-export default function From() {
-  const Wrapper = styled.div`
+export default function Form({ onSubmit }) {
+  function handleSubmit(event) {
+    event.preventDefault()
+    const form = event.target
+    const formData = new FormData(form)
+    const data = Object.fromEntries(formData)
+    console.log(onSubmit)
+    console.log(data)
+    onSubmit(data)
+    form.reset()
+  }
+
+  const Wrapper = styled.form`
     position: relative;
     margin: 0 20px;
     overflow-y: scroll;
@@ -88,7 +99,7 @@ export default function From() {
   `
 
   return (
-    <Wrapper>
+    <Wrapper onSubmit={handleSubmit}>
       <Headline>Neue Meldung erstellen</Headline>
       <Category>
         <Headline2>Kategorie der Meldung</Headline2>
@@ -97,30 +108,30 @@ export default function From() {
       <GridWer>
         <Headline2>Wer hat den Mangel festgestellt?</Headline2>
         <Headline3>Name</Headline3>
-        <Input type="text"></Input>
+        <Input type="text" name="name"></Input>
         <Headline3>Telefonnummer</Headline3>
-        <Input type="text"></Input>
+        <Input type="text" name="telefonnummer"></Input>
         <Headline3>E-Mail Adresse</Headline3>
-        <Input type="text"></Input>
+        <Input type="text" name="email"></Input>
       </GridWer>
       <GridWo>
         <Headline2>Wann und wo wurde der Mangel festgelstellt?</Headline2>
         <Headline3>Datum</Headline3>
-        <Input type="text"></Input>
+        <Input type="text" name="datum"></Input>
         <Headline3>Etage/Wohnung</Headline3>
-        <Input type="text"></Input>
+        <Input type="text" name="wohnung"></Input>
         <Headline3>Raumbezeichnung</Headline3>
-        <Input type="text"></Input>
+        <Input type="text" name="raumbezeichnung"></Input>
       </GridWo>
       <Checkboxes></Checkboxes>
       <GridDescription>
         <Headline2>Genaue Mangelbeschreibung</Headline2>
-        <Description rows="5"></Description>
+        <Description rows="5" name="beschreibung"></Description>
       </GridDescription>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <UploadWrapper>
           <Headline3Upload>Foto Hochladen</Headline3Upload>
-          <img src={uploadIcon}></img>
+          <img src={uploadIcon} alt={'upload icon'}></img>
         </UploadWrapper>
       </div>
       <Note>

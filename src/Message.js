@@ -57,7 +57,7 @@ export default function Message({ message, toggleBookmarked }) {
           Ort des Schadens:
         </p>
         <Description>{message.wohnung}</Description>
-        <Description>{message.raumbezeichunung}</Description>
+        <Description>{message.raumbezeichnung}</Description>
         <Description>{message.datum}</Description>
 
         <p

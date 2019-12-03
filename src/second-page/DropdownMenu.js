@@ -26,12 +26,12 @@ export default function DropdwonMenu() {
   `
   return (
     <section>
-      <DropDown name="select">
+      <DropDown name="kategorie">
         <option selected value="1">
           Bitte auswählen
         </option>
-        <option value="2">Gewährleistungsmangel</option>
-        <option value="3">Ankündigung</option>
+        <option value="Gewährleistungsmangel">Gewährleistungsmangel</option>
+        <option value="Ankündigung">Ankündigung</option>
       </DropDown>{' '}
       <DropdownIcon src={dropdownIcon}></DropdownIcon>
     </section>

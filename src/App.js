@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Home from './Home'
 import Create from './second-page/Create'
-import { getMessages } from './services'
+import { getMessages, postMessage } from './services'
 
 export default function App() {
   const [messages, setMessages] = useState([])
@@ -17,6 +17,11 @@ export default function App() {
       ...messages.slice(index + 1),
     ])
   }
+  function createMessage(messageData) {
+    postMessage(messageData).then(message => {
+      setMessages([...messages, message])
+    })
+  }
   return (
     <Router>
       <Switch>
@@ -24,7 +29,7 @@ export default function App() {
           <Home messages={messages} toggleBookmarked={toggleBookmarked}></Home>
         </Route>
         <Route path="/create">
-          <Create></Create>
+          <Create onSubmit={createMessage}></Create>
         </Route>
       </Switch>
     </Router>
