@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
-import placeholder from './icons/Placeholder.svg'
 import ShowMoreButton from './ShowMoreButton'
 import Bookmark from './Bookmark'
 
@@ -28,17 +27,10 @@ export default function Message({ message, toggleBookmarked }) {
     font-size: 16px;
     color: rgb(107, 107, 107);
   `
-  const Picture = styled.img`
-    position: absolute;
-    right: 22px;
-    top: 40px;
-  `
   const Content = styled.p`
     margin: 0;
     font-size: 16px;
     color: rgb(107, 107, 107);
-    /* grid-column-start: 1;
-    grid-column-end: 3; */
   `
   const [showContent, setShowContent] = useState(false)
   function checkArea() {
@@ -84,7 +76,6 @@ export default function Message({ message, toggleBookmarked }) {
         <Description>{message.name}</Description>
         <Description>{message.telefonnummer}</Description>
         <Description>{message.email}</Description>
-        {/*  <Picture src={placeholder}></Picture> */}
         <Content>{showContent ? message.beschreibung : ''}</Content>
       </Wrapper>
       <ShowMoreButton onClick={() => setShowContent(!showContent)}>

@@ -22,9 +22,10 @@ export default function Header({ filterMessages, filterActive }) {
     <Line>
       <FilterButton
         src={filterIcon}
+        alt="filter icon"
         onClick={() => setIsClicked(!isClicked)}
       ></FilterButton>
-      <span
+      {/* <span
         style={{
           fontSize: '30px',
           color: 'rgb(201 193 171)',
@@ -33,8 +34,8 @@ export default function Header({ filterMessages, filterActive }) {
         }}
       >
         FlatChat
-      </span>
-      {/* <Logo src={logo}></Logo> */}
+      </span> */}
+      <Logo src={logo} alt="logo"></Logo>
       {isClicked ? (
         <FilterMenu
           handleClick={filterMessages}
