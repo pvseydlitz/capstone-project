@@ -20,7 +20,7 @@ export default function Message({ message, toggleBookmarked }) {
   `
   const Wrapper = styled.div`
     display: grid;
-    grid-template-rows: 16px 16px 16px 16px 16px 16px 16px 16px auto 29px;
+    grid-template-rows: 16px 16px 16px 16px 16px 16px 16px 16px 16px auto 29px;
     grid-gap: 15px;
   `
   const Description = styled.p`
@@ -40,8 +40,23 @@ export default function Message({ message, toggleBookmarked }) {
     /* grid-column-start: 1;
     grid-column-end: 3; */
   `
-
   const [showContent, setShowContent] = useState(false)
+  function checkArea() {
+    let area = []
+    if (message.innenbereich === 'true') {
+      area.push('Innenbereich')
+    }
+    if (message.außenbereich === 'true') {
+      area.push('Außenbereich')
+    }
+    if (message.gemeinschaftseigentum === 'true') {
+      area.push('Gemeinschafteigentum')
+    }
+    if (message.sondereigentum === 'true') {
+      area.push('Sondereigentum')
+    }
+    return area.join(', ')
+  }
 
   return (
     <Message>
@@ -56,6 +71,7 @@ export default function Message({ message, toggleBookmarked }) {
         >
           Ort des Schadens:
         </p>
+        <Description>{checkArea()}</Description>
         <Description>{message.wohnung}</Description>
         <Description>{message.raumbezeichnung}</Description>
         <Description>{message.datum}</Description>

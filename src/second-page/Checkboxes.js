@@ -23,15 +23,20 @@ export default function Checkboxes() {
     font-size: 16px;
     grid-column-start: 2;
   `
+
   return (
     <GridCheckboxes>
-      <Checkbox type="checkbox"></Checkbox>
+      <Checkbox type="checkbox" name="innenbereich" value="true"></Checkbox>
       <Headline3Boxes>Mangel im Innenbereich</Headline3Boxes>
-      <Checkbox type="checkbox"></Checkbox>
+      <Checkbox type="checkbox" name="außenbereich" value="true"></Checkbox>
       <Headline3Boxes>Mangel im Außenbereich</Headline3Boxes>
-      <Checkbox type="checkbox"></Checkbox>
+      <Checkbox
+        type="checkbox"
+        name="gemeinschaftseigentum"
+        value="true"
+      ></Checkbox>
       <Headline3Boxes>Mangel Gemeinschaftseigentum</Headline3Boxes>
-      <Checkbox type="checkbox"></Checkbox>
+      <Checkbox type="checkbox" name="sondereigentum" value="true"></Checkbox>
       <Headline3Boxes>Mangel Sondereigentum</Headline3Boxes>
     </GridCheckboxes>
   )

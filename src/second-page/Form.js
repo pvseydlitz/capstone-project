@@ -11,7 +11,6 @@ export default function Form({ onSubmit }) {
     const form = event.target
     const formData = new FormData(form)
     const data = Object.fromEntries(formData)
-    console.log(onSubmit)
     console.log(data)
     onSubmit(data)
     form.reset()
