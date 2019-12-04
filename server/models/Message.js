@@ -1,9 +1,18 @@
 const mongoose = require('mongoose')
 
 const messageSchema = {
-  category: String,
-  description: String,
-  content: String,
+  kategorie: String,
+  name: String,
+  telefonnummer: String,
+  email: String,
+  datum: String,
+  wohnung: String,
+  raumbezeichnung: String,
+  innenbereich: String,
+  außenbereich: String,
+  gemeinschaftseigentum: String,
+  sondereigentum: String,
+  beschreibung: String,
   isBookmarked: Boolean,
 }
 

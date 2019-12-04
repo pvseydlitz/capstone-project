@@ -21,22 +21,22 @@ export default function Footer() {
     <Footer>
       <NavButton>
         <Link to="/">
-          <img src={home}></img>
+          <img src={home} alt="home button"></img>
         </Link>
       </NavButton>
       <NavButton>
         <Link to="/create">
-          <img src={plusSign}></img>
+          <img src={plusSign} alt="create button"></img>
         </Link>
       </NavButton>
       <NavButton>
         <Link to="/calendar">
-          <img src={calendar}></img>
+          <img src={calendar} alt="calendar button"></img>
         </Link>
       </NavButton>
       <NavButton>
         <Link to="/person">
-          <img src={person}></img>
+          <img src={person} alt="person button"></img>
         </Link>
       </NavButton>
     </Footer>

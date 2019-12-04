@@ -12,7 +12,11 @@ export default function Bookmark({ active, onClick }) {
 
   return (
     <Bookmark>
-      <img src={active ? bookmarkRed : bookmarkGrey} onClick={onClick} />
+      <img
+        src={active ? bookmarkRed : bookmarkGrey}
+        onClick={onClick}
+        alt="Bookmark"
+      />
     </Bookmark>
   )
 }

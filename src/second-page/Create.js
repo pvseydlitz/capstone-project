@@ -5,12 +5,12 @@ import Grid from '../Grid'
 import Form from './Form'
 import Globalstyles from '../Globalstyles'
 
-export default function Create() {
+export default function Create({ onSubmit }) {
   return (
     <Grid>
       <Globalstyles></Globalstyles>
       <Header></Header>
-      <Form></Form>
+      <Form onSubmit={onSubmit}></Form>
       <Footer></Footer>
     </Grid>
   )
