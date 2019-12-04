@@ -78,10 +78,24 @@ export default function Form({ onSubmit }) {
     border: solid 2px rgb(107, 107, 107);
     padding: 5px;
     margin: 0;
-    position: absolute;
-    top: 1193px;
     color: rgb(107, 107, 107);
     font-size: 14px;
+    position: absolute;
+    top: 1193px;
+  `
+  const AcceptWrapper = styled.div`
+    display: grid;
+    grid-template-columns: 30px 1fr;
+    grid-gap: 20px;
+    align-items: center;
+    position: absolute;
+    top: 1302px;
+  `
+  const Accept = styled.input`
+    height: 20px;
+    width: 20px;
+    border-style: none;
+    border: solid 2px rgb(201 193 171);
   `
   const Headline3Upload = styled.h3`
     margin: 0;
@@ -93,7 +107,7 @@ export default function Form({ onSubmit }) {
     grid-template-columns: 150px 1fr;
     align-items: center;
     position: absolute;
-    top: 1330px;
+    top: 1340px;
   `
 
   return (
@@ -126,18 +140,23 @@ export default function Form({ onSubmit }) {
         <Headline2>Genaue Mangelbeschreibung</Headline2>
         <Description rows="5" name="beschreibung" required></Description>
       </GridDescription>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <UploadWrapper>
-          <Headline3Upload>Foto Hochladen</Headline3Upload>
-          <img src={uploadIcon} alt={'upload icon'}></img>
-        </UploadWrapper>
-      </div>
       <Note>
         Hinweis: Für den Fall, dass es sich nicht um einen Gewährleistungsmangel
         handelt, ist der Aufwand für Anfahrts und Untersuchungskosten dem
         Architekturbüro und / oder der Handwerksfirma zu erstatten.
       </Note>
+
+      <AcceptWrapper>
+        <Accept type="checkbox" required></Accept>
+        <Headline3Upload style={{ gridColumnStart: '2' }}>
+          Hinweis akzeptiert
+        </Headline3Upload>
+      </AcceptWrapper>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <UploadWrapper>
+          <Headline3Upload>Foto Hochladen</Headline3Upload>
+          <img src={uploadIcon} alt={'upload icon'}></img>
+        </UploadWrapper>
         <FinishButton>Meldung hochladen</FinishButton>
       </div>
     </Wrapper>
