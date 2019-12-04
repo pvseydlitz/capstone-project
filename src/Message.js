@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import ShowMoreButton from './ShowMoreButton'
 import Bookmark from './Bookmark'
+import cross from './icons/cross.svg'
 
-export default function Message({ message, toggleBookmarked }) {
+export default function Message({ message, toggleBookmarked, handleClick }) {
   const Message = styled.div`
     margin: 50px 20px;
     padding: 10px 20px;
@@ -32,6 +33,11 @@ export default function Message({ message, toggleBookmarked }) {
     font-size: 16px;
     color: rgb(107, 107, 107);
   `
+  const Cross = styled.img`
+    position: absolute;
+    right: 34px;
+    top: 28px;
+  `
   const [showContent, setShowContent] = useState(false)
   function checkArea() {
     let area = []
@@ -56,6 +62,7 @@ export default function Message({ message, toggleBookmarked }) {
         onClick={toggleBookmarked}
         active={message.isBookmarked}
       ></Bookmark>
+      <Cross src={cross} onClick={handleClick}></Cross>
       <Headline>{message.kategorie}</Headline>
       <Wrapper>
         <p
