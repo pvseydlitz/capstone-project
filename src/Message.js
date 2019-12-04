@@ -5,6 +5,7 @@ import Bookmark from './Bookmark'
 import cross from './icons/cross.svg'
 
 export default function Message({ message, toggleBookmarked, handleClick }) {
+  const [showContent, setShowContent] = useState(false)
   const Message = styled.div`
     margin: 50px 20px;
     padding: 10px 20px;
@@ -20,8 +21,8 @@ export default function Message({ message, toggleBookmarked, handleClick }) {
   `
   const Wrapper = styled.div`
     display: grid;
-    grid-template-rows: 16px 16px 16px 16px 16px 16px 16px 16px 16px auto 29px;
-    grid-gap: 15px;
+    grid-template-rows: ${props =>
+      props.active ? 'repeat(5, 30px) 16px' : 'repeat(9, 30px) auto 29px'};
   `
   const Description = styled.p`
     margin: 0;
@@ -38,7 +39,7 @@ export default function Message({ message, toggleBookmarked, handleClick }) {
     right: 34px;
     top: 28px;
   `
-  const [showContent, setShowContent] = useState(false)
+
   function checkArea() {
     let area = []
     if (message.innenbereich === 'true') {
@@ -64,7 +65,7 @@ export default function Message({ message, toggleBookmarked, handleClick }) {
       ></Bookmark>
       <Cross src={cross} onClick={handleClick}></Cross>
       <Headline>{message.kategorie}</Headline>
-      <Wrapper>
+      <Wrapper active={!showContent}>
         <p
           style={{ margin: '0', color: 'rgb(107, 107, 107)', fontSize: '16px' }}
         >
@@ -78,11 +79,11 @@ export default function Message({ message, toggleBookmarked, handleClick }) {
         <p
           style={{ margin: '0', color: 'rgb(107, 107, 107)', fontSize: '16px' }}
         >
-          Wer hat den Schaden gemeldet?
+          {showContent ? 'Wer hat den Schaden gemeldet?' : ''}
         </p>
-        <Description>{message.name}</Description>
-        <Description>{message.telefonnummer}</Description>
-        <Description>{message.email}</Description>
+        <Description>{showContent ? message.name : ''}</Description>
+        <Description>{showContent ? message.telefonnummer : ''}</Description>
+        <Description>{showContent ? message.email : ''}</Description>
         <Content>{showContent ? message.beschreibung : ''}</Content>
       </Wrapper>
       <ShowMoreButton onClick={() => setShowContent(!showContent)}>

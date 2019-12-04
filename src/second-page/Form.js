@@ -11,7 +11,6 @@ export default function Form({ onSubmit }) {
     const form = event.target
     const formData = new FormData(form)
     const data = Object.fromEntries(formData)
-    console.log(data)
     onSubmit(data)
     form.reset()
   }
@@ -107,25 +106,25 @@ export default function Form({ onSubmit }) {
       <GridWer>
         <Headline2>Wer hat den Mangel festgestellt?</Headline2>
         <Headline3>Name</Headline3>
-        <Input type="text" name="name"></Input>
+        <Input type="text" name="name" required></Input>
         <Headline3>Telefonnummer</Headline3>
-        <Input type="text" name="telefonnummer"></Input>
+        <Input type="text" name="telefonnummer" required></Input>
         <Headline3>E-Mail Adresse</Headline3>
-        <Input type="text" name="email"></Input>
+        <Input type="text" name="email" required></Input>
       </GridWer>
       <GridWo>
         <Headline2>Wann und wo wurde der Mangel festgelstellt?</Headline2>
         <Headline3>Datum</Headline3>
-        <Input type="text" name="datum"></Input>
+        <Input type="text" name="datum" required></Input>
         <Headline3>Etage/Wohnung</Headline3>
-        <Input type="text" name="wohnung"></Input>
+        <Input type="text" name="wohnung" required></Input>
         <Headline3>Raumbezeichnung</Headline3>
-        <Input type="text" name="raumbezeichnung"></Input>
+        <Input type="text" name="raumbezeichnung" required></Input>
       </GridWo>
       <Checkboxes></Checkboxes>
       <GridDescription>
         <Headline2>Genaue Mangelbeschreibung</Headline2>
-        <Description rows="5" name="beschreibung"></Description>
+        <Description rows="5" name="beschreibung" required></Description>
       </GridDescription>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <UploadWrapper>
