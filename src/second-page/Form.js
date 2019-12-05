@@ -1,24 +1,21 @@
 import React from 'react'
 import styled from 'styled-components/macro'
-import DropdownMenu from './DropdownMenu'
 import FinishButton from './FinishButton'
 import Checkboxes from './Checkboxes'
 import uploadIcon from '../icons/upload.svg'
 
-export default function Form({ onSubmit }) {
+export default function Form({ onSubmit1 }) {
   function handleSubmit(event) {
     event.preventDefault()
     const form = event.target
     const formData = new FormData(form)
     const data = Object.fromEntries(formData)
-    onSubmit(data)
+    onSubmit1(data)
     form.reset()
   }
 
   const Wrapper = styled.form`
     position: relative;
-
-    /* overflow-y: scroll; */
   `
 
   const Headline2 = styled.h2`

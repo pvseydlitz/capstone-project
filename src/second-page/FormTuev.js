@@ -2,13 +2,13 @@ import React from 'react'
 import styled from 'styled-components/macro'
 import FinishButton from './FinishButton'
 
-export default function FormTUV({ onSubmit }) {
+export default function FormTuev({ onSubmit2 }) {
   function handleSubmit(event) {
     event.preventDefault()
     const form = event.target
     const formData = new FormData(form)
     const data = Object.fromEntries(formData)
-    onSubmit(data)
+    onSubmit2(data)
     form.reset()
   }
 

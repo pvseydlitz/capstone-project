@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Message = require('./models/Message')
+const MessageTuev = require('./models/MessageTuev')
 const express = require('express')
 
 mongoose.connect('mongodb://localhost:27017/capstone-project', {
@@ -33,6 +34,16 @@ app.get('/messages/:id', (req, res) => {
 
 app.post('/messages', (req, res) => {
   Message.create(req.body)
+    .then(message => res.json(message))
+    .catch(err => res.json(err))
+})
+app.get('/messagesTuev', (req, res) => {
+  MessageTuev.find()
+    .then(messages => res.json(messages))
+    .catch(err => res.json(err))
+})
+app.post('/messagesTuev', (req, res) => {
+  MessageTuev.create(req.body)
     .then(message => res.json(message))
     .catch(err => res.json(err))
 })

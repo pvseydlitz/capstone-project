@@ -11,6 +11,15 @@ export function postMessage(message) {
     },
   }).then(res => res.json())
 }
+export function postMessage2(message) {
+  return fetch('/messagesTuev', {
+    method: 'POST',
+    body: JSON.stringify(message),
+    headers: {
+      'content-type': 'application/json',
+    },
+  }).then(res => res.json())
+}
 export function patchCard(card) {
   return fetch('/cards/' + card._id, {
     method: 'PATCH',

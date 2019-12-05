@@ -3,12 +3,12 @@ import styled from 'styled-components/macro'
 import Header from '../Header'
 import Footer from '../Footer'
 import Grid from '../Grid'
-import FormTUV from './FormTUV'
+import FormTuev from './FormTuev'
 import Form from './Form'
 import Globalstyles from '../Globalstyles'
 import DropDown from './DropdownMenu'
 
-export default function Create({ onSubmit }) {
+export default function Create({ onSubmit1, onSubmit2 }) {
   const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
@@ -55,12 +55,12 @@ export default function Create({ onSubmit }) {
         </Category>
 
         {selected === 'Gewährleistungsmangel' ? (
-          <Form onSubmit={onSubmit}></Form>
+          <Form onSubmit1={onSubmit1}></Form>
         ) : (
           ''
         )}
         {selected === 'Tüv-Mangel' ? (
-          <FormTUV onSubmit={onSubmit}></FormTUV>
+          <FormTuev onSubmit2={onSubmit2}></FormTuev>
         ) : (
           ''
         )}
