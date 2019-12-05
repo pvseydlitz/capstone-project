@@ -84,12 +84,12 @@ export default function Form({ onSubmit }) {
     top: 1193px;
   `
   const AcceptWrapper = styled.div`
+    position: absolute;
+    top: 1302px;
     display: grid;
     grid-template-columns: 30px 1fr;
     grid-gap: 20px;
     align-items: center;
-    position: absolute;
-    top: 1302px;
   `
   const Accept = styled.input`
     height: 20px;
@@ -148,9 +148,7 @@ export default function Form({ onSubmit }) {
 
       <AcceptWrapper>
         <Accept type="checkbox" required></Accept>
-        <Headline3Upload style={{ gridColumnStart: '2' }}>
-          Hinweis akzeptiert
-        </Headline3Upload>
+        <Headline3Upload>Hinweis akzeptiert</Headline3Upload>
       </AcceptWrapper>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <UploadWrapper>
