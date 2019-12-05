@@ -17,17 +17,10 @@ export default function Form({ onSubmit }) {
 
   const Wrapper = styled.form`
     position: relative;
-    margin: 0 20px;
+
     /* overflow-y: scroll; */
   `
-  const Headline = styled.h1`
-    color: rgb(187 179 163);
-    font-size: 21px;
-    font-weight: bold;
-    position: absolute;
-    top: 10px;
-    margin: 0;
-  `
+
   const Category = styled.div`
     display: grid;
     grid-template-rows: 32px 32px;
@@ -41,7 +34,7 @@ export default function Form({ onSubmit }) {
   `
   const GridWer = styled.div`
     display: grid;
-    grid-template-rows: 43px 28px 53px 28px 53px 28px 32px;
+    grid-template-rows: 28px 53px 28px 53px 28px 32px;
     width: 100%;
     position: absolute;
     top: 170px;
@@ -112,10 +105,9 @@ export default function Form({ onSubmit }) {
 
   return (
     <Wrapper onSubmit={handleSubmit}>
-      <Headline>Neue Meldung erstellen</Headline>
       <Category>
         <Headline2>Kategorie der Meldung</Headline2>
-        <DropdownMenu></DropdownMenu>
+        {/* <DropdownMenu></DropdownMenu> */}
       </Category>
       <GridWer>
         <Headline3>Name</Headline3>

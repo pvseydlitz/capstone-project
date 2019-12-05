@@ -13,6 +13,12 @@ app.use(express.json())
 const PORT = process.env.PORT || 3333
 app.listen(PORT, () => console.log(`Express ready on port ${PORT}`))
 
+// app.get('/all', async (req, res) => {
+//   const messages = await Message.find()
+//   const messages2 = await Message.find()
+//   res.json({ messages, messages2 })
+// })
+
 app.get('/messages', (req, res) => {
   Message.find()
     .then(messages => res.json(messages))

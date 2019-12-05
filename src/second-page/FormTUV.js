@@ -1,9 +1,6 @@
 import React from 'react'
 import styled from 'styled-components/macro'
-import DropdownMenu from './DropdownMenu'
 import FinishButton from './FinishButton'
-import Checkboxes from './Checkboxes'
-import uploadIcon from '../icons/upload.svg'
 
 export default function FormTUV({ onSubmit }) {
   function handleSubmit(event) {
@@ -41,7 +38,7 @@ export default function FormTUV({ onSubmit }) {
   `
   const GridWer = styled.div`
     display: grid;
-    grid-template-rows: 43px 28px 53px 28px 53px 28px 32px;
+    grid-template-rows: 28px 53px 28px 53px;
     width: 100%;
     position: absolute;
     top: 170px;
@@ -72,10 +69,10 @@ export default function FormTUV({ onSubmit }) {
   return (
     <Wrapper onSubmit={handleSubmit}>
       <Headline>Neue Meldung erstellen</Headline>
-      <Category>
+      {/* <Category>
         <Headline2>Kategorie der Meldung</Headline2>
         <DropdownMenu></DropdownMenu>
-      </Category>
+      </Category> */}
       <GridWer>
         <Headline3>Nummer</Headline3>
         <Input type="text" name="nummer" required></Input>
