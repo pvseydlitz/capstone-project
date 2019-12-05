@@ -7,7 +7,7 @@ export default function DropdownMenu({ handleChange, selected }) {
     <section
       style={{
         display: 'grid',
-        gridTemplateColumns: '222px 28px',
+        gridTemplateColumns: '217px 33px',
         alignItems: 'center',
       }}
     >

@@ -21,12 +21,6 @@ export default function Form({ onSubmit }) {
     /* overflow-y: scroll; */
   `
 
-  const Category = styled.div`
-    display: grid;
-    grid-template-rows: 32px 32px;
-    position: absolute;
-    top: 55px;
-  `
   const Headline2 = styled.h2`
     margin: 0;
     color: rgb(107, 107, 107);
@@ -34,7 +28,7 @@ export default function Form({ onSubmit }) {
   `
   const GridWer = styled.div`
     display: grid;
-    grid-template-rows: 28px 53px 28px 53px 28px 32px;
+    grid-template-rows: 43px 28px 53px 28px 53px 28px 32px;
     width: 100%;
     position: absolute;
     top: 170px;
@@ -105,11 +99,8 @@ export default function Form({ onSubmit }) {
 
   return (
     <Wrapper onSubmit={handleSubmit}>
-      <Category>
-        <Headline2>Kategorie der Meldung</Headline2>
-        {/* <DropdownMenu></DropdownMenu> */}
-      </Category>
       <GridWer>
+        <Headline2>Wer hat den Mangel festgestellt?</Headline2>
         <Headline3>Name</Headline3>
         <Input type="text" name="name" required></Input>
         <Headline3>Telefonnummer</Headline3>

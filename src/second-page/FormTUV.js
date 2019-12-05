@@ -14,23 +14,8 @@ export default function FormTUV({ onSubmit }) {
 
   const Wrapper = styled.form`
     position: relative;
-    margin: 0 20px;
-    /* overflow-y: scroll; */
   `
-  const Headline = styled.h1`
-    color: rgb(187 179 163);
-    font-size: 21px;
-    font-weight: bold;
-    position: absolute;
-    top: 10px;
-    margin: 0;
-  `
-  const Category = styled.div`
-    display: grid;
-    grid-template-rows: 32px 32px;
-    position: absolute;
-    top: 55px;
-  `
+
   const Headline2 = styled.h2`
     margin: 0;
     color: rgb(107, 107, 107);
@@ -59,7 +44,7 @@ export default function FormTUV({ onSubmit }) {
     grid-template-rows: 32px 100px;
     width: 100%;
     position: absolute;
-    top: 1018px;
+    top: 362px;
   `
   const Description = styled.textarea`
     border: solid 2px rgb(201 193 171);
@@ -68,11 +53,6 @@ export default function FormTUV({ onSubmit }) {
 
   return (
     <Wrapper onSubmit={handleSubmit}>
-      <Headline>Neue Meldung erstellen</Headline>
-      {/* <Category>
-        <Headline2>Kategorie der Meldung</Headline2>
-        <DropdownMenu></DropdownMenu>
-      </Category> */}
       <GridWer>
         <Headline3>Nummer</Headline3>
         <Input type="text" name="nummer" required></Input>
@@ -86,7 +66,7 @@ export default function FormTUV({ onSubmit }) {
       </GridDescription>
 
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <FinishButton>Meldung hochladen</FinishButton>
+        <FinishButton style={{ top: '524px' }}>Meldung hochladen</FinishButton>
       </div>
     </Wrapper>
   )
