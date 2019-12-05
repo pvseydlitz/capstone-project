@@ -18,7 +18,7 @@ export default function Form({ onSubmit }) {
   const Wrapper = styled.form`
     position: relative;
     margin: 0 20px;
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
   `
   const Headline = styled.h1`
     color: rgb(187 179 163);
@@ -118,7 +118,6 @@ export default function Form({ onSubmit }) {
         <DropdownMenu></DropdownMenu>
       </Category>
       <GridWer>
-        <Headline2>Wer hat den Mangel festgestellt?</Headline2>
         <Headline3>Name</Headline3>
         <Input type="text" name="name" required></Input>
         <Headline3>Telefonnummer</Headline3>
