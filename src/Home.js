@@ -6,7 +6,7 @@ import Header from './Header'
 import Message from './Message'
 import Footer from './Footer'
 
-function Home({ messages, toggleBookmarked }) {
+function Home({ messages, toggleBookmarked, handleClick }) {
   const MessageWrapper = styled.div`
     overflow-y: scroll;
   `
@@ -28,6 +28,7 @@ function Home({ messages, toggleBookmarked }) {
                   message={message}
                   key={index}
                   toggleBookmarked={() => toggleBookmarked(index)}
+                  handleClick={() => handleClick(message._id)}
                 ></Message>
               ))
           : messages.map((message, index) => (
@@ -35,6 +36,7 @@ function Home({ messages, toggleBookmarked }) {
                 message={message}
                 key={index}
                 toggleBookmarked={() => toggleBookmarked(index)}
+                handleClick={() => handleClick(message._id)}
               ></Message>
             ))}
       </MessageWrapper>

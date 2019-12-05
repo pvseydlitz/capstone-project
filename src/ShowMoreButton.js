@@ -1,9 +1,6 @@
 import styled from 'styled-components/macro'
 
 export default styled.button`
-  position: absolute;
-  left: 22px;
-  bottom: 16px;
   width: 120px;
   height: 29px;
   border-radius: 5px;

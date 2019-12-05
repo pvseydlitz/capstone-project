@@ -21,8 +21,8 @@ export function patchCard(card) {
   }).then(res => res.json())
 }
 
-export function deleteCard(id) {
-  return fetch('/cards/' + id, {
+export function deleteMessage(id) {
+  return fetch('/messages/' + id, {
     method: 'DELETE',
   }).then(res => res.json())
 }

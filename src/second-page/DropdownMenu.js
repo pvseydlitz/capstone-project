@@ -26,8 +26,10 @@ export default function DropdwonMenu() {
   `
   return (
     <section>
-      <DropDown name="kategorie">
-        <option defaultValue="1">Bitte auswählen</option>
+      <DropDown name="kategorie" required>
+        <option value="" hidden>
+          Bitte auswählen
+        </option>
         <option value="Gewährleistungsmangel">Gewährleistungsmangel</option>
         <option value="Ankündigung">Ankündigung</option>
       </DropDown>{' '}
