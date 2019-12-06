@@ -24,5 +24,5 @@ export default function Description({ headline, position }) {
 }
 Description.propTypes = {
   headline: PropTypes.string.isRequired,
-  position: PropTypes.number.isRequired,
+  position: PropTypes.string.isRequired,
 }
