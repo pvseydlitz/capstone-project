@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
+import PropTypes from 'prop-types'
 import FilterButton from './FilterButton'
 import FilterMenu from './FilterMenu'
 import logo from './icons/logo.svg'
 import filterIcon from './icons/filterbutton.svg'
 
-export default function Header({ filterMessages, filterActive }) {
+export default function Header({ filterMessages, filterActive, showFilter }) {
   const Line = styled.div`
     height: 97px;
     border: solid 2px transparent;
@@ -20,11 +21,15 @@ export default function Header({ filterMessages, filterActive }) {
   const [isClicked, setIsClicked] = useState(false)
   return (
     <Line>
-      <FilterButton
-        src={filterIcon}
-        alt="filter icon"
-        onClick={() => setIsClicked(!isClicked)}
-      ></FilterButton>
+      {showFilter ? (
+        <FilterButton
+          src={filterIcon}
+          alt="filter icon"
+          onClick={() => setIsClicked(!isClicked)}
+        ></FilterButton>
+      ) : (
+        ''
+      )}
       {/* <span
         style={{
           fontSize: '30px',
@@ -46,4 +51,7 @@ export default function Header({ filterMessages, filterActive }) {
       )}
     </Line>
   )
+}
+Header.propTypes = {
+  showFilter: PropTypes.bool,
 }

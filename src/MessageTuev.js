@@ -1,14 +1,9 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import ShowMoreButton from './ShowMoreButton'
-import Bookmark from './Bookmark'
 import cross from './icons/cross.svg'
 
-export default function MessageTuev({
-  messageTuev,
-  toggleBookmarked,
-  handleClick,
-}) {
+export default function MessageTuev({ messageTuev, handleClick }) {
   const [showContent, setShowContent] = useState(false)
   const Message = styled.div`
     margin: 50px 20px;
@@ -47,10 +42,6 @@ export default function MessageTuev({
 
   return (
     <Message>
-      <Bookmark
-        onClick={toggleBookmarked}
-        active={messageTuev.isBookmarked}
-      ></Bookmark>
       <Cross src={cross} onClick={handleClick}></Cross>
       <Headline>TÜV Mangel</Headline>
       <Wrapper active={!showContent}>

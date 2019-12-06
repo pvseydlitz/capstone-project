@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components/macro'
 
 export default function RadioButtons({
@@ -23,7 +23,8 @@ export default function RadioButtons({
     padding: 0.5em;
     display: flex;
     justify-content: center;
-    background: ${props => (props.active ? 'green' : '')};
+    color: rgb(107, 107, 107);
+    background: ${props => (props.active ? 'rgb(187 179 163)' : '')};
   `
   const Label2 = styled.label`
     border: 2px solid rgb(187 179 163);
@@ -31,7 +32,8 @@ export default function RadioButtons({
     padding: 0.5em;
     display: flex;
     justify-content: center;
-    background: ${props => (props.active ? 'green' : '')};
+    color: rgb(107, 107, 107);
+    background: ${props => (props.active ? 'rgb(187 179 163)' : '')};
   `
 
   return (

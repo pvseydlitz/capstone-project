@@ -30,6 +30,7 @@ function Home({ messages, messagesTuev, toggleBookmarked, handleClick }) {
       <Header
         filterMessages={() => setIsOnlyBookmarkShown(!isOnlyBookmarkShown)}
         filterActive={isOnlyBookmarkShown}
+        showFilter={isClicked1}
       ></Header>
       <MessageWrapper>
         <RadioButtons
@@ -58,22 +59,10 @@ function Home({ messages, messagesTuev, toggleBookmarked, handleClick }) {
                   handleClick={() => handleClick(message._id)}
                 ></Message>
               ))
-          : isOnlyBookmarkShown
-          ? messagesTuev
-              .filter(message => message.isBookmarked === true)
-              .map((messageTuev, index) => (
-                <MessageTuev
-                  messageTuev={messageTuev}
-                  key={index}
-                  toggleBookmarked={() => toggleBookmarked(index)}
-                  handleClick={() => handleClick(messageTuev._id)}
-                ></MessageTuev>
-              ))
           : messagesTuev.map((messageTuev, index) => (
               <MessageTuev
                 messageTuev={messageTuev}
                 key={index}
-                toggleBookmarked={() => toggleBookmarked(index)}
                 handleClick={() => handleClick(messageTuev._id)}
               ></MessageTuev>
             ))}
