@@ -5,8 +5,14 @@ import FilterButton from './FilterButton'
 import FilterMenu from './FilterMenu'
 import logo from './icons/logo.svg'
 import filterIcon from './icons/filterbutton.svg'
+import searchIcon from './icons/search.svg'
 
-export default function Header({ filterMessages, filterActive, showFilter }) {
+export default function Header({
+  filterMessages,
+  filterActive,
+  showFilter,
+  showSearchIcon,
+}) {
   const Line = styled.div`
     height: 97px;
     border: solid 2px transparent;
@@ -18,7 +24,22 @@ export default function Header({ filterMessages, filterActive, showFilter }) {
   const Logo = styled.img`
     z-index: -1;
   `
+  const Search = styled.img`
+    position: absolute;
+    top: 45px;
+    right: 25px;
+  `
+  const Input = styled.input`
+    border: solid 2px rgb(201 193 171);
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    top: 85px;
+    height: 25px;
+    width: 100%;
+  `
   const [isClicked, setIsClicked] = useState(false)
+  const [showSearchBar, setShowSearchBar] = useState(false)
   return (
     <Line>
       {showFilter ? (
@@ -27,6 +48,20 @@ export default function Header({ filterMessages, filterActive, showFilter }) {
           alt="filter icon"
           onClick={() => setIsClicked(!isClicked)}
         ></FilterButton>
+      ) : (
+        ''
+      )}
+      {showSearchIcon ? (
+        <Search
+          src={searchIcon}
+          alt=""
+          onClick={() => setShowSearchBar(!showSearchBar)}
+        ></Search>
+      ) : (
+        ''
+      )}
+      {showSearchBar ? (
+        <Input autofocus type="text" placeholder="Suche eingeben"></Input>
       ) : (
         ''
       )}
@@ -54,4 +89,5 @@ export default function Header({ filterMessages, filterActive, showFilter }) {
 }
 Header.propTypes = {
   showFilter: PropTypes.bool,
+  showSearchIcon: PropTypes.bool,
 }

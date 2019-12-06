@@ -31,6 +31,7 @@ function Home({ messages, messagesTuev, toggleBookmarked, handleClick }) {
         filterMessages={() => setIsOnlyBookmarkShown(!isOnlyBookmarkShown)}
         filterActive={isOnlyBookmarkShown}
         showFilter={isClicked1}
+        showSearchIcon={!isClicked1}
       ></Header>
       <MessageWrapper>
         <RadioButtons
