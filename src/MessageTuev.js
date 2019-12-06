@@ -43,7 +43,7 @@ export default function MessageTuev({ messageTuev, handleClick }) {
   return (
     <Message>
       <Cross src={cross} onClick={handleClick}></Cross>
-      <Headline>TÜV Mangel</Headline>
+      <Headline>TÜV-Mangel</Headline>
       <Wrapper active={!showContent}>
         <Description>Nummer: {messageTuev.nummer}</Description>
         <Description>Ort/Bauteil</Description>

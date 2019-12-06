@@ -15,6 +15,8 @@ function Home({ messages, messagesTuev, toggleBookmarked, handleClick }) {
   const [isOnlyBookmarkShown, setIsOnlyBookmarkShown] = useState(false)
   const [isClicked1, setIsClicked1] = useState(true)
   const [isClicked2, setIsClicked2] = useState()
+  const [searchedNumber, setSearchedNumber] = useState('')
+
   function handleClick1() {
     setIsClicked1(true)
     setIsClicked2(false)
@@ -24,6 +26,7 @@ function Home({ messages, messagesTuev, toggleBookmarked, handleClick }) {
     setIsClicked1(false)
     setIsClicked2(true)
   }
+
   return (
     <Grid>
       <Globalstyles></Globalstyles>
@@ -32,6 +35,8 @@ function Home({ messages, messagesTuev, toggleBookmarked, handleClick }) {
         filterActive={isOnlyBookmarkShown}
         showFilter={isClicked1}
         showSearchIcon={!isClicked1}
+        checkInput={event => setSearchedNumber(event.target.value)}
+        searchedNumber={searchedNumber}
       ></Header>
       <MessageWrapper>
         <RadioButtons
@@ -60,13 +65,27 @@ function Home({ messages, messagesTuev, toggleBookmarked, handleClick }) {
                   handleClick={() => handleClick(message._id)}
                 ></Message>
               ))
-          : messagesTuev.map((messageTuev, index) => (
+          : searchedNumber === ''
+          ? messagesTuev.map((messageTuev, index) => (
               <MessageTuev
                 messageTuev={messageTuev}
                 key={index}
                 handleClick={() => handleClick(messageTuev._id)}
               ></MessageTuev>
-            ))}
+            ))
+          : messagesTuev
+              .filter(
+                messageTuev =>
+                  String(messageTuev.nummer) === searchedNumber ||
+                  messageTuev.ort === searchedNumber
+              )
+              .map((messageTuev, index) => (
+                <MessageTuev
+                  messageTuev={messageTuev}
+                  key={index}
+                  handleClick={() => handleClick(messageTuev._id)}
+                ></MessageTuev>
+              ))}
       </MessageWrapper>
       <Footer></Footer>
     </Grid>

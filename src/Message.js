@@ -64,7 +64,7 @@ export default function Message({ message, toggleBookmarked, handleClick }) {
         active={message.isBookmarked}
       ></Bookmark>
       <Cross src={cross} onClick={handleClick}></Cross>
-      <Headline>{message.kategorie}</Headline>
+      <Headline>Gewährleistungsmangel</Headline>
       <Wrapper active={!showContent}>
         <p
           style={{ margin: '0', color: 'rgb(107, 107, 107)', fontSize: '16px' }}

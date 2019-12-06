@@ -12,6 +12,8 @@ export default function Header({
   filterActive,
   showFilter,
   showSearchIcon,
+  checkInput,
+  searchedNumber,
 }) {
   const Line = styled.div`
     height: 97px;
@@ -38,6 +40,7 @@ export default function Header({
     height: 25px;
     width: 100%;
   `
+
   const [isClicked, setIsClicked] = useState(false)
   const [showSearchBar, setShowSearchBar] = useState(false)
   return (
@@ -61,7 +64,13 @@ export default function Header({
         ''
       )}
       {showSearchBar ? (
-        <Input autofocus type="text" placeholder="Suche eingeben"></Input>
+        <Input
+          autoFocus
+          type="text"
+          placeholder="Suche eingeben"
+          onChange={checkInput}
+          value={searchedNumber}
+        ></Input>
       ) : (
         ''
       )}
