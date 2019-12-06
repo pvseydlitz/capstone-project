@@ -2,7 +2,12 @@ import React from 'react'
 import styled from 'styled-components/macro'
 import dropdownIcon from '../icons/dropdown.svg'
 
-export default function DropdwonMenu() {
+export default function DropdownMenu({ handleChange, selected }) {
+  const Wrapper = styled.section`
+    display: grid;
+    grid-template-columns: 217px 33px;
+    align-items: center;
+  `
   const DropDown = styled.select`
     background: rgb(201 193 171);
     color: rgb(107 107 107);
@@ -17,23 +22,21 @@ export default function DropdwonMenu() {
     position: relative;
   `
   const DropdownIcon = styled.img`
-    position: absolute;
-    top: 37px;
-    right: 5px;
     text-align: center;
     display: inline;
     pointer-events: none;
+    z-index: 1;
   `
   return (
-    <section>
-      <DropDown name="kategorie" required>
+    <Wrapper>
+      <DropDown name="kategorie" onChange={handleChange} value={selected}>
         <option value="" hidden>
           Bitte auswählen
         </option>
         <option value="Gewährleistungsmangel">Gewährleistungsmangel</option>
-        <option value="Ankündigung">Ankündigung</option>
-      </DropDown>{' '}
+        <option value="Tüv-Mangel">TÜV-Mangel</option>
+      </DropDown>
       <DropdownIcon src={dropdownIcon} alt="dropdown icon"></DropdownIcon>
-    </section>
+    </Wrapper>
   )
 }

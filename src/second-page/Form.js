@@ -1,43 +1,26 @@
 import React from 'react'
 import styled from 'styled-components/macro'
-import DropdownMenu from './DropdownMenu'
-import FinishButton from './FinishButton'
+import Headline2 from './Headline2'
+import Headline3 from './Headline3'
+import Input from './Input'
+import Description from './Description'
 import Checkboxes from './Checkboxes'
+import AcceptButton from './AcceptButton'
+import FinishButton from './FinishButton'
 import uploadIcon from '../icons/upload.svg'
 
-export default function Form({ onSubmit }) {
+export default function Form({ onSubmit1 }) {
   function handleSubmit(event) {
     event.preventDefault()
     const form = event.target
     const formData = new FormData(form)
     const data = Object.fromEntries(formData)
-    onSubmit(data)
+    onSubmit1(data)
     form.reset()
   }
 
   const Wrapper = styled.form`
     position: relative;
-    margin: 0 20px;
-    overflow-y: scroll;
-  `
-  const Headline = styled.h1`
-    color: rgb(187 179 163);
-    font-size: 21px;
-    font-weight: bold;
-    position: absolute;
-    top: 10px;
-    margin: 0;
-  `
-  const Category = styled.div`
-    display: grid;
-    grid-template-rows: 32px 32px;
-    position: absolute;
-    top: 55px;
-  `
-  const Headline2 = styled.h2`
-    margin: 0;
-    color: rgb(107, 107, 107);
-    font-size: 18px;
   `
   const GridWer = styled.div`
     display: grid;
@@ -46,33 +29,12 @@ export default function Form({ onSubmit }) {
     position: absolute;
     top: 170px;
   `
-  const Input = styled.input`
-    height: 32px;
-    width: auto;
-    border: solid 2px rgb(201 193 171);
-  `
-  const Headline3 = styled.h3`
-    margin: 0;
-    color: rgb(107, 107, 107);
-    font-size: 16px;
-  `
   const GridWo = styled.div`
     display: grid;
     grid-template-rows: 75px 28px 53px 28px 53px 28px 32px;
     width: 100%;
     position: absolute;
     top: 460px;
-  `
-  const GridDescription = styled.div`
-    display: grid;
-    grid-template-rows: 32px 100px;
-    width: 100%;
-    position: absolute;
-    top: 1018px;
-  `
-  const Description = styled.textarea`
-    border: solid 2px rgb(201 193 171);
-    resize: vertical;
   `
   const Note = styled.p`
     border: solid 2px rgb(107, 107, 107);
@@ -82,25 +44,6 @@ export default function Form({ onSubmit }) {
     font-size: 14px;
     position: absolute;
     top: 1193px;
-  `
-  const AcceptWrapper = styled.div`
-    position: absolute;
-    top: 1302px;
-    display: grid;
-    grid-template-columns: 30px 1fr;
-    grid-gap: 20px;
-    align-items: center;
-  `
-  const Accept = styled.input`
-    height: 20px;
-    width: 20px;
-    border-style: none;
-    border: solid 2px rgb(201 193 171);
-  `
-  const Headline3Upload = styled.h3`
-    margin: 0;
-    color: rgb(107, 107, 107);
-    font-size: 16px;
   `
   const UploadWrapper = styled.div`
     display: grid;
@@ -112,11 +55,6 @@ export default function Form({ onSubmit }) {
 
   return (
     <Wrapper onSubmit={handleSubmit}>
-      <Headline>Neue Meldung erstellen</Headline>
-      <Category>
-        <Headline2>Kategorie der Meldung</Headline2>
-        <DropdownMenu></DropdownMenu>
-      </Category>
       <GridWer>
         <Headline2>Wer hat den Mangel festgestellt?</Headline2>
         <Headline3>Name</Headline3>
@@ -136,23 +74,19 @@ export default function Form({ onSubmit }) {
         <Input type="text" name="raumbezeichnung" required></Input>
       </GridWo>
       <Checkboxes></Checkboxes>
-      <GridDescription>
-        <Headline2>Genaue Mangelbeschreibung</Headline2>
-        <Description rows="5" name="beschreibung" required></Description>
-      </GridDescription>
+      <Description
+        position={'1018px'}
+        headline={'Genaue Mangelbeschreibung'}
+      ></Description>
       <Note>
         Hinweis: Für den Fall, dass es sich nicht um einen Gewährleistungsmangel
         handelt, ist der Aufwand für Anfahrts und Untersuchungskosten dem
         Architekturbüro und / oder der Handwerksfirma zu erstatten.
       </Note>
-
-      <AcceptWrapper>
-        <Accept type="checkbox" required></Accept>
-        <Headline3Upload>Hinweis akzeptiert</Headline3Upload>
-      </AcceptWrapper>
+      <AcceptButton></AcceptButton>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <UploadWrapper>
-          <Headline3Upload>Foto Hochladen</Headline3Upload>
+          <Headline3>Foto Hochladen</Headline3>
           <img src={uploadIcon} alt={'upload icon'}></img>
         </UploadWrapper>
         <FinishButton>Meldung hochladen</FinishButton>

@@ -2,7 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Home from './Home'
 import Create from './second-page/Create'
-import { getMessages, postMessage, deleteMessage } from './services'
+import {
+  getMessages,
+  postMessage,
+  deleteMessage,
+  postMessage2,
+} from './services'
 import { confirmAlert } from 'react-confirm-alert'
 import 'react-confirm-alert/src/react-confirm-alert.css'
 
@@ -24,6 +29,9 @@ export default function App() {
     postMessage(messageData).then(message => {
       setMessages([...messages, message])
     })
+  }
+  function createMessage2(messageData) {
+    postMessage2(messageData)
   }
   function removeMessage(id) {
     deleteMessage(id).then(deletedMessage => {
@@ -58,7 +66,7 @@ export default function App() {
           ></Home>
         </Route>
         <Route path="/create">
-          <Create onSubmit={createMessage}></Create>
+          <Create onSubmit1={createMessage} onSubmit2={createMessage2}></Create>
         </Route>
       </Switch>
     </Router>

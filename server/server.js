@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Message = require('./models/Message')
+const MessageTuev = require('./models/MessageTuev')
 const express = require('express')
 
 mongoose.connect('mongodb://localhost:27017/capstone-project', {
@@ -12,6 +13,13 @@ const app = express()
 app.use(express.json())
 const PORT = process.env.PORT || 3333
 app.listen(PORT, () => console.log(`Express ready on port ${PORT}`))
+
+/* Server Funktion, die ich später noch brauchen werde.
+app.get('/all', async (req, res) => {
+  const messages = await Message.find()
+  const messages2 = await MessageTuev.find()
+  res.json({ messages, messages2 })
+}) */
 
 app.get('/messages', (req, res) => {
   Message.find()
@@ -27,6 +35,16 @@ app.get('/messages/:id', (req, res) => {
 
 app.post('/messages', (req, res) => {
   Message.create(req.body)
+    .then(message => res.json(message))
+    .catch(err => res.json(err))
+})
+app.get('/messagesTuev', (req, res) => {
+  MessageTuev.find()
+    .then(messages => res.json(messages))
+    .catch(err => res.json(err))
+})
+app.post('/messagesTuev', (req, res) => {
+  MessageTuev.create(req.body)
     .then(message => res.json(message))
     .catch(err => res.json(err))
 })
