@@ -5,9 +5,10 @@ import Grid from './Grid'
 import Header from './Header'
 import RadioButtons from './RadioButtons'
 import Message from './Message'
+import MessageTuev from './MessageTuev'
 import Footer from './Footer'
 
-function Home({ messages, toggleBookmarked, handleClick }) {
+function Home({ messages, messagesTuev, toggleBookmarked, handleClick }) {
   const MessageWrapper = styled.div`
     overflow-y: scroll;
   `
@@ -57,7 +58,25 @@ function Home({ messages, toggleBookmarked, handleClick }) {
                   handleClick={() => handleClick(message._id)}
                 ></Message>
               ))
-          : ''}
+          : isOnlyBookmarkShown
+          ? messagesTuev
+              .filter(message => message.isBookmarked === true)
+              .map((messageTuev, index) => (
+                <MessageTuev
+                  messageTuev={messageTuev}
+                  key={index}
+                  toggleBookmarked={() => toggleBookmarked(index)}
+                  handleClick={() => handleClick(messageTuev._id)}
+                ></MessageTuev>
+              ))
+          : messagesTuev.map((messageTuev, index) => (
+              <MessageTuev
+                messageTuev={messageTuev}
+                key={index}
+                toggleBookmarked={() => toggleBookmarked(index)}
+                handleClick={() => handleClick(messageTuev._id)}
+              ></MessageTuev>
+            ))}
       </MessageWrapper>
       <Footer></Footer>
     </Grid>

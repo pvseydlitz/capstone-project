@@ -4,6 +4,7 @@ import Home from './Home'
 import Create from './second-page/Create'
 import {
   getMessages,
+  getMessagesTuev,
   postMessage,
   deleteMessage,
   postMessage2,
@@ -15,6 +16,10 @@ export default function App() {
   const [messages, setMessages] = useState([])
   useEffect(() => {
     getMessages().then(setMessages)
+  }, [])
+  const [messagesTuev, setMessagesTuev] = useState([])
+  useEffect(() => {
+    getMessagesTuev().then(setMessagesTuev)
   }, [])
 
   function toggleBookmarked(index) {
@@ -31,7 +36,9 @@ export default function App() {
     })
   }
   function createMessage2(messageData) {
-    postMessage2(messageData)
+    postMessage2(messageData).then(messageTuev => {
+      setMessagesTuev([...messagesTuev, messageTuev])
+    })
   }
   function removeMessage(id) {
     deleteMessage(id).then(deletedMessage => {
@@ -61,6 +68,7 @@ export default function App() {
         <Route exact path="/">
           <Home
             messages={messages}
+            messagesTuev={messagesTuev}
             toggleBookmarked={toggleBookmarked}
             handleClick={handleClick}
           ></Home>

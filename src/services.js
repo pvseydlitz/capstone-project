@@ -1,7 +1,9 @@
 export function getMessages() {
   return fetch('/messages').then(res => res.json())
 }
-
+export function getMessagesTuev() {
+  return fetch('/messagesTuev').then(res => res.json())
+}
 export function postMessage(message) {
   return fetch('/messages', {
     method: 'POST',
