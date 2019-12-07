@@ -8,7 +8,13 @@ import Message from './Message'
 import MessageTuev from './MessageTuev'
 import Footer from './Footer'
 
-function Home({ messages, messagesTuev, toggleBookmarked, handleClick }) {
+function Home({
+  messages,
+  messagesTuev,
+  toggleBookmarked,
+  handleClick,
+  handleClickTuev,
+}) {
   const MessageWrapper = styled.div`
     overflow-y: scroll;
   `
@@ -35,8 +41,10 @@ function Home({ messages, messagesTuev, toggleBookmarked, handleClick }) {
         filterActive={isOnlyBookmarkShown}
         showFilter={isClicked1}
         showSearchIcon={!isClicked1}
-        checkInput={event => setSearchedNumber(event.target.value)}
-        searchedNumber={searchedNumber}
+        checkInput={event =>
+          setSearchedNumber(event.target.value.toLowerCase())
+        }
+        searchedNumber={searchedNumber.toLowerCase()}
       ></Header>
       <MessageWrapper>
         <RadioButtons
@@ -70,20 +78,20 @@ function Home({ messages, messagesTuev, toggleBookmarked, handleClick }) {
               <MessageTuev
                 messageTuev={messageTuev}
                 key={index}
-                handleClick={() => handleClick(messageTuev._id)}
+                handleClickTuev={() => handleClickTuev(messageTuev._id)}
               ></MessageTuev>
             ))
           : messagesTuev
               .filter(
                 messageTuev =>
                   String(messageTuev.nummer) === searchedNumber ||
-                  messageTuev.ort === searchedNumber
+                  messageTuev.ort.toLowerCase() === searchedNumber
               )
               .map((messageTuev, index) => (
                 <MessageTuev
                   messageTuev={messageTuev}
                   key={index}
-                  handleClick={() => handleClick(messageTuev._id)}
+                  handleClickTuev={() => handleClickTuev(messageTuev._id)}
                 ></MessageTuev>
               ))}
       </MessageWrapper>

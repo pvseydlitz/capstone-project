@@ -7,7 +7,8 @@ import {
   getMessagesTuev,
   postMessage,
   deleteMessage,
-  postMessage2,
+  deleteMessageTuev,
+  postMessagesTuev,
 } from './services'
 import { confirmAlert } from 'react-confirm-alert'
 import 'react-confirm-alert/src/react-confirm-alert.css'
@@ -36,7 +37,7 @@ export default function App() {
     })
   }
   function createMessage2(messageData) {
-    postMessage2(messageData).then(messageTuev => {
+    postMessagesTuev(messageData).then(messageTuev => {
       setMessagesTuev([...messagesTuev, messageTuev])
     })
   }
@@ -44,6 +45,16 @@ export default function App() {
     deleteMessage(id).then(deletedMessage => {
       setMessages(messages.filter(message => message.id !== deletedMessage.id))
       getMessages().then(setMessages)
+    })
+  }
+  function removeMessageTuev(id) {
+    deleteMessageTuev(id).then(deletedMessageTuev => {
+      setMessagesTuev(
+        messagesTuev.filter(
+          messageTuev => messageTuev.id !== deletedMessageTuev.id
+        )
+      )
+      getMessagesTuev().then(setMessagesTuev)
     })
   }
   function handleClick(id) {
@@ -61,7 +72,21 @@ export default function App() {
       ],
     })
   }
-
+  function handleClickTuev(id) {
+    confirmAlert({
+      title: 'Löschen bestätigen',
+      message: 'Möchten Sie diese Meldung wirklich löschen?',
+      buttons: [
+        {
+          label: 'Ja',
+          onClick: () => removeMessageTuev(id),
+        },
+        {
+          label: 'Nein',
+        },
+      ],
+    })
+  }
   return (
     <Router>
       <Switch>
@@ -71,6 +96,7 @@ export default function App() {
             messagesTuev={messagesTuev}
             toggleBookmarked={toggleBookmarked}
             handleClick={handleClick}
+            handleClickTuev={handleClickTuev}
           ></Home>
         </Route>
         <Route path="/create">

@@ -3,7 +3,7 @@ import styled from 'styled-components/macro'
 import ShowMoreButton from './ShowMoreButton'
 import cross from './icons/cross.svg'
 
-export default function MessageTuev({ messageTuev, handleClick }) {
+export default function MessageTuev({ messageTuev, handleClickTuev }) {
   const [showContent, setShowContent] = useState(false)
   const Message = styled.div`
     margin: 50px 20px;
@@ -42,14 +42,18 @@ export default function MessageTuev({ messageTuev, handleClick }) {
 
   return (
     <Message>
-      <Cross src={cross} onClick={handleClick}></Cross>
+      <Cross src={cross} onClick={handleClickTuev}></Cross>
       <Headline>TÜV-Mangel</Headline>
       <Wrapper active={!showContent}>
-        <Description>Nummer: {messageTuev.nummer}</Description>
-        <Description>Ort/Bauteil</Description>
+        <Description>
+          <b>Nummer:</b> {messageTuev.nummer}
+        </Description>
+        <Description>
+          <b>Ort/Bauteil</b>
+        </Description>
         <Description>{messageTuev.ort}</Description>
         <Description>
-          {showContent ? 'Mangel / Feststellung / Hinweis' : ''}
+          <b>{showContent ? 'Mangel / Feststellung / Hinweis' : ''}</b>
         </Description>
         <Content>{showContent ? messageTuev.beschreibung : ''}</Content>
       </Wrapper>

@@ -67,7 +67,7 @@ export default function Header({
         <Input
           autoFocus
           type="text"
-          placeholder="Suche eingeben"
+          placeholder="Suche nach Nummer oder Ort/Bauteil eingeben"
           onChange={checkInput}
           value={searchedNumber}
         ></Input>

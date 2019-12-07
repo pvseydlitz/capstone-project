@@ -60,3 +60,8 @@ app.delete('/messages/:id', (req, res) => {
     .then(message => res.json(message))
     .catch(err => res.json(err))
 })
+app.delete('/messagestuev/:id', (req, res) => {
+  MessageTuev.findByIdAndDelete(req.params.id)
+    .then(message => res.json(message))
+    .catch(err => res.json(err))
+})
