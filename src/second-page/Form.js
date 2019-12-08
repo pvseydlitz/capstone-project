@@ -13,12 +13,13 @@ import uploadIcon from '../icons/upload.svg'
 const PRESET = 'htbzrys6'
 
 export default function Form({ onSubmit1 }) {
-  function handleSubmit(event) {
+  function handleSubmit(event, eventUpload) {
     event.preventDefault()
     const form = event.target
     const formData = new FormData(form)
     const data = Object.fromEntries(formData)
     onSubmit1(data)
+    upload(event)
     form.reset()
   }
 
@@ -26,9 +27,8 @@ export default function Form({ onSubmit1 }) {
 
   function upload(event) {
     const url = `https://api.cloudinary.com/v1_1/dajgs01gh/upload`
-
     const formData = new FormData()
-    formData.append('file', event.target.files[0])
+    formData.append('file', event.target.file.files[0])
     formData.append('upload_preset', PRESET)
 
     axios
@@ -114,7 +114,7 @@ export default function Form({ onSubmit1 }) {
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <UploadWrapper>
           <Headline3>Foto Hochladen</Headline3>
-          <input type="file" name="file" onChange={upload} />
+          <input type="file" name="file" />
           {/* <img src={uploadIcon} alt={'upload icon'}></img> */}
         </UploadWrapper>
         <FinishButton>Meldung hochladen</FinishButton>
