@@ -13,21 +13,12 @@ import uploadIcon from '../icons/upload.svg'
 const PRESET = 'htbzrys6'
 
 export default function Form({ onSubmit1 }) {
-  function handleSubmit(event, eventUpload) {
+  function handleSubmit(event) {
     event.preventDefault()
     const form = event.target
     const formData = new FormData(form)
     const data = Object.fromEntries(formData)
-    onSubmit1(data)
-    upload(event)
-    form.reset()
-  }
-
-  const [image, setImage] = useState('')
-
-  function upload(event) {
     const url = `https://api.cloudinary.com/v1_1/dajgs01gh/upload`
-    const formData = new FormData()
     formData.append('file', event.target.file.files[0])
     formData.append('upload_preset', PRESET)
 
@@ -40,10 +31,14 @@ export default function Form({ onSubmit1 }) {
       .then(onImageSave)
       .then(console.log('successful upload'))
       .catch(err => console.error(err))
-  }
+    function onImageSave(response) {
+      data.url = response.data.url
+      console.log(data.url)
+      onSubmit1(data)
+      console.log(data)
+    }
 
-  function onImageSave(response) {
-    setImage(response.data.url)
+    form.reset()
   }
 
   const Wrapper = styled.form`

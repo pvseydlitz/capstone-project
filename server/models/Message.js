@@ -13,6 +13,7 @@ const messageSchema = {
   gemeinschaftseigentum: String,
   sondereigentum: String,
   beschreibung: String,
+  url: String,
   isBookmarked: Boolean,
 }
 
