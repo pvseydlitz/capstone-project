@@ -64,23 +64,35 @@ export default function Message({ message, toggleBookmarked, handleClick }) {
         active={message.isBookmarked}
       ></Bookmark>
       <Cross src={cross} onClick={handleClick}></Cross>
-      <Headline>{message.kategorie}</Headline>
+      <Headline>Gewährleistungsmangel</Headline>
       <Wrapper active={!showContent}>
-        <p
-          style={{ margin: '0', color: 'rgb(107, 107, 107)', fontSize: '16px' }}
-        >
-          Ort des Schadens:
-        </p>
+        <b>
+          <p
+            style={{
+              margin: '0',
+              color: 'rgb(107, 107, 107)',
+              fontSize: '16px',
+            }}
+          >
+            Ort des Schadens:
+          </p>
+        </b>
         <Description>{checkArea()}</Description>
         <Description>{message.wohnung}</Description>
         <Description>{message.raumbezeichnung}</Description>
         <Description>{message.datum}</Description>
 
-        <p
-          style={{ margin: '0', color: 'rgb(107, 107, 107)', fontSize: '16px' }}
-        >
-          {showContent ? 'Wer hat den Schaden gemeldet?' : ''}
-        </p>
+        <b>
+          <p
+            style={{
+              margin: '0',
+              color: 'rgb(107, 107, 107)',
+              fontSize: '16px',
+            }}
+          >
+            {showContent ? 'Wer hat den Schaden gemeldet?' : ''}
+          </p>
+        </b>
         <Description>{showContent ? message.name : ''}</Description>
         <Description>{showContent ? message.telefonnummer : ''}</Description>
         <Description>{showContent ? message.email : ''}</Description>

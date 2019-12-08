@@ -1,7 +1,9 @@
 export function getMessages() {
   return fetch('/messages').then(res => res.json())
 }
-
+export function getMessagesTuev() {
+  return fetch('/messagesTuev').then(res => res.json())
+}
 export function postMessage(message) {
   return fetch('/messages', {
     method: 'POST',
@@ -11,7 +13,7 @@ export function postMessage(message) {
     },
   }).then(res => res.json())
 }
-export function postMessage2(message) {
+export function postMessagesTuev(message) {
   return fetch('/messagesTuev', {
     method: 'POST',
     body: JSON.stringify(message),
@@ -32,6 +34,12 @@ export function patchCard(card) {
 
 export function deleteMessage(id) {
   return fetch('/messages/' + id, {
+    method: 'DELETE',
+  }).then(res => res.json())
+}
+
+export function deleteMessageTuev(id) {
+  return fetch('/messagestuev/' + id, {
     method: 'DELETE',
   }).then(res => res.json())
 }

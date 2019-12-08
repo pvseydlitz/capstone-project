@@ -4,9 +4,11 @@ import Home from './Home'
 import Create from './second-page/Create'
 import {
   getMessages,
+  getMessagesTuev,
   postMessage,
   deleteMessage,
-  postMessage2,
+  deleteMessageTuev,
+  postMessagesTuev,
 } from './services'
 import { confirmAlert } from 'react-confirm-alert'
 import 'react-confirm-alert/src/react-confirm-alert.css'
@@ -15,6 +17,10 @@ export default function App() {
   const [messages, setMessages] = useState([])
   useEffect(() => {
     getMessages().then(setMessages)
+  }, [])
+  const [messagesTuev, setMessagesTuev] = useState([])
+  useEffect(() => {
+    getMessagesTuev().then(setMessagesTuev)
   }, [])
 
   function toggleBookmarked(index) {
@@ -31,12 +37,24 @@ export default function App() {
     })
   }
   function createMessage2(messageData) {
-    postMessage2(messageData)
+    postMessagesTuev(messageData).then(messageTuev => {
+      setMessagesTuev([...messagesTuev, messageTuev])
+    })
   }
   function removeMessage(id) {
     deleteMessage(id).then(deletedMessage => {
       setMessages(messages.filter(message => message.id !== deletedMessage.id))
       getMessages().then(setMessages)
+    })
+  }
+  function removeMessageTuev(id) {
+    deleteMessageTuev(id).then(deletedMessageTuev => {
+      setMessagesTuev(
+        messagesTuev.filter(
+          messageTuev => messageTuev.id !== deletedMessageTuev.id
+        )
+      )
+      getMessagesTuev().then(setMessagesTuev)
     })
   }
   function handleClick(id) {
@@ -54,15 +72,31 @@ export default function App() {
       ],
     })
   }
-
+  function handleClickTuev(id) {
+    confirmAlert({
+      title: 'Löschen bestätigen',
+      message: 'Möchten Sie diese Meldung wirklich löschen?',
+      buttons: [
+        {
+          label: 'Ja',
+          onClick: () => removeMessageTuev(id),
+        },
+        {
+          label: 'Nein',
+        },
+      ],
+    })
+  }
   return (
     <Router>
       <Switch>
         <Route exact path="/">
           <Home
             messages={messages}
+            messagesTuev={messagesTuev}
             toggleBookmarked={toggleBookmarked}
             handleClick={handleClick}
+            handleClickTuev={handleClickTuev}
           ></Home>
         </Route>
         <Route path="/create">
