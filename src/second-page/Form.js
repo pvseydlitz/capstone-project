@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import axios from 'axios'
 import styled from 'styled-components/macro'
 import Headline2 from './Headline2'
@@ -67,7 +67,7 @@ export default function Form({ onSubmit1 }) {
     position: absolute;
     top: 1193px;
   `
-  const UploadWrapper = styled.div`
+  const UploadWrapper = styled.label`
     display: grid;
     grid-template-columns: 150px 1fr;
     align-items: center;
@@ -109,8 +109,8 @@ export default function Form({ onSubmit1 }) {
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <UploadWrapper>
           <Headline3>Foto Hochladen</Headline3>
-          <input type="file" name="file" />
-          {/* <img src={uploadIcon} alt={'upload icon'}></img> */}
+          <input style={{ display: 'none' }} type="file" name="file"></input>
+          <img src={uploadIcon} alt={'upload icon'}></img>
         </UploadWrapper>
         <FinishButton>Meldung hochladen</FinishButton>
       </div>

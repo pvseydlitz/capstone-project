@@ -22,7 +22,7 @@ export default function Message({ message, toggleBookmarked, handleClick }) {
   const Wrapper = styled.div`
     display: grid;
     grid-template-rows: ${props =>
-      props.active ? 'repeat(5, 30px) 16px' : 'repeat(9, 30px) auto 29px'};
+      props.active ? 'repeat(5, 30px) 16px' : 'repeat(9, 30px) auto auto 29px'};
   `
   const Description = styled.p`
     margin: 0;
@@ -38,6 +38,12 @@ export default function Message({ message, toggleBookmarked, handleClick }) {
     position: absolute;
     right: 34px;
     top: 28px;
+  `
+  const Image = styled.img`
+    margin-top: 20px;
+    width: 200px;
+    height: auto;
+    justify-self: center;
   `
 
   function checkArea() {
@@ -97,6 +103,7 @@ export default function Message({ message, toggleBookmarked, handleClick }) {
         <Description>{showContent ? message.telefonnummer : ''}</Description>
         <Description>{showContent ? message.email : ''}</Description>
         <Content>{showContent ? message.beschreibung : ''}</Content>
+        {showContent ? <Image src={message.url} alt=""></Image> : ''}
       </Wrapper>
       <ShowMoreButton onClick={() => setShowContent(!showContent)}>
         {showContent ? 'Show less' : 'Show more'}
