@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import axios from 'axios'
 import styled from 'styled-components/macro'
 import Headline2 from './Headline2'
 import Headline3 from './Headline3'
@@ -9,6 +10,8 @@ import AcceptButton from './AcceptButton'
 import FinishButton from './FinishButton'
 import uploadIcon from '../icons/upload.svg'
 
+const PRESET = 'htbzrys6'
+
 export default function Form({ onSubmit1 }) {
   function handleSubmit(event) {
     event.preventDefault()
@@ -17,6 +20,30 @@ export default function Form({ onSubmit1 }) {
     const data = Object.fromEntries(formData)
     onSubmit1(data)
     form.reset()
+  }
+
+  const [image, setImage] = useState('')
+
+  function upload(event) {
+    const url = `https://api.cloudinary.com/v1_1/dajgs01gh/upload`
+
+    const formData = new FormData()
+    formData.append('file', event.target.files[0])
+    formData.append('upload_preset', PRESET)
+
+    axios
+      .post(url, formData, {
+        headers: {
+          'Content-type': 'multipart/form-data',
+        },
+      })
+      .then(onImageSave)
+      .then(console.log('successful upload'))
+      .catch(err => console.error(err))
+  }
+
+  function onImageSave(response) {
+    setImage(response.data.url)
   }
 
   const Wrapper = styled.form`
@@ -87,7 +114,8 @@ export default function Form({ onSubmit1 }) {
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <UploadWrapper>
           <Headline3>Foto Hochladen</Headline3>
-          <img src={uploadIcon} alt={'upload icon'}></img>
+          <input type="file" name="file" onChange={upload} />
+          {/* <img src={uploadIcon} alt={'upload icon'}></img> */}
         </UploadWrapper>
         <FinishButton>Meldung hochladen</FinishButton>
       </div>
