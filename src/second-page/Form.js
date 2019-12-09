@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import styled from 'styled-components/macro'
+import { confirmAlert } from 'react-confirm-alert'
 import Headline2 from './Headline2'
 import Headline3 from './Headline3'
 import Input from './Input'
@@ -18,10 +19,44 @@ export default function Form({ onSubmit1 }) {
     const form = event.target
     const formData = new FormData(form)
     const data = Object.fromEntries(formData)
-    const url = `https://api.cloudinary.com/v1_1/dajgs01gh/upload`
-    formData.append('file', event.target.file.files[0])
-    formData.append('upload_preset', PRESET)
+    if (data.file.name === '') {
+      confirmAlert({
+        title: 'Bestätigung',
+        message: 'Möchten Sie ihre Meldung wirklich hochladen?',
+        buttons: [
+          {
+            label: 'Ja',
+            onClick: () => onSubmit1(data),
+          },
+          {
+            label: 'Nein',
+          },
+        ],
+      })
+      form.reset()
+      confirmSuccessfulUpload()
+    } else {
+      confirmAlert({
+        title: 'Bestätigung',
+        message: 'Möchten Sie ihre Meldung wirklich hochladen?',
+        buttons: [
+          {
+            label: 'Ja',
+            onClick: () => postImage(formData, data, form),
+          },
+          {
+            label: 'Nein',
+          },
+        ],
+      })
+    }
+    console.log(data)
+  }
 
+  function postImage(formData, data, form) {
+    const url = `https://api.cloudinary.com/v1_1/dajgs01gh/upload`
+    formData.append('file', form.file.files[0])
+    formData.append('upload_preset', PRESET)
     axios
       .post(url, formData, {
         headers: {
@@ -29,17 +64,21 @@ export default function Form({ onSubmit1 }) {
         },
       })
       .then(onImageSave)
-      .then(console.log('successful upload'))
       .catch(err => console.error(err))
     function onImageSave(response) {
       data.url = response.data.url
-      console.log(data.url)
-      onSubmit1(data)
       console.log(data)
+      onSubmit1(data)
+      confirmSuccessfulUpload()
+      form.reset()
     }
-
-    form.reset()
   }
+  function confirmSuccessfulUpload() {
+    confirmAlert({
+      title: 'Ihre Meldung wurde erfolgreich hochgeladen.',
+    })
+  }
+
   const [picture, setPicture] = useState('Kein Bild ausgewählt')
   function onInput(event) {
     const data = event.target.files
@@ -89,8 +128,8 @@ export default function Form({ onSubmit1 }) {
     margin: 0;
     color: rgb(107, 107, 107);
     font-size: 14px;
-    grid-column-start: 1;
-    grid-column-end: 3;
+    position: absolute;
+    top: 1385px;
   `
 
   return (
@@ -133,11 +172,11 @@ export default function Form({ onSubmit1 }) {
             style={{ display: 'none' }}
             type="file"
             name="file"
-            onChange={onInput}
+            /* onInput={onInput} */
           ></input>
           <img src={uploadIcon} alt={'upload icon'}></img>
-          <ChoosenPicture>{picture}</ChoosenPicture>
         </UploadWrapper>
+        <ChoosenPicture>{picture}</ChoosenPicture>
         <FinishButton>Meldung hochladen</FinishButton>
       </div>
     </Wrapper>
