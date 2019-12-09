@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import styled from 'styled-components/macro'
 import Headline2 from './Headline2'
@@ -40,7 +40,15 @@ export default function Form({ onSubmit1 }) {
 
     form.reset()
   }
-
+  const [picture, setPicture] = useState('Kein Bild ausgewählt')
+  function onInput(event) {
+    const data = event.target.files
+    if (data.length > 0) {
+      setPicture(event.target.files[0].name)
+    } else {
+      setPicture('')
+    }
+  }
   const Wrapper = styled.form`
     position: relative;
   `
@@ -73,6 +81,16 @@ export default function Form({ onSubmit1 }) {
     align-items: center;
     position: absolute;
     top: 1340px;
+    background: rgb(201 193 171);
+    padding: 4px 10px;
+    border-radius: 5px;
+  `
+  const ChoosenPicture = styled.p`
+    margin: 0;
+    color: rgb(107, 107, 107);
+    font-size: 14px;
+    grid-column-start: 1;
+    grid-column-end: 3;
   `
 
   return (
@@ -108,9 +126,17 @@ export default function Form({ onSubmit1 }) {
       <AcceptButton></AcceptButton>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <UploadWrapper>
-          <Headline3>Foto Hochladen</Headline3>
-          <input style={{ display: 'none' }} type="file" name="file"></input>
+          <Headline3 style={{ color: 'rgb(253 252 251)' }}>
+            Foto Hochladen
+          </Headline3>
+          <input
+            style={{ display: 'none' }}
+            type="file"
+            name="file"
+            onChange={onInput}
+          ></input>
           <img src={uploadIcon} alt={'upload icon'}></img>
+          <ChoosenPicture>{picture}</ChoosenPicture>
         </UploadWrapper>
         <FinishButton>Meldung hochladen</FinishButton>
       </div>
