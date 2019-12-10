@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
+/* import emailjs from 'emailjs-com' */
 import Grid from '../Grid'
 import Globalstyles from '../Globalstyles'
 import Header from '../Header'
@@ -30,7 +31,18 @@ export default function Create({ onSubmit1, onSubmit2 }) {
     position: absolute;
     top: 55px;
   `
+  /* function sendEmail(event) {
+    console.log('Email')
 
+    emailjs.sendForm('icloud', 'template_7CpOQEvW', event.target).then(
+      function(response) {
+        console.log('SUCCESS!', response.status, response.text)
+      },
+      function(error) {
+        console.log('FAILED...', error)
+      }
+    )
+  } */
   const [selected, setSelected] = useState('Gewährleistungsmangel')
   function handleChange(event) {
     setSelected(event.target.value)
@@ -46,7 +58,7 @@ export default function Create({ onSubmit1, onSubmit2 }) {
           <DropDown handleChange={handleChange} selected={selected}></DropDown>
         </Category>
         {selected === 'Gewährleistungsmangel' ? (
-          <Form onSubmit1={onSubmit1}></Form>
+          <Form onSubmit1={onSubmit1} /* sendEmail={sendEmail} */></Form>
         ) : (
           ''
         )}

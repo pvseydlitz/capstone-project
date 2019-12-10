@@ -1,6 +1,7 @@
 import React, { useState, memo } from 'react'
 import axios from 'axios'
 import styled from 'styled-components/macro'
+import emailjs from 'emailjs-com'
 import { confirmAlert } from 'react-confirm-alert'
 import Headline2 from './Headline2'
 import Headline3 from './Headline3'
@@ -13,6 +14,7 @@ import uploadIcon from '../icons/upload.svg'
 
 const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET
 const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME
+const USERID = process.env.REACT_APP_EMAILJS_USERID
 
 const MainForm = memo(() => {
   return (
@@ -52,9 +54,10 @@ const MainForm = memo(() => {
 
 export default function Form({ onSubmit1 }) {
   const [picture, setPicture] = useState('Kein Bild ausgewählt')
-
+  console.log(USERID)
+  console.log(PRESET)
   return (
-    <Wrapper onSubmit={handleSubmit}>
+    <Wrapper onSubmit={handleSubmit} id="form">
       <MainForm />
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <FinishButton>Meldung hochladen</FinishButton>
@@ -82,14 +85,19 @@ export default function Form({ onSubmit1 }) {
     const form = event.target
     const formData = new FormData(form)
     const data = Object.fromEntries(formData)
+
     if (data.file.name === '') {
+      console.log('kein Foto')
       confirmAlert({
         title: 'Bestätigung',
         message: 'Möchten Sie ihre Meldung wirklich hochladen?',
         buttons: [
           {
             label: 'Ja',
-            onClick: () => onSubmit1(data),
+            onClick: () => {
+              onSubmit1(data)
+              sendEmail(form)
+            },
           },
           {
             label: 'Nein',
@@ -97,7 +105,7 @@ export default function Form({ onSubmit1 }) {
         ],
       })
       form.reset()
-      confirmSuccessfulUpload()
+      /* confirmSuccessfulUpload() */
     } else {
       confirmAlert({
         title: 'Bestätigung',
@@ -150,6 +158,18 @@ export default function Form({ onSubmit1 }) {
     } else {
       setPicture('')
     }
+  }
+  function sendEmail(form) {
+    console.log('Email')
+    console.log(USERID)
+    emailjs.sendForm('icloud', 'template_7CpOQEvW', form, USERID).then(
+      function(response) {
+        console.log('SUCCESS!', response.status, response.text)
+      },
+      function(error) {
+        console.log('FAILED...', error)
+      }
+    )
   }
 }
 
