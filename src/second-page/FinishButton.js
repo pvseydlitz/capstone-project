@@ -7,7 +7,7 @@ export default styled.button`
   background: rgb(201 193 171);
   color: rgb(253 252 251);
   position: absolute;
-  top: 1407px;
+  top: 1427px;
   margin-bottom: 40px;
   display: flex;
   justify-content: center;

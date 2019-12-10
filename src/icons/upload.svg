@@ -9,7 +9,7 @@
                 <mask id="mask-2" fill="white">
                     <use xlink:href="#path-1"></use>
                 </mask>
-                <use id="🎨-Icon-Сolor" fill="#6B6B6B" fill-rule="evenodd" xlink:href="#path-1"></use>
+                <use id="🎨-Icon-Сolor" fill="rgb(253 252 251)" fill-rule="evenodd" xlink:href="#path-1"></use>
             </g>
         </g>
     </g>
