@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Home from './Home'
 import Create from './second-page/Create'
+import Login from './login/Login'
+import Register from './login/Registration'
 import {
   getMessages,
   getMessagesTuev,
@@ -102,6 +104,12 @@ export default function App() {
         </Route>
         <Route path="/create">
           <Create onSubmit1={createMessage} onSubmit2={createMessage2}></Create>
+        </Route>
+        <Route path="/login">
+          <Login></Login>
+        </Route>
+        <Route path="/register">
+          <Register></Register>
         </Route>
       </Switch>
     </Router>

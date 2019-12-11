@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import LoginService from '../services/LoginService'
+import LoginService from './services/LoginService'
 
 export default function Login() {
   function handleSubmit(event) {
@@ -11,22 +11,16 @@ export default function Login() {
   }
   async function onSubmit(form) {
     const data = {
-      user_name: form.username,
-      password: form.password,
+      user_name: form.username.value,
+      password: form.password.value,
     }
-
+    console.log(data)
     const loginResult = await LoginService(data)
+    console.log(loginResult)
 
     if (loginResult !== 200) {
-      this.setState({
-        error: true,
-        loginSuccess: false,
-      })
-    } else
-      this.setState({
-        loginSuccess: true,
-        error: false,
-      })
+      console.log('fail')
+    } else console.log('login successful')
   }
   return (
     <div className="Login">
@@ -52,11 +46,7 @@ export default function Login() {
             />
           </div>
           <div className="buttons">
-            <button
-              type="button"
-              onClick={this.onSubmit}
-              className="btn btn-primary"
-            >
+            <button type="submit" className="btn btn-primary">
               Login
             </button>
             <Link to="/register">Register</Link>

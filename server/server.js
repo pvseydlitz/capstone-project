@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 const Message = require('./models/Message')
 const MessageTuev = require('./models/MessageTuev')
-const User = require('./models/User')
 const express = require('express')
 
 mongoose.connect('mongodb://localhost:27017/capstone-project', {
@@ -64,12 +63,6 @@ app.delete('/messages/:id', (req, res) => {
 app.delete('/messagestuev/:id', (req, res) => {
   MessageTuev.findByIdAndDelete(req.params.id)
     .then(message => res.json(message))
-    .catch(err => res.json(err))
-})
-
-app.get('/', (req, res) => {
-  User.find()
-    .then(user => res.json(user))
     .catch(err => res.json(err))
 })
 
