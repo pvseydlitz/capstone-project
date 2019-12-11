@@ -1,6 +1,7 @@
 import React, { useState, memo } from 'react'
 import axios from 'axios'
 import styled from 'styled-components/macro'
+import emailjs from 'emailjs-com'
 import { confirmAlert } from 'react-confirm-alert'
 import Headline2 from './Headline2'
 import Headline3 from './Headline3'
@@ -13,6 +14,9 @@ import uploadIcon from '../icons/upload.svg'
 
 const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET
 const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME
+const USERID = process.env.REACT_APP_EMAILJS_USERID
+const TEMPLATEID = process.env.REACT_APP_EMAILJS_TEMPLATEID
+const SERVICEID = process.env.REACT_APP_EMAILJS_SERVICEID
 
 const MainForm = memo(() => {
   return (
@@ -54,7 +58,7 @@ export default function Form({ onSubmit1 }) {
   const [picture, setPicture] = useState('Kein Bild ausgewählt')
 
   return (
-    <Wrapper onSubmit={handleSubmit}>
+    <Wrapper onSubmit={handleSubmit} id="form">
       <MainForm />
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <FinishButton>Meldung hochladen</FinishButton>
@@ -77,11 +81,11 @@ export default function Form({ onSubmit1 }) {
   )
 
   function handleSubmit(event) {
-    console.log('submit')
     event.preventDefault()
     const form = event.target
     const formData = new FormData(form)
     const data = Object.fromEntries(formData)
+
     if (data.file.name === '') {
       confirmAlert({
         title: 'Bestätigung',
@@ -89,7 +93,11 @@ export default function Form({ onSubmit1 }) {
         buttons: [
           {
             label: 'Ja',
-            onClick: () => onSubmit1(data),
+            onClick: () => {
+              onSubmit1(data)
+              sendEmail(data)
+              confirmSuccessfulUpload()
+            },
           },
           {
             label: 'Nein',
@@ -97,7 +105,6 @@ export default function Form({ onSubmit1 }) {
         ],
       })
       form.reset()
-      confirmSuccessfulUpload()
     } else {
       confirmAlert({
         title: 'Bestätigung',
@@ -105,7 +112,9 @@ export default function Form({ onSubmit1 }) {
         buttons: [
           {
             label: 'Ja',
-            onClick: () => postImage(formData, data, form),
+            onClick: () => {
+              postImage(formData, data, form)
+            },
           },
           {
             label: 'Nein',
@@ -113,7 +122,6 @@ export default function Form({ onSubmit1 }) {
         ],
       })
     }
-    console.log(data)
   }
 
   function postImage(formData, data, form) {
@@ -131,18 +139,38 @@ export default function Form({ onSubmit1 }) {
 
     function onImageSave(response) {
       data.url = response.data.url
-      console.log(data)
       onSubmit1(data)
-      confirmSuccessfulUpload()
+      sendEmail(data)
       form.reset()
     }
+  }
+
+  function sendEmail(data) {
+    const templateParams = {
+      name: data.name,
+      telefonnummer: data.telefonnummer,
+      email: data.email,
+      datum: data.datum,
+      wohnung: data.wohnung,
+      raumbezeichnung: data.raumbezeichnung,
+      beschreibung: data.beschreibung,
+      url: data.url,
+    }
+    emailjs.send(SERVICEID, TEMPLATEID, templateParams, USERID).then(
+      function(response) {
+        console.log('SUCCESS!', response.status, response.text)
+        confirmSuccessfulUpload()
+      },
+      function(error) {
+        console.log('FAILED...', error)
+      }
+    )
   }
   function confirmSuccessfulUpload() {
     confirmAlert({
       title: 'Ihre Meldung wurde erfolgreich hochgeladen.',
     })
   }
-
   function onInput(event) {
     const data = event.target.files
     if (data.length > 0) {

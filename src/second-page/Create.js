@@ -30,7 +30,6 @@ export default function Create({ onSubmit1, onSubmit2 }) {
     position: absolute;
     top: 55px;
   `
-
   const [selected, setSelected] = useState('Gewährleistungsmangel')
   function handleChange(event) {
     setSelected(event.target.value)
