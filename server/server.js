@@ -38,6 +38,8 @@ app.post('/messages', (req, res) => {
     .then(message => res.json(message))
     .catch(err => res.json(err))
 })
+
+//auth middleware
 app.get('/messagesTuev', (req, res) => {
   MessageTuev.find()
     .then(messages => res.json(messages))

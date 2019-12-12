@@ -1,8 +1,9 @@
 const express = require('express')
 const registrationRoutes = express.Router()
 const bcrypt = require('bcryptjs')
-let Registration = require('./models/User')
-
+const Registration = require('./models/User')
+const jwt = require('jsonwebtoken')
+const secret = 'mysecretsshhh'
 // Registration route
 registrationRoutes.route('/register').post(function(req, res) {
   let register = new Registration(req.body)
@@ -25,12 +26,21 @@ registrationRoutes.route('/login').post(function(req, res) {
       bcrypt
         .compare(req.body.password, user.password)
         .then(passwordMatch =>
-          passwordMatch ? res.sendStatus(200) : res.sendStatus(204)
+          passwordMatch
+            ? handleSession(res, user) + console.log('FUNCTION HANDLE SESSION')
+            : res.sendStatus(204)
         )
     }
   })
 })
+function handleSession(res, user) {
+  const payload = { user }
+  const token = jwt.sign(payload, secret, {
+    expiresIn: '1h',
+  })
 
+  res.cookie('token', token, { httpOnly: true }).sendStatus(200)
+}
 // Username validation Router
 registrationRoutes.route('/validateUsername').post(function(req, res) {
   Registration.findOne({ user_name: req.body.user_name }).then(user =>

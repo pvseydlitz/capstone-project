@@ -14,7 +14,6 @@ export default function Login() {
       user_name: form.username.value,
       password: form.password.value,
     }
-    console.log(data)
     const loginResult = await LoginService(data)
     console.log(loginResult)
 

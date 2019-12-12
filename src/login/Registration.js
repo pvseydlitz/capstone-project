@@ -1,21 +1,21 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import classNames from 'classnames'
 import {
   UserRegistration,
   UsernameValidation,
 } from './services/RegistrationService'
 
 export default function Registration() {
-  const [isUsernameTaken, setIsUsernameTaken] = useState()
+  const [isThisUsernameTaken, setIsThisUsernameTaken] = useState()
   async function handleOnBlur(event) {
     const data = {
       user_name: event.target.value,
     }
     const isUsernameTaken = await UsernameValidation(data)
     isUsernameTaken === 204
-      ? setIsUsernameTaken(true)
-      : setIsUsernameTaken(false)
+      ? setIsThisUsernameTaken(true)
+      : setIsThisUsernameTaken(false)
+    console.log(isThisUsernameTaken)
   }
   async function handleSubmit(event) {
     event.preventDefault()
@@ -34,7 +34,7 @@ export default function Registration() {
   }
   return (
     <div className="Registration">
-      <h1>Regietrierung</h1>
+      <h1>Registrierung</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <div className="fields">
@@ -49,8 +49,6 @@ export default function Registration() {
             <p>Benutzername</p>
             <input
               type="text"
-              /* className={classNames({ error: user_name_taken })} */
-
               name="username"
               onBlur={handleOnBlur}
               autoComplete="Username"
@@ -67,11 +65,7 @@ export default function Registration() {
             />
           </div>
           <div className="buttons">
-            <button
-              type="submit"
-              className="btn btn-primary"
-              /* disabled={isUserNameTaken} */
-            >
+            <button type="submit" className="btn btn-primary">
               Registrieren
             </button>
             <Link to="/login">Cancel</Link>
