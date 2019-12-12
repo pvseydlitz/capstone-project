@@ -4,6 +4,7 @@ import Home from './Home'
 import Create from './second-page/Create'
 import Login from './login/Login'
 import Register from './login/Registration'
+import WithAuth from './login/withAuth'
 import {
   getMessages,
   getMessagesTuev,
@@ -94,6 +95,7 @@ export default function App() {
     <Router>
       <Switch>
         <Route exact path="/">
+          {/* <WithAuth> */}
           <Home
             messages={messages}
             messagesTuev={messagesTuev}
@@ -101,6 +103,7 @@ export default function App() {
             handleClick={handleClick}
             handleClickTuev={handleClickTuev}
           ></Home>
+          {/*  </WithAuth> */}
         </Route>
         <Route path="/create">
           <Create onSubmit1={createMessage} onSubmit2={createMessage2}></Create>

@@ -20,6 +20,28 @@ export default function Login() {
     if (loginResult !== 200) {
       console.log('fail')
     } else console.log('login successful')
+    fetch('/registration/login', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(res => {
+        if (res.status === 200) {
+          console.log('hallo')
+          /* const { token } = res.json
+          console.log(token)
+          localStorage.setItem('jwt', token) */
+        } else {
+          const error = new Error(res.error)
+          throw error
+        }
+      })
+      .catch(err => {
+        console.error(err)
+        alert('Error logging in please try again')
+      })
   }
   return (
     <div className="Login">

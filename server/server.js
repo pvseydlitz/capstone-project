@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Message = require('./models/Message')
 const MessageTuev = require('./models/MessageTuev')
 const express = require('express')
-
+const withAuth = require('./middleware')
 mongoose.connect('mongodb://localhost:27017/capstone-project', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -21,7 +21,7 @@ app.get('/all', async (req, res) => {
   res.json({ messages, messages2 })
 }) */
 
-app.get('/messages', (req, res) => {
+app.get('/messages', withAuth, (req, res) => {
   Message.find()
     .then(messages => res.json(messages))
     .catch(err => res.json(err))
@@ -70,6 +70,7 @@ app.delete('/messagestuev/:id', (req, res) => {
 
 const bodyParser = require('body-parser')
 const cors = require('cors')
+const cookieParser = require('cookie-parser')
 
 const registrationRoutes = require('./route')
 
@@ -77,3 +78,7 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use('/registration', registrationRoutes)
+app.use(cookieParser())
+app.get('/checkToken', withAuth, function(req, res) {
+  res.sendStatus(200)
+})

@@ -38,7 +38,11 @@ function handleSession(res, user) {
   const token = jwt.sign(payload, secret, {
     expiresIn: '1h',
   })
-
+  /* res.json({
+    success: true,
+    token: 'Bearer ' + token,
+  }) */
+  /* res.sendStatus(200) */
   res.cookie('token', token, { httpOnly: true }).sendStatus(200)
 }
 // Username validation Router
