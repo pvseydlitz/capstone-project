@@ -1,7 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components/macro'
 import LoginService from './services/LoginService'
-
+import Headline2 from '../second-page/Headline2'
+import Headline3 from '../second-page/Headline3'
+import Input from '../second-page/Input'
+import Globalstyles from '../Globalstyles'
+import logo from '../icons/logo.svg'
 export default function Login() {
   function handleSubmit(event) {
     event.preventDefault()
@@ -29,9 +34,7 @@ export default function Login() {
     })
       .then(res => {
         if (res.status === 200) {
-          const token = res.token
-          console.log(token)
-          localStorage.setItem('jwt', token)
+          window.location.href = `/`
         } else {
           const error = new Error(res.error)
           throw error
@@ -42,37 +45,58 @@ export default function Login() {
         alert('Error logging in please try again')
       })
   }
+  const Wrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+    position: relative;
+  `
+  const Logo = styled.img`
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 130px;
+    height: auto;
+  `
+  const Form = styled.form`
+    display: grid;
+    grid-template-rows: repeat(5, auto);
+    grid-gap: 15px;
+  `
+  const Button = styled.button`
+    padding: 4px 24px;
+    border-radius: 5px;
+    font-size: 16px;
+    background: rgb(201 193 171);
+    color: rgb(253 252 251);
+    display: flex;
+    justify-content: center;
+  `
   return (
-    <div className="Login">
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <div className="fields">
-            <p>Username</p>
-            <input
-              type="text"
-              name="username"
-              autoComplete="Username"
-              required
-            />
-          </div>
-          <div className="fields">
-            <p>Password</p>
-            <input
-              type="password"
-              name="password"
-              autoComplete="Password"
-              required
-            />
-          </div>
-          <div className="buttons">
-            <button type="submit" className="btn btn-primary">
-              Login
-            </button>
-            <Link to="/register">Register</Link>
-          </div>
-        </div>
-      </form>
-    </div>
+    <Wrapper className="Login">
+      <Globalstyles></Globalstyles>
+      <Logo src={logo} alt=""></Logo>
+      <Form onSubmit={handleSubmit}>
+        <Headline2>Login</Headline2>
+        <Headline3>Username</Headline3>
+        <Input type="text" name="username" autoComplete="Username" required />
+        <Headline3>Password</Headline3>
+        <Input
+          type="password"
+          name="password"
+          autoComplete="Password"
+          required
+        />
+        <Button type="submit" className="btn btn-primary">
+          Login
+        </Button>
+        <Button>
+          <Link to="/register" style={{ color: 'rgb(253 252 251)' }}>
+            Registrieren
+          </Link>
+        </Button>
+      </Form>
+    </Wrapper>
   )
 }
