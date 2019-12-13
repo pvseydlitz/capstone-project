@@ -14,6 +14,9 @@ app.use(express.json())
 const PORT = process.env.PORT || 3333
 app.listen(PORT, () => console.log(`Express ready on port ${PORT}`))
 
+const cookieParser = require('cookie-parser')
+app.use(cookieParser())
+
 /* Server Funktion, die ich später noch brauchen werde.
 app.get('/all', async (req, res) => {
   const messages = await Message.find()
@@ -70,7 +73,6 @@ app.delete('/messagestuev/:id', (req, res) => {
 
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const cookieParser = require('cookie-parser')
 
 const registrationRoutes = require('./route')
 
@@ -78,7 +80,7 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use('/registration', registrationRoutes)
-app.use(cookieParser())
+
 app.get('/checkToken', withAuth, function(req, res) {
   res.sendStatus(200)
 })

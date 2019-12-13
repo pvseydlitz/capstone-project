@@ -29,10 +29,9 @@ export default function Login() {
     })
       .then(res => {
         if (res.status === 200) {
-          console.log('hallo')
-          /* const { token } = res.json
+          const token = res.token
           console.log(token)
-          localStorage.setItem('jwt', token) */
+          localStorage.setItem('jwt', token)
         } else {
           const error = new Error(res.error)
           throw error

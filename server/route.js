@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs')
 const Registration = require('./models/User')
 const jwt = require('jsonwebtoken')
 const secret = 'mysecretsshhh'
+
 // Registration route
 registrationRoutes.route('/register').post(function(req, res) {
   let register = new Registration(req.body)
@@ -38,17 +39,14 @@ function handleSession(res, user) {
   const token = jwt.sign(payload, secret, {
     expiresIn: '1h',
   })
-  /* res.json({
-    success: true,
-    token: 'Bearer ' + token,
-  }) */
-  /* res.sendStatus(200) */
   res.cookie('token', token, { httpOnly: true }).sendStatus(200)
 }
 // Username validation Router
 registrationRoutes.route('/validateUsername').post(function(req, res) {
   Registration.findOne({ user_name: req.body.user_name }).then(user =>
-    user ? res.sendStatus(204) : res.sendStatus(200)
+    user
+      ? res.sendStatus(204) + console.log('valid username')
+      : res.sendStatus(200)
   )
 })
 
