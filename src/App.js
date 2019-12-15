@@ -100,7 +100,7 @@ export default function App() {
     <Router>
       <Switch>
         <Route exact path="/">
-          {WithAuth() === 3 ? (
+          {WithAuth() === 'right token' ? (
             <Home
               messages={messages}
               messagesTuev={messagesTuev}
@@ -109,11 +109,18 @@ export default function App() {
               handleClickTuev={handleClickTuev}
             ></Home>
           ) : (
-            ''
+            <Redirect to="/login"></Redirect>
           )}
         </Route>
         <Route path="/create">
-          <Create onSubmit1={createMessage} onSubmit2={createMessage2}></Create>
+          {WithAuth() === 'right token' ? (
+            <Create
+              onSubmit1={createMessage}
+              onSubmit2={createMessage2}
+            ></Create>
+          ) : (
+            <Redirect to="/login"></Redirect>
+          )}
         </Route>
         <Route path="/login">
           <Login></Login>

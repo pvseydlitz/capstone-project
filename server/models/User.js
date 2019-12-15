@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-let Registration = {
+const RegistrationShema = {
   first_name: {
     type: String,
   },
@@ -19,8 +19,5 @@ let Registration = {
     trim: true,
   },
 }
-/* {
-    collection: 'Registration',
-  } */
 
-module.exports = mongoose.model('Registration', Registration)
+module.exports = mongoose.model('Registration', RegistrationShema)

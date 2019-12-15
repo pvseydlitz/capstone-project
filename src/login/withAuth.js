@@ -1,13 +1,11 @@
-import React, { useState } from 'react'
-import { Redirect } from 'react-router-dom'
+import { useState } from 'react'
 
 export default function WithAuth() {
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState()
 
   fetch('/checkToken')
     .then(res => {
       if (res.status === 200) {
-        console.log('right token')
         setLoading(false)
       } else {
         const error = new Error(res.error)
@@ -21,10 +19,8 @@ export default function WithAuth() {
     })
 
   if (loading === true) {
-    console.log('1')
-    return 1
+    return 'wrong token'
   } else {
-    console.log('3')
-    return 3
+    return 'right token'
   }
 }

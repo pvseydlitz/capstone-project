@@ -9,13 +9,25 @@ mongoose.connect('mongodb://localhost:27017/capstone-project', {
   useFindAndModify: false,
 })
 
+const registrationRoutes = require('./route')
+const cookieParser = require('cookie-parser')
+const bodyParser = require('body-parser')
+const cors = require('cors')
+
 const app = express()
 app.use(express.json())
 const PORT = process.env.PORT || 3333
 app.listen(PORT, () => console.log(`Express ready on port ${PORT}`))
 
-const cookieParser = require('cookie-parser')
 app.use(cookieParser())
+app.use(cors())
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
+app.use('/registration', registrationRoutes)
+
+app.get('/checkToken', withAuth, function(req, res) {
+  res.sendStatus(200)
+})
 
 /* Server Funktion, die ich später noch brauchen werde.
 app.get('/all', async (req, res) => {
@@ -69,18 +81,4 @@ app.delete('/messagestuev/:id', (req, res) => {
   MessageTuev.findByIdAndDelete(req.params.id)
     .then(message => res.json(message))
     .catch(err => res.json(err))
-})
-
-const bodyParser = require('body-parser')
-const cors = require('cors')
-
-const registrationRoutes = require('./route')
-
-app.use(cors())
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json())
-app.use('/registration', registrationRoutes)
-
-app.get('/checkToken', withAuth, function(req, res) {
-  res.sendStatus(200)
 })

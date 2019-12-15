@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const secret = 'mysecretsshhh'
+const SECRET = process.env.REACT_APP_SECRET || 'mysecretsshhh'
 
 const withAuth = function(req, res, next) {
   console.log('with Auth')
@@ -12,7 +12,7 @@ const withAuth = function(req, res, next) {
   if (!token) {
     res.status(401).send('Unauthorized: No token provided')
   } else {
-    jwt.verify(token, secret, function(err, decoded) {
+    jwt.verify(token, SECRET, function(err, decoded) {
       if (err) {
         res.status(401).send('Unauthorized: Invalid token')
       } else {
