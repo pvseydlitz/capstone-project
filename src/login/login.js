@@ -52,7 +52,7 @@ export default function Login() {
     console.log(loginResult)
 
     if (loginResult !== 200) {
-      console.log('fail')
+      alert('Falscher Benutzername oder Passwort')
     } else console.log('login successful')
     fetch('/registration/login', {
       method: 'POST',
@@ -63,7 +63,7 @@ export default function Login() {
     })
       .then(res => {
         if (res.status === 200) {
-          /* window.location.href = `/` */
+          window.location.href = `/`
         } else {
           const error = new Error(res.error)
           throw error

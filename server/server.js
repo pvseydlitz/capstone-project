@@ -29,6 +29,11 @@ app.get('/checkToken', withAuth, function(req, res) {
   res.sendStatus(200)
 })
 
+app.get('/logout', function(req, res) {
+  res.clearCookie('token')
+  res.sendStatus(200)
+  res.redirect('/')
+})
 /* Server Funktion, die ich später noch brauchen werde.
 app.get('/all', async (req, res) => {
   const messages = await Message.find()
@@ -54,7 +59,6 @@ app.post('/messages', (req, res) => {
     .catch(err => res.json(err))
 })
 
-//auth middleware
 app.get('/messagesTuev', (req, res) => {
   MessageTuev.find()
     .then(messages => res.json(messages))

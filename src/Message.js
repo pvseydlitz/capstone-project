@@ -36,8 +36,8 @@ export default function Message({ message, toggleBookmarked, handleClick }) {
   `
   const Cross = styled.img`
     position: absolute;
-    right: 34px;
-    top: 30px;
+    right: 20px;
+    top: 28px;
   `
   const Image = styled.img`
     margin-top: 20px;

@@ -1,6 +1,7 @@
 import React, { useState, memo } from 'react'
 import styled from 'styled-components/macro'
 import { Link } from 'react-router-dom'
+import { confirmAlert } from 'react-confirm-alert'
 import {
   UserRegistration,
   UsernameValidation,
@@ -86,8 +87,19 @@ export default function Registration() {
 
     const registerStatus = await UserRegistration(data)
     if (registerStatus === 200) {
-      console.log('register successful')
-    } else console.log('fail')
+      confirmAlert({
+        title: 'Registrierung erfolgreich',
+        buttons: [
+          {
+            label: 'Zum Login',
+            onClick: () => (window.location.href = '/login'),
+          },
+          {
+            label: 'Nein',
+          },
+        ],
+      })
+    } else alert('Registrierung fehlgeschlagen')
   }
 }
 

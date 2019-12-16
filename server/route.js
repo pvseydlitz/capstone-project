@@ -8,16 +8,13 @@ const SECRET = process.env.REACT_APP_SECRET || 'mysecretsshhh'
 // Registration route
 registrationRoutes.route('/register').post(function(req, res) {
   let register = new Registration(req.body)
-  console.log(register)
   register
     .save()
-    /* console.log(req.body)
-  Registration.create(req.body) */
     .then(reg => {
       res.sendStatus(200)
     })
     .catch(err => {
-      res.status(400).send('Failed to store to database')
+      res.status(400).send(err)
     })
 })
 
