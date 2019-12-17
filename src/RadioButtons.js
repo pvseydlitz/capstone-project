@@ -18,12 +18,14 @@ export default function RadioButtons({
     width: 0;
   `
   const Label1 = styled.label`
+    margin-right: 20px;
     border: 2px solid rgb(187 179 163);
     border-radius: 0.5em;
     padding: 0.5em;
     display: flex;
     justify-content: center;
-    color: rgb(107, 107, 107);
+    color: ${props =>
+      props.active ? 'rgb(253 252 251)' : 'rgb(107, 107, 107)'};
     background: ${props => (props.active ? 'rgb(187 179 163)' : '')};
   `
   const Label2 = styled.label`
@@ -32,7 +34,8 @@ export default function RadioButtons({
     padding: 0.5em;
     display: flex;
     justify-content: center;
-    color: rgb(107, 107, 107);
+    color: ${props =>
+      props.active ? 'rgb(253 252 251)' : 'rgb(107, 107, 107)'};
     background: ${props => (props.active ? 'rgb(187 179 163)' : '')};
   `
 

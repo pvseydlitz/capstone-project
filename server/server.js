@@ -2,18 +2,38 @@ const mongoose = require('mongoose')
 const Message = require('./models/Message')
 const MessageTuev = require('./models/MessageTuev')
 const express = require('express')
-
+const withAuth = require('./middleware')
 mongoose.connect('mongodb://localhost:27017/capstone-project', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
 })
 
+const registrationRoutes = require('./route')
+const cookieParser = require('cookie-parser')
+const bodyParser = require('body-parser')
+const cors = require('cors')
+
 const app = express()
 app.use(express.json())
 const PORT = process.env.PORT || 3333
 app.listen(PORT, () => console.log(`Express ready on port ${PORT}`))
 
+app.use(cookieParser())
+app.use(cors())
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
+app.use('/registration', registrationRoutes)
+
+app.get('/checkToken', withAuth, function(req, res) {
+  res.sendStatus(200)
+})
+
+app.get('/logout', function(req, res) {
+  res.clearCookie('token')
+  res.sendStatus(200)
+  res.redirect('/')
+})
 /* Server Funktion, die ich später noch brauchen werde.
 app.get('/all', async (req, res) => {
   const messages = await Message.find()
@@ -21,7 +41,7 @@ app.get('/all', async (req, res) => {
   res.json({ messages, messages2 })
 }) */
 
-app.get('/messages', (req, res) => {
+app.get('/messages', withAuth, (req, res) => {
   Message.find()
     .then(messages => res.json(messages))
     .catch(err => res.json(err))
@@ -38,6 +58,7 @@ app.post('/messages', (req, res) => {
     .then(message => res.json(message))
     .catch(err => res.json(err))
 })
+
 app.get('/messagesTuev', (req, res) => {
   MessageTuev.find()
     .then(messages => res.json(messages))

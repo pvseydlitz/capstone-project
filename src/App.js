@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom'
 import Home from './Home'
 import Create from './second-page/Create'
+import Login from './login/Login'
+import Register from './login/Registration'
+import WithAuth from './login/WithAuth'
 import {
   getMessages,
   getMessagesTuev,
@@ -92,16 +100,33 @@ export default function App() {
     <Router>
       <Switch>
         <Route exact path="/">
-          <Home
-            messages={messages}
-            messagesTuev={messagesTuev}
-            toggleBookmarked={toggleBookmarked}
-            handleClick={handleClick}
-            handleClickTuev={handleClickTuev}
-          ></Home>
+          {WithAuth() === 'right token' ? (
+            <Home
+              messages={messages}
+              messagesTuev={messagesTuev}
+              toggleBookmarked={toggleBookmarked}
+              handleClick={handleClick}
+              handleClickTuev={handleClickTuev}
+            ></Home>
+          ) : (
+            <Redirect to="/login"></Redirect>
+          )}
         </Route>
         <Route path="/create">
-          <Create onSubmit1={createMessage} onSubmit2={createMessage2}></Create>
+          {WithAuth() === 'right token' ? (
+            <Create
+              onSubmit1={createMessage}
+              onSubmit2={createMessage2}
+            ></Create>
+          ) : (
+            <Redirect to="/login"></Redirect>
+          )}
+        </Route>
+        <Route path="/login">
+          <Login></Login>
+        </Route>
+        <Route path="/register">
+          <Register></Register>
         </Route>
       </Switch>
     </Router>

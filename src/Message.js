@@ -36,7 +36,8 @@ export default function Message({ message, toggleBookmarked, handleClick }) {
   `
   const Cross = styled.img`
     position: absolute;
-    right: 34px;
+    right: 20px;
+    top: 28px;
   `
   const Image = styled.img`
     margin-top: 20px;
@@ -68,7 +69,9 @@ export default function Message({ message, toggleBookmarked, handleClick }) {
         onClick={toggleBookmarked}
         active={message.isBookmarked}
       ></Bookmark>
+      <Cross src={cross} onClick={handleClick}></Cross>
       <Headline>Gewährleistungsmangel</Headline>
+
       <Wrapper active={!showContent}>
         <b>
           <p
@@ -103,7 +106,7 @@ export default function Message({ message, toggleBookmarked, handleClick }) {
         <Content>{showContent ? message.beschreibung : ''}</Content>
         {showContent ? <Image src={message.url} alt=""></Image> : ''}
       </Wrapper>
-      <Cross src={cross} onClick={handleClick}></Cross>
+
       <ShowMoreButton onClick={() => setShowContent(!showContent)}>
         {showContent ? 'Show less' : 'Show more'}
       </ShowMoreButton>

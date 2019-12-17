@@ -9,7 +9,6 @@ export default function MessageTuev({ messageTuev, handleClickTuev }) {
     margin: 50px 20px;
     padding: 10px 20px;
     position: relative;
-    min-height: 180px;
     background: rgb(238, 238, 238);
     border-radius: 10px;
   `
@@ -21,7 +20,7 @@ export default function MessageTuev({ messageTuev, handleClickTuev }) {
   const Wrapper = styled.div`
     display: grid;
     grid-template-rows: ${props =>
-      props.active ? 'repeat(3, 30px) 16px' : 'repeat(4, 30px) 30px 29px'};
+      props.active ? 'repeat(3, 30px) 16px' : 'repeat(4, 30px) auto 29px'};
     width: 100%;
   `
   const Description = styled.p`
@@ -36,7 +35,7 @@ export default function MessageTuev({ messageTuev, handleClickTuev }) {
   `
   const Cross = styled.img`
     position: absolute;
-    right: 34px;
+    right: 20px;
     top: 28px;
   `
 

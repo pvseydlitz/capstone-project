@@ -7,7 +7,7 @@ export default function Bookmark({ active, onClick }) {
   const Bookmark = styled.div`
     position: absolute;
     top: -15px;
-    right: 31px;
+    left: 20px;
   `
 
   return (

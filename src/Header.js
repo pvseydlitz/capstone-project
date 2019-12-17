@@ -6,7 +6,7 @@ import FilterMenu from './FilterMenu'
 import logo from './icons/logo.svg'
 import filterIcon from './icons/filterbutton.svg'
 import searchIcon from './icons/search.svg'
-
+import logout from './icons/logout.svg'
 export default function Header({
   filterMessages,
   filterActive,
@@ -40,7 +40,14 @@ export default function Header({
     height: 25px;
     width: 100%;
   `
-
+  const Logout = styled.img`
+    position: absolute;
+    top: 45px;
+    right: 25px;
+  `
+  function handleLogout() {
+    fetch('/logout').then((window.location.href = `/`))
+  }
   const [isClicked, setIsClicked] = useState(false)
   const [showSearchBar, setShowSearchBar] = useState(false)
   return (
@@ -61,7 +68,7 @@ export default function Header({
           onClick={() => setShowSearchBar(!showSearchBar)}
         ></Search>
       ) : (
-        ''
+        <Logout src={logout} onClick={handleLogout}></Logout>
       )}
       {showSearchBar ? (
         <Input
