@@ -14,7 +14,6 @@ export default function Create({ onSubmit1, onSubmit2 }) {
     display: flex;
     flex-direction: column;
     position: relative;
-    margin: 0 20px;
   `
   const Headline = styled.h1`
     color: rgb(187 179 163);
@@ -22,13 +21,14 @@ export default function Create({ onSubmit1, onSubmit2 }) {
     font-weight: bold;
     position: absolute;
     top: 10px;
-    margin: 0;
+    margin: 0 20px;
   `
   const Category = styled.div`
     display: grid;
     grid-template-rows: 32px 32px;
     position: absolute;
     top: 55px;
+    margin: 0 20px;
   `
   const [selected, setSelected] = useState('Gewährleistungsmangel')
   function handleChange(event) {

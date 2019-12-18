@@ -13,9 +13,7 @@ export default function RadioButtons({
     grid-template-columns: 1fr 1fr;
   `
   const Button = styled.input`
-    visibility: hidden;
-    height: 0;
-    width: 0;
+    all: unset;
   `
   const Label1 = styled.label`
     margin-right: 20px;

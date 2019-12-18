@@ -30,9 +30,7 @@ app.get('/checkToken', withAuth, function(req, res) {
 })
 
 app.get('/logout', function(req, res) {
-  res.clearCookie('token')
-  res.sendStatus(200)
-  res.redirect('/')
+  res.clearCookie('token').sendStatus(200)
 })
 /* Server Funktion, die ich später noch brauchen werde.
 app.get('/all', async (req, res) => {

@@ -9,7 +9,7 @@ import Home from './Home'
 import Create from './second-page/Create'
 import Login from './login/Login'
 import Register from './login/Registration'
-import WithAuth from './login/WithAuth'
+import WithAuth from './login/withAuth'
 import {
   getMessages,
   getMessagesTuev,

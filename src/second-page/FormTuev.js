@@ -17,6 +17,7 @@ export default function FormTuev({ onSubmit2 }) {
 
   const Wrapper = styled.form`
     position: relative;
+    margin: 0 20px;
   `
   const Grid = styled.div`
     display: grid;
