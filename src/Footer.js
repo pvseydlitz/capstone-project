@@ -30,7 +30,7 @@ export default function Footer() {
         </Link>
       </NavButton>
       <NavButton>
-        <Link to="/calendar">
+        <Link to="/upload">
           <img src={calendar} alt="calendar button"></img>
         </Link>
       </NavButton>

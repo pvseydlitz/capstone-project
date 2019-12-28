@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom'
 import Home from './Home'
 import Create from './second-page/Create'
+import Upload from './third-page/Home'
 import Login from './login/Login'
 import Register from './login/Registration'
 import WithAuth from './login/withAuth'
@@ -127,6 +128,9 @@ export default function App() {
         </Route>
         <Route path="/register">
           <Register></Register>
+        </Route>
+        <Route path="/upload">
+          <Upload></Upload>
         </Route>
       </Switch>
     </Router>
