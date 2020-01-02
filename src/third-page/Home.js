@@ -7,7 +7,7 @@ export default function App() {
     loadFiles()
   }, [])
   function loadFiles() {
-    fetch('/api/files')
+    fetch('/files')
       .then(res => res.json())
       .then(files => {
         if (files.message) {
@@ -28,7 +28,7 @@ export default function App() {
 
     let data = new FormData()
     data.append('file', file)
-    fetch('/api/files', {
+    fetch('files', {
       method: 'POST',
       body: data,
     })
@@ -47,7 +47,7 @@ export default function App() {
     event.preventDefault()
     const id = event.target.id
 
-    fetch('/api/files/' + id, {
+    fetch('files/' + id, {
       method: 'DELETE',
     })
       .then(res => res.json())

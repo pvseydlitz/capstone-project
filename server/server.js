@@ -39,12 +39,12 @@ app.get('/all', async (req, res) => {
   res.json({ messages, messages2 })
 }) */
 
-app.get('/messages', withAuth, (req, res) => {
+/* app.get('/messages', withAuth, (req, res) => {
   Message.find()
     .then(messages => res.json(messages))
     .catch(err => res.json(err))
-})
-
+}) */
+app.use(require('./message'))
 app.get('/messages/:id', (req, res) => {
   Message.findById(req.params.id)
     .then(message => res.json(message))
@@ -87,7 +87,7 @@ app.delete('/messagestuev/:id', (req, res) => {
 
 const path = require('path')
 const logger = require('morgan')
-const uploadRoute = require('./file')
+
 /** Seting up server to accept cross-origin browser requests */
 app.use(function(req, res, next) {
   //allow cross origin requests
@@ -106,7 +106,72 @@ app.use(function(req, res, next) {
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')))
-app.use(bodyParser.json())
 app.use(logger('dev'))
 // Put all API endpoints under '/api'
-app.use('/api', uploadRoute)
+/* app.use(require('./file')) */
+
+const multer = require('multer')
+const { /* mongo, */ connection } = require('mongoose')
+var Grid = require('gridfs-stream')
+Grid.mongo = mongoose.mongo
+
+var conn = mongoose.createConnection()
+conn.once('open', function() {
+  var gfs = Grid(conn.db)
+  // all set!
+
+  const storage = require('multer-gridfs-storage')({
+    db: connection.db,
+    file: (req, file) => {
+      return {
+        filename: file.originalname,
+      }
+    },
+  })
+  // sets file input to single file
+  const singleUpload = multer({ storage: storage }).single('file')
+
+  app.get('/files/:filename', (req, res) => {
+    gfs.files.find({ filename: req.params.filename }).toArray((err, files) => {
+      if (!files || files.length === 0) {
+        return res.status(404).json({
+          message: 'Could not find file',
+        })
+      }
+
+      var readstream = gfs.createReadStream({
+        filename: files[0].filename,
+      })
+      res.set('Content-Type', files[0].contentType)
+      return readstream.pipe(res)
+    })
+  })
+
+  app.get('/files', (req, res) => {
+    gfs.files.find().toArray((err, files) => {
+      if (!files || files.length === 0) {
+        return res.status(404).json({
+          message: 'Could not find files',
+        })
+      }
+      return res.json(files)
+    })
+  })
+
+  app.post('/files', singleUpload, (req, res) => {
+    if (req.file) {
+      return res.json({
+        success: true,
+        file: req.file,
+      })
+    }
+    res.send({ success: false })
+  })
+
+  app.delete('/files/:id', (req, res) => {
+    gfs.remove({ _id: req.params.id }, err => {
+      if (err) return res.status(500).json({ success: false })
+      return res.json({ success: true })
+    })
+  })
+})
