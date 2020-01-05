@@ -17,7 +17,6 @@ registrationRoutes.route('/register').post(function(req, res) {
       res.status(400).send(err)
     })
 })
-
 // Login Router
 registrationRoutes.route('/login').post(function(req, res) {
   Registration.findOne({ user_name: req.body.user_name }).then(user => {

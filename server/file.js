@@ -1,15 +1,17 @@
 const router = require('express').Router()
 const multer = require('multer')
-const { /* mongo, */ connection } = require('mongoose')
-var mongoose = require('mongoose')
 var Grid = require('gridfs-stream')
+var mongoose = require('mongoose')
+
+mongoose.Promise = global.Promise
 Grid.mongo = mongoose.mongo
+var connection = mongoose.connection
+connection.on('error', console.error.bind(console, 'connection error:'))
 
-var conn = mongoose.createConnection()
-conn.once('open', function() {
-  var gfs = Grid(conn.db)
+connection.once('open', function() {
+  console.log('File storage on')
+  var gfs = Grid(connection.db)
   // all set!
-
   const storage = require('multer-gridfs-storage')({
     db: connection.db,
     file: (req, file) => {
@@ -47,17 +49,16 @@ conn.once('open', function() {
       return res.json(files)
     })
   })
-  router.route('/files').post(
-    singleUpload(function(req, res) {
-      if (req.file) {
-        return res.json({
-          success: true,
-          file: req.file,
-        })
-      }
-      res.send({ success: false })
-    })
-  )
+
+  router.post('/files', singleUpload, (req, res) => {
+    if (req.file) {
+      return res.json({
+        success: true,
+        file: req.file,
+      })
+    }
+    res.send({ success: false })
+  })
 
   router.route('/files/:id').delete(function(req, res) {
     gfs.remove({ _id: req.params.id }, err => {
