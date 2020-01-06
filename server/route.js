@@ -4,7 +4,6 @@ const bcrypt = require('bcryptjs')
 const Registration = require('./models/User')
 const jwt = require('jsonwebtoken')
 const SECRET = process.env.SECRET
-console.log('secret ==  ' + SECRET)
 // Registration route
 registrationRoutes.route('/register').post(function(req, res) {
   let register = new Registration(req.body)

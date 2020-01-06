@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components/macro'
 import home from './icons/home.svg'
 import plusSign from './icons/plus-sign.svg'
-import calendar from './icons/calendar.svg'
+import archive from './icons/archive.svg'
 import person from './icons/person.svg'
 import { Link } from 'react-router-dom'
 
@@ -31,7 +31,7 @@ export default function Footer() {
       </NavButton>
       <NavButton>
         <Link to="/upload">
-          <img src={calendar} alt="calendar button"></img>
+          <img src={archive} alt="calendar button"></img>
         </Link>
       </NavButton>
       <NavButton>

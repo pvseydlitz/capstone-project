@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom'
 import Home from './Home'
 import Create from './second-page/Create'
-import Upload from './third-page/Home'
+import Upload from './third-page/Upload'
 import Login from './login/login'
 import Register from './login/Registration'
 import WithAuth from './login/withAuth'

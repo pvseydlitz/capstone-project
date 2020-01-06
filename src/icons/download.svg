@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="24px" viewBox="0 0 16 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>download</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M19,16 C19.55,16 20,16.45 20,17 L20,19 L20,19 C20,19.5107143 19.6119898,19.9352041 19.116199,19.9932398 L19,20 L19,20 L5,20 C4.45,20 4,19.55 4,19 L4,17 C4,16.45 4.45,16 5,16 C5.55,16 6,16.45 6,17 L6,18 L18,18 L18,17 C18,16.45 18.45,16 19,16 Z M12,3 C12.553,3 13,3.448 13,4 L13,12 L15.4,10.2 C15.842,9.867 16.469,9.958 16.8,10.4 C17.132,10.842 17.042,11.469 16.6,11.8 L12.6,14.8 C12.423,14.933 12.211,15 12,15 C11.799,15 11.598,14.939 11.425,14.818 L7.425,12.004 C6.973,11.686 6.864,11.062 7.182,10.611 C7.5,10.159 8.123,10.05 8.575,10.368 L11.0029783,12.0777792 C11.0010049,12.052111 11,12.0261724 11,12 L11,4 C11,3.448 11.447,3 12,3 Z" id="path-1"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Second-screen" transform="translate(-289.000000, -634.000000)">
+            <g id="Background"></g>
+            <g id="download" transform="translate(285.000000, 631.500000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="🎨-Icon-Сolor" fill="#6B6B6B" fill-rule="nonzero" xlink:href="#path-1"></use>
+            </g>
+        </g>
+    </g>
+</svg>
