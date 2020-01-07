@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
-import Grid from '../Grid'
+
 import Globalstyles from '../Globalstyles'
-import Header from '../Header'
+import Grid from '../Grid2'
+import Header from '../Header2'
 import Headline2 from './Headline2'
 import DropDown from './DropdownMenu'
 import Form from './Form'
@@ -37,7 +38,7 @@ export default function Create({ onSubmit1, onSubmit2 }) {
   return (
     <Grid>
       <Globalstyles></Globalstyles>
-      <Header></Header>
+      <Header showSearchIcon={false}></Header>
       <Wrapper style={{ overflowY: 'scroll' }}>
         <Headline>Neue Meldung erstellen</Headline>
         <Category>

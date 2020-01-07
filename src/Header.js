@@ -81,16 +81,6 @@ export default function Header({
       ) : (
         ''
       )}
-      {/* <span
-        style={{
-          fontSize: '30px',
-          color: 'rgb(201 193 171)',
-          margin: ' 30px 0',
-          height: '30px',
-        }}
-      >
-        FlatChat
-      </span> */}
       <Logo src={logo} alt="logo"></Logo>
       {isClicked ? (
         <FilterMenu

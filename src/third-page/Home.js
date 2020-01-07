@@ -110,7 +110,7 @@ export default function App() {
               >
                 <Grid>
                   <FileName>{file.filename}</FileName>
-                  <Download alt="" src={download}></Download>
+                  <img alt="" src={download}></img>
                 </Grid>
               </a>
               <DateText>
@@ -197,11 +197,6 @@ const FileName = styled.p`
   margin: 0;
   color: rgb(107, 107, 107);
   font-size: 16px;
-`
-const Download = styled.img`
-  /* position: absolute;
-  top: 10px;
-  right: 50px; */
 `
 const Cross = styled.img`
   position: absolute;

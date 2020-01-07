@@ -82,11 +82,14 @@ function Home({
               ></MessageTuev>
             ))
           : messagesTuev
-              .filter(
-                messageTuev =>
-                  String(messageTuev.nummer) === searchedNumber ||
-                  messageTuev.ort.toLowerCase() === searchedNumber
-              )
+              .filter(messageTuev => {
+                const nummer = String(messageTuev.nummer)
+                const ort = messageTuev.ort.toLowerCase()
+                const query = searchedNumber
+                return (
+                  query === '' || nummer.includes(query) || ort.includes(query)
+                )
+              })
               .map((messageTuev, index) => (
                 <MessageTuev
                   messageTuev={messageTuev}
@@ -99,5 +102,4 @@ function Home({
     </Grid>
   )
 }
-
 export default Home
