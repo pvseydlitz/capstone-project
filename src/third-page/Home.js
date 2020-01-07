@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components/macro'
 
-import cross from '../icons/cross.svg'
+import Card from './Card'
 import plus from '../icons/plus-file.svg'
-import download from '../icons/download.svg'
 
-export default function App() {
+export default function Home() {
   const [files, setFiles] = useState([])
-  const [file, setFile] = useState('')
+  const [singleFile, setSingleFile] = useState('')
   const [picture, setPicture] = useState('Kein Dokument ausgewählt')
   const [showForm, setShowForm] = useState(false)
 
@@ -28,7 +27,7 @@ export default function App() {
 
   function fileChanged(event) {
     const f = event.target.files[0]
-    setFile(f)
+    setSingleFile(f)
     const data = event.target.files
     if (data.length > 0) {
       setPicture(event.target.files[0].name)
@@ -40,7 +39,7 @@ export default function App() {
   function uploadFile(event) {
     event.preventDefault()
     let data = new FormData()
-    data.append('file', file)
+    data.append('file', singleFile)
     fetch('/api/files', {
       method: 'POST',
       body: data,
@@ -98,29 +97,9 @@ export default function App() {
         )}
       </div>
       <CardWrapper active={showForm}>
-        {files.map((file, index) => {
-          var d = new Date(file.uploadDate)
-          return (
-            <Card key={index}>
-              <a
-                href={`http://localhost:3333/api/files/${file.filename}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ textDecoration: 'none' }}
-              >
-                <Grid>
-                  <FileName>{file.filename}</FileName>
-                  <img alt="" src={download}></img>
-                </Grid>
-              </a>
-              <DateText>
-                Hinzugefügt am:
-                {` ${d.toLocaleDateString()} ${d.toLocaleTimeString()}`}
-              </DateText>
-              <Cross src={cross} onClick={deleteFile} id={file._id}></Cross>
-            </Card>
-          )
-        })}
+        {files.map((file, index) => (
+          <Card file={file} key={index} deleteFile={deleteFile}></Card>
+        ))}
       </CardWrapper>
     </Wrapper>
   )
@@ -179,32 +158,4 @@ const Button = styled.button`
 `
 const CardWrapper = styled.div`
   margin: ${props => (props.active ? '130px' : '50px')} 20px;
-`
-const Card = styled.section`
-  margin: 30px 0;
-  padding: 10px 20px;
-  position: relative;
-  background: rgb(238, 238, 238);
-  border-radius: 10px;
-`
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-gap: 10px;
-  align-items: center;
-`
-const FileName = styled.p`
-  margin: 0;
-  color: rgb(107, 107, 107);
-  font-size: 16px;
-`
-const Cross = styled.img`
-  position: absolute;
-  top: 10px;
-  right: 20px;
-`
-const DateText = styled.p`
-  margin-top: 20px;
-  color: rgb(107, 107, 107);
-  font-size: 14px;
 `
