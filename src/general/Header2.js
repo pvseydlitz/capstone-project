@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 
-import logo from './icons/logo.svg'
-import logout from './icons/logout.svg'
-import searchIcon from './icons/search.svg'
+import logo from '../icons/logo.svg'
+import logout from '../icons/logout.svg'
+import searchIcon from '../icons/search.svg'
 
 export default function Header2({
   showSearchIcon,

@@ -1,10 +1,11 @@
 import React from 'react'
 import styled from 'styled-components/macro'
-import home from './icons/home.svg'
-import plusSign from './icons/plus-sign.svg'
-import archive from './icons/archive.svg'
-import person from './icons/person.svg'
 import { Link } from 'react-router-dom'
+
+import home from '../icons/home.svg'
+import plusSign from '../icons/plus-sign.svg'
+import archive from '../icons/archive.svg'
+import person from '../icons/person.svg'
 
 export default function Footer() {
   const Footer = styled.div`

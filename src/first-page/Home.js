@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
-import Globalstyles from './Globalstyles'
-import Grid from './Grid'
-import Header from './Header'
+
+import Globalstyles from '../general/Globalstyles'
+import Grid from '../general/Grid'
+import Header from '../general/Header'
 import RadioButtons from './RadioButtons'
 import Message from './Message'
 import MessageTuev from './MessageTuev'
-import Footer from './Footer'
+import Footer from '../general/Footer'
 
 function Home({
   messages,

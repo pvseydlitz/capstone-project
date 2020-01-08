@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
-import Globalstyles from '../Globalstyles'
+import Globalstyles from '../general/Globalstyles'
 import LoginService from './services/LoginService'
 import Headline2 from '../second-page/Headline2'
 import Headline3 from '../second-page/Headline3'

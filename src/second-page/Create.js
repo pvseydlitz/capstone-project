@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 
-import Globalstyles from '../Globalstyles'
-import Grid from '../Grid2'
-import Header from '../Header2'
+import Globalstyles from '../general/Globalstyles'
+import Grid from '../general/Grid2'
+import Header from '../general/Header2'
 import Headline2 from './Headline2'
 import DropDown from './DropdownMenu'
 import Form from './Form'
 import FormTuev from './FormTuev'
-import Footer from '../Footer'
+import Footer from '../general/Footer'
 
 export default function Create({ onSubmit1, onSubmit2 }) {
   const Wrapper = styled.div`

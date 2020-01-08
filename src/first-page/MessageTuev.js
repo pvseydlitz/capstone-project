@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
+
 import ShowMoreButton from './ShowMoreButton'
-import cross from './icons/cross.svg'
+import cross from '../icons/cross.svg'
 
 export default function MessageTuev({ messageTuev, handleClickTuev }) {
   const [showContent, setShowContent] = useState(false)

@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
-import FilterButton from './FilterButton'
-import FilterMenu from './FilterMenu'
-import logo from './icons/logo.svg'
-import filterIcon from './icons/filterbutton.svg'
-import searchIcon from './icons/search.svg'
-import logout from './icons/logout.svg'
+
+import FilterButton from '../first-page/FilterButton'
+import FilterMenu from '../first-page/FilterMenu'
+
+import logo from '../icons/logo.svg'
+import filterIcon from '../icons/filterbutton.svg'
+import searchIcon from '../icons/search.svg'
+import logout from '../icons/logout.svg'
+
 export default function Header({
   filterMessages,
   filterActive,
