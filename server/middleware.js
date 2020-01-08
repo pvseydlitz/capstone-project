@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken')
 const SECRET = process.env.SECRET
-console.log('secret ==  ' + SECRET)
 const withAuth = function(req, res, next) {
   const token =
     req.body.token ||

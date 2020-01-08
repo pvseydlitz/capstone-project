@@ -39,12 +39,12 @@ app.get('/all', async (req, res) => {
   res.json({ messages, messages2 })
 }) */
 
-/* app.get('/messages', withAuth, (req, res) => {
+app.get('/messages', withAuth, (req, res) => {
   Message.find()
     .then(messages => res.json(messages))
     .catch(err => res.json(err))
-}) */
-app.use(require('./message'))
+})
+
 app.get('/messages/:id', (req, res) => {
   Message.findById(req.params.id)
     .then(message => res.json(message))
@@ -88,9 +88,8 @@ app.delete('/messagestuev/:id', (req, res) => {
 const path = require('path')
 const logger = require('morgan')
 const file = require('./file')
-/** Seting up server to accept cross-origin browser requests */
+
 app.use(function(req, res, next) {
-  //allow cross origin requests
   res.setHeader(
     'Access-Control-Allow-Methods',
     'POST, PUT, OPTIONS, DELETE, GET'
@@ -103,9 +102,6 @@ app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Credentials', true)
   next()
 })
-
-// Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')))
 app.use(logger('dev'))
-// Put all API endpoints under '/api'
 app.use('/api/', file)
