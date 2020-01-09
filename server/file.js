@@ -1,16 +1,15 @@
 const router = require('express').Router()
 const multer = require('multer')
-var Grid = require('gridfs-stream')
-var mongoose = require('mongoose')
+const Grid = require('gridfs-stream')
+const mongoose = require('mongoose')
 
 mongoose.Promise = global.Promise
 Grid.mongo = mongoose.mongo
-var connection = mongoose.connection
+const connection = mongoose.connection
 connection.on('error', console.error.bind(console, 'connection error:'))
 
 connection.once('open', function() {
-  var gfs = Grid(connection.db)
-  // all set!
+  const gfs = Grid(connection.db)
   const storage = require('multer-gridfs-storage')({
     db: connection.db,
     file: (req, file) => {
@@ -19,7 +18,6 @@ connection.once('open', function() {
       }
     },
   })
-  // sets file input to single file
   const singleUpload = multer({ storage: storage }).single('file')
 
   router.route('/files/:filename').get(function(req, res) {
@@ -30,7 +28,7 @@ connection.once('open', function() {
         })
       }
 
-      var readstream = gfs.createReadStream({
+      const readstream = gfs.createReadStream({
         filename: files[0].filename,
       })
       res.set('Content-Type', files[0].contentType)

@@ -4,6 +4,7 @@ import styled from 'styled-components/macro'
 import Globalstyles from '../general/Globalstyles'
 import Grid from '../general/Grid'
 import Header from '../general/Header'
+import FilterMenu from '../first-page/FilterMenu'
 import RadioButtons from './RadioButtons'
 import Message from './Message'
 import MessageTuev from './MessageTuev'
@@ -23,6 +24,7 @@ function Home({
   const [isClicked1, setIsClicked1] = useState(true)
   const [isClicked2, setIsClicked2] = useState()
   const [searchedNumber, setSearchedNumber] = useState('')
+  const [showFilterMenu, setShowFilterMenu] = useState(false)
 
   function handleClick1() {
     setIsClicked1(true)
@@ -38,16 +40,25 @@ function Home({
     <Grid>
       <Globalstyles></Globalstyles>
       <Header
-        filterMessages={() => setIsOnlyBookmarkShown(!isOnlyBookmarkShown)}
-        filterActive={isOnlyBookmarkShown}
         showFilter={isClicked1}
         showSearchIcon={!isClicked1}
         checkInput={event =>
           setSearchedNumber(event.target.value.toLowerCase())
         }
         searchedNumber={searchedNumber.toLowerCase()}
+        handleClick={() => setShowFilterMenu(!showFilterMenu)}
       ></Header>
       <MessageWrapper>
+        {showFilterMenu ? (
+          <section style={{ height: '100px', width: '100%' }}>
+            <FilterMenu
+              handleClick={() => setIsOnlyBookmarkShown(!isOnlyBookmarkShown)}
+              filterActive={isOnlyBookmarkShown}
+            ></FilterMenu>
+          </section>
+        ) : (
+          ''
+        )}
         <RadioButtons
           handleClick1={handleClick1}
           handleClick2={handleClick2}

@@ -1,6 +1,9 @@
 import styled from 'styled-components/macro'
 
-export default styled.button`
+export default styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 120px;
   height: 29px;
   border-radius: 5px;

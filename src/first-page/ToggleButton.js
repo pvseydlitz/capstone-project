@@ -5,7 +5,7 @@ export default function ToggleButton({ filterActive, handleClick }) {
   const Label = styled.label`
     position: relative;
     display: inline-block;
-    width: 10em;
+    width: 7em;
     height: 3.5em;
   `
   const Checkbox = styled.input`
