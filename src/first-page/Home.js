@@ -35,7 +35,20 @@ function Home({
     setIsClicked1(false)
     setIsClicked2(true)
   }
-
+  let categories = []
+  function checkInput(event) {
+    if (event.target.checked === true) {
+      categories.push(event.target.value)
+    } else {
+      const index = categories.findIndex(item => item === event.target.value)
+      categories = [
+        ...categories.slice(0, index),
+        ...categories.slice(index + 1),
+      ]
+    }
+    console.log(categories)
+    console.log(messages[0])
+  }
   return (
     <Grid>
       <Globalstyles></Globalstyles>
@@ -50,10 +63,13 @@ function Home({
       ></Header>
       <MessageWrapper>
         {showFilterMenu ? (
-          <section style={{ height: '100px', width: '100%' }}>
+          <section
+            style={{ height: '200px', width: '100%', position: 'relative' }}
+          >
             <FilterMenu
               handleClick={() => setIsOnlyBookmarkShown(!isOnlyBookmarkShown)}
               filterActive={isOnlyBookmarkShown}
+              checkInput={checkInput}
             ></FilterMenu>
           </section>
         ) : (
@@ -68,7 +84,11 @@ function Home({
         {isClicked1
           ? isOnlyBookmarkShown
             ? messages
-                .filter(message => message.isBookmarked === true)
+                .filter(
+                  message =>
+                    message.isBookmarked === true ||
+                    message.checkArea === categories
+                )
                 .map((message, index) => (
                   <Message
                     message={message}
