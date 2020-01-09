@@ -30,9 +30,7 @@ app.get('/checkToken', withAuth, function(req, res) {
 })
 
 app.get('/logout', function(req, res) {
-  res.clearCookie('token')
-  res.sendStatus(200)
-  res.redirect('/')
+  res.clearCookie('token').sendStatus(200)
 })
 /* Server Funktion, die ich später noch brauchen werde.
 app.get('/all', async (req, res) => {
@@ -86,3 +84,24 @@ app.delete('/messagestuev/:id', (req, res) => {
     .then(message => res.json(message))
     .catch(err => res.json(err))
 })
+
+const path = require('path')
+const logger = require('morgan')
+const file = require('./file')
+
+app.use(function(req, res, next) {
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'POST, PUT, OPTIONS, DELETE, GET'
+  )
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  )
+  res.header('Access-Control-Allow-Credentials', true)
+  next()
+})
+app.use(express.static(path.join(__dirname, 'client/build')))
+app.use(logger('dev'))
+app.use('/api/', file)

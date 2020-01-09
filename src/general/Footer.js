@@ -1,10 +1,11 @@
 import React from 'react'
 import styled from 'styled-components/macro'
-import home from './icons/home.svg'
-import plusSign from './icons/plus-sign.svg'
-import calendar from './icons/calendar.svg'
-import person from './icons/person.svg'
 import { Link } from 'react-router-dom'
+
+import home from '../icons/home.svg'
+import plusSign from '../icons/plus-sign.svg'
+import archive from '../icons/archive.svg'
+import person from '../icons/person.svg'
 
 export default function Footer() {
   const Footer = styled.div`
@@ -30,8 +31,8 @@ export default function Footer() {
         </Link>
       </NavButton>
       <NavButton>
-        <Link to="/calendar">
-          <img src={calendar} alt="calendar button"></img>
+        <Link to="/upload">
+          <img src={archive} alt="calendar button"></img>
         </Link>
       </NavButton>
       <NavButton>

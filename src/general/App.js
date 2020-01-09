@@ -5,11 +5,16 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom'
-import Home from './Home'
-import Create from './second-page/Create'
-import Login from './login/Login'
-import Register from './login/Registration'
-import WithAuth from './login/WithAuth'
+import { confirmAlert } from 'react-confirm-alert'
+import 'react-confirm-alert/src/react-confirm-alert.css'
+
+import Home from '../first-page/Home'
+import Create from '../second-page/Create'
+import Upload from '../third-page/Upload'
+import Login from '../login/login'
+import Register from '../login/Registration'
+import WithAuth from '../login/withAuth'
+
 import {
   getMessages,
   getMessagesTuev,
@@ -18,8 +23,6 @@ import {
   deleteMessageTuev,
   postMessagesTuev,
 } from './services'
-import { confirmAlert } from 'react-confirm-alert'
-import 'react-confirm-alert/src/react-confirm-alert.css'
 
 export default function App() {
   const [messages, setMessages] = useState([])
@@ -127,6 +130,9 @@ export default function App() {
         </Route>
         <Route path="/register">
           <Register></Register>
+        </Route>
+        <Route path="/upload">
+          <Upload></Upload>
         </Route>
       </Switch>
     </Router>

@@ -1,20 +1,20 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
-import Grid from '../Grid'
-import Globalstyles from '../Globalstyles'
-import Header from '../Header'
+
+import Globalstyles from '../general/Globalstyles'
+import Grid from '../general/Grid2'
+import Header from '../general/Header2'
 import Headline2 from './Headline2'
 import DropDown from './DropdownMenu'
 import Form from './Form'
 import FormTuev from './FormTuev'
-import Footer from '../Footer'
+import Footer from '../general/Footer'
 
 export default function Create({ onSubmit1, onSubmit2 }) {
   const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     position: relative;
-    margin: 0 20px;
   `
   const Headline = styled.h1`
     color: rgb(187 179 163);
@@ -22,13 +22,14 @@ export default function Create({ onSubmit1, onSubmit2 }) {
     font-weight: bold;
     position: absolute;
     top: 10px;
-    margin: 0;
+    margin: 0 20px;
   `
   const Category = styled.div`
     display: grid;
     grid-template-rows: 32px 32px;
     position: absolute;
     top: 55px;
+    margin: 0 20px;
   `
   const [selected, setSelected] = useState('Gewährleistungsmangel')
   function handleChange(event) {
@@ -37,7 +38,7 @@ export default function Create({ onSubmit1, onSubmit2 }) {
   return (
     <Grid>
       <Globalstyles></Globalstyles>
-      <Header></Header>
+      <Header showSearchIcon={false}></Header>
       <Wrapper style={{ overflowY: 'scroll' }}>
         <Headline>Neue Meldung erstellen</Headline>
         <Category>

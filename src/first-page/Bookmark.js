@@ -1,7 +1,8 @@
 import styled from 'styled-components/macro'
 import React from 'react'
-import bookmarkGrey from './icons/bookmark-grey.svg'
-import bookmarkRed from './icons/bookmark-red.svg'
+
+import bookmarkGrey from '../icons/bookmark-grey.svg'
+import bookmarkRed from '../icons/bookmark-red.svg'
 
 export default function Bookmark({ active, onClick }) {
   const Bookmark = styled.div`

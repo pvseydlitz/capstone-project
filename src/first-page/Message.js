@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
+
 import ShowMoreButton from './ShowMoreButton'
 import Bookmark from './Bookmark'
-import cross from './icons/cross.svg'
+import cross from '../icons/cross.svg'
 
 export default function Message({ message, toggleBookmarked, handleClick }) {
   const [showContent, setShowContent] = useState(false)

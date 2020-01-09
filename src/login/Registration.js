@@ -7,7 +7,7 @@ import {
   UsernameValidation,
 } from './services/RegistrationService'
 
-import Globalstyles from '../Globalstyles'
+import Globalstyles from '../general/Globalstyles'
 import Headline2 from '../second-page/Headline2'
 import Headline3 from '../second-page/Headline3'
 import Input from '../second-page/Input'

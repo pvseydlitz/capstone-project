@@ -183,6 +183,7 @@ export default function Form({ onSubmit1 }) {
 
 const Wrapper = styled.form`
   position: relative;
+  margin: 0 20px;
 `
 const GridWer = styled.div`
   display: grid;

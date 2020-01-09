@@ -3,8 +3,7 @@ const registrationRoutes = express.Router()
 const bcrypt = require('bcryptjs')
 const Registration = require('./models/User')
 const jwt = require('jsonwebtoken')
-const SECRET = process.env.REACT_APP_SECRET || 'mysecretsshhh'
-
+const SECRET = process.env.SECRET
 // Registration route
 registrationRoutes.route('/register').post(function(req, res) {
   let register = new Registration(req.body)
@@ -17,7 +16,6 @@ registrationRoutes.route('/register').post(function(req, res) {
       res.status(400).send(err)
     })
 })
-
 // Login Router
 registrationRoutes.route('/login').post(function(req, res) {
   Registration.findOne({ user_name: req.body.user_name }).then(user => {

@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken')
-const SECRET = process.env.REACT_APP_SECRET || 'mysecretsshhh'
-
+const SECRET = process.env.SECRET
 const withAuth = function(req, res, next) {
   const token =
     req.body.token ||
