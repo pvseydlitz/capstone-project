@@ -25,6 +25,9 @@ function Home({
   const [isClicked2, setIsClicked2] = useState()
   const [searchedNumber, setSearchedNumber] = useState('')
   const [showFilterMenu, setShowFilterMenu] = useState(false)
+  const [searchedWord, setSearchedWord] = useState('')
+  const [selectedMonth, setSelectedMonth] = useState('')
+  const [selectedYear, setSelectedYear] = useState('')
 
   function handleClick1() {
     setIsClicked1(true)
@@ -35,20 +38,7 @@ function Home({
     setIsClicked1(false)
     setIsClicked2(true)
   }
-  let categories = []
-  function checkInput(event) {
-    if (event.target.checked === true) {
-      categories.push(event.target.value)
-    } else {
-      const index = categories.findIndex(item => item === event.target.value)
-      categories = [
-        ...categories.slice(0, index),
-        ...categories.slice(index + 1),
-      ]
-    }
-    console.log(categories)
-    console.log(messages[0])
-  }
+
   return (
     <Grid>
       <Globalstyles></Globalstyles>
@@ -63,15 +53,18 @@ function Home({
       ></Header>
       <MessageWrapper>
         {showFilterMenu ? (
-          <section
-            style={{ height: '200px', width: '100%', position: 'relative' }}
-          >
-            <FilterMenu
-              handleClick={() => setIsOnlyBookmarkShown(!isOnlyBookmarkShown)}
-              filterActive={isOnlyBookmarkShown}
-              checkInput={checkInput}
-            ></FilterMenu>
-          </section>
+          <FilterMenu
+            handleClick={() => setIsOnlyBookmarkShown(!isOnlyBookmarkShown)}
+            filterActive={isOnlyBookmarkShown}
+            checkInput={event =>
+              setSearchedWord(event.target.value.toLowerCase())
+            }
+            searchedWord={searchedWord}
+            handleChangeMonth={event => setSelectedMonth(event.target.value)}
+            selectedMonth={selectedMonth}
+            handleChangeYear={event => setSelectedYear(event.target.value)}
+            selectedYear={selectedYear}
+          ></FilterMenu>
         ) : (
           ''
         )}
@@ -84,11 +77,7 @@ function Home({
         {isClicked1
           ? isOnlyBookmarkShown
             ? messages
-                .filter(
-                  message =>
-                    message.isBookmarked === true ||
-                    message.checkArea === categories
-                )
+                .filter(message => message.isBookmarked === true)
                 .map((message, index) => (
                   <Message
                     message={message}
@@ -97,14 +86,37 @@ function Home({
                     handleClick={() => handleClick(message._id)}
                   ></Message>
                 ))
-            : messages.map((message, index) => (
-                <Message
-                  message={message}
-                  key={index}
-                  toggleBookmarked={() => toggleBookmarked(index)}
-                  handleClick={() => handleClick(message._id)}
-                ></Message>
-              ))
+            : messages
+                .filter(message => {
+                  const bereich = message.bereich.join().toLowerCase()
+                  const wohnung = message.wohnung.toLowerCase()
+                  const raumbezeichnung = message.raumbezeichnung.toLowerCase()
+                  const query = searchedWord
+                  return (
+                    query === '' ||
+                    bereich.includes(query) ||
+                    wohnung.includes(query) ||
+                    raumbezeichnung.includes(query)
+                  )
+                })
+                .filter(message => {
+                  const datumMonth = message.datum.slice(5, 7)
+                  const queryMonth = selectedMonth
+                  return queryMonth === '' || datumMonth.includes(queryMonth)
+                })
+                .filter(message => {
+                  const datumYear = message.datum.slice(0, 4)
+                  const queryYear = selectedYear
+                  return queryYear === '' || datumYear.includes(queryYear)
+                })
+                .map((message, index) => (
+                  <Message
+                    message={message}
+                    key={index}
+                    toggleBookmarked={() => toggleBookmarked(index)}
+                    handleClick={() => handleClick(message._id)}
+                  ></Message>
+                ))
           : searchedNumber === ''
           ? messagesTuev.map((messageTuev, index) => (
               <MessageTuev

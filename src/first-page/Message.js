@@ -47,7 +47,7 @@ export default function Message({ message, toggleBookmarked, handleClick }) {
     justify-self: center;
   `
 
-  function checkArea() {
+  /* function checkArea() {
     let area = []
     if (message.innenbereich === 'true') {
       area.push('Innenbereich')
@@ -62,7 +62,7 @@ export default function Message({ message, toggleBookmarked, handleClick }) {
       area.push('Sondereigentum')
     }
     return area.join(', ')
-  }
+  } */
 
   return (
     <Message>
@@ -85,7 +85,7 @@ export default function Message({ message, toggleBookmarked, handleClick }) {
             Ort des Schadens:
           </p>
         </b>
-        <Description>{checkArea()}</Description>
+        <Description>{message.bereich.join(', ')}</Description>
         <Description>{message.wohnung}</Description>
         <Description>{message.raumbezeichnung}</Description>
         <Description>{message.datum}</Description>

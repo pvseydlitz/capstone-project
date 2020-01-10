@@ -5,8 +5,11 @@ export default function ToggleButton({ filterActive, handleClick }) {
   const Label = styled.label`
     position: relative;
     display: inline-block;
-    width: 7em;
-    height: 3.5em;
+    width: 3em;
+    height: 1.5em;
+    align-items: center;
+    grid-column-start: 2;
+    grid-row-start: 1;
   `
   const Checkbox = styled.input`
     display: none;
@@ -15,8 +18,8 @@ export default function ToggleButton({ filterActive, handleClick }) {
     border: solid 1px black;
     position: absolute;
     cursor: pointer;
-    top: 1.5em;
-    left: 2em;
+    top: 0.5em;
+    left: 1em;
     width: 2em;
     height: 1em;
     background-color: ${props => (props.filterActive ? 'green' : 'lightgrey')};
