@@ -53,6 +53,7 @@ export default function App() {
     })
   }
   function removeMessage(id) {
+    console.log(id)
     deleteMessage(id).then(deletedMessage => {
       setMessages(messages.filter(message => message.id !== deletedMessage.id))
       getMessages().then(setMessages)

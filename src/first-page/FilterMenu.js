@@ -18,10 +18,12 @@ export default function FilterMenu({
     position: relative;
     height: 200px;
     margin: 20px;
+    margin-top: 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: repeat(4, 1fr);
-    grid-gap: 20px;
+
+    column-gap: 20px;
     align-items: center;
   `
   const Text = styled.h3`

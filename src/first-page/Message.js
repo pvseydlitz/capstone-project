@@ -88,7 +88,7 @@ export default function Message({ message, toggleBookmarked, handleClick }) {
         <Description>{message.bereich.join(', ')}</Description>
         <Description>{message.wohnung}</Description>
         <Description>{message.raumbezeichnung}</Description>
-        <Description>{message.datum}</Description>
+        <Description>{message.datum.slice(0, 10)}</Description>
 
         <b>
           <p

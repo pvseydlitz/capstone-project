@@ -39,11 +39,14 @@ app.get('/all', async (req, res) => {
   res.json({ messages, messages2 })
 }) */
 
-app.get('/messages', withAuth, (req, res) => {
-  Message.find()
-    .then(messages => res.json(messages))
-    .catch(err => res.json(err))
-})
+app.get(
+  '/messages',
+  /* withAuth, */ (req, res) => {
+    Message.find()
+      .then(messages => res.json(messages))
+      .catch(err => res.json(err))
+  }
+)
 
 app.get('/messages/:id', (req, res) => {
   Message.findById(req.params.id)
