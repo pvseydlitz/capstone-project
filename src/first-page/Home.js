@@ -19,6 +19,7 @@ function Home({
   handleClick,
   handleClickTuev,
   handleStatus,
+  handleStatusTuev,
 }) {
   const MessageWrapper = styled.div`
     overflow-y: scroll;
@@ -154,6 +155,7 @@ function Home({
                   setShowInputPassword(true)
                   saveMessageId(messageTuev._id)
                 }}
+                handleStatusTuev={handleStatusTuev}
               ></MessageTuev>
             ))
           : messagesTuev
@@ -173,6 +175,7 @@ function Home({
                     setShowInputPassword(true)
                     saveMessageId(messageTuev._id)
                   }}
+                  handleStatusTuev={handleStatusTuev}
                 ></MessageTuev>
               ))}
       </MessageWrapper>

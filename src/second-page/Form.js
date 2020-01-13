@@ -118,8 +118,8 @@ export default function Form({ onSubmit1 }) {
             label: 'Ja',
             onClick: () => {
               onSubmit1(data)
-              /* sendEmail(data)
-              confirmSuccessfulUpload() */
+              sendEmail(data)
+              confirmSuccessfulUpload()
             },
           },
           {

@@ -3,8 +3,13 @@ import styled from 'styled-components/macro'
 
 import ShowMoreButton from './ShowMoreButton'
 import cross from '../icons/cross.svg'
+import DropdownMenu from './DropdownMenu'
 
-export default function MessageTuev({ messageTuev, handleClickTuev }) {
+export default function MessageTuev({
+  messageTuev,
+  handleClickTuev,
+  handleStatusTuev,
+}) {
   const [showContent, setShowContent] = useState(false)
   const Message = styled.div`
     margin: 50px 20px;
@@ -39,7 +44,15 @@ export default function MessageTuev({ messageTuev, handleClickTuev }) {
     right: 20px;
     top: 28px;
   `
-
+  const WrapperDropdown = styled.div`
+    display: grid;
+    grid-template-columns: auto 3fr 1fr;
+    grid-gap: 20px;
+  `
+  function handleChangeDropdown(number) {
+    messageTuev.status = number
+    handleStatusTuev(messageTuev)
+  }
   return (
     <Message>
       <Cross src={cross} onClick={handleClickTuev}></Cross>
@@ -49,9 +62,15 @@ export default function MessageTuev({ messageTuev, handleClickTuev }) {
           <b>Nummer:</b> {messageTuev.nummer}
         </Description>
         <Description>
-          <b>Ort/Bauteil</b>
+          <b>Ort / Bauteil:</b> {messageTuev.ort}
         </Description>
-        <Description>{messageTuev.ort}</Description>
+        <WrapperDropdown>
+          <Description>Status: </Description>
+          <DropdownMenu
+            handleChangeDropdown={handleChangeDropdown}
+            selected={messageTuev.status}
+          ></DropdownMenu>
+        </WrapperDropdown>
         <Description>
           <b>{showContent ? 'Mangel / Feststellung / Hinweis' : ''}</b>
         </Description>

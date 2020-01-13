@@ -31,7 +31,15 @@ export function patchMessage(message) {
     },
   }).then(res => res.json())
 }
-
+export function patchMessageTuev(message) {
+  return fetch('/messagesTuev/' + message._id, {
+    method: 'PATCH',
+    body: JSON.stringify(message),
+    headers: {
+      'content-type': 'application/json',
+    },
+  }).then(res => res.json())
+}
 export function deleteMessage(id) {
   return fetch('/messages/' + id, {
     method: 'DELETE',

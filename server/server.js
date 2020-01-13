@@ -76,7 +76,11 @@ app.patch('/messages/:id', (req, res) => {
     .then(message => res.json(message))
     .catch(err => res.json(err))
 })
-
+app.patch('/messagesTuev/:id', (req, res) => {
+  MessageTuev.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    .then(message => res.json(message))
+    .catch(err => res.json(err))
+})
 app.delete('/messages/:id', (req, res) => {
   Message.findByIdAndDelete(req.params.id)
     .then(message => res.json(message))
