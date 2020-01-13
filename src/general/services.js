@@ -22,10 +22,10 @@ export function postMessagesTuev(message) {
     },
   }).then(res => res.json())
 }
-export function patchCard(card) {
-  return fetch('/cards/' + card._id, {
+export function patchMessage(message) {
+  return fetch('/messages/' + message._id, {
     method: 'PATCH',
-    body: JSON.stringify(card),
+    body: JSON.stringify(message),
     headers: {
       'content-type': 'application/json',
     },

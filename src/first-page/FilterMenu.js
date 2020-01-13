@@ -22,7 +22,6 @@ export default function FilterMenu({
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: repeat(4, 1fr);
-
     column-gap: 20px;
     align-items: center;
   `
@@ -43,7 +42,6 @@ export default function FilterMenu({
   const Text2 = styled.h3`
     grid-row-start: 3;
     grid-column: 1 / 3;
-
     margin: 0;
     font-size: 16px;
     color: rgb(107, 107, 107);
@@ -58,7 +56,7 @@ export default function FilterMenu({
   const DropDown = styled.select`
     color: rgb(107 107 107);
     background: rgb(201 193 171);
-    font-size: 18px;
+    font-size: 16px;
     height: 32px;
     border: none;
     padding-left: 5px;

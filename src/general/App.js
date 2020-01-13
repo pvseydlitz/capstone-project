@@ -22,6 +22,7 @@ import {
   deleteMessage,
   deleteMessageTuev,
   postMessagesTuev,
+  patchMessage,
 } from './services'
 
 export default function App() {
@@ -69,6 +70,20 @@ export default function App() {
       getMessagesTuev().then(setMessagesTuev)
     })
   }
+  function handleStatus(message) {
+    patchMessage(message).then(patchedMessage => {
+      const index = messages.findIndex(
+        message => message._id === patchedMessage._id
+      )
+      messages[index] = patchedMessage
+      setMessages([
+        ...messages.slice(0, index),
+        { ...message, isBookmarked: !message.isBookmarked },
+        ...messages.slice(index + 1),
+      ])
+    })
+  }
+
   function handleClick(id) {
     confirmAlert({
       title: 'Löschen bestätigen',
@@ -111,6 +126,7 @@ export default function App() {
               toggleBookmarked={toggleBookmarked}
               handleClick={handleClick}
               handleClickTuev={handleClickTuev}
+              handleStatus={handleStatus}
             ></Home>
           ) : (
             <Redirect to="/login"></Redirect>

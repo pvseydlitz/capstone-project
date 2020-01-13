@@ -16,6 +16,7 @@ const messageSchema = {
   beschreibung: String,
   url: String,
   isBookmarked: Boolean,
+  status: Number,
 }
 
 module.exports = mongoose.model('Message', messageSchema)

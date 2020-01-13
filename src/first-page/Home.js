@@ -18,6 +18,7 @@ function Home({
   toggleBookmarked,
   handleClick,
   handleClickTuev,
+  handleStatus,
 }) {
   const MessageWrapper = styled.div`
     overflow-y: scroll;
@@ -51,6 +52,7 @@ function Home({
     const data = password
     if (data === PASSWORD) {
       handleClick(id)
+      handleClickTuev(id)
       localStorage.clear()
     }
   }
@@ -100,7 +102,11 @@ function Home({
                     message={message}
                     key={index}
                     toggleBookmarked={() => toggleBookmarked(index)}
-                    handleClick={() => handleClick(message._id)}
+                    handleClick={() => {
+                      setShowInputPassword(true)
+                      saveMessageId(message._id)
+                    }}
+                    handleStatus={handleStatus}
                   ></Message>
                 ))
             : messages
@@ -131,11 +137,11 @@ function Home({
                     message={message}
                     key={index}
                     toggleBookmarked={() => toggleBookmarked(index)}
-                    /*  handleClick={() => handleClick(message._id)} */
                     handleClick={() => {
                       setShowInputPassword(true)
                       saveMessageId(message._id)
                     }}
+                    handleStatus={handleStatus}
                   ></Message>
                 ))
           : searchedNumber === ''
@@ -143,7 +149,11 @@ function Home({
               <MessageTuev
                 messageTuev={messageTuev}
                 key={index}
-                handleClickTuev={() => handleClickTuev(messageTuev._id)}
+                /*  handleClickTuev={() => handleClickTuev(messageTuev._id)} */
+                handleClickTuev={() => {
+                  setShowInputPassword(true)
+                  saveMessageId(messageTuev._id)
+                }}
               ></MessageTuev>
             ))
           : messagesTuev
@@ -159,7 +169,10 @@ function Home({
                 <MessageTuev
                   messageTuev={messageTuev}
                   key={index}
-                  handleClickTuev={() => handleClickTuev(messageTuev._id)}
+                  handleClickTuev={() => {
+                    setShowInputPassword(true)
+                    saveMessageId(messageTuev._id)
+                  }}
                 ></MessageTuev>
               ))}
       </MessageWrapper>

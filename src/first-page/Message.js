@@ -4,8 +4,14 @@ import styled from 'styled-components/macro'
 import ShowMoreButton from './ShowMoreButton'
 import Bookmark from './Bookmark'
 import cross from '../icons/cross.svg'
+import DropdownMenu from './DropdownMenu'
 
-export default function Message({ message, toggleBookmarked, handleClick }) {
+export default function Message({
+  message,
+  toggleBookmarked,
+  handleClick,
+  handleStatus,
+}) {
   const [showContent, setShowContent] = useState(false)
   const Message = styled.div`
     margin: 50px 20px;
@@ -46,7 +52,11 @@ export default function Message({ message, toggleBookmarked, handleClick }) {
     height: auto;
     justify-self: center;
   `
-
+  const WrapperDropdown = styled.div`
+    display: grid;
+    grid-template-columns: auto 3fr 1fr;
+    grid-gap: 20px;
+  `
   /* function checkArea() {
     let area = []
     if (message.innenbereich === 'true') {
@@ -63,7 +73,10 @@ export default function Message({ message, toggleBookmarked, handleClick }) {
     }
     return area.join(', ')
   } */
-
+  function handleChangeDropdown(number) {
+    message.status = number
+    handleStatus(message)
+  }
   return (
     <Message>
       <Bookmark
@@ -86,9 +99,17 @@ export default function Message({ message, toggleBookmarked, handleClick }) {
           </p>
         </b>
         <Description>{message.bereich.join(', ')}</Description>
-        <Description>{message.wohnung}</Description>
-        <Description>{message.raumbezeichnung}</Description>
-        <Description>{message.datum.slice(0, 10)}</Description>
+        <Description>
+          {message.wohnung}, {message.raumbezeichnung}
+        </Description>
+        <Description>Datum: {message.datum.slice(0, 10)}</Description>
+        <WrapperDropdown>
+          <Description>Status: </Description>
+          <DropdownMenu
+            handleChangeDropdown={handleChangeDropdown}
+            selected={message.status}
+          ></DropdownMenu>
+        </WrapperDropdown>
 
         <b>
           <p
