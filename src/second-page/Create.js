@@ -6,32 +6,15 @@ import Grid from '../general/Grid2'
 import Header from '../general/Header2'
 import Headline2 from './Headline2'
 import DropDown from './DropdownMenu'
+import Acceptance from './Acceptance'
 import Form from './Form'
 import FormTuev from './FormTuev'
 import Footer from '../general/Footer'
 
 export default function Create({ onSubmit1, onSubmit2 }) {
-  const Wrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    position: relative;
-  `
-  const Headline = styled.h1`
-    color: rgb(187 179 163);
-    font-size: 21px;
-    font-weight: bold;
-    position: absolute;
-    top: 10px;
-    margin: 0 20px;
-  `
-  const Category = styled.div`
-    display: grid;
-    grid-template-rows: 32px 32px;
-    position: absolute;
-    top: 55px;
-    margin: 0 20px;
-  `
   const [selected, setSelected] = useState('Gewährleistungsmangel')
+  const [showAcceptance, setShowAcceptance] = useState(true)
+
   function handleChange(event) {
     setSelected(event.target.value)
   }
@@ -46,7 +29,15 @@ export default function Create({ onSubmit1, onSubmit2 }) {
           <DropDown handleChange={handleChange} selected={selected}></DropDown>
         </Category>
         {selected === 'Gewährleistungsmangel' ? (
-          <Form onSubmit1={onSubmit1}></Form>
+          showAcceptance ? (
+            <Acceptance
+              handleAccept={() => {
+                setShowAcceptance(false)
+              }}
+            ></Acceptance>
+          ) : (
+            <Form onSubmit1={onSubmit1}></Form>
+          )
         ) : (
           ''
         )}
@@ -60,3 +51,23 @@ export default function Create({ onSubmit1, onSubmit2 }) {
     </Grid>
   )
 }
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: relative;
+`
+const Headline = styled.h1`
+  color: rgb(187 179 163);
+  font-size: 21px;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  margin: 0 20px;
+`
+const Category = styled.div`
+  display: grid;
+  grid-template-rows: 32px 32px;
+  position: absolute;
+  top: 55px;
+  margin: 0 20px;
+`

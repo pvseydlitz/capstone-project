@@ -55,7 +55,7 @@ const MainForm = memo(() => {
         handelt, ist der Aufwand für Anfahrts und Untersuchungskosten dem
         Architekturbüro und / oder der Handwerksfirma zu erstatten.
       </Note>
-      <AcceptButton></AcceptButton>
+      <AcceptButton position={'absolute'} top={'1302px'}></AcceptButton>
     </>
   )
 })
