@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 
-import Globalstyles from '../general/Globalstyles'
 import Grid from '../general/Grid'
+import Globalstyles from '../general/Globalstyles'
 import Header from '../general/Header'
 import FilterMenu from '../first-page/FilterMenu'
 import RadioButtons from './RadioButtons'
@@ -10,20 +10,15 @@ import Message from './Message'
 import MessageTuev from './MessageTuev'
 import Footer from '../general/Footer'
 
-const PASSWORD = process.env.REACT_APP_PASSWORD
-
-function Home({
+export default function Home({
   messages,
   messagesTuev,
   toggleBookmarked,
-  handleClick,
-  handleClickTuev,
+  handleDelete,
+  handleDeleteTuev,
   handleStatus,
   handleStatusTuev,
 }) {
-  const MessageWrapper = styled.div`
-    overflow-y: scroll;
-  `
   const [isOnlyBookmarkShown, setIsOnlyBookmarkShown] = useState(false)
   const [isClicked1, setIsClicked1] = useState(true)
   const [isClicked2, setIsClicked2] = useState()
@@ -32,7 +27,6 @@ function Home({
   const [searchedWord, setSearchedWord] = useState('')
   const [selectedMonth, setSelectedMonth] = useState('')
   const [selectedYear, setSelectedYear] = useState('')
-  const [showInputPassword, setShowInputPassword] = useState(false)
 
   function handleClick1() {
     setIsClicked1(true)
@@ -42,20 +36,6 @@ function Home({
   function handleClick2() {
     setIsClicked1(false)
     setIsClicked2(true)
-  }
-
-  function saveMessageId(id) {
-    localStorage.setItem('id', id)
-  }
-
-  function checkPasswordInput(password) {
-    const id = localStorage.getItem('id')
-    const data = password
-    if (data === PASSWORD) {
-      handleClick(id)
-      handleClickTuev(id)
-      localStorage.clear()
-    }
   }
 
   return (
@@ -103,10 +83,7 @@ function Home({
                     message={message}
                     key={index}
                     toggleBookmarked={() => toggleBookmarked(index)}
-                    handleClick={() => {
-                      setShowInputPassword(true)
-                      saveMessageId(message._id)
-                    }}
+                    handleDelete={handleDelete}
                     handleStatus={handleStatus}
                   ></Message>
                 ))
@@ -138,10 +115,7 @@ function Home({
                     message={message}
                     key={index}
                     toggleBookmarked={() => toggleBookmarked(index)}
-                    handleClick={() => {
-                      setShowInputPassword(true)
-                      saveMessageId(message._id)
-                    }}
+                    handleDelete={handleDelete}
                     handleStatus={handleStatus}
                   ></Message>
                 ))
@@ -150,11 +124,7 @@ function Home({
               <MessageTuev
                 messageTuev={messageTuev}
                 key={index}
-                /*  handleClickTuev={() => handleClickTuev(messageTuev._id)} */
-                handleClickTuev={() => {
-                  setShowInputPassword(true)
-                  saveMessageId(messageTuev._id)
-                }}
+                handleDeleteTuev={handleDeleteTuev}
                 handleStatusTuev={handleStatusTuev}
               ></MessageTuev>
             ))
@@ -171,61 +141,16 @@ function Home({
                 <MessageTuev
                   messageTuev={messageTuev}
                   key={index}
-                  handleClickTuev={() => {
-                    setShowInputPassword(true)
-                    saveMessageId(messageTuev._id)
-                  }}
+                  handleDeleteTuev={handleDeleteTuev}
                   handleStatusTuev={handleStatusTuev}
                 ></MessageTuev>
               ))}
       </MessageWrapper>
-      {showInputPassword ? (
-        <Label onClick={() => setShowInputPassword(false)}>
-          <PasswordWrapper>
-            <Text>Passwort eingeben zum Löschen</Text>
-            <Input
-              type="password"
-              placeholder="Passwort eingeben"
-              autoFocus
-              onChange={event => checkPasswordInput(event.target.value)}
-            ></Input>
-          </PasswordWrapper>
-        </Label>
-      ) : (
-        ''
-      )}
       <Footer></Footer>
     </Grid>
   )
 }
-export default Home
 
-const Label = styled.div`
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  background: lightgray;
-  opacity: 0.9;
-  top: 0px;
-  left: 0px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
-const PasswordWrapper = styled.section`
-  padding: 20px;
-  height: 120px;
-  width: 200px;
-  display: grid;
-  grid-template-rows: 1fr 1fr;
-`
-const Text = styled.h3`
-  margin: 0;
-  font-size: 16px;
-  color: rgb(107, 107, 107);
-`
-const Input = styled.input`
-  height: 32px;
-  width: auto;
-  border: solid 2px rgb(201 193 171);
+const MessageWrapper = styled.div`
+  overflow-y: scroll;
 `

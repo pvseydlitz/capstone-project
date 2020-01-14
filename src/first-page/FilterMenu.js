@@ -14,65 +14,6 @@ export default function FilterMenu({
   handleChangeYear,
   selectedYear,
 }) {
-  const Menu = styled.div`
-    position: relative;
-    height: 200px;
-    margin: 20px;
-    margin-top: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(4, 1fr);
-    column-gap: 20px;
-    align-items: center;
-  `
-  const Text = styled.h3`
-    grid-row-start: 1;
-    grid-column: 1 / 3;
-    margin: 0;
-    font-size: 16px;
-    color: rgb(107, 107, 107);
-  `
-  const Input = styled.input`
-    border: solid 2px rgb(201 193 171);
-    grid-row-start: 2;
-    grid-column: 1/3;
-    height: 20px;
-    width: 80%;
-  `
-  const Text2 = styled.h3`
-    grid-row-start: 3;
-    grid-column: 1 / 3;
-    margin: 0;
-    font-size: 16px;
-    color: rgb(107, 107, 107);
-  `
-  const Wrapper2 = styled.section`
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    align-items: center;
-    grid-row-start: 4;
-    background: rgb(201 193 171);
-  `
-  const DropDown = styled.select`
-    color: rgb(107 107 107);
-    background: rgb(201 193 171);
-    font-size: 16px;
-    height: 32px;
-    border: none;
-    padding-left: 5px;
-    -webkit-appearance: button;
-    appearance: button;
-    outline: none;
-    position: relative;
-  `
-  const DropdownIcon = styled.img`
-    grid-column-start: 2;
-    text-align: center;
-    display: inline;
-    pointer-events: none;
-    z-index: 1;
-  `
-
   return (
     <Menu>
       <Text>Gemerkte Meldungen</Text>
@@ -80,7 +21,6 @@ export default function FilterMenu({
         handleClick={handleClick}
         filterActive={filterActive}
       ></ToggleButton>
-
       <Input
         autoFocus
         type="text"
@@ -89,7 +29,7 @@ export default function FilterMenu({
         value={searchedWord}
       ></Input>
       <Text2>Nach Monat oder Jahr sortieren</Text2>
-      <Wrapper2>
+      <Wrapper>
         <DropDown
           name="monat"
           onChange={handleChangeMonth}
@@ -110,8 +50,8 @@ export default function FilterMenu({
           <option value="12">Dezember</option>
         </DropDown>
         <DropdownIcon src={dropdownIcon} alt="dropdown icon"></DropdownIcon>
-      </Wrapper2>
-      <Wrapper2>
+      </Wrapper>
+      <Wrapper>
         <DropDown name="jahr" onChange={handleChangeYear} value={selectedYear}>
           <option value="">Jahr </option>
           <option value="19">2019</option>
@@ -123,7 +63,66 @@ export default function FilterMenu({
           <option value="25">2025</option>
         </DropDown>
         <DropdownIcon src={dropdownIcon} alt="dropdown icon"></DropdownIcon>
-      </Wrapper2>
+      </Wrapper>
     </Menu>
   )
 }
+
+const Menu = styled.div`
+  position: relative;
+  height: 200px;
+  margin: 20px;
+  margin-top: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(4, 1fr);
+  column-gap: 20px;
+  align-items: center;
+`
+const Text = styled.h3`
+  grid-row-start: 1;
+  grid-column: 1 / 3;
+  margin: 0;
+  font-size: 16px;
+  color: rgb(107, 107, 107);
+`
+const Input = styled.input`
+  border: solid 2px rgb(201 193 171);
+  grid-row-start: 2;
+  grid-column: 1/3;
+  height: 20px;
+  width: 80%;
+`
+const Text2 = styled.h3`
+  grid-row-start: 3;
+  grid-column: 1 / 3;
+  margin: 0;
+  font-size: 16px;
+  color: rgb(107, 107, 107);
+`
+const Wrapper = styled.section`
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  align-items: center;
+  grid-row-start: 4;
+  background: rgb(201 193 171);
+`
+const DropDown = styled.select`
+  color: rgb(107 107 107);
+  background: rgb(201 193 171);
+  font-size: 16px;
+  height: 32px;
+  border: none;
+  padding-left: 5px;
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
+  position: relative;
+`
+const DropdownIcon = styled.img`
+  grid-column-start: 2;
+  text-align: center;
+  display: inline;
+  pointer-events: none;
+  z-index: 1;
+`

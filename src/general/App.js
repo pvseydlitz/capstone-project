@@ -97,7 +97,7 @@ export default function App() {
       ])
     })
   }
-  function handleClick(id) {
+  function handleDelete(id) {
     confirmAlert({
       title: 'Löschen bestätigen',
       message: 'Möchten Sie diese Meldung wirklich löschen?',
@@ -112,7 +112,7 @@ export default function App() {
       ],
     })
   }
-  function handleClickTuev(id) {
+  function handleDeleteTuev(id) {
     confirmAlert({
       title: 'Löschen bestätigen',
       message: 'Möchten Sie diese Meldung wirklich löschen?',
@@ -137,8 +137,8 @@ export default function App() {
               messages={messages}
               messagesTuev={messagesTuev}
               toggleBookmarked={toggleBookmarked}
-              handleClick={handleClick}
-              handleClickTuev={handleClickTuev}
+              handleDelete={handleDelete}
+              handleDeleteTuev={handleDeleteTuev}
               handleStatus={handleStatus}
               handleStatusTuev={handleStatusTuev}
             ></Home>
