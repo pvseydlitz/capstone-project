@@ -106,7 +106,7 @@ export default function Home({
                   return queryMonth === '' || datumMonth.includes(queryMonth)
                 })
                 .filter(message => {
-                  const datumYear = message.datum.slice(0, 4)
+                  const datumYear = message.datum.slice(2, 4)
                   const queryYear = selectedYear
                   return queryYear === '' || datumYear.includes(queryYear)
                 })

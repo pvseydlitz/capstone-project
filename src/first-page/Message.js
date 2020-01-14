@@ -55,7 +55,10 @@ export default function Message({
         <Description>
           {message.wohnung}, {message.raumbezeichnung}
         </Description>
-        <Description>Datum: {message.datum.slice(0, 10)}</Description>
+        <Description>
+          Datum: {message.datum.slice(8, 10)}.{message.datum.slice(5, 7)}.
+          {message.datum.slice(0, 4)}
+        </Description>
         <WrapperDropdown>
           <Description>Status: </Description>
           <DropdownMenu
