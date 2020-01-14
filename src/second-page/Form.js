@@ -33,7 +33,13 @@ const MainForm = memo(() => {
       <GridWo>
         <Headline2>Wann und wo wurde der Mangel festgelstellt?</Headline2>
         <Headline3>Datum</Headline3>
-        <Input type="text" name="datum" required></Input>
+        <Input
+          type="date"
+          name="datum"
+          placeholder={'nach datum suchen'}
+          required
+          onChange={event => console.log(event.target.value)}
+        ></Input>
         <Headline3>Etage/Wohnung</Headline3>
         <Input type="text" name="wohnung" required></Input>
         <Headline3>Raumbezeichnung</Headline3>
@@ -83,8 +89,25 @@ export default function Form({ onSubmit1 }) {
   function handleSubmit(event) {
     event.preventDefault()
     const form = event.target
+
     const formData = new FormData(form)
+
     const data = Object.fromEntries(formData)
+    let bereich = []
+    if (data.innenbereich === 'true') {
+      bereich.push('Innenbereich')
+    }
+    if (data.außenbereich === 'true') {
+      bereich.push('Außenbereich')
+    }
+    if (data.gemeinschaftseigentum === 'true') {
+      bereich.push('Gemeinschafteigentum')
+    }
+    if (data.sondereigentum === 'true') {
+      bereich.push('Sondereigentum')
+    }
+    data.bereich = bereich
+    console.log(data)
 
     if (data.file.name === '') {
       confirmAlert({

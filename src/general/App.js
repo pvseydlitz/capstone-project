@@ -22,6 +22,8 @@ import {
   deleteMessage,
   deleteMessageTuev,
   postMessagesTuev,
+  patchMessage,
+  patchMessageTuev,
 } from './services'
 
 export default function App() {
@@ -53,6 +55,7 @@ export default function App() {
     })
   }
   function removeMessage(id) {
+    console.log(id)
     deleteMessage(id).then(deletedMessage => {
       setMessages(messages.filter(message => message.id !== deletedMessage.id))
       getMessages().then(setMessages)
@@ -68,7 +71,33 @@ export default function App() {
       getMessagesTuev().then(setMessagesTuev)
     })
   }
-  function handleClick(id) {
+  function handleStatus(message) {
+    patchMessage(message).then(patchedMessage => {
+      const index = messages.findIndex(
+        message => message._id === patchedMessage._id
+      )
+      messages[index] = patchedMessage
+      setMessages([
+        ...messages.slice(0, index),
+        patchedMessage,
+        ...messages.slice(index + 1),
+      ])
+    })
+  }
+  function handleStatusTuev(messageTuev) {
+    patchMessageTuev(messageTuev).then(patchedMessage => {
+      const index = messagesTuev.findIndex(
+        messageTuev => messageTuev._id === patchedMessage._id
+      )
+      messagesTuev[index] = patchedMessage
+      setMessagesTuev([
+        ...messagesTuev.slice(0, index),
+        patchedMessage,
+        ...messagesTuev.slice(index + 1),
+      ])
+    })
+  }
+  function handleDelete(id) {
     confirmAlert({
       title: 'Löschen bestätigen',
       message: 'Möchten Sie diese Meldung wirklich löschen?',
@@ -83,7 +112,7 @@ export default function App() {
       ],
     })
   }
-  function handleClickTuev(id) {
+  function handleDeleteTuev(id) {
     confirmAlert({
       title: 'Löschen bestätigen',
       message: 'Möchten Sie diese Meldung wirklich löschen?',
@@ -108,8 +137,10 @@ export default function App() {
               messages={messages}
               messagesTuev={messagesTuev}
               toggleBookmarked={toggleBookmarked}
-              handleClick={handleClick}
-              handleClickTuev={handleClickTuev}
+              handleDelete={handleDelete}
+              handleDeleteTuev={handleDeleteTuev}
+              handleStatus={handleStatus}
+              handleStatusTuev={handleStatusTuev}
             ></Home>
           ) : (
             <Redirect to="/login"></Redirect>

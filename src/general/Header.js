@@ -3,20 +3,19 @@ import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 
 import FilterButton from '../first-page/FilterButton'
-import FilterMenu from '../first-page/FilterMenu'
 
 import logo from '../icons/logo.svg'
 import filterIcon from '../icons/filterbutton.svg'
+import filterIconClicked from '../icons/filterbutton-clicked.svg'
 import searchIcon from '../icons/search.svg'
 import logout from '../icons/logout.svg'
 
 export default function Header({
-  filterMessages,
-  filterActive,
   showFilter,
   showSearchIcon,
   checkInput,
   searchedNumber,
+  handleClick,
 }) {
   const Line = styled.div`
     height: 97px;
@@ -28,6 +27,22 @@ export default function Header({
   `
   const Logo = styled.img`
     z-index: -1;
+  `
+  const Label = styled.label`
+    height: 50px;
+    width: 120px;
+    position: absolute;
+    left: 0;
+    top: 30px;
+  `
+  const Filter = styled.p`
+    margin: 0px;
+    color: ${props =>
+      props.active ? 'rgb(187 179 163)' : 'rgb(107, 107, 107)'};
+    font-size: 16px;
+    position: absolute;
+    top: 18px;
+    left: 48px;
   `
   const Search = styled.img`
     position: absolute;
@@ -53,14 +68,17 @@ export default function Header({
   }
   const [isClicked, setIsClicked] = useState(false)
   const [showSearchBar, setShowSearchBar] = useState(false)
+
   return (
     <Line>
       {showFilter ? (
-        <FilterButton
-          src={filterIcon}
-          alt="filter icon"
-          onClick={() => setIsClicked(!isClicked)}
-        ></FilterButton>
+        <Label onClick={() => setIsClicked(!isClicked) + handleClick()}>
+          <FilterButton
+            src={isClicked ? filterIconClicked : filterIcon}
+            alt="filter icon"
+          ></FilterButton>
+          <Filter active={isClicked}>Filter</Filter>
+        </Label>
       ) : (
         ''
       )}
@@ -85,14 +103,6 @@ export default function Header({
         ''
       )}
       <Logo src={logo} alt="logo"></Logo>
-      {isClicked ? (
-        <FilterMenu
-          handleClick={filterMessages}
-          filterActive={filterActive}
-        ></FilterMenu>
-      ) : (
-        ''
-      )}
     </Line>
   )
 }

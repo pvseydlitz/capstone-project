@@ -39,11 +39,14 @@ app.get('/all', async (req, res) => {
   res.json({ messages, messages2 })
 }) */
 
-app.get('/messages', withAuth, (req, res) => {
-  Message.find()
-    .then(messages => res.json(messages))
-    .catch(err => res.json(err))
-})
+app.get(
+  '/messages',
+  /* withAuth, */ (req, res) => {
+    Message.find()
+      .then(messages => res.json(messages))
+      .catch(err => res.json(err))
+  }
+)
 
 app.get('/messages/:id', (req, res) => {
   Message.findById(req.params.id)
@@ -73,7 +76,11 @@ app.patch('/messages/:id', (req, res) => {
     .then(message => res.json(message))
     .catch(err => res.json(err))
 })
-
+app.patch('/messagesTuev/:id', (req, res) => {
+  MessageTuev.findByIdAndUpdate(req.params.id, req.body, { new: true })
+    .then(message => res.json(message))
+    .catch(err => res.json(err))
+})
 app.delete('/messages/:id', (req, res) => {
   Message.findByIdAndDelete(req.params.id)
     .then(message => res.json(message))
