@@ -27,7 +27,11 @@ export default function FilterMenuNoticeMessages({
           </option>
           <option value="Dachterasse">Dachterasse</option>
         </DropDown>
-        <DropdownIcon src={dropdownIcon} alt="dropdown icon"></DropdownIcon>
+        <DropdownIcon
+          src={dropdownIcon}
+          alt="dropdown icon"
+          position={'-5px'}
+        ></DropdownIcon>
       </Wrapper>
       <Text start={'3'}>Nach Monat oder Jahr sortieren</Text>
       <Wrapper start={'4'}>
@@ -82,7 +86,6 @@ const Menu = styled.div`
 `
 const Text = styled.h3`
   grid-row-start: ${props => props.start};
-
   grid-column: 1 / 3;
   margin: 0;
   font-size: 16px;
@@ -96,6 +99,7 @@ const Wrapper = styled.section`
   grid-column: ${props => props.column};
   max-width: 235px;
   background: rgb(201 193 171);
+  position: relative;
 `
 const DropDown = styled.select`
   color: rgb(107 107 107);
@@ -107,7 +111,6 @@ const DropDown = styled.select`
   -webkit-appearance: button;
   appearance: button;
   outline: none;
-  position: relative;
 `
 const DropdownIcon = styled.img`
   grid-column-start: 2;
@@ -115,4 +118,6 @@ const DropdownIcon = styled.img`
   display: inline;
   pointer-events: none;
   z-index: 1;
+  position: absolute;
+  left: ${props => props.position};
 `

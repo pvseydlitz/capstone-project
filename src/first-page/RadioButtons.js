@@ -37,7 +37,6 @@ const Button = styled.input`
 `
 const Label1 = styled.label`
   font-size: 14px;
-  /* margin-right: 20px; */
   border: 2px solid rgb(187 179 163);
   border-radius: 0.5em;
   padding: 0.5em;

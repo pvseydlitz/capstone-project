@@ -14,7 +14,7 @@ export default function FilterMenuTuevMessages({
       <Input
         autoFocus
         type="text"
-        placeholder="Suche eingeben"
+        placeholder="Suche nach Nummer oder Ort eingeben"
         onChange={checkInput}
         value={searchedWord}
       ></Input>
