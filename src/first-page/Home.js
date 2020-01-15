@@ -8,20 +8,24 @@ import FilterMenu from '../first-page/FilterMenu'
 import RadioButtons from './RadioButtons'
 import Message from './Message'
 import MessageTuev from './MessageTuev'
+import MessageNotice from './MessageNotice'
 import Footer from '../general/Footer'
 
 export default function Home({
   messages,
   messagesTuev,
+  messagesNotice,
   toggleBookmarked,
   handleDelete,
   handleDeleteTuev,
+  handleDeleteNotice,
   handleStatus,
   handleStatusTuev,
 }) {
   const [isOnlyBookmarkShown, setIsOnlyBookmarkShown] = useState(false)
   const [isClicked1, setIsClicked1] = useState(true)
   const [isClicked2, setIsClicked2] = useState()
+  const [isClicked3, setIsClicked3] = useState()
   const [searchedNumber, setSearchedNumber] = useState('')
   const [showFilterMenu, setShowFilterMenu] = useState(false)
   const [searchedWord, setSearchedWord] = useState('')
@@ -31,13 +35,19 @@ export default function Home({
   function handleClick1() {
     setIsClicked1(true)
     setIsClicked2(false)
+    setIsClicked3(false)
   }
 
   function handleClick2() {
     setIsClicked1(false)
     setIsClicked2(true)
+    setIsClicked3(false)
   }
-
+  function handleClick3() {
+    setIsClicked1(false)
+    setIsClicked2(false)
+    setIsClicked3(true)
+  }
   return (
     <Grid>
       <Globalstyles></Globalstyles>
@@ -71,8 +81,10 @@ export default function Home({
         <RadioButtons
           handleClick1={handleClick1}
           handleClick2={handleClick2}
+          handleClick3={handleClick3}
           isClicked1={isClicked1}
           isClicked2={isClicked2}
+          isClicked3={isClicked3}
         ></RadioButtons>
         {isClicked1
           ? isOnlyBookmarkShown
@@ -119,32 +131,46 @@ export default function Home({
                     handleStatus={handleStatus}
                   ></Message>
                 ))
-          : searchedNumber === ''
-          ? messagesTuev.map((messageTuev, index) => (
-              <MessageTuev
-                messageTuev={messageTuev}
-                key={index}
-                handleDeleteTuev={handleDeleteTuev}
-                handleStatusTuev={handleStatusTuev}
-              ></MessageTuev>
-            ))
-          : messagesTuev
-              .filter(messageTuev => {
-                const nummer = String(messageTuev.nummer)
-                const ort = messageTuev.ort.toLowerCase()
-                const query = searchedNumber
-                return (
-                  query === '' || nummer.includes(query) || ort.includes(query)
-                )
-              })
-              .map((messageTuev, index) => (
+          : ''}
+        {isClicked2
+          ? searchedNumber === ''
+            ? messagesTuev.map((messageTuev, index) => (
                 <MessageTuev
                   messageTuev={messageTuev}
                   key={index}
                   handleDeleteTuev={handleDeleteTuev}
                   handleStatusTuev={handleStatusTuev}
                 ></MessageTuev>
-              ))}
+              ))
+            : messagesTuev
+                .filter(messageTuev => {
+                  const nummer = String(messageTuev.nummer)
+                  const ort = messageTuev.ort.toLowerCase()
+                  const query = searchedNumber
+                  return (
+                    query === '' ||
+                    nummer.includes(query) ||
+                    ort.includes(query)
+                  )
+                })
+                .map((messageTuev, index) => (
+                  <MessageTuev
+                    messageTuev={messageTuev}
+                    key={index}
+                    handleDeleteTuev={handleDeleteTuev}
+                    handleStatusTuev={handleStatusTuev}
+                  ></MessageTuev>
+                ))
+          : ''}
+        {isClicked3
+          ? messagesNotice.map((messageNotice, index) => (
+              <MessageNotice
+                messageNotice={messageNotice}
+                key={index}
+                handleDeleteNotice={handleDeleteNotice}
+              ></MessageNotice>
+            ))
+          : ''}
       </MessageWrapper>
       <Footer></Footer>
     </Grid>

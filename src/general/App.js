@@ -171,9 +171,11 @@ export default function App() {
             <Home
               messages={messages}
               messagesTuev={messagesTuev}
+              messagesNotice={messagesNotice}
               toggleBookmarked={toggleBookmarked}
               handleDelete={handleDelete}
               handleDeleteTuev={handleDeleteTuev}
+              handleDeleteNotice={handleDeleteNotice}
               handleStatus={handleStatus}
               handleStatusTuev={handleStatusTuev}
             ></Home>
