@@ -5,6 +5,8 @@ import Grid from '../general/Grid'
 import Globalstyles from '../general/Globalstyles'
 import Header from '../general/Header'
 import FilterMenu from '../first-page/FilterMenu'
+import FilterMenuTuevMessages from './FilterMenuTuevMessages'
+import FilterMenuNoticeMessages from './FilterMenuNoticeMessages'
 import RadioButtons from './RadioButtons'
 import Message from './Message'
 import MessageTuev from './MessageTuev'
@@ -22,45 +24,70 @@ export default function Home({
   handleStatus,
   handleStatusTuev,
 }) {
-  const [isOnlyBookmarkShown, setIsOnlyBookmarkShown] = useState(false)
+  //Radio Buttons
   const [isClicked1, setIsClicked1] = useState(true)
   const [isClicked2, setIsClicked2] = useState()
   const [isClicked3, setIsClicked3] = useState()
-  const [searchedNumber, setSearchedNumber] = useState('')
+  //First type of message 'Gewährleistungsmängel'
   const [showFilterMenu, setShowFilterMenu] = useState(false)
+  const [isOnlyBookmarkShown, setIsOnlyBookmarkShown] = useState(false)
   const [searchedWord, setSearchedWord] = useState('')
   const [selectedMonth, setSelectedMonth] = useState('')
   const [selectedYear, setSelectedYear] = useState('')
+  //Second type of message 'Tüv-Mängel'
+  const [showFilterMenuTuevMessages, setShowFilterMenuTuevMessages] = useState(
+    false
+  )
+  const [searchedWordFilter2, setSearchedWordFilter2] = useState('')
+  const [selectedStatus, setSelectedStatus] = useState('')
+  //Third type of message 'Allgemeines'
+  const [
+    showFilterMenuNoticeMessages,
+    setShowFilterMenuNoticeMessages,
+  ] = useState(false)
+  const [selectedKategorie, setSelectedKategorie] = useState('')
+  const [selectedMonth3, setSelectedMonth3] = useState('')
+  const [selectedYear3, setSelectedYear3] = useState('')
 
   function handleClick1() {
     setIsClicked1(true)
     setIsClicked2(false)
     setIsClicked3(false)
+    setShowFilterMenuTuevMessages(false)
+    setShowFilterMenuNoticeMessages(false)
   }
-
   function handleClick2() {
     setIsClicked1(false)
     setIsClicked2(true)
     setIsClicked3(false)
+    setShowFilterMenu(false)
+    setShowFilterMenuNoticeMessages(false)
   }
   function handleClick3() {
     setIsClicked1(false)
     setIsClicked2(false)
     setIsClicked3(true)
+    setShowFilterMenu(false)
+    setShowFilterMenuTuevMessages(false)
   }
   return (
     <Grid>
       <Globalstyles></Globalstyles>
       <Header
-        showFilter={isClicked1}
-        showSearchIcon={!isClicked1}
-        checkInput={event =>
-          setSearchedNumber(event.target.value.toLowerCase())
+        showFilter1={isClicked1}
+        showFilter2={isClicked2}
+        showFilter3={isClicked3}
+        handleClick1={() => setShowFilterMenu(!showFilterMenu)}
+        handleClick2={() =>
+          setShowFilterMenuTuevMessages(!showFilterMenuTuevMessages)
         }
-        searchedNumber={searchedNumber.toLowerCase()}
-        handleClick={() => setShowFilterMenu(!showFilterMenu)}
+        handleClick3={() =>
+          setShowFilterMenuNoticeMessages(!showFilterMenuNoticeMessages)
+        }
+        filterMenu1Active={showFilterMenu}
+        filterMenu2Active={showFilterMenuTuevMessages}
+        filterMenu3Active={showFilterMenuNoticeMessages}
       ></Header>
-
       <MessageWrapper>
         {showFilterMenu ? (
           <FilterMenu
@@ -75,6 +102,30 @@ export default function Home({
             handleChangeYear={event => setSelectedYear(event.target.value)}
             selectedYear={selectedYear}
           ></FilterMenu>
+        ) : (
+          ''
+        )}
+        {showFilterMenuTuevMessages ? (
+          <FilterMenuTuevMessages
+            checkInput={event =>
+              setSearchedWordFilter2(event.target.value.toLowerCase())
+            }
+            handleFilterStatus={event => setSelectedStatus(event.target.value)}
+          ></FilterMenuTuevMessages>
+        ) : (
+          ''
+        )}
+        {showFilterMenuNoticeMessages ? (
+          <FilterMenuNoticeMessages
+            handleChangeKategorie={event =>
+              setSelectedKategorie(event.target.value)
+            }
+            selectedKategorie={selectedKategorie}
+            handleChangeMonth={event => setSelectedMonth3(event.target.value)}
+            selectedMonth={selectedMonth3}
+            handleChangeYear={event => setSelectedYear3(event.target.value)}
+            selectedYear={selectedYear3}
+          ></FilterMenuNoticeMessages>
         ) : (
           ''
         )}
@@ -133,8 +184,21 @@ export default function Home({
                 ))
           : ''}
         {isClicked2
-          ? searchedNumber === ''
-            ? messagesTuev.map((messageTuev, index) => (
+          ? messagesTuev
+              .filter(messageTuev => {
+                const nummer = String(messageTuev.nummer)
+                const ort = messageTuev.ort.toLowerCase()
+                const query = searchedWordFilter2
+                return (
+                  query === '' || nummer.includes(query) || ort.includes(query)
+                )
+              })
+              .filter(messageTuev => {
+                const status = String(messageTuev.status)
+                const query = selectedStatus
+                return query === '' || status.includes(query)
+              })
+              .map((messageTuev, index) => (
                 <MessageTuev
                   messageTuev={messageTuev}
                   key={index}
@@ -142,34 +206,31 @@ export default function Home({
                   handleStatusTuev={handleStatusTuev}
                 ></MessageTuev>
               ))
-            : messagesTuev
-                .filter(messageTuev => {
-                  const nummer = String(messageTuev.nummer)
-                  const ort = messageTuev.ort.toLowerCase()
-                  const query = searchedNumber
-                  return (
-                    query === '' ||
-                    nummer.includes(query) ||
-                    ort.includes(query)
-                  )
-                })
-                .map((messageTuev, index) => (
-                  <MessageTuev
-                    messageTuev={messageTuev}
-                    key={index}
-                    handleDeleteTuev={handleDeleteTuev}
-                    handleStatusTuev={handleStatusTuev}
-                  ></MessageTuev>
-                ))
           : ''}
         {isClicked3
-          ? messagesNotice.map((messageNotice, index) => (
-              <MessageNotice
-                messageNotice={messageNotice}
-                key={index}
-                handleDeleteNotice={handleDeleteNotice}
-              ></MessageNotice>
-            ))
+          ? messagesNotice
+              .filter(messageNotice => {
+                const kategorie = messageNotice.kategorie
+                const query = selectedKategorie
+                return query === '' || kategorie.includes(query)
+              })
+              .filter(messageNotice => {
+                const datumMonth = messageNotice.datum.slice(5, 7)
+                const queryMonth = selectedMonth3
+                return queryMonth === '' || datumMonth.includes(queryMonth)
+              })
+              .filter(messageNotice => {
+                const datumYear = messageNotice.datum.slice(2, 4)
+                const queryYear = selectedYear3
+                return queryYear === '' || datumYear.includes(queryYear)
+              })
+              .map((messageNotice, index) => (
+                <MessageNotice
+                  messageNotice={messageNotice}
+                  key={index}
+                  handleDeleteNotice={handleDeleteNotice}
+                ></MessageNotice>
+              ))
           : ''}
       </MessageWrapper>
       <Footer></Footer>

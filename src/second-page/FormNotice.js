@@ -28,7 +28,9 @@ export default function FormNotice({ onSubmit3 }) {
               Bitte auswählen
             </option>
             <option value="Handwerker Termin">Handwerker Termin</option>
-            <option value="Ankündigung">Allgemeine Informationen</option>
+            <option value="Allgemeine Informationen">
+              Allgemeine Informationen
+            </option>
             <option value="Dachterasse">Dachterasse</option>
           </DropDown>
           <DropdownIcon src={dropdownIcon} alt="dropdown icon"></DropdownIcon>
