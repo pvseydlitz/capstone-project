@@ -7,8 +7,6 @@ import Description from './Description'
 import FinishButton from './FinishButton'
 import dropdownIcon from '../icons/dropdown.svg'
 
-const PASSWORD = process.env.REACT_APP_PASSWORD
-
 export default function FormNotice({ onSubmit3 }) {
   function handleSubmit(event) {
     event.preventDefault()
@@ -17,10 +15,7 @@ export default function FormNotice({ onSubmit3 }) {
     const data = Object.fromEntries(formData)
     console.log(data)
     onSubmit3(data)
-    /* if (data.password === PASSWORD) {
-      
-      form.reset()
-    } */
+    form.reset()
   }
 
   return (
@@ -28,9 +23,7 @@ export default function FormNotice({ onSubmit3 }) {
       <Grid>
         <Headline3>Kategorie</Headline3>
         <Wrapper2>
-          <DropDown
-            name="kategorie" /* onChange={handleChange} value={selected} */
-          >
+          <DropDown name="kategorie">
             <option value="" hidden>
               Bitte auswählen
             </option>

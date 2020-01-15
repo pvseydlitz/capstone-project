@@ -47,7 +47,7 @@ export default function Create({ onSubmit1, onSubmit2, onSubmit3 }) {
         ) : (
           ''
         )}
-        {selected === 'Ankündigung' ? (
+        {selected === 'Allgemeines' ? (
           <FormNotice onSubmit3={onSubmit3}></FormNotice>
         ) : (
           ''

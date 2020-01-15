@@ -4,17 +4,9 @@ import styled from 'styled-components/macro'
 import cross from '../icons/cross.svg'
 import Password from './Password'
 
-export default function MessageTuev({
-  messageNotice,
-  /* handleStatusTuev, */
-  handleDeleteNotice,
-}) {
+export default function MessageTuev({ messageNotice, handleDeleteNotice }) {
   const [showInputPassword, setShowInputPassword] = useState(false)
 
-  /* function handleChangeDropdown(number) {
-    messageNotice.status = number
-    handleStatusTuev(messageTuev)
-  } */
   function saveMessageId(id) {
     localStorage.setItem('id', id)
   }

@@ -40,7 +40,9 @@ export default function MessageTuev({
           <b>Ort / Bauteil:</b> {messageTuev.ort}
         </Description>
         <WrapperDropdown>
-          <Description>Status: </Description>
+          <Description>
+            <b>Status:</b>
+          </Description>
           <DropdownMenu
             handleChangeDropdown={handleChangeDropdown}
             selected={messageTuev.status}
