@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
+
+import Password from '../first-page/Password'
 
 import plus from '../icons/plus-file.svg'
 
@@ -11,29 +13,46 @@ export default function Form({
   handleShowForm,
   showForm,
 }) {
+  const [showInputPassword, setShowInputPassword] = useState(false)
+
   return (
-    <Wrapper className="App">
+    <Wrapper className="App" active={showForm}>
       <Headline>Dokumente</Headline>
       <Plus src={plus} onClick={handleShowForm}></Plus>
       {showForm ? (
-        <UploadForm onSubmit={() => uploadFile()}>
-          <UploadWrapper>
-            <Headline2 style={{ color: 'rgb(253 252 251)' }}>
-              Dokument auswählen
-            </Headline2>
-            <input
-              style={{ display: 'none' }}
-              type="file"
-              onChange={event => fileChanged(event)}
-            />
-          </UploadWrapper>
-          <ChoosenPicture>
-            <em style={{ fontSize: '12px' }}>{picture}</em>
-          </ChoosenPicture>
-          <Button>
-            <Headline2>Dokument hochladen</Headline2>
-          </Button>
-        </UploadForm>
+        <div>
+          <UploadForm>
+            <UploadWrapper>
+              <Headline2 style={{ color: 'rgb(253 252 251)' }}>
+                Dokument auswählen
+              </Headline2>
+              <input
+                style={{ display: 'none' }}
+                type="file"
+                onChange={event => fileChanged(event)}
+              />
+            </UploadWrapper>
+            <ChoosenPicture>
+              <em style={{ fontSize: '12px' }}>{picture}</em>
+            </ChoosenPicture>
+            <Button
+              onClick={() => {
+                setShowInputPassword(true)
+              }}
+            >
+              <Headline2>Dokument hochladen</Headline2>
+            </Button>
+          </UploadForm>
+        </div>
+      ) : (
+        ''
+      )}
+      {showInputPassword ? (
+        <Password
+          text={'Passwort eingeben zum Hochladen'}
+          passwordApproved={() => uploadFile()}
+          hidePassword={() => setShowInputPassword(false)}
+        ></Password>
       ) : (
         ''
       )}
@@ -47,6 +66,7 @@ Form.propTypes = {
 
 const Wrapper = styled.div`
   position: relative;
+  height: ${props => (props.active ? '120px' : '')};
 `
 const Headline = styled.h1`
   color: rgb(187 179 163);
@@ -60,7 +80,7 @@ const Plus = styled.img`
   top: 0;
   right: 20px;
 `
-const UploadForm = styled.form`
+const UploadForm = styled.section`
   display: grid;
   grid-template-rows: 25px 20px;
   grid-template-columns: 1fr 1fr;

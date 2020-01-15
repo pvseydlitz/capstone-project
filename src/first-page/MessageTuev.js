@@ -56,7 +56,7 @@ export default function MessageTuev({
       </ShowMoreButton>
       {showInputPassword ? (
         <Password
-          text={'Passwort eingeben zum löschen'}
+          text={'Passwort eingeben zum Löschen'}
           passwordApproved={handleDeleteTuev}
           hidePassword={() => setShowInputPassword(false)}
         ></Password>

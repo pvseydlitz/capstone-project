@@ -37,7 +37,7 @@ export default function FormTuev({ onSubmit2 }) {
           style={{ width: '100%' }}
           type="password"
           name="password"
-          placeholder="Admin Passwort eingeben zum hochladen"
+          placeholder="Admin Passwort eingeben zum Hochladen"
           required
         ></Input>
         <FinishButton style={{ top: '524px' }}>Meldung hochladen</FinishButton>

@@ -90,7 +90,7 @@ export default function Message({
       </ShowMoreButton>
       {showInputPassword ? (
         <Password
-          text={'Passwort eingeben zum löschen'}
+          text={'Passwort eingeben zum Löschen'}
           passwordApproved={handleDelete}
           hidePassword={() => setShowInputPassword(false)}
         ></Password>

@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components/macro'
+
+import Password from '../first-page/Password'
 
 import cross from '../icons/cross.svg'
 import download from '../icons/download.svg'
 
 export default function Card({ deleteFile, file }) {
+  const [showInputPassword, setShowInputPassword] = useState(false)
+  function saveEvent(event) {
+    localStorage.setItem('id', event.target.id)
+  }
   var d = new Date(file.uploadDate)
   return (
     <CardLayout key={file.index}>
@@ -25,9 +31,21 @@ export default function Card({ deleteFile, file }) {
       </DateText>
       <Cross
         src={cross}
-        onClick={event => deleteFile(event)}
+        onClick={event => {
+          saveEvent(event)
+          setShowInputPassword(true)
+        }}
         id={file._id}
       ></Cross>
+      {showInputPassword ? (
+        <Password
+          text={'Passwort eingeben zum Löschen'}
+          passwordApproved={deleteFile}
+          hidePassword={() => setShowInputPassword(false)}
+        ></Password>
+      ) : (
+        ''
+      )}
     </CardLayout>
   )
 }

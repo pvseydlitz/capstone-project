@@ -31,7 +31,7 @@ export default function DropdownMenu({ handleChangeDropdown, selected }) {
       </Wrapper>
       {showInputpassword ? (
         <Password
-          text={'Passwort eingeben zum bearbeiten'}
+          text={'Passwort eingeben zum Bearbeiten'}
           passwordApproved={handleChangeDropdown}
           hidePassword={() => setShowInputPassword(false)}
         ></Password>
