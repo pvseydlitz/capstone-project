@@ -18,10 +18,13 @@ import WithAuth from '../login/withAuth'
 import {
   getMessages,
   getMessagesTuev,
+  getMessagesNotice,
   postMessage,
+  postMessageTuev,
+  postMessageNotice,
   deleteMessage,
   deleteMessageTuev,
-  postMessagesTuev,
+  deleteMessageNotice,
   patchMessage,
   patchMessageTuev,
 } from './services'
@@ -34,6 +37,10 @@ export default function App() {
   const [messagesTuev, setMessagesTuev] = useState([])
   useEffect(() => {
     getMessagesTuev().then(setMessagesTuev)
+  }, [])
+  const [messagesNotice, setMessagesNotice] = useState([])
+  useEffect(() => {
+    getMessagesNotice().then(setMessagesNotice)
   }, [])
 
   function toggleBookmarked(index) {
@@ -50,12 +57,16 @@ export default function App() {
     })
   }
   function createMessage2(messageData) {
-    postMessagesTuev(messageData).then(messageTuev => {
+    postMessageTuev(messageData).then(messageTuev => {
       setMessagesTuev([...messagesTuev, messageTuev])
     })
   }
+  function createMessageNotice(messageData) {
+    postMessageNotice(messageData).then(messageNotice => {
+      setMessagesNotice([...messagesNotice, messageNotice])
+    })
+  }
   function removeMessage(id) {
-    console.log(id)
     deleteMessage(id).then(deletedMessage => {
       setMessages(messages.filter(message => message.id !== deletedMessage.id))
       getMessages().then(setMessages)
@@ -69,6 +80,16 @@ export default function App() {
         )
       )
       getMessagesTuev().then(setMessagesTuev)
+    })
+  }
+  function removeMessageNotice(id) {
+    deleteMessageNotice(id).then(deletedMessageNotice => {
+      setMessagesNotice(
+        messagesNotice.filter(
+          messageNotice => messageNotice.id !== deletedMessageNotice.id
+        )
+      )
+      getMessagesNotice().then(setMessagesNotice)
     })
   }
   function handleStatus(message) {
@@ -127,7 +148,21 @@ export default function App() {
       ],
     })
   }
-
+  function handleDeleteNotice(id) {
+    confirmAlert({
+      title: 'Löschen bestätigen',
+      message: 'Möchten Sie diese Meldung wirklich löschen?',
+      buttons: [
+        {
+          label: 'Ja',
+          onClick: () => removeMessageNotice(id),
+        },
+        {
+          label: 'Nein',
+        },
+      ],
+    })
+  }
   return (
     <Router>
       <Switch>
@@ -151,6 +186,7 @@ export default function App() {
             <Create
               onSubmit1={createMessage}
               onSubmit2={createMessage2}
+              onSubmit3={createMessageNotice}
             ></Create>
           ) : (
             <Redirect to="/login"></Redirect>
@@ -163,7 +199,11 @@ export default function App() {
           <Register></Register>
         </Route>
         <Route path="/upload">
-          <Upload></Upload>
+          {WithAuth() === 'right token' ? (
+            <Upload></Upload>
+          ) : (
+            <Redirect to="/login"></Redirect>
+          )}
         </Route>
       </Switch>
     </Router>

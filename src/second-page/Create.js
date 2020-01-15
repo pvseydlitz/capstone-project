@@ -9,9 +9,10 @@ import DropDown from './DropdownMenu'
 import Acceptance from './Acceptance'
 import Form from './Form'
 import FormTuev from './FormTuev'
+import FormNotice from './FormNotice'
 import Footer from '../general/Footer'
 
-export default function Create({ onSubmit1, onSubmit2 }) {
+export default function Create({ onSubmit1, onSubmit2, onSubmit3 }) {
   const [selected, setSelected] = useState('Gewährleistungsmangel')
   const [showAcceptance, setShowAcceptance] = useState(true)
 
@@ -43,6 +44,11 @@ export default function Create({ onSubmit1, onSubmit2 }) {
         )}
         {selected === 'Tüv-Mangel' ? (
           <FormTuev onSubmit2={onSubmit2}></FormTuev>
+        ) : (
+          ''
+        )}
+        {selected === 'Ankündigung' ? (
+          <FormNotice onSubmit3={onSubmit3}></FormNotice>
         ) : (
           ''
         )}

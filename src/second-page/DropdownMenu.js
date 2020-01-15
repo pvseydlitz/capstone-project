@@ -35,6 +35,7 @@ export default function DropdownMenu({ handleChange, selected }) {
         </option>
         <option value="Gewährleistungsmangel">Gewährleistungsmangel</option>
         <option value="Tüv-Mangel">TÜV-Mangel</option>
+        <option value="Ankündigung">Ankündigung</option>
       </DropDown>
       <DropdownIcon src={dropdownIcon} alt="dropdown icon"></DropdownIcon>
     </Wrapper>
