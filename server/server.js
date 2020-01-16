@@ -9,7 +9,7 @@ mongoose.connect('mongodb://localhost:27017/capstone-project', {
   useFindAndModify: false,
 })
 
-const registrationRoutes = require('./route')
+const registrationRoutes = require('./registration')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const cors = require('cors')
@@ -91,6 +91,9 @@ app.delete('/messagestuev/:id', (req, res) => {
     .then(message => res.json(message))
     .catch(err => res.json(err))
 })
+
+const messageNoticeRoute = require('./notice')
+app.use(messageNoticeRoute)
 
 const path = require('path')
 const logger = require('morgan')

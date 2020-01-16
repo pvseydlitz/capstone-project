@@ -55,7 +55,7 @@ const MainForm = memo(() => {
         handelt, ist der Aufwand für Anfahrts und Untersuchungskosten dem
         Architekturbüro und / oder der Handwerksfirma zu erstatten.
       </Note>
-      <AcceptButton></AcceptButton>
+      <AcceptButton position={'absolute'} top={'1302px'}></AcceptButton>
     </>
   )
 })
@@ -67,8 +67,11 @@ export default function Form({ onSubmit1 }) {
     <Wrapper onSubmit={handleSubmit} id="form">
       <MainForm />
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <FinishButton>Meldung hochladen</FinishButton>
-
+        <FinishButton
+          style={{ position: 'absolute', top: '1427px', marginBottom: '40px' }}
+        >
+          Meldung hochladen
+        </FinishButton>
         <UploadWrapper>
           <Headline3 style={{ color: 'rgb(253 252 251)' }}>
             Foto Hochladen
@@ -173,6 +176,7 @@ export default function Form({ onSubmit1 }) {
       name: data.name,
       telefonnummer: data.telefonnummer,
       email: data.email,
+      bereich: data.bereich.join(', '),
       datum: data.datum,
       wohnung: data.wohnung,
       raumbezeichnung: data.raumbezeichnung,

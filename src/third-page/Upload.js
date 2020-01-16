@@ -40,8 +40,7 @@ export default function Upload() {
     }
   }
 
-  function uploadFile(event) {
-    event.preventDefault()
+  function uploadFile() {
     let data = new FormData()
     data.append('file', singleFile)
     fetch('/api/files', {
@@ -52,15 +51,14 @@ export default function Upload() {
       .then(data => {
         if (data.success) {
           loadFiles()
+          setShowForm(false)
         } else {
           alert('Upload failed')
         }
       })
   }
 
-  function deleteFile(event) {
-    event.preventDefault()
-    const id = event.target.id
+  function deleteFile(id) {
     fetch('/api/files/' + id, {
       method: 'DELETE',
     })
@@ -91,7 +89,7 @@ export default function Upload() {
           showForm={showForm}
           picture={picture}
         ></Form>
-        <CardWrapper active={showForm}>
+        <CardWrapper>
           {files
             .filter(file => {
               const name = file.filename.toLowerCase()
@@ -108,6 +106,6 @@ export default function Upload() {
   )
 }
 const CardWrapper = styled.div`
-  margin: ${props => (props.active ? '90px' : '10px')} 20px;
+  margin: 20px;
   overflow-y: scroll;
 `
