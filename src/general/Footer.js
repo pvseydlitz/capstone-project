@@ -16,6 +16,9 @@ export default function Footer() {
     height: 60px;
     border: solid 2px transparent;
     border-top-color: rgb(201 193 171);
+    @media (min-width: 768px) {
+      grid-column: 1 / 3;
+    }
   `
 
   return (

@@ -33,8 +33,10 @@ export default function FilterMenuNoticeMessages({
           position={'-5px'}
         ></DropdownIcon>
       </Wrapper>
-      <Text start={'3'}>Nach Monat oder Jahr sortieren</Text>
-      <Wrapper start={'4'}>
+      <Text start={'3'} startTabletRow={'1'} tabletColumn={'3/5'}>
+        Nach Monat oder Jahr sortieren
+      </Text>
+      <Wrapper start={'4'} startTabletRow={'2'} startTabletColumn={'3'}>
         <DropDown
           name="monat"
           onChange={handleChangeMonth}
@@ -56,7 +58,7 @@ export default function FilterMenuNoticeMessages({
         </DropDown>
         <DropdownIcon src={dropdownIcon} alt="dropdown icon"></DropdownIcon>
       </Wrapper>
-      <Wrapper start={'4'}>
+      <Wrapper start={'4'} startTabletRow={'2'} startTabletColumn={'4'}>
         <DropDown name="jahr" onChange={handleChangeYear} value={selectedYear}>
           <option value="">Jahr </option>
           <option value="19">2019</option>
@@ -80,9 +82,15 @@ const Menu = styled.div`
   margin-top: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
   column-gap: 20px;
   align-items: center;
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    height: 75px;
+    grid-column: 1/3;
+  }
 `
 const Text = styled.h3`
   grid-row-start: ${props => props.start};
@@ -90,6 +98,10 @@ const Text = styled.h3`
   margin: 0;
   font-size: 16px;
   color: rgb(107, 107, 107);
+  @media (min-width: 768px) {
+    grid-row-start: ${props => props.startTabletRow};
+    grid-column: ${props => props.tabletColumn};
+  }
 `
 const Wrapper = styled.section`
   display: grid;
@@ -100,6 +112,10 @@ const Wrapper = styled.section`
   max-width: 235px;
   background: rgb(201 193 171);
   position: relative;
+  @media (min-width: 768px) {
+    grid-row-start: ${props => props.startTabletRow};
+    grid-column-start: ${props => props.startTabletColumn};
+  }
 `
 const DropDown = styled.select`
   color: rgb(107 107 107);

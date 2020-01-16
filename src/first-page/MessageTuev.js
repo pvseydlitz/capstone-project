@@ -23,7 +23,7 @@ export default function MessageTuev({
   }
 
   return (
-    <MessageLayout>
+    <MessageLayout active={showContent}>
       <Cross
         src={cross}
         onClick={() => {
@@ -75,6 +75,7 @@ const MessageLayout = styled.div`
   position: relative;
   background: rgb(238, 238, 238);
   border-radius: 10px;
+  max-height: ${props => (props.active ? '' : '205px')};
 `
 const Cross = styled.img`
   position: absolute;

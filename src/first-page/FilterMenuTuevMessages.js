@@ -11,14 +11,19 @@ export default function FilterMenuTuevMessages({
 }) {
   return (
     <Menu>
+      <Text start={'1'} startTabletRow={'1'} tabletColumn={'1/3'}>
+        Nach Nummer oder Ort/Bauteil suchen
+      </Text>
       <Input
         autoFocus
         type="text"
-        placeholder="Suche nach Nummer oder Ort eingeben"
+        placeholder="Suchbegriff eingeben"
         onChange={checkInput}
         value={searchedWord}
       ></Input>
-      <Text>Nach Bearbeitungsstatus sortieren</Text>
+      <Text start={'3'} startTabletRow={'1'} tabletColumn={'3/5'}>
+        Nach Bearbeitungsstatus sortieren
+      </Text>
       <Wrapper>
         <DropDown
           name="status"
@@ -43,31 +48,45 @@ const Menu = styled.div`
   margin-top: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
   column-gap: 20px;
   align-items: center;
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    height: 75px;
+    grid-column: 1/3;
+  }
 `
 
 const Input = styled.input`
   border: solid 2px rgb(201 193 171);
-  grid-row-start: 1;
+  grid-row-start: 2;
   grid-column: 1/3;
   height: 20px;
   width: 80%;
 `
 const Text = styled.h3`
-  grid-row-start: 2;
+  grid-row-start: ${props => props.start};
   grid-column: 1 / 3;
   margin: 0;
   font-size: 16px;
   color: rgb(107, 107, 107);
+  @media (min-width: 768px) {
+    grid-row-start: ${props => props.startTabletRow};
+    grid-column: ${props => props.tabletColumn};
+  }
 `
 const Wrapper = styled.section`
   display: grid;
   grid-template-columns: 3fr 1fr;
   align-items: center;
-  grid-row-start: 3;
+  grid-row-start: 4;
   background: rgb(201 193 171);
+  @media (min-width: 768px) {
+    grid-row-start: 2;
+    grid-column: 3;
+  }
 `
 const DropDown = styled.select`
   color: rgb(107 107 107);

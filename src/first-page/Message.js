@@ -25,7 +25,7 @@ export default function Message({
   }
 
   return (
-    <MessageLayout>
+    <MessageLayout active={showContent}>
       <Bookmark
         onClick={toggleBookmarked}
         active={message.isBookmarked}
@@ -56,11 +56,14 @@ export default function Message({
           {message.wohnung}, {message.raumbezeichnung}
         </Description>
         <Description>
-          Datum: {message.datum.slice(8, 10)}.{message.datum.slice(5, 7)}.
+          <b>Datum: </b>
+          {message.datum.slice(8, 10)}.{message.datum.slice(5, 7)}.
           {message.datum.slice(0, 4)}
         </Description>
         <WrapperDropdown>
-          <Description>Status: </Description>
+          <Description>
+            <b>Status:</b>{' '}
+          </Description>
           <DropdownMenu
             handleChangeDropdown={handleChangeDropdown}
             selected={message.status}
@@ -105,7 +108,7 @@ const MessageLayout = styled.div`
   margin: 50px 20px;
   padding: 10px 20px;
   position: relative;
-  min-height: 180px;
+  max-height: ${props => (props.active ? '700px' : '265px')};
   background: rgb(238, 238, 238);
   border-radius: 10px;
 `

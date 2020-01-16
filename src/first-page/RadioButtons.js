@@ -31,6 +31,10 @@ const RadioButtonsLayout = styled.section`
   margin: 20px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  height: 34px;
+  @media (min-width: 768px) {
+    grid-column: 1/3;
+  }
 `
 const Button = styled.input`
   all: unset;

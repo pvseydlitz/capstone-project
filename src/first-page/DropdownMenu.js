@@ -48,6 +48,7 @@ const Wrapper = styled.section`
   background: rgb(201 193 171);
   height: 24px;
   padding: 0 5px;
+  max-width: 175px;
 `
 const DropDown = styled.select`
   background: rgb(201 193 171);

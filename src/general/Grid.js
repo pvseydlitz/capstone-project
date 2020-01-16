@@ -8,4 +8,7 @@ export default styled.div`
   bottom: 0;
   left: 0;
   right: 0;
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
 `

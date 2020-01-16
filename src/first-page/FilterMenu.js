@@ -29,7 +29,7 @@ export default function FilterMenu({
         value={searchedWord}
       ></Input>
       <Text2>Nach Monat oder Jahr sortieren</Text2>
-      <Wrapper>
+      <Wrapper columnStart={'3'}>
         <DropDown
           name="monat"
           onChange={handleChangeMonth}
@@ -51,7 +51,7 @@ export default function FilterMenu({
         </DropDown>
         <DropdownIcon src={dropdownIcon} alt="dropdown icon"></DropdownIcon>
       </Wrapper>
-      <Wrapper>
+      <Wrapper columnStart={'4'}>
         <DropDown name="jahr" onChange={handleChangeYear} value={selectedYear}>
           <option value="">Jahr </option>
           <option value="19">2019</option>
@@ -76,6 +76,12 @@ const Menu = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(4, 1fr);
+  @media (min-width: 768px) {
+    grid-column: 1/3;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    height: 100px;
+  }
   column-gap: 20px;
   align-items: center;
 `
@@ -99,6 +105,10 @@ const Text2 = styled.h3`
   margin: 0;
   font-size: 16px;
   color: rgb(107, 107, 107);
+  @media (min-width: 768px) {
+    grid-column: 3/5;
+    grid-row-start: 1;
+  }
 `
 const Wrapper = styled.section`
   display: grid;
@@ -106,6 +116,10 @@ const Wrapper = styled.section`
   align-items: center;
   grid-row-start: 4;
   background: rgb(201 193 171);
+  @media (min-width: 768px) {
+    grid-column-start: ${props => props.columnStart};
+    grid-row-start: 2;
+  }
 `
 const DropDown = styled.select`
   color: rgb(107 107 107);

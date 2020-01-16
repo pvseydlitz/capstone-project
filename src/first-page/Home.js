@@ -89,6 +89,7 @@ export default function Home({
         filterMenu3Active={showFilterMenuNoticeMessages}
       ></Header>
       <MessageWrapper>
+        {/*  <Section> */}
         {showFilterMenu ? (
           <FilterMenu
             handleClick={() => setIsOnlyBookmarkShown(!isOnlyBookmarkShown)}
@@ -232,6 +233,7 @@ export default function Home({
                 ></MessageNotice>
               ))
           : ''}
+        {/*         </Section> */}
       </MessageWrapper>
       <Footer></Footer>
     </Grid>
@@ -240,4 +242,16 @@ export default function Home({
 
 const MessageWrapper = styled.div`
   overflow-y: scroll;
+  width: 100%;
+  @media (min-width: 768px) {
+    grid-column: 1/3;
+    display: grid;
+  }
+`
+const Section = styled.section`
+  @media (min-width: 768px) {
+    grid-column: 1/2;
+    display: grid;
+    grid-template-rows: auto;
+  }
 `
