@@ -55,6 +55,9 @@ const Line = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
+  @media (min-width: 768px) {
+    grid-column: 1 / 3;
+  }
 `
 const Logo = styled.img`
   z-index: -1;

@@ -42,6 +42,9 @@ const Wrapper = styled.div`
   position: absolute;
   top: 100px;
   margin-bottom: 40px;
+  @media (min-width: 768px) {
+    grid-column: 1 / 3;
+  }
 `
 const Grid = styled.form`
   display: grid;

@@ -14,7 +14,7 @@ import Footer from '../general/Footer'
 
 export default function Create({ onSubmit1, onSubmit2, onSubmit3 }) {
   const [selected, setSelected] = useState('Gewährleistungsmangel')
-  const [showAcceptance, setShowAcceptance] = useState(true)
+  let [showAcceptance, setShowAcceptance] = useState(true)
 
   function handleChange(event) {
     setSelected(event.target.value)
@@ -23,25 +23,25 @@ export default function Create({ onSubmit1, onSubmit2, onSubmit3 }) {
     <Grid>
       <Globalstyles></Globalstyles>
       <Header showSearchIcon={false}></Header>
-      <Wrapper style={{ overflowY: 'scroll' }}>
+      <Wrapper /* style={{ overflowY: 'scroll' }} */>
         <Headline>Neue Meldung erstellen</Headline>
         <Category>
           <Headline2>Kategorie der Meldung</Headline2>
           <DropDown handleChange={handleChange} selected={selected}></DropDown>
         </Category>
-        {selected === 'Gewährleistungsmangel' ? (
-          showAcceptance ? (
-            <Acceptance
-              handleAccept={() => {
-                setShowAcceptance(false)
-              }}
-            ></Acceptance>
-          ) : (
-            <Form onSubmit1={onSubmit1}></Form>
-          )
-        ) : (
-          ''
-        )}
+        {selected === 'Gewährleistungsmangel'
+          ? ((showAcceptance = sessionStorage.getItem('accepted')),
+            showAcceptance ? (
+              <Acceptance
+                handleAccept={() => {
+                  setShowAcceptance(false)
+                  sessionStorage.setItem('accepted', showAcceptance)
+                }}
+              ></Acceptance>
+            ) : (
+              <Form onSubmit1={onSubmit1}></Form>
+            ))
+          : ''}
         {selected === 'Tüv-Mangel' ? (
           <FormTuev onSubmit2={onSubmit2}></FormTuev>
         ) : (
@@ -61,6 +61,11 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
+  overflow-y: scroll;
+  @media (min-width: 768px) {
+    grid-column: 1/3;
+    display: grid;
+  }
 `
 const Headline = styled.h1`
   color: rgb(187 179 163);

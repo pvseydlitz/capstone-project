@@ -167,32 +167,32 @@ export default function App() {
     <Router>
       <Switch>
         <Route exact path="/">
-          {WithAuth() === 'right token' ? (
-            <Home
-              messages={messages}
-              messagesTuev={messagesTuev}
-              messagesNotice={messagesNotice}
-              toggleBookmarked={toggleBookmarked}
-              handleDelete={handleDelete}
-              handleDeleteTuev={handleDeleteTuev}
-              handleDeleteNotice={handleDeleteNotice}
-              handleStatus={handleStatus}
-              handleStatusTuev={handleStatusTuev}
-            ></Home>
-          ) : (
-            <Redirect to="/login"></Redirect>
-          )}
+          {/* {WithAuth() === 'right token' ? ( */}
+          <Home
+            messages={messages}
+            messagesTuev={messagesTuev}
+            messagesNotice={messagesNotice}
+            toggleBookmarked={toggleBookmarked}
+            handleDelete={handleDelete}
+            handleDeleteTuev={handleDeleteTuev}
+            handleDeleteNotice={handleDeleteNotice}
+            handleStatus={handleStatus}
+            handleStatusTuev={handleStatusTuev}
+          ></Home>
+          {/* ) : ( */}
+          {/* <Redirect to="/login"></Redirect> */}
+          {/* )} */}
         </Route>
         <Route path="/create">
-          {WithAuth() === 'right token' ? (
-            <Create
-              onSubmit1={createMessage}
-              onSubmit2={createMessage2}
-              onSubmit3={createMessageNotice}
-            ></Create>
-          ) : (
+          {/* {WithAuth() === 'right token' ? ( */}
+          <Create
+            onSubmit1={createMessage}
+            onSubmit2={createMessage2}
+            onSubmit3={createMessageNotice}
+          ></Create>
+          {/* ) : (
             <Redirect to="/login"></Redirect>
-          )}
+          )} */}
         </Route>
         <Route path="/login">
           <Login></Login>
@@ -201,11 +201,11 @@ export default function App() {
           <Register></Register>
         </Route>
         <Route path="/upload">
-          {WithAuth() === 'right token' ? (
-            <Upload></Upload>
-          ) : (
+          {/*  {WithAuth() === 'right token' ? ( */}
+          <Upload></Upload>
+          {/* ) : (
             <Redirect to="/login"></Redirect>
-          )}
+          )} */}
         </Route>
       </Switch>
     </Router>

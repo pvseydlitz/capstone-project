@@ -89,7 +89,6 @@ export default function Home({
         filterMenu3Active={showFilterMenuNoticeMessages}
       ></Header>
       <MessageWrapper>
-        {/*  <Section> */}
         {showFilterMenu ? (
           <FilterMenu
             handleClick={() => setIsOnlyBookmarkShown(!isOnlyBookmarkShown)}
@@ -233,7 +232,6 @@ export default function Home({
                 ></MessageNotice>
               ))
           : ''}
-        {/*         </Section> */}
       </MessageWrapper>
       <Footer></Footer>
     </Grid>
@@ -248,10 +246,9 @@ const MessageWrapper = styled.div`
     display: grid;
   }
 `
-const Section = styled.section`
+/* const Section = styled.section`
   @media (min-width: 768px) {
     grid-column: 1/2;
     display: grid;
     grid-template-rows: auto;
-  }
-`
+  } */

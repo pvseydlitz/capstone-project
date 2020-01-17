@@ -3,7 +3,7 @@ import styled from 'styled-components/macro'
 import dropdownIcon from '../icons/dropdown.svg'
 
 export default function DropdownMenu({ handleChange, selected }) {
-  const Wrapper = styled.section`
+  /* const Wrapper = styled.section`
     display: grid;
     grid-template-columns: 217px 33px;
     align-items: center;
@@ -26,7 +26,7 @@ export default function DropdownMenu({ handleChange, selected }) {
     display: inline;
     pointer-events: none;
     z-index: 1;
-  `
+  ` */
   return (
     <Wrapper>
       <DropDown name="kategorie" onChange={handleChange} value={selected}>
@@ -41,3 +41,31 @@ export default function DropdownMenu({ handleChange, selected }) {
     </Wrapper>
   )
 }
+
+const Wrapper = styled.section`
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  align-items: center;
+  background: rgb(201 193 171);
+  height: 24px;
+  padding: 0 5px;
+  /* max-width: 175px; */
+`
+const DropDown = styled.select`
+  background: rgb(201 193 171);
+  color: rgb(107 107 107);
+  font-size: 14px;
+  height: 24px;
+  border: none;
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
+  position: relative;
+`
+const DropdownIcon = styled.img`
+  height: 17px;
+  width: 24px;
+  justify-self: center;
+  text-align: center;
+  /* pointer-events: none; */
+`
