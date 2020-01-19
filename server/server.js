@@ -31,6 +31,9 @@ app.get('/checkToken', withAuth, function(req, res) {
 
 app.get('/logout', function(req, res) {
   res.clearCookie('token').sendStatus(200)
+  /* res.cookie('token', 'token', {
+    expires: new Date('Wed, 31 Oct 2012 08:50:17 GMT'),
+  }) */
 })
 /* Server Funktion, die ich später noch brauchen werde.
 app.get('/all', async (req, res) => {

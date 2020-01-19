@@ -21,7 +21,10 @@ export default function Header({
   filterMenu3Active,
 }) {
   function handleLogout() {
-    fetch('/logout').then((window.location.href = `/`))
+    fetch('/logout', {
+      method: 'get',
+      credentials: 'include', // <--- YOU NEED THIS LINE
+    }).then((window.location.href = `/`))
   }
 
   return (
