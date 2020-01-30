@@ -67,6 +67,7 @@ export default function Message({
           <DropdownMenu
             handleChangeDropdown={handleChangeDropdown}
             selected={message.status}
+            showValue0={true}
           ></DropdownMenu>
         </WrapperDropdown>
 

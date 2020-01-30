@@ -6,7 +6,7 @@ import AcceptButton from './AcceptButton'
 export default function acceptance({ handleAccept }) {
   return (
     <Wrapper>
-      <Grid onSubmit={handleAccept}>
+      <Grid onSubmit={(event => event.preventDefault(), handleAccept())}>
         <Headline>Information zum Schadenmeldeformular</Headline>
         <Text>
           Sehr geehrte Eigentümergemeinschaft, sehr geehrte Bewohner, <br />
@@ -29,7 +29,7 @@ export default function acceptance({ handleAccept }) {
           damit diese Termine mit Ihnen direkt vereinbaren können. <br /> <br />
           Bei weiteren Fragen stehen wir gern zur Verfügung. <br /> <br />
           Mit freundlichen Grüssen <br />
-          Simone Caspar
+          Ihr Aussenaslter Team
         </Text>
         <AcceptButton></AcceptButton>
         <Button>Zum Formular</Button>

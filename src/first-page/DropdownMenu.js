@@ -1,10 +1,15 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
+import PropTypes from 'prop-types'
 
 import Password from './Password'
 import dropdownIcon from '../icons/dropdown.svg'
 
-export default function DropdownMenu({ handleChangeDropdown, selected }) {
+export default function DropdownMenu({
+  handleChangeDropdown,
+  selected,
+  showValue0,
+}) {
   const [showInputpassword, setShowInputPassword] = useState(false)
 
   function saveNumber(event) {
@@ -22,9 +27,9 @@ export default function DropdownMenu({ handleChangeDropdown, selected }) {
           }}
           value={selected}
         >
-          <option value="0">Meldung versendet</option>
+          {showValue0 ? <option value="0">Meldung erhalten</option> : ''}
           <option value="1">In Bearbeitung</option>
-          <option value="2">Handwerker kommt</option>
+          <option value="2">Termin vereinbart</option>
           <option value="3">Mangel behoben</option>
         </DropDown>
         <DropdownIcon src={dropdownIcon} alt="dropdown icon"></DropdownIcon>
@@ -40,6 +45,9 @@ export default function DropdownMenu({ handleChangeDropdown, selected }) {
       )}
     </div>
   )
+}
+DropdownMenu.propTypes = {
+  showValue0: PropTypes.bool,
 }
 const Wrapper = styled.section`
   display: grid;

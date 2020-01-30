@@ -46,6 +46,7 @@ export default function MessageTuev({
           <DropdownMenu
             handleChangeDropdown={handleChangeDropdown}
             selected={messageTuev.status}
+            showValue0={false}
           ></DropdownMenu>
         </WrapperDropdown>
         <Description>

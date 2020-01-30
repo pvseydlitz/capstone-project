@@ -10,7 +10,7 @@ export default function password({ passwordApproved, hidePassword, text }) {
     const data = password
     if (data === PASSWORD) {
       passwordApproved(id)
-      localStorage.clear()
+      localStorage.removeItem('id')
       hidePassword()
     }
   }
@@ -18,7 +18,7 @@ export default function password({ passwordApproved, hidePassword, text }) {
     <Label
       onClick={() => {
         hidePassword()
-        localStorage.clear()
+        localStorage.removeItem('id')
       }}
     >
       <PasswordWrapper>
