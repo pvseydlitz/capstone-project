@@ -1,8 +1,6 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 
-import dropdownIcon from '../icons/dropdown.svg'
-
 export default function FilterMenuNoticeMessages({
   handleChangeKategorie,
   selectedKategorie,
@@ -15,6 +13,7 @@ export default function FilterMenuNoticeMessages({
     <Menu>
       <Text start={'1'}>Nach Kategorie sortieren</Text>
       <Wrapper start={'2'} column={'1 / 3'}>
+        <Span>&#11015;</Span>
         <DropDown
           name="kategorie"
           onChange={handleChangeKategorie}
@@ -27,16 +26,12 @@ export default function FilterMenuNoticeMessages({
           </option>
           <option value="Dachterasse">Dachterasse</option>
         </DropDown>
-        <DropdownIcon
-          src={dropdownIcon}
-          alt="dropdown icon"
-          position={'-5px'}
-        ></DropdownIcon>
       </Wrapper>
       <Text start={'3'} startTabletRow={'1'} tabletColumn={'3/5'}>
         Nach Monat oder Jahr sortieren
       </Text>
       <Wrapper start={'4'} startTabletRow={'2'} startTabletColumn={'3'}>
+        <Span>&#11015;</Span>
         <DropDown
           name="monat"
           onChange={handleChangeMonth}
@@ -56,10 +51,11 @@ export default function FilterMenuNoticeMessages({
           <option value="11">November</option>
           <option value="12">Dezember</option>
         </DropDown>
-        <DropdownIcon src={dropdownIcon} alt="dropdown icon"></DropdownIcon>
       </Wrapper>
       <Wrapper start={'4'} startTabletRow={'2'} startTabletColumn={'4'}>
+        <Span>&#11015;</Span>
         <DropDown name="jahr" onChange={handleChangeYear} value={selectedYear}>
+          <Span>&#11015;</Span>
           <option value="">Jahr </option>
           <option value="19">2019</option>
           <option value="20">2020</option>
@@ -69,7 +65,6 @@ export default function FilterMenuNoticeMessages({
           <option value="24">2024</option>
           <option value="25">2025</option>
         </DropDown>
-        <DropdownIcon src={dropdownIcon} alt="dropdown icon"></DropdownIcon>
       </Wrapper>
     </Menu>
   )
@@ -103,37 +98,34 @@ const Text = styled.h3`
     grid-column: ${props => props.tabletColumn};
   }
 `
-const Wrapper = styled.section`
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  align-items: center;
+
+const DropDown = styled.select`
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  color: rgb(107 107 107);
+  background: rgb(201 193 171);
+  font-size: 16px;
+  height: 32px;
+  width: 100%;
+  padding-left: 10px;
+`
+const Wrapper = styled.div`
+  position: relative;
   grid-row-start: ${props => props.start};
   grid-column: ${props => props.column};
-  max-width: 235px;
-  background: rgb(201 193 171);
-  position: relative;
+  max-width: 250px;
   @media (min-width: 768px) {
     grid-row-start: ${props => props.startTabletRow};
     grid-column-start: ${props => props.startTabletColumn};
   }
 `
-const DropDown = styled.select`
-  color: rgb(107 107 107);
-  background: rgb(201 193 171);
-  font-size: 16px;
-  height: 32px;
-  border: none;
-  padding-left: 5px;
-  -webkit-appearance: button;
-  appearance: button;
-  outline: none;
-`
-const DropdownIcon = styled.img`
-  grid-column-start: 2;
-  text-align: center;
-  display: inline;
-  pointer-events: none;
-  z-index: 1;
+const Span = styled.span`
   position: absolute;
-  left: ${props => props.position};
+  pointer-events: none;
+  right: 10px;
+  top: 5px;
+  color: rgb(107 107 107);
 `

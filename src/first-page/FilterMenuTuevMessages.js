@@ -1,8 +1,6 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 
-import dropdownIcon from '../icons/dropdown.svg'
-
 export default function FilterMenuTuevMessages({
   checkInput,
   searchedWord,
@@ -25,6 +23,7 @@ export default function FilterMenuTuevMessages({
         Nach Bearbeitungsstatus sortieren
       </Text>
       <Wrapper>
+        <Span>&#11015;</Span>
         <DropDown
           name="status"
           onChange={handleFilterStatus}
@@ -35,7 +34,6 @@ export default function FilterMenuTuevMessages({
           <option value="2">Handwerker kommt</option>
           <option value="3">Mangel behoben</option>
         </DropDown>
-        <DropdownIcon src={dropdownIcon} alt="dropdown icon"></DropdownIcon>
       </Wrapper>
     </Menu>
   )
@@ -65,6 +63,7 @@ const Input = styled.input`
   grid-column: 1/3;
   height: 20px;
   width: 80%;
+  max-width: 250px;
 `
 const Text = styled.h3`
   grid-row-start: ${props => props.start};
@@ -77,33 +76,29 @@ const Text = styled.h3`
     grid-column: ${props => props.tabletColumn};
   }
 `
-const Wrapper = styled.section`
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  align-items: center;
-  grid-row-start: 4;
-  background: rgb(201 193 171);
-  @media (min-width: 768px) {
-    grid-row-start: 2;
-    grid-column: 3;
-  }
-`
+
 const DropDown = styled.select`
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  cursor: pointer;
   color: rgb(107 107 107);
   background: rgb(201 193 171);
   font-size: 16px;
   height: 32px;
-  border: none;
-  padding-left: 5px;
-  -webkit-appearance: button;
-  appearance: button;
-  outline: none;
-  position: relative;
+  width: 100%;
+  padding-left: 10px;
 `
-const DropdownIcon = styled.img`
-  grid-column-start: 2;
-  text-align: center;
-  display: inline;
+const Wrapper = styled.div`
+  position: relative;
+  min-width: 180px;
+  max-width: 250px;
+`
+const Span = styled.span`
+  position: absolute;
   pointer-events: none;
-  z-index: 1;
+  right: 10px;
+  top: 5px;
+  color: rgb(107 107 107);
 `

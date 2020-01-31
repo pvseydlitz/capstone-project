@@ -3,7 +3,6 @@ import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 
 import Password from './Password'
-import dropdownIcon from '../icons/dropdown.svg'
 
 export default function DropdownMenu({
   handleChangeDropdown,
@@ -19,6 +18,7 @@ export default function DropdownMenu({
   return (
     <div>
       <Wrapper>
+        <Span>&#11015;</Span>
         <DropDown
           name="kategorie"
           onChange={event => {
@@ -32,7 +32,6 @@ export default function DropdownMenu({
           <option value="2">Termin vereinbart</option>
           <option value="3">Mangel behoben</option>
         </DropDown>
-        <DropdownIcon src={dropdownIcon} alt="dropdown icon"></DropdownIcon>
       </Wrapper>
       {showInputpassword ? (
         <Password
@@ -49,30 +48,29 @@ export default function DropdownMenu({
 DropdownMenu.propTypes = {
   showValue0: PropTypes.bool,
 }
-const Wrapper = styled.section`
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  align-items: center;
-  background: rgb(201 193 171);
-  height: 24px;
-  padding: 0 5px;
-  max-width: 175px;
-`
+
 const DropDown = styled.select`
-  background: rgb(201 193 171);
-  color: rgb(107 107 107);
-  font-size: 14px;
-  height: 24px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
   border: none;
-  -webkit-appearance: button;
-  appearance: button;
-  outline: none;
-  position: relative;
+  cursor: pointer;
+  color: rgb(107 107 107);
+  background: rgb(201 193 171);
+  font-size: 16px;
+  height: 32px;
+  width: 100%;
+  padding-left: 10px;
 `
-const DropdownIcon = styled.img`
-  height: 17px;
-  width: 24px;
-  justify-self: center;
-  text-align: center;
+const Wrapper = styled.div`
+  position: relative;
+  min-width: 180px;
+  max-width: 250px;
+`
+const Span = styled.span`
+  position: absolute;
   pointer-events: none;
+  right: 10px;
+  top: 5px;
+  color: rgb(107 107 107);
 `

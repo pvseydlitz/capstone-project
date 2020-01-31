@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components/macro'
 
 import ToggleButton from './ToggleButton'
-import dropdownIcon from '../icons/dropdown.svg'
 
 export default function FilterMenu({
   handleClick,
@@ -30,6 +29,7 @@ export default function FilterMenu({
       ></Input>
       <Text2>Nach Monat oder Jahr sortieren</Text2>
       <Wrapper columnStart={'3'}>
+        <Span>&#11015;</Span>
         <DropDown
           name="monat"
           onChange={handleChangeMonth}
@@ -49,9 +49,9 @@ export default function FilterMenu({
           <option value="11">November</option>
           <option value="12">Dezember</option>
         </DropDown>
-        <DropdownIcon src={dropdownIcon} alt="dropdown icon"></DropdownIcon>
       </Wrapper>
       <Wrapper columnStart={'4'}>
+        <Span>&#11015;</Span>
         <DropDown name="jahr" onChange={handleChangeYear} value={selectedYear}>
           <option value="">Jahr </option>
           <option value="19">2019</option>
@@ -62,7 +62,6 @@ export default function FilterMenu({
           <option value="24">2024</option>
           <option value="25">2025</option>
         </DropDown>
-        <DropdownIcon src={dropdownIcon} alt="dropdown icon"></DropdownIcon>
       </Wrapper>
     </Menu>
   )
@@ -110,33 +109,28 @@ const Text2 = styled.h3`
     grid-row-start: 1;
   }
 `
-const Wrapper = styled.section`
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  align-items: center;
-  grid-row-start: 4;
-  background: rgb(201 193 171);
-  @media (min-width: 768px) {
-    grid-column-start: ${props => props.columnStart};
-    grid-row-start: 2;
-  }
-`
+
 const DropDown = styled.select`
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  cursor: pointer;
   color: rgb(107 107 107);
   background: rgb(201 193 171);
   font-size: 16px;
   height: 32px;
-  border: none;
-  padding-left: 5px;
-  -webkit-appearance: button;
-  appearance: button;
-  outline: none;
-  position: relative;
+  width: 100%;
+  padding-left: 10px;
 `
-const DropdownIcon = styled.img`
-  grid-column-start: 2;
-  text-align: center;
-  display: inline;
+const Wrapper = styled.div`
+  position: relative;
+  max-width: 250px;
+`
+const Span = styled.span`
+  position: absolute;
   pointer-events: none;
-  z-index: 1;
+  right: 10px;
+  top: 5px;
+  color: rgb(107 107 107);
 `

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 
 import Globalstyles from '../general/Globalstyles'
@@ -13,12 +13,9 @@ import FormNotice from './FormNotice'
 import Footer from '../general/Footer'
 
 export default function Create({ onSubmit1, onSubmit2, onSubmit3 }) {
-  const [selected, setSelected] = useState('Gewährleistungsmangel')
+  const [selectedValue, setSelectedValue] = useState('Gewährleistungsmangel')
   const [showAcceptance, setShowAcceptance] = useState(true)
 
-  function handleChange(event) {
-    setSelected(event.target.value)
-  }
   return (
     <Grid>
       <Globalstyles></Globalstyles>
@@ -27,31 +24,36 @@ export default function Create({ onSubmit1, onSubmit2, onSubmit3 }) {
         <Headline>Neue Meldung erstellen</Headline>
         <Category>
           <Headline2>Kategorie der Meldung</Headline2>
-          <DropDown handleChange={handleChange} selected={selected}></DropDown>
+          <DropDown
+            handleChange={event => setSelectedValue(event.target.value)}
+          ></DropDown>
         </Category>
-        {selected === 'Gewährleistungsmangel' ? (
-          showAcceptance ? (
-            <Acceptance
-              handleAccept={() => {
-                setShowAcceptance(false)
-              }}
-            ></Acceptance>
+        <Wrapper2>
+          {selectedValue === 'Gewährleistungsmangel' ? (
+            showAcceptance ? (
+              <Acceptance
+                handleAccept={event => {
+                  event.preventDefault()
+                  setShowAcceptance(false)
+                }}
+              ></Acceptance>
+            ) : (
+              <Form onSubmit1={onSubmit1}></Form>
+            )
           ) : (
-            <Form onSubmit1={onSubmit1}></Form>
-          )
-        ) : (
-          ''
-        )}
-        {selected === 'Tüv-Mangel' ? (
-          <FormTuev onSubmit2={onSubmit2}></FormTuev>
-        ) : (
-          ''
-        )}
-        {selected === 'Allgemeines' ? (
-          <FormNotice onSubmit3={onSubmit3}></FormNotice>
-        ) : (
-          ''
-        )}
+            ''
+          )}
+          {selectedValue === 'Tüv-Mangel' ? (
+            <FormTuev onSubmit2={onSubmit2}></FormTuev>
+          ) : (
+            ''
+          )}
+          {selectedValue === 'Allgemeines' ? (
+            <FormNotice onSubmit3={onSubmit3}></FormNotice>
+          ) : (
+            ''
+          )}
+        </Wrapper2>
       </Wrapper>
       <Footer></Footer>
     </Grid>
@@ -62,6 +64,8 @@ const Wrapper = styled.div`
   flex-direction: column;
   position: relative;
   overflow-y: scroll;
+`
+const Wrapper2 = styled.div`
   @media (min-width: 768px) {
     grid-column: 1/3;
     display: grid;
