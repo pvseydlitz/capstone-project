@@ -14,7 +14,19 @@ export default function Header2({
 }) {
   const [showSearchBar, setShowSearchBar] = useState(false)
   function handleLogout() {
-    fetch('/logout').then((window.location.href = `/`))
+    fetch('/logout', {
+      mode: 'no-cors',
+      method: 'POST',
+      headers: { 'content-type': 'application json' },
+    })
+      .then(function(response) {
+        if (response.status === 200) {
+          return (window.location.href = `/`)
+        }
+      })
+      .catch(function(err) {
+        console.log(err)
+      })
   }
   return (
     <Line>
@@ -66,11 +78,13 @@ const Logout = styled.img`
   position: absolute;
   top: 10px;
   right: 25px;
+  cursor: pointer;
 `
 const Search = styled.img`
   position: absolute;
   top: 10px;
   left: 25px;
+  cursor: pointer;
 `
 const Input = styled.input`
   border: solid 2px rgb(201 193 171);

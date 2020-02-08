@@ -15,10 +15,10 @@ export default function Card({ deleteFile, file }) {
   return (
     <CardLayout key={file.index}>
       <a
-        href={`http://localhost:3333/api/files/${file.filename}`}
+        href={`http://192.168.178.20:3333/api/files/${file.filename}`}
         target="_blank"
         rel="noopener noreferrer"
-        style={{ textDecoration: 'none' }}
+        style={{ textDecoration: 'none', width: '250px', marginRight: '50px' }}
       >
         <Grid>
           <FileName>{file.filename}</FileName>
@@ -50,7 +50,7 @@ export default function Card({ deleteFile, file }) {
   )
 }
 const CardLayout = styled.section`
-  margin: 30px 0;
+  margin: 30px 20px;
   padding: 10px 20px;
   position: relative;
   background: rgb(238, 238, 238);
@@ -61,6 +61,7 @@ const Grid = styled.div`
   grid-template-columns: auto 1fr;
   grid-gap: 10px;
   align-items: center;
+  max-width: 250px;
 `
 const FileName = styled.p`
   margin: 0;
@@ -71,6 +72,7 @@ const Cross = styled.img`
   position: absolute;
   top: 10px;
   right: 20px;
+  cursor: pointer;
 `
 const DateText = styled.p`
   margin-top: 20px;

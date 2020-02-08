@@ -19,8 +19,28 @@ app.use(express.json())
 const PORT = process.env.PORT || 3333
 app.listen(PORT, () => console.log(`Express ready on port ${PORT}`))
 
-app.use(cookieParser())
 app.use(cors())
+
+app.use(function(req, res, next) {
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'POST, PUT, OPTIONS, DELETE, GET'
+  )
+  res.setHeader('Access-Control-Allow-Origin', '*') /* , 'localhost:3000' */
+  /* res.setHeader('Access-Control-Allow-Origin', '192.168.178.20:3000') */
+  /*res.setHeader(
+    'Access-Control-Allow-Origin',
+    'http://localhost:3000'
+  )  */
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  )
+  res.header('Access-Control-Allow-Credentials', true)
+  next()
+})
+
+app.use(cookieParser())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use('/registration', registrationRoutes)
@@ -28,19 +48,6 @@ app.use('/registration', registrationRoutes)
 app.get('/checkToken', withAuth, function(req, res) {
   res.sendStatus(200)
 })
-
-app.get('/logout', function(req, res) {
-  res.clearCookie('token').sendStatus(200)
-  /* res.cookie('token', 'token', {
-    expires: new Date('Wed, 31 Oct 2012 08:50:17 GMT'),
-  }) */
-})
-/* Server Funktion, die ich später noch brauchen werde.
-app.get('/all', async (req, res) => {
-  const messages = await Message.find()
-  const messages2 = await MessageTuev.find()
-  res.json({ messages, messages2 })
-}) */
 
 app.get(
   '/messages',
@@ -102,19 +109,23 @@ const path = require('path')
 const logger = require('morgan')
 const file = require('./file')
 
-app.use(function(req, res, next) {
-  res.setHeader(
-    'Access-Control-Allow-Methods',
-    'POST, PUT, OPTIONS, DELETE, GET'
-  )
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept'
-  )
-  res.header('Access-Control-Allow-Credentials', true)
-  next()
-})
 app.use(express.static(path.join(__dirname, 'client/build')))
 app.use(logger('dev'))
 app.use('/api/', file)
+
+app.post('/logout', function(req, res) {
+  res.clearCookie('token', { path: '/' })
+  return res.sendStatus(200)
+
+  /* res.cookie('token', 'token', {
+    expires: new Date('Wed, 31 Oct 2012 08:50:17 GMT'),
+  }) */
+  /*   res.clearCookie('token').sendStatus(200)
+   */
+})
+/* Server Funktion, die ich später noch brauchen werde.
+app.get('/all', async (req, res) => {
+  const messages = await Message.find()
+  const messages2 = await MessageTuev.find()
+  res.json({ messages, messages2 })
+}) */

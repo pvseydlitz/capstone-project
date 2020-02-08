@@ -10,4 +10,5 @@ export default styled.div`
   font-size: 16px;
   background: rgb(201 193 171);
   color: rgb(253 252 251);
+  cursor: pointer;
 `

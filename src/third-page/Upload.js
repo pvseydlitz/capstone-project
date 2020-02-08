@@ -81,7 +81,7 @@ export default function Upload() {
         checkInput={checkInput}
         searchedItem={searchedItem.toLowerCase()}
       ></Header>
-      <div style={{ overflowY: 'scroll' }}>
+      <Section>
         <Form
           uploadFile={uploadFile}
           fileChanged={fileChanged}
@@ -89,23 +89,25 @@ export default function Upload() {
           showForm={showForm}
           picture={picture}
         ></Form>
-        <CardWrapper>
-          {files
-            .filter(file => {
-              const name = file.filename.toLowerCase()
-              const query = searchedItem
-              return query === '' || name.includes(query)
-            })
-            .map((file, index) => (
-              <Card file={file} key={index} deleteFile={deleteFile}></Card>
-            ))}
-        </CardWrapper>
-      </div>
+        {files
+          .filter(file => {
+            const name = file.filename.toLowerCase()
+            const query = searchedItem
+            return query === '' || name.includes(query)
+          })
+          .map((file, index) => (
+            <Card file={file} key={index} deleteFile={deleteFile}></Card>
+          ))}
+      </Section>
       <Footer></Footer>
     </Grid>
   )
 }
-const CardWrapper = styled.div`
-  margin: 20px;
+const Section = styled.div`
   overflow-y: scroll;
+
+  @media (min-width: 768px) {
+    grid-column: 1/3;
+    display: grid;
+  }
 `

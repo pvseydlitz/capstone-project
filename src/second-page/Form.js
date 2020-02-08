@@ -3,12 +3,12 @@ import axios from 'axios'
 import styled from 'styled-components/macro'
 import emailjs from 'emailjs-com'
 import { confirmAlert } from 'react-confirm-alert'
+
 import Headline2 from './Headline2'
 import Headline3 from './Headline3'
 import Input from './Input'
 import Description from './Description'
 import Checkboxes from './Checkboxes'
-import AcceptButton from './AcceptButton'
 import FinishButton from './FinishButton'
 import uploadIcon from '../icons/upload.svg'
 
@@ -50,12 +50,6 @@ const MainForm = memo(() => {
         position={'1018px'}
         headline={'Genaue Mangelbeschreibung'}
       ></Description>
-      <Note>
-        Hinweis: Für den Fall, dass es sich nicht um einen Gewährleistungsmangel
-        handelt, ist der Aufwand für Anfahrts und Untersuchungskosten dem
-        Architekturbüro und / oder der Handwerksfirma zu erstatten.
-      </Note>
-      <AcceptButton position={'absolute'} top={'1302px'}></AcceptButton>
     </>
   )
 })
@@ -68,7 +62,7 @@ export default function Form({ onSubmit1 }) {
       <MainForm />
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <FinishButton
-          style={{ position: 'absolute', top: '1427px', marginBottom: '40px' }}
+          style={{ position: 'absolute', top: '1280px', marginBottom: '40px' }}
         >
           Meldung hochladen
         </FinishButton>
@@ -81,6 +75,7 @@ export default function Form({ onSubmit1 }) {
             type="file"
             name="file"
             onChange={onInput}
+            multiple
           ></input>
           <img src={uploadIcon} alt={'upload icon'}></img>
         </UploadWrapper>
@@ -110,8 +105,6 @@ export default function Form({ onSubmit1 }) {
       bereich.push('Sondereigentum')
     }
     data.bereich = bereich
-    console.log(data)
-
     if (data.file.name === '') {
       confirmAlert({
         title: 'Bestätigung',
@@ -198,6 +191,7 @@ export default function Form({ onSubmit1 }) {
       title: 'Ihre Meldung wurde erfolgreich hochgeladen.',
     })
   }
+
   function onInput(event) {
     const data = event.target.files
     if (data.length > 0) {
@@ -211,6 +205,9 @@ export default function Form({ onSubmit1 }) {
 const Wrapper = styled.form`
   position: relative;
   margin: 0 20px;
+  @media (min-width: 768px) {
+    margin: 0 100px;
+  }
 `
 const GridWer = styled.div`
   display: grid;
@@ -226,29 +223,21 @@ const GridWo = styled.div`
   position: absolute;
   top: 460px;
 `
-const Note = styled.p`
-  border: solid 2px rgb(107, 107, 107);
-  padding: 5px;
-  margin: 0;
-  color: rgb(107, 107, 107);
-  font-size: 14px;
-  position: absolute;
-  top: 1193px;
-`
 const UploadWrapper = styled.label`
   display: grid;
   grid-template-columns: 150px 1fr;
   align-items: center;
   position: absolute;
-  top: 1340px;
+  top: 1193px;
   background: rgb(201 193 171);
   padding: 4px 10px;
   border-radius: 5px;
+  cursor: pointer;
 `
 const ChoosenPicture = styled.p`
   margin: 0;
   color: rgb(107, 107, 107);
   font-size: 14px;
   position: absolute;
-  top: 1385px;
+  top: 1238px;
 `

@@ -62,7 +62,7 @@ export default function Message({
         </Description>
         <WrapperDropdown>
           <Description>
-            <b>Status:</b>{' '}
+            <b>Status:</b>
           </Description>
           <DropdownMenu
             handleChangeDropdown={handleChangeDropdown}
@@ -71,7 +71,7 @@ export default function Message({
           ></DropdownMenu>
         </WrapperDropdown>
 
-        <b>
+        {/* <b>
           <p
             style={{
               margin: '0',
@@ -84,8 +84,19 @@ export default function Message({
         </b>
         <Description>{showContent ? message.name : ''}</Description>
         <Description>{showContent ? message.telefonnummer : ''}</Description>
-        <Description>{showContent ? message.email : ''}</Description>
-        <Content>{showContent ? message.beschreibung : ''}</Content>
+        <Description>{showContent ? message.email : ''}</Description> */}
+        {showContent ? (
+          <Description>
+            <br></br>
+            <b>Mangel Beschreibung</b>
+          </Description>
+        ) : (
+          ''
+        )}
+        <Content>
+          <br></br>
+          {showContent ? message.beschreibung : ''}
+        </Content>
         {showContent ? <Image src={message.url} alt=""></Image> : ''}
       </Wrapper>
 
@@ -107,16 +118,23 @@ export default function Message({
 
 const MessageLayout = styled.div`
   margin: 50px 20px;
+  margin-top: 10px;
   padding: 10px 20px;
   position: relative;
   max-height: ${props => (props.active ? '700px' : '265px')};
   background: rgb(238, 238, 238);
   border-radius: 10px;
+  @media (min-width: 768px) {
+    margin: 50px 2vw;
+    margin-top: 20px;
+    width: 46vw;
+  }
 `
 const Cross = styled.img`
   position: absolute;
   right: 20px;
   top: 28px;
+  cursor: pointer;
 `
 const Headline = styled.h2`
   margin-bottom: 10px;
@@ -126,7 +144,7 @@ const Headline = styled.h2`
 const Wrapper = styled.div`
   display: grid;
   grid-template-rows: ${props =>
-    props.active ? 'repeat(5, 30px) 16px' : 'repeat(9, 30px) auto auto 29px'};
+    props.active ? 'repeat(5, 30px) 16px' : 'repeat(6, 30px) auto auto 29px'};
 `
 const Description = styled.p`
   margin: 0;

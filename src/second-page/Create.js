@@ -20,7 +20,7 @@ export default function Create({ onSubmit1, onSubmit2, onSubmit3 }) {
     <Grid>
       <Globalstyles></Globalstyles>
       <Header showSearchIcon={false}></Header>
-      <Wrapper style={{ overflowY: 'scroll' }}>
+      <Wrapper>
         <Headline>Neue Meldung erstellen</Headline>
         <Category>
           <Headline2>Kategorie der Meldung</Headline2>
@@ -28,32 +28,30 @@ export default function Create({ onSubmit1, onSubmit2, onSubmit3 }) {
             handleChange={event => setSelectedValue(event.target.value)}
           ></DropDown>
         </Category>
-        <Wrapper2>
-          {selectedValue === 'Gewährleistungsmangel' ? (
-            showAcceptance ? (
-              <Acceptance
-                handleAccept={event => {
-                  event.preventDefault()
-                  setShowAcceptance(false)
-                }}
-              ></Acceptance>
-            ) : (
-              <Form onSubmit1={onSubmit1}></Form>
-            )
+        {selectedValue === 'Gewährleistungsmangel' ? (
+          showAcceptance ? (
+            <Acceptance
+              handleAccept={event => {
+                event.preventDefault()
+                setShowAcceptance(false)
+              }}
+            ></Acceptance>
           ) : (
-            ''
-          )}
-          {selectedValue === 'Tüv-Mangel' ? (
-            <FormTuev onSubmit2={onSubmit2}></FormTuev>
-          ) : (
-            ''
-          )}
-          {selectedValue === 'Allgemeines' ? (
-            <FormNotice onSubmit3={onSubmit3}></FormNotice>
-          ) : (
-            ''
-          )}
-        </Wrapper2>
+            <Form onSubmit1={onSubmit1}></Form>
+          )
+        ) : (
+          ''
+        )}
+        {selectedValue === 'Tüv-Mangel' ? (
+          <FormTuev onSubmit2={onSubmit2}></FormTuev>
+        ) : (
+          ''
+        )}
+        {selectedValue === 'Allgemeines' ? (
+          <FormNotice onSubmit3={onSubmit3}></FormNotice>
+        ) : (
+          ''
+        )}
       </Wrapper>
       <Footer></Footer>
     </Grid>
@@ -64,13 +62,12 @@ const Wrapper = styled.div`
   flex-direction: column;
   position: relative;
   overflow-y: scroll;
-`
-const Wrapper2 = styled.div`
   @media (min-width: 768px) {
     grid-column: 1/3;
-    display: grid;
+    justify-items: center;
   }
 `
+
 const Headline = styled.h1`
   color: rgb(187 179 163);
   font-size: 21px;
@@ -85,4 +82,7 @@ const Category = styled.div`
   position: absolute;
   top: 55px;
   margin: 0 20px;
+  @media (min-width: 768px) {
+    margin: 0 100px;
+  }
 `

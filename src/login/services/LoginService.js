@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const LoginService = data =>
   axios
-    .post('http://localhost:3333/registration/login', data)
+    .post('http://192.168.178.20:3000/registration/login', data)
     .then(res => res.status)
 
 export default LoginService

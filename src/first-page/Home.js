@@ -246,9 +246,3 @@ const MessageWrapper = styled.div`
     display: grid;
   }
 `
-/* const Section = styled.section`
-  @media (min-width: 768px) {
-    grid-column: 1/2;
-    display: grid;
-    grid-template-rows: auto;
-  } */

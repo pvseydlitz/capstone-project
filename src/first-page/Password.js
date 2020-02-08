@@ -24,9 +24,10 @@ export default function password({ passwordApproved, hidePassword, text }) {
       <PasswordWrapper>
         <Text>{text}</Text>
         <Input
+          autoFocus
           type="password"
           placeholder="Passwort eingeben"
-          autoFocus
+          onClic
           onChange={event => checkPasswordInput(event.target.value)}
         ></Input>
       </PasswordWrapper>

@@ -20,11 +20,26 @@ export default function Header({
   filterMenu2Active,
   filterMenu3Active,
 }) {
-  function handleLogout() {
+  /* function handleLogout() {
     fetch('/logout', {
       method: 'get',
       credentials: 'include', // <--- YOU NEED THIS LINE
     }).then((window.location.href = `/`))
+  } */
+  function handleLogout() {
+    fetch('/logout', {
+      mode: 'no-cors',
+      method: 'POST',
+      headers: { 'content-type': 'application json' },
+    })
+      .then(function(response) {
+        if (response.status === 200) {
+          return (window.location.href = `/`)
+        }
+      })
+      .catch(function(err) {
+        console.log(err)
+      })
   }
 
   return (
@@ -92,6 +107,7 @@ const Label = styled.label`
   position: absolute;
   left: 0;
   top: 30px;
+  cursor: pointer;
 `
 const Filter = styled.p`
   margin: 0px;
@@ -106,4 +122,5 @@ const Logout = styled.img`
   position: absolute;
   top: 45px;
   right: 25px;
+  cursor: pointer;
 `

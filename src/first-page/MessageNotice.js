@@ -45,6 +45,7 @@ export default function MessageTuev({ messageNotice, handleDeleteNotice }) {
 
 const MessageLayout = styled.div`
   margin: 50px 20px;
+  margin-top: 20px;
   padding: 10px 20px;
   position: relative;
   background: rgb(238, 238, 238);
@@ -54,6 +55,7 @@ const Cross = styled.img`
   position: absolute;
   right: 20px;
   top: 28px;
+  cursor: pointer;
 `
 const Headline = styled.h2`
   margin-bottom: 10px;

@@ -9,11 +9,11 @@ export const UserRegistration = data => {
   data['password'] = hash
 
   return axios
-    .post('http://localhost:3333/registration/register', data)
+    .post('http://192.168.178.20:3000/registration/register', data)
     .then(res => res.status)
 }
 
 export const UsernameValidation = data =>
   axios
-    .post('http://localhost:3333/registration/validateUsername', data)
+    .post('http://192.168.178.20:3000/registration/validateUsername', data) //davor war URL localhost:3000/regi...
     .then(exist => exist.status)

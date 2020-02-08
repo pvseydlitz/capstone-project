@@ -43,7 +43,7 @@ const Wrapper = styled.div`
   top: 100px;
   margin-bottom: 40px;
   @media (min-width: 768px) {
-    grid-column: 1 / 3;
+    margin: 0 100px;
   }
 `
 const Grid = styled.form`
@@ -51,6 +51,7 @@ const Grid = styled.form`
   grid-template-rows: 2fr auto 1fr 1fr;
   grid-gap: 20px;
   margin-top: 50px;
+  margin-bottom: 40px;
 `
 const Text = styled.p`
   border: solid 2px rgb(107, 107, 107);
@@ -69,4 +70,5 @@ const Button = styled.button`
   color: rgb(253 252 251);
   display: flex;
   justify-content: center;
+  cursor: pointer;
 `
