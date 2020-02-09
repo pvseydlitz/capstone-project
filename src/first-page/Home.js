@@ -11,7 +11,6 @@ import RadioButtons from './RadioButtons'
 import Message from './Message'
 import MessageTuev from './MessageTuev'
 import MessageNotice from './MessageNotice'
-import Footer from '../general/Footer'
 
 export default function Home({
   messages,
@@ -88,7 +87,7 @@ export default function Home({
         filterMenu2Active={showFilterMenuTuevMessages}
         filterMenu3Active={showFilterMenuNoticeMessages}
       ></Header>
-      <MessageWrapper>
+      <MessageWrapper id="messageWrapper">
         {showFilterMenu ? (
           <FilterMenu
             handleClick={() => setIsOnlyBookmarkShown(!isOnlyBookmarkShown)}
@@ -233,7 +232,6 @@ export default function Home({
               ))
           : ''}
       </MessageWrapper>
-      <Footer></Footer>
     </Grid>
   )
 }

@@ -4,7 +4,6 @@ import styled from 'styled-components/macro'
 import Globalstyles from '../general/Globalstyles'
 import Grid from '../general/Grid2'
 import Header from '../general/Header2'
-import Footer from '../general/Footer'
 import Form from './Form'
 import Card from './Card'
 
@@ -99,7 +98,6 @@ export default function Upload() {
             <Card file={file} key={index} deleteFile={deleteFile}></Card>
           ))}
       </Section>
-      <Footer></Footer>
     </Grid>
   )
 }

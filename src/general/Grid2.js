@@ -2,8 +2,8 @@ import styled from 'styled-components/macro'
 
 export default styled.div`
   display: grid;
-  grid-template-rows: 45px auto 60px;
-  height: 100vh;
+  grid-template-rows: 60px auto;
+  height: 100%;
   position: absolute;
   top: 0;
   bottom: 0;

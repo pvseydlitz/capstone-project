@@ -14,14 +14,13 @@ export default function FilterMenu({
   selectedYear,
 }) {
   return (
-    <Menu>
+    <Menu id="filterMenu">
       <Text>Gemerkte Meldungen</Text>
       <ToggleButton
         handleClick={handleClick}
         filterActive={filterActive}
       ></ToggleButton>
       <Input
-        autoFocus
         type="text"
         placeholder="Suche eingeben"
         onChange={checkInput}
@@ -29,7 +28,6 @@ export default function FilterMenu({
       ></Input>
       <Text2>Nach Monat oder Jahr sortieren</Text2>
       <Wrapper columnStart={'3'}>
-        <Span>&#11015;</Span>
         <DropDown
           name="monat"
           onChange={handleChangeMonth}
@@ -51,7 +49,6 @@ export default function FilterMenu({
         </DropDown>
       </Wrapper>
       <Wrapper columnStart={'4'}>
-        <Span>&#11015;</Span>
         <DropDown name="jahr" onChange={handleChangeYear} value={selectedYear}>
           <option value="">Jahr </option>
           <option value="19">2019</option>
@@ -122,15 +119,11 @@ const DropDown = styled.select`
   height: 32px;
   width: 100%;
   padding-left: 10px;
+  background-image: url(' http://192.168.178.20:3000/static/media/dropdown.7f1cbd23.svg');
+  background-repeat: no-repeat;
+  background-position: 95% center;
 `
 const Wrapper = styled.div`
   position: relative;
   max-width: 250px;
-`
-const Span = styled.span`
-  position: absolute;
-  pointer-events: none;
-  right: 10px;
-  top: 5px;
-  color: rgb(107 107 107);
 `

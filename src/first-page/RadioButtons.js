@@ -10,7 +10,7 @@ export default function RadioButtons({
   isClicked3,
 }) {
   return (
-    <RadioButtonsLayout>
+    <RadioButtonsLayout id="radioButtons">
       <Label1 onClick={handleClick1} active={isClicked1}>
         <Button type="radio" />
         Mangelmeldungen

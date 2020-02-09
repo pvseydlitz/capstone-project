@@ -4,7 +4,6 @@ import styled from 'styled-components/macro'
 export default function DropdownMenu({ handleChange, selected }) {
   return (
     <Wrapper>
-      <Span>&#11015;</Span>
       <DropDown name="kategorie" onChange={handleChange} value={selected}>
         <option value="Gewährleistungsmangel">Gewährleistungsmangel</option>
         <option value="Tüv-Mangel">TÜV-Mangel</option>
@@ -26,16 +25,12 @@ const DropDown = styled.select`
   height: 32px;
   width: 100%;
   padding-left: 10px;
+  background-image: url(' http://192.168.178.20:3000/static/media/dropdown.7f1cbd23.svg');
+  background-repeat: no-repeat;
+  background-position: 95% center;
 `
 const Wrapper = styled.div`
   position: relative;
-  min-width: 220px;
+  min-width: 240px;
   max-width: 300px;
-`
-const Span = styled.span`
-  position: absolute;
-  pointer-events: none;
-  right: 10px;
-  top: 5px;
-  color: rgb(107 107 107);
 `

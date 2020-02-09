@@ -18,7 +18,6 @@ export default function DropdownMenu({
   return (
     <div>
       <Wrapper>
-        <Span>&#11015;</Span>
         <DropDown
           name="kategorie"
           onChange={event => {
@@ -61,16 +60,12 @@ const DropDown = styled.select`
   height: 32px;
   width: 100%;
   padding-left: 10px;
+  background-image: url(' http://192.168.178.20:3000/static/media/dropdown.7f1cbd23.svg');
+  background-repeat: no-repeat;
+  background-position: 95% center;
 `
 const Wrapper = styled.div`
   position: relative;
   min-width: 180px;
   max-width: 250px;
-`
-const Span = styled.span`
-  position: absolute;
-  pointer-events: none;
-  right: 10px;
-  top: 5px;
-  color: rgb(107 107 107);
 `

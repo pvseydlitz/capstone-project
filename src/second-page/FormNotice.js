@@ -22,7 +22,6 @@ export default function FormNotice({ onSubmit3 }) {
       <Grid>
         <Headline3>Kategorie</Headline3>
         <Wrapper2>
-          <Span>&#11015;</Span>
           <DropDown name="kategorie">
             <option value="">Bitte auswählen</option>
             <option value="Allgemeine Informationen">
@@ -78,16 +77,12 @@ const DropDown = styled.select`
   height: 32px;
   width: 100%;
   padding-left: 10px;
+  background-image: url(' http://192.168.178.20:3000/static/media/dropdown.7f1cbd23.svg');
+  background-repeat: no-repeat;
+  background-position: 95% center;
 `
 const Wrapper2 = styled.div`
   position: relative;
   min-width: 220px;
   max-width: 300px;
-`
-const Span = styled.span`
-  position: absolute;
-  pointer-events: none;
-  right: 10px;
-  top: 5px;
-  color: rgb(107 107 107);
 `

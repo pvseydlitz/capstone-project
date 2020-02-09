@@ -1,14 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 
 import FilterButton from '../first-page/FilterButton'
+import Menu from './Menu'
 
 import logo from '../icons/logo.svg'
 import filterIcon from '../icons/filterbutton.svg'
 import filterIconClicked from '../icons/filterbutton-clicked.svg'
-import logout from '../icons/logout.svg'
-
+import menu from '../icons/menu.svg'
 export default function Header({
   showFilter1,
   showFilter2,
@@ -20,32 +20,26 @@ export default function Header({
   filterMenu2Active,
   filterMenu3Active,
 }) {
-  /* function handleLogout() {
-    fetch('/logout', {
-      method: 'get',
-      credentials: 'include', // <--- YOU NEED THIS LINE
-    }).then((window.location.href = `/`))
-  } */
-  function handleLogout() {
-    fetch('/logout', {
-      mode: 'no-cors',
-      method: 'POST',
-      headers: { 'content-type': 'application json' },
-    })
-      .then(function(response) {
-        if (response.status === 200) {
-          return (window.location.href = `/`)
-        }
-      })
-      .catch(function(err) {
-        console.log(err)
-      })
+  const [showMenu, setShowMenu] = useState(false)
+  function filter1Clicked() {
+    handleClick1()
+    const menu = document.querySelector('#messageWrapper')
+    menu.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
   }
-
+  function filter2Clicked() {
+    handleClick2()
+    const menu = document.querySelector('#messageWrapper')
+    menu.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+  }
+  function filter3Clicked() {
+    handleClick3()
+    const menu = document.querySelector('#messageWrapper')
+    menu.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+  }
   return (
     <Line>
       {showFilter1 ? (
-        <Label onClick={() => handleClick1()}>
+        <Label onClick={() => filter1Clicked()}>
           <FilterButton
             src={filterMenu1Active ? filterIconClicked : filterIcon}
             alt="filter icon"
@@ -56,7 +50,7 @@ export default function Header({
         ''
       )}
       {showFilter2 ? (
-        <Label onClick={() => handleClick2()}>
+        <Label onClick={() => filter2Clicked()}>
           <FilterButton
             src={filterMenu2Active ? filterIconClicked : filterIcon}
             alt="filter icon"
@@ -67,7 +61,7 @@ export default function Header({
         ''
       )}
       {showFilter3 ? (
-        <Label onClick={() => handleClick3()}>
+        <Label onClick={() => filter3Clicked()}>
           <FilterButton
             src={filterMenu3Active ? filterIconClicked : filterIcon}
             alt="filter icon"
@@ -77,7 +71,16 @@ export default function Header({
       ) : (
         ''
       )}
-      <Logout src={logout} onClick={handleLogout}></Logout>
+      <MenuLabel1 onClick={() => setShowMenu(!showMenu)}>
+        <MenuButton src={menu}></MenuButton>
+      </MenuLabel1>
+      {showMenu ? (
+        <MenuLabel2 onClick={() => setShowMenu(false)}>
+          <Menu position={'97px'}></Menu>
+        </MenuLabel2>
+      ) : (
+        ''
+      )}
       <Logo src={logo} alt="logo"></Logo>
     </Line>
   )
@@ -117,8 +120,23 @@ const Filter = styled.p`
   top: 18px;
   left: 48px;
 `
-
-const Logout = styled.img`
+const MenuLabel1 = styled.label`
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 90px;
+  width: 70px;
+`
+const MenuLabel2 = styled.label`
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 500px;
+  width: 300px;
+`
+const MenuButton = styled.img`
   position: absolute;
   top: 45px;
   right: 25px;

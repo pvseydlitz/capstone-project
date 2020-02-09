@@ -13,7 +13,6 @@ export default function FilterMenuNoticeMessages({
     <Menu>
       <Text start={'1'}>Nach Kategorie sortieren</Text>
       <Wrapper start={'2'} column={'1 / 3'}>
-        <Span>&#11015;</Span>
         <DropDown
           name="kategorie"
           onChange={handleChangeKategorie}
@@ -31,7 +30,6 @@ export default function FilterMenuNoticeMessages({
         Nach Monat oder Jahr sortieren
       </Text>
       <Wrapper start={'4'} startTabletRow={'2'} startTabletColumn={'3'}>
-        <Span>&#11015;</Span>
         <DropDown
           name="monat"
           onChange={handleChangeMonth}
@@ -53,9 +51,7 @@ export default function FilterMenuNoticeMessages({
         </DropDown>
       </Wrapper>
       <Wrapper start={'4'} startTabletRow={'2'} startTabletColumn={'4'}>
-        <Span>&#11015;</Span>
         <DropDown name="jahr" onChange={handleChangeYear} value={selectedYear}>
-          <Span>&#11015;</Span>
           <option value="">Jahr </option>
           <option value="19">2019</option>
           <option value="20">2020</option>
@@ -110,7 +106,10 @@ const DropDown = styled.select`
   font-size: 16px;
   height: 32px;
   width: 100%;
-  padding-left: 10px;
+  padding: 0 10px;
+  background-image: url(' http://192.168.178.20:3000/static/media/dropdown.7f1cbd23.svg');
+  background-repeat: no-repeat;
+  background-position: 95% center;
 `
 const Wrapper = styled.div`
   position: relative;
@@ -121,11 +120,4 @@ const Wrapper = styled.div`
     grid-row-start: ${props => props.startTabletRow};
     grid-column-start: ${props => props.startTabletColumn};
   }
-`
-const Span = styled.span`
-  position: absolute;
-  pointer-events: none;
-  right: 10px;
-  top: 5px;
-  color: rgb(107 107 107);
 `
