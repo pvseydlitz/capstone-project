@@ -130,4 +130,5 @@ const Button = styled.button`
   color: rgb(253 252 251);
   display: flex;
   justify-content: center;
+  cursor: pointer;
 `

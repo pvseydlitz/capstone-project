@@ -29,7 +29,7 @@ export default function acceptance({ handleAccept }) {
           damit diese Termine mit Ihnen direkt vereinbaren können. <br /> <br />
           Bei weiteren Fragen stehen wir gern zur Verfügung. <br /> <br />
           Mit freundlichen Grüssen <br />
-          Simone Caspar
+          Ihr Aussenaslter Team
         </Text>
         <AcceptButton></AcceptButton>
         <Button>Zum Formular</Button>
@@ -42,12 +42,16 @@ const Wrapper = styled.div`
   position: absolute;
   top: 100px;
   margin-bottom: 40px;
+  @media (min-width: 768px) {
+    margin: 0 100px;
+  }
 `
 const Grid = styled.form`
   display: grid;
   grid-template-rows: 2fr auto 1fr 1fr;
   grid-gap: 20px;
   margin-top: 50px;
+  margin-bottom: 40px;
 `
 const Text = styled.p`
   border: solid 2px rgb(107, 107, 107);
@@ -66,4 +70,5 @@ const Button = styled.button`
   color: rgb(253 252 251);
   display: flex;
   justify-content: center;
+  cursor: pointer;
 `

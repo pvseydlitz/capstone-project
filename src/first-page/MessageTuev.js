@@ -23,7 +23,7 @@ export default function MessageTuev({
   }
 
   return (
-    <MessageLayout>
+    <MessageLayout active={showContent}>
       <Cross
         src={cross}
         onClick={() => {
@@ -46,9 +46,11 @@ export default function MessageTuev({
           <DropdownMenu
             handleChangeDropdown={handleChangeDropdown}
             selected={messageTuev.status}
+            showValue0={false}
           ></DropdownMenu>
         </WrapperDropdown>
         <Description>
+          <br></br>
           <b>{showContent ? 'Mangel / Feststellung / Hinweis' : ''}</b>
         </Description>
         <Content>{showContent ? messageTuev.beschreibung : ''}</Content>
@@ -71,15 +73,23 @@ export default function MessageTuev({
 
 const MessageLayout = styled.div`
   margin: 50px 20px;
+  margin-top: 20px;
   padding: 10px 20px;
   position: relative;
   background: rgb(238, 238, 238);
   border-radius: 10px;
+  max-height: ${props => (props.active ? '' : '205px')};
+  @media (min-width: 768px) {
+    margin: 50px 2vw;
+    margin-top: 20px;
+    width: 46vw;
+  }
 `
 const Cross = styled.img`
   position: absolute;
   right: 20px;
   top: 28px;
+  cursor: pointer;
 `
 const Headline = styled.h2`
   margin-bottom: 10px;
@@ -89,7 +99,7 @@ const Headline = styled.h2`
 const Wrapper = styled.div`
   display: grid;
   grid-template-rows: ${props =>
-    props.active ? 'repeat(3, 30px) 16px' : 'repeat(4, 30px) auto 29px'};
+    props.active ? 'repeat(3, 30px) 16px' : 'repeat(3, 30px) 50px auto 29px'};
   width: 100%;
 `
 const Description = styled.p`

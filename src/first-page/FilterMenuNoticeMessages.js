@@ -1,8 +1,6 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 
-import dropdownIcon from '../icons/dropdown.svg'
-
 export default function FilterMenuNoticeMessages({
   handleChangeKategorie,
   selectedKategorie,
@@ -27,14 +25,11 @@ export default function FilterMenuNoticeMessages({
           </option>
           <option value="Dachterasse">Dachterasse</option>
         </DropDown>
-        <DropdownIcon
-          src={dropdownIcon}
-          alt="dropdown icon"
-          position={'-5px'}
-        ></DropdownIcon>
       </Wrapper>
-      <Text start={'3'}>Nach Monat oder Jahr sortieren</Text>
-      <Wrapper start={'4'}>
+      <Text start={'3'} startTabletRow={'1'} tabletColumn={'3/5'}>
+        Nach Monat oder Jahr sortieren
+      </Text>
+      <Wrapper start={'4'} startTabletRow={'2'} startTabletColumn={'3'}>
         <DropDown
           name="monat"
           onChange={handleChangeMonth}
@@ -54,9 +49,8 @@ export default function FilterMenuNoticeMessages({
           <option value="11">November</option>
           <option value="12">Dezember</option>
         </DropDown>
-        <DropdownIcon src={dropdownIcon} alt="dropdown icon"></DropdownIcon>
       </Wrapper>
-      <Wrapper start={'4'}>
+      <Wrapper start={'4'} startTabletRow={'2'} startTabletColumn={'4'}>
         <DropDown name="jahr" onChange={handleChangeYear} value={selectedYear}>
           <option value="">Jahr </option>
           <option value="19">2019</option>
@@ -67,7 +61,6 @@ export default function FilterMenuNoticeMessages({
           <option value="24">2024</option>
           <option value="25">2025</option>
         </DropDown>
-        <DropdownIcon src={dropdownIcon} alt="dropdown icon"></DropdownIcon>
       </Wrapper>
     </Menu>
   )
@@ -80,9 +73,15 @@ const Menu = styled.div`
   margin-top: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
   column-gap: 20px;
   align-items: center;
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    height: 75px;
+    grid-column: 1/3;
+  }
 `
 const Text = styled.h3`
   grid-row-start: ${props => props.start};
@@ -90,34 +89,35 @@ const Text = styled.h3`
   margin: 0;
   font-size: 16px;
   color: rgb(107, 107, 107);
+  @media (min-width: 768px) {
+    grid-row-start: ${props => props.startTabletRow};
+    grid-column: ${props => props.tabletColumn};
+  }
 `
-const Wrapper = styled.section`
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  align-items: center;
-  grid-row-start: ${props => props.start};
-  grid-column: ${props => props.column};
-  max-width: 235px;
-  background: rgb(201 193 171);
-  position: relative;
-`
+
 const DropDown = styled.select`
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  cursor: pointer;
   color: rgb(107 107 107);
   background: rgb(201 193 171);
   font-size: 16px;
   height: 32px;
-  border: none;
-  padding-left: 5px;
-  -webkit-appearance: button;
-  appearance: button;
-  outline: none;
+  width: 100%;
+  padding: 0 10px;
+  background-image: url(' http://192.168.178.20:3000/static/media/dropdown.7f1cbd23.svg');
+  background-repeat: no-repeat;
+  background-position: 95% center;
 `
-const DropdownIcon = styled.img`
-  grid-column-start: 2;
-  text-align: center;
-  display: inline;
-  pointer-events: none;
-  z-index: 1;
-  position: absolute;
-  left: ${props => props.position};
+const Wrapper = styled.div`
+  position: relative;
+  grid-row-start: ${props => props.start};
+  grid-column: ${props => props.column};
+  max-width: 250px;
+  @media (min-width: 768px) {
+    grid-row-start: ${props => props.startTabletRow};
+    grid-column-start: ${props => props.startTabletColumn};
+  }
 `

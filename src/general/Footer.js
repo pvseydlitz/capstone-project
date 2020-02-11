@@ -1,49 +1,97 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components/macro'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
-import home from '../icons/home.svg'
-import plusSign from '../icons/plus-sign.svg'
-import archive from '../icons/archive.svg'
-import person from '../icons/person.svg'
+import homeIcon from '../icons/home.svg'
+import homeIconClicked from '../icons/home-clicked.svg'
+import plusSignIcon from '../icons/plus-sign.svg'
+import plusSignIconClicked from '../icons/plus-sign-clicked.svg'
+import archiveIcon from '../icons/archive.svg'
+import archiveIconClicked from '../icons/archive-clicked.svg'
 
 export default function Footer() {
-  const Footer = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    justify-items: center;
-    align-content: center;
-    height: 60px;
-    border: solid 2px transparent;
-    border-top-color: rgb(201 193 171);
-  `
+  const [homeClicked, setHomeClicked] = useState(true)
+  const [createClicked, setCreateClicked] = useState(false)
+  const [archiveClicked, setArchiveClicked] = useState(false)
 
   return (
-    <Footer>
+    <FooterStyle>
       <NavButton>
-        <Link to="/">
-          <img src={home} alt="home button"></img>
-        </Link>
+        <NavLink
+          to="/"
+          isActive={match => {
+            if (!match) {
+              return false
+            }
+            return (
+              setHomeClicked(true) +
+              setCreateClicked(false) +
+              setArchiveClicked(false)
+            )
+          }}
+        >
+          <img
+            src={homeClicked ? homeIconClicked : homeIcon}
+            alt="home button"
+          ></img>
+        </NavLink>
       </NavButton>
       <NavButton>
-        <Link to="/create">
-          <img src={plusSign} alt="create button"></img>
-        </Link>
+        <NavLink
+          to="/create"
+          isActive={match => {
+            if (!match) {
+              return false
+            }
+            return (
+              setHomeClicked(false) +
+              setCreateClicked(true) +
+              setArchiveClicked(false)
+            )
+          }}
+        >
+          <img
+            src={createClicked ? plusSignIconClicked : plusSignIcon}
+            alt="create button"
+          ></img>
+        </NavLink>
       </NavButton>
       <NavButton>
-        <Link to="/upload">
-          <img src={archive} alt="calendar button"></img>
-        </Link>
+        <NavLink
+          to="/upload"
+          isActive={match => {
+            if (!match) {
+              return false
+            }
+            return (
+              setHomeClicked(false) +
+              setCreateClicked(false) +
+              setArchiveClicked(true)
+            )
+          }}
+        >
+          <img
+            src={archiveClicked ? archiveIconClicked : archiveIcon}
+            alt="calendar button"
+          ></img>
+        </NavLink>
       </NavButton>
-      <NavButton>
-        <Link to="/person">
-          <img src={person} alt="person button"></img>
-        </Link>
-      </NavButton>
-    </Footer>
+    </FooterStyle>
   )
 }
-const NavButton = styled.button`
+const FooterStyle = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+  align-content: center;
+  height: 60px;
+  border: solid 2px transparent;
+  border-top-color: rgb(201 193 171);
+  @media (min-width: 768px) {
+    grid-column: 1 / 3;
+  }
+`
+const NavButton = styled.label`
   border: none;
   background: none;
 `

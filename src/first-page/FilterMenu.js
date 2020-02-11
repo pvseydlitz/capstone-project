@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components/macro'
 
 import ToggleButton from './ToggleButton'
-import dropdownIcon from '../icons/dropdown.svg'
 
 export default function FilterMenu({
   handleClick,
@@ -15,21 +14,20 @@ export default function FilterMenu({
   selectedYear,
 }) {
   return (
-    <Menu>
+    <Menu id="filterMenu">
       <Text>Gemerkte Meldungen</Text>
       <ToggleButton
         handleClick={handleClick}
         filterActive={filterActive}
       ></ToggleButton>
       <Input
-        autoFocus
         type="text"
         placeholder="Suche eingeben"
         onChange={checkInput}
         value={searchedWord}
       ></Input>
       <Text2>Nach Monat oder Jahr sortieren</Text2>
-      <Wrapper>
+      <Wrapper columnStart={'3'}>
         <DropDown
           name="monat"
           onChange={handleChangeMonth}
@@ -49,9 +47,8 @@ export default function FilterMenu({
           <option value="11">November</option>
           <option value="12">Dezember</option>
         </DropDown>
-        <DropdownIcon src={dropdownIcon} alt="dropdown icon"></DropdownIcon>
       </Wrapper>
-      <Wrapper>
+      <Wrapper columnStart={'4'}>
         <DropDown name="jahr" onChange={handleChangeYear} value={selectedYear}>
           <option value="">Jahr </option>
           <option value="19">2019</option>
@@ -62,7 +59,6 @@ export default function FilterMenu({
           <option value="24">2024</option>
           <option value="25">2025</option>
         </DropDown>
-        <DropdownIcon src={dropdownIcon} alt="dropdown icon"></DropdownIcon>
       </Wrapper>
     </Menu>
   )
@@ -76,6 +72,12 @@ const Menu = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(4, 1fr);
+  @media (min-width: 768px) {
+    grid-column: 1/3;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    height: 100px;
+  }
   column-gap: 20px;
   align-items: center;
 `
@@ -99,30 +101,29 @@ const Text2 = styled.h3`
   margin: 0;
   font-size: 16px;
   color: rgb(107, 107, 107);
+  @media (min-width: 768px) {
+    grid-column: 3/5;
+    grid-row-start: 1;
+  }
 `
-const Wrapper = styled.section`
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  align-items: center;
-  grid-row-start: 4;
-  background: rgb(201 193 171);
-`
+
 const DropDown = styled.select`
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  cursor: pointer;
   color: rgb(107 107 107);
   background: rgb(201 193 171);
   font-size: 16px;
   height: 32px;
-  border: none;
-  padding-left: 5px;
-  -webkit-appearance: button;
-  appearance: button;
-  outline: none;
-  position: relative;
+  width: 100%;
+  padding-left: 10px;
+  background-image: url(' http://192.168.178.20:3000/static/media/dropdown.7f1cbd23.svg');
+  background-repeat: no-repeat;
+  background-position: 95% center;
 `
-const DropdownIcon = styled.img`
-  grid-column-start: 2;
-  text-align: center;
-  display: inline;
-  pointer-events: none;
-  z-index: 1;
+const Wrapper = styled.div`
+  position: relative;
+  max-width: 250px;
 `

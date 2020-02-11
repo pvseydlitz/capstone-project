@@ -24,7 +24,7 @@ export default function Form({
           <UploadForm>
             <UploadWrapper>
               <Headline2 style={{ color: 'rgb(253 252 251)' }}>
-                Dokument auswählen
+                PDF auswählen
               </Headline2>
               <input
                 style={{ display: 'none' }}
@@ -40,7 +40,7 @@ export default function Form({
                 setShowInputPassword(true)
               }}
             >
-              <Headline2>Dokument hochladen</Headline2>
+              <Headline2>PDF hochladen</Headline2>
             </Button>
           </UploadForm>
         </div>
@@ -66,19 +66,23 @@ Form.propTypes = {
 
 const Wrapper = styled.div`
   position: relative;
+  margin: 20px;
   height: ${props => (props.active ? '120px' : '')};
+  @media (min-width: 768px) {
+    grid-column: 1/3;
+  }
 `
 const Headline = styled.h1`
   color: rgb(187 179 163);
   font-size: 21px;
   font-weight: bold;
-  margin: 20px;
   margin-bottom: 0;
 `
 const Plus = styled.img`
   position: absolute;
   top: 0;
   right: 20px;
+  cursor: pointer;
 `
 const UploadForm = styled.section`
   display: grid;
@@ -100,6 +104,7 @@ const Headline2 = styled.h2`
   margin: 0;
   color: rgb(253 252 251);
   font-size: 14px;
+  cursor: pointer;
 `
 const ChoosenPicture = styled.p`
   grid-row-start: 2;
@@ -113,4 +118,5 @@ const Button = styled.button`
   background: rgb(201 193 171);
   padding: 4px 10px;
   border-radius: 5px;
+  cursor: pointer;
 `

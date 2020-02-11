@@ -1,10 +1,14 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
+import PropTypes from 'prop-types'
 
 import Password from './Password'
-import dropdownIcon from '../icons/dropdown.svg'
 
-export default function DropdownMenu({ handleChangeDropdown, selected }) {
+export default function DropdownMenu({
+  handleChangeDropdown,
+  selected,
+  showValue0,
+}) {
   const [showInputpassword, setShowInputPassword] = useState(false)
 
   function saveNumber(event) {
@@ -22,12 +26,11 @@ export default function DropdownMenu({ handleChangeDropdown, selected }) {
           }}
           value={selected}
         >
-          <option value="0">Meldung versendet</option>
+          {showValue0 ? <option value="0">Meldung erhalten</option> : ''}
           <option value="1">In Bearbeitung</option>
-          <option value="2">Handwerker kommt</option>
+          <option value="2">Termin vereinbart</option>
           <option value="3">Mangel behoben</option>
         </DropDown>
-        <DropdownIcon src={dropdownIcon} alt="dropdown icon"></DropdownIcon>
       </Wrapper>
       {showInputpassword ? (
         <Password
@@ -41,29 +44,28 @@ export default function DropdownMenu({ handleChangeDropdown, selected }) {
     </div>
   )
 }
-const Wrapper = styled.section`
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  align-items: center;
-  background: rgb(201 193 171);
-  height: 24px;
-  padding: 0 5px;
-`
+DropdownMenu.propTypes = {
+  showValue0: PropTypes.bool,
+}
+
 const DropDown = styled.select`
-  background: rgb(201 193 171);
-  color: rgb(107 107 107);
-  font-size: 14px;
-  height: 24px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
   border: none;
-  -webkit-appearance: button;
-  appearance: button;
-  outline: none;
-  position: relative;
+  cursor: pointer;
+  color: rgb(107 107 107);
+  background: rgb(201 193 171);
+  font-size: 16px;
+  height: 32px;
+  width: 100%;
+  padding-left: 10px;
+  background-image: url(' http://192.168.178.20:3000/static/media/dropdown.7f1cbd23.svg');
+  background-repeat: no-repeat;
+  background-position: 95% center;
 `
-const DropdownIcon = styled.img`
-  height: 17px;
-  width: 24px;
-  justify-self: center;
-  text-align: center;
-  pointer-events: none;
+const Wrapper = styled.div`
+  position: relative;
+  min-width: 180px;
+  max-width: 250px;
 `

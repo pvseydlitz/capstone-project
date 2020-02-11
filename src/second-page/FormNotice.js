@@ -5,7 +5,6 @@ import Headline3 from './Headline3'
 import Input from './Input'
 import Description from './Description'
 import FinishButton from './FinishButton'
-import dropdownIcon from '../icons/dropdown.svg'
 
 export default function FormNotice({ onSubmit3 }) {
   function handleSubmit(event) {
@@ -24,29 +23,18 @@ export default function FormNotice({ onSubmit3 }) {
         <Headline3>Kategorie</Headline3>
         <Wrapper2>
           <DropDown name="kategorie">
-            <option value="" hidden>
-              Bitte auswählen
-            </option>
-            <option value="Handwerker Termin">Handwerker Termin</option>
+            <option value="">Bitte auswählen</option>
             <option value="Allgemeine Informationen">
               Allgemeine Informationen
             </option>
-            <option value="Dachterasse">Dachterasse</option>
+            <option value="Ankündigung">Ankündigung</option>
           </DropDown>
-          <DropdownIcon src={dropdownIcon} alt="dropdown icon"></DropdownIcon>
         </Wrapper2>
         <Headline3>Datum</Headline3>
         <Input type="date" name="datum" required></Input>
       </Grid>
       <Description headline={'Mitteilung'} position={'362px'}></Description>
       <GridFinish>
-        <Input
-          style={{ width: '100%' }}
-          type="password"
-          name="password"
-          placeholder="Admin Passwort eingeben zum Hochladen"
-          /* required */
-        ></Input>
         <FinishButton style={{ top: '524px' }}>Meldung hochladen</FinishButton>
       </GridFinish>
     </Wrapper>
@@ -56,6 +44,9 @@ export default function FormNotice({ onSubmit3 }) {
 const Wrapper = styled.form`
   position: relative;
   margin: 0 20px;
+  @media (min-width: 768px) {
+    margin: 0 100px;
+  }
 `
 const Grid = styled.div`
   display: grid;
@@ -74,27 +65,24 @@ const GridFinish = styled.div`
   top: 524px;
   margin-bottom: 40px;
 `
-const Wrapper2 = styled.section`
-  display: grid;
-  grid-template-columns: 217px 33px;
-  align-items: center;
-  height: 28px;
-`
 const DropDown = styled.select`
-  background: rgb(201 193 171);
-  color: rgb(107 107 107);
-  font-size: 16px;
-  width: 250px;
-  height: 28px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
   border: none;
-  padding-left: 5px;
-  -webkit-appearance: button;
-  appearance: button;
-  outline: none;
+  cursor: pointer;
+  color: rgb(107 107 107);
+  background: rgb(201 193 171);
+  font-size: 16px;
+  height: 32px;
+  width: 100%;
+  padding-left: 10px;
+  background-image: url(' http://192.168.178.20:3000/static/media/dropdown.7f1cbd23.svg');
+  background-repeat: no-repeat;
+  background-position: 95% center;
 `
-const DropdownIcon = styled.img`
-  text-align: center;
-  display: inline;
-  pointer-events: none;
-  z-index: 1;
+const Wrapper2 = styled.div`
+  position: relative;
+  min-width: 220px;
+  max-width: 300px;
 `
