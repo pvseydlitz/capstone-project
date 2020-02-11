@@ -3,11 +3,23 @@ const Message = require('./models/Message')
 const MessageTuev = require('./models/MessageTuev')
 const express = require('express')
 const withAuth = require('./middleware')
-mongoose.connect('mongodb://localhost:27017/capstone-project', {
+const path = require('path')
+
+const {
+  MONGODB_URI = 'mongodb://localhost:27017/capstone-project',
+  PORT = 3333,
+} = process.env
+
+mongoose.connect(MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+
+/* mongoose.connect('mongodb://localhost:27017/capstone-project', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
-})
+}) */
 
 const registrationRoutes = require('./registration')
 const cookieParser = require('cookie-parser')
@@ -16,7 +28,8 @@ const cors = require('cors')
 
 const app = express()
 app.use(express.json())
-const PORT = process.env.PORT || 3333
+app.use(express.static(path.join(__dirname, '../build')))
+//const PORT = process.env.PORT || 3333
 app.listen(PORT, () => console.log(`Express ready on port ${PORT}`))
 
 app.use(cors())
@@ -26,12 +39,7 @@ app.use(function(req, res, next) {
     'Access-Control-Allow-Methods',
     'POST, PUT, OPTIONS, DELETE, GET'
   )
-  res.setHeader('Access-Control-Allow-Origin', '*') /* , 'localhost:3000' */
-  /* res.setHeader('Access-Control-Allow-Origin', '192.168.178.20:3000') */
-  /*res.setHeader(
-    'Access-Control-Allow-Origin',
-    'http://localhost:3000'
-  )  */
+  res.setHeader('Access-Control-Allow-Origin', '*')
   res.header(
     'Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept'
@@ -105,7 +113,6 @@ app.delete('/messagestuev/:id', (req, res) => {
 const messageNoticeRoute = require('./notice')
 app.use(messageNoticeRoute)
 
-const path = require('path')
 const logger = require('morgan')
 const file = require('./file')
 
@@ -122,6 +129,10 @@ app.post('/logout', function(req, res) {
   }) */
   /*   res.clearCookie('token').sendStatus(200)
    */
+})
+
+app.get('*', (req, res) => {
+  res.render(path.join(__dirname, '/build/index.html'))
 })
 /* Server Funktion, die ich später noch brauchen werde.
 app.get('/all', async (req, res) => {
