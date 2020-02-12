@@ -9,11 +9,17 @@ export const UserRegistration = data => {
   data['password'] = hash
 
   return axios
-    .post('http://192.168.178.20:3000/registration/register', data)
+    .post(
+      'https://mighty-atoll-99320.herokuapp.com/registration/register',
+      data
+    )
     .then(res => res.status)
 }
 
 export const UsernameValidation = data =>
   axios
-    .post('http://192.168.178.20:3000/registration/validateUsername', data) //davor war URL localhost:3000/regi...
+    .post(
+      'https://mighty-atoll-99320.herokuapp.com/registration/validateUsername',
+      data
+    ) //davor war URL localhost:3000/regi...
     .then(exist => exist.status)
