@@ -6,12 +6,12 @@ const express = require('express')
 const withAuth = require('./middleware')
 const path = require('path')
 
-const {
+/* const {
   MONGODB_URI = 'mongodb://localhost:27017/capstone-project',
   PORT = 3333,
-} = process.env
-
-mongoose.connect(MONGODB_URI, {
+} = process.env */
+const db = process.env.MONGODB_URI
+mongoose.connect(db, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
@@ -30,7 +30,7 @@ const cors = require('cors')
 const app = express()
 app.use(express.json())
 app.use(express.static(path.join(__dirname, '../build')))
-//const PORT = process.env.PORT || 3333
+const PORT = process.env.PORT || 3333
 app.listen(PORT, () => console.log(`Express ready on port ${PORT}`))
 
 app.use(cors())
