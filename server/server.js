@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const Message = require('./models/Message')
 const MessageTuev = require('./models/MessageTuev')
+const cool = require('cool-ascii-faces')
 const express = require('express')
 const withAuth = require('./middleware')
 const path = require('path')
@@ -33,6 +34,19 @@ app.use(express.static(path.join(__dirname, '../build')))
 app.listen(PORT, () => console.log(`Express ready on port ${PORT}`))
 
 app.use(cors())
+app
+  .use(express.static(path.join(__dirname, 'public')))
+  .set('views', path.join(__dirname, 'views'))
+  .set('view engine', 'ejs')
+  .get('/', (req, res) => res.render('pages/index'))
+  .get('/cool', (req, res) => res.send(cool()))
+/* express()
+  .use(express.static(path.join(__dirname, 'public')))
+  .set('views', path.join(__dirname, 'views'))
+  .set('view engine', 'ejs')
+  .get('/', (req, res) => res.render('pages/index'))
+  .get('/cool', (req, res) => res.send(cool()))
+  .listen(PORT, () => console.log(`Listening on ${ PORT }`)) */
 
 app.use(function(req, res, next) {
   res.setHeader(
