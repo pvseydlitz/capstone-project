@@ -107,7 +107,7 @@ const DropDown = styled.select`
   height: 32px;
   width: 100%;
   padding: 0 10px;
-  background-image: url(' http://192.168.178.20:3000/static/media/dropdown.7f1cbd23.svg');
+  background-image: url('https://res.cloudinary.com/dajgs01gh/image/upload/v1581717374/dropdown_y3kmal.svg');
   background-repeat: no-repeat;
   background-position: 95% center;
 `

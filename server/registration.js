@@ -3,7 +3,8 @@ const registrationRoutes = express.Router()
 const bcrypt = require('bcryptjs')
 const Registration = require('./models/User')
 const jwt = require('jsonwebtoken')
-const SECRET = process.env.SECRET
+const withAuth = require('./middleware')
+const SECRET = process.env.SECRET || 'Philipp'
 // Registration route
 registrationRoutes.route('/register').post(function(req, res) {
   let register = new Registration(req.body)
@@ -45,7 +46,7 @@ registrationRoutes.route('/validateUsername').post(function(req, res) {
 })
 
 // Get allData
-registrationRoutes.route('/allData').get(function(req, res) {
+registrationRoutes.route('/allData').get(withAuth, function(req, res) {
   Registration.find((err, data) =>
     err ? res.status(400).send('Error occured') : res.json(data)
   )

@@ -1,6 +1,10 @@
 import axios from 'axios'
 import bcrypt from 'bcryptjs'
 
+const URL = process.env.REACT_APP_URL
+const URLRegister = URL + '/registration/register'
+const URLUser = URL + '/registration/validateUsername'
+
 export const UserRegistration = data => {
   const password = data.password
   const salt = bcrypt.genSaltSync(10)
@@ -8,18 +12,8 @@ export const UserRegistration = data => {
 
   data['password'] = hash
 
-  return axios
-    .post(
-      'https://mighty-atoll-99320.herokuapp.com/registration/register',
-      data
-    )
-    .then(res => res.status)
+  return axios.post(URLRegister, data).then(res => res.status)
 }
 
 export const UsernameValidation = data =>
-  axios
-    .post(
-      'https://mighty-atoll-99320.herokuapp.com/registration/validateUsername',
-      data
-    ) //davor war URL localhost:3000/regi...
-    .then(exist => exist.status)
+  axios.post(URLUser, data).then(exist => exist.status)

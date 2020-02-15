@@ -2,6 +2,7 @@ const router = require('express').Router()
 const multer = require('multer')
 const Grid = require('gridfs-stream')
 const mongoose = require('mongoose')
+const withAuth = require('./middleware')
 
 mongoose.Promise = global.Promise
 Grid.mongo = mongoose.mongo
@@ -20,7 +21,7 @@ connection.once('open', function() {
   })
   const singleUpload = multer({ storage: storage }).single('file')
 
-  router.route('/files/:filename').get(function(req, res) {
+  router.route('/files/:filename').get(withAuth, function(req, res) {
     gfs.files.find({ filename: req.params.filename }).toArray((err, files) => {
       if (!files || files.length === 0) {
         return res.status(404).json({
@@ -36,7 +37,7 @@ connection.once('open', function() {
     })
   })
 
-  router.route('/files').get(function(req, res) {
+  router.route('/files').get(withAuth, function(req, res) {
     gfs.files.find().toArray((err, files) => {
       if (!files || files.length === 0) {
         return res.status(404).json({

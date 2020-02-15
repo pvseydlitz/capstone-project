@@ -38,7 +38,7 @@ const MainForm = memo(() => {
           name="datum"
           placeholder={'nach datum suchen'}
           required
-          onChange={event => console.log(event.target.value)}
+          //onChange={event => console.log(event.target.value)}
         ></Input>
         <Headline3>Etage/Wohnung</Headline3>
         <Input type="text" name="wohnung" required></Input>
@@ -186,9 +186,29 @@ export default function Form({ onSubmit1 }) {
       }
     )
   }
+  /* function showStatus() {
+    confirmAlert({
+      title: 'Ihre Meldung wird hochgeladen...',
+      buttons: [],
+      closeOnEscape: true,
+      closeOnClickOutside: false,
+    })
+  } */
+
   function confirmSuccessfulUpload() {
     confirmAlert({
       title: 'Ihre Meldung wurde erfolgreich hochgeladen.',
+      buttons: [
+        {
+          label: 'Zur Home Seite',
+          onClick: () => {
+            window.location.href = '/'
+          },
+        },
+        {
+          label: 'Weitere Meldung hochladen',
+        },
+      ],
     })
   }
 

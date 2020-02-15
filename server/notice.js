@@ -1,6 +1,8 @@
 const router = require('express').Router()
+const withAuth = require('./middleware')
 const MessageNotice = require('./models/MessageNotice')
-router.get('/messagesNotice', (req, res) => {
+
+router.get('/messagesNotice', withAuth, (req, res) => {
   MessageNotice.find()
     .then(messages => res.json(messages))
     .catch(err => res.json(err))

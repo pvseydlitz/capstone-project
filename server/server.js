@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 const Message = require('./models/Message')
 const MessageTuev = require('./models/MessageTuev')
-const cool = require('cool-ascii-faces')
 const express = require('express')
 const withAuth = require('./middleware')
 const path = require('path')
@@ -10,17 +9,18 @@ const path = require('path')
   MONGODB_URI = 'mongodb://localhost:27017/capstone-project',
   PORT = 3333,
 } = process.env */
-const db = process.env.MONGODB_URI
+//online Datenbank
+/* const db = process.env.MONGODB_URI
 mongoose.connect(db, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-})
-
-/* mongoose.connect('mongodb://localhost:27017/capstone-project', {
+}) */
+//lokale datenbank
+mongoose.connect('mongodb://localhost:27017/capstone-project', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
-}) */
+})
 
 const registrationRoutes = require('./registration')
 const cookieParser = require('cookie-parser')
@@ -34,19 +34,12 @@ const PORT = process.env.PORT || 3333
 app.listen(PORT, () => console.log(`Express ready on port ${PORT}`))
 
 app.use(cors())
-app
-  .use(express.static(path.join(__dirname, 'public')))
-  .set('views', path.join(__dirname, 'views'))
-  .set('view engine', 'ejs')
-  .get('/', (req, res) => res.render('pages/index'))
-  .get('/cool', (req, res) => res.send(cool()))
-/* express()
-  .use(express.static(path.join(__dirname, 'public')))
-  .set('views', path.join(__dirname, 'views'))
-  .set('view engine', 'ejs')
-  .get('/', (req, res) => res.render('pages/index'))
-  .get('/cool', (req, res) => res.send(cool()))
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`)) */
+/* app */
+/* .use(express.static(path.join(__dirname, 'public'))) */
+/* .set('views', path.join(__dirname, 'views')) */
+/* .set('view engine', 'ejs') */
+/* .get('/', (req, res) => res.render('pages/index'))
+  .get('/cool', (req, res) => res.send(cool())) */
 
 app.use(function(req, res, next) {
   res.setHeader(
@@ -71,14 +64,11 @@ app.get('/checkToken', withAuth, function(req, res) {
   res.sendStatus(200)
 })
 
-app.get(
-  '/messages',
-  /* withAuth, */ (req, res) => {
-    Message.find()
-      .then(messages => res.json(messages))
-      .catch(err => res.json(err))
-  }
-)
+app.get('/messages', withAuth, (req, res) => {
+  Message.find()
+    .then(messages => res.json(messages))
+    .catch(err => res.json(err))
+})
 
 app.get('/messages/:id', (req, res) => {
   Message.findById(req.params.id)
@@ -92,7 +82,7 @@ app.post('/messages', (req, res) => {
     .catch(err => res.json(err))
 })
 
-app.get('/messagesTuev', (req, res) => {
+app.get('/messagesTuev', withAuth, (req, res) => {
   MessageTuev.find()
     .then(messages => res.json(messages))
     .catch(err => res.json(err))
@@ -130,27 +120,14 @@ app.use(messageNoticeRoute)
 const logger = require('morgan')
 const file = require('./file')
 
-app.use(express.static(path.join(__dirname, 'client/build')))
 app.use(logger('dev'))
 app.use('/api/', file)
 
 app.post('/logout', function(req, res) {
   res.clearCookie('token', { path: '/' })
   return res.sendStatus(200)
-
-  /* res.cookie('token', 'token', {
-    expires: new Date('Wed, 31 Oct 2012 08:50:17 GMT'),
-  }) */
-  /*   res.clearCookie('token').sendStatus(200)
-   */
 })
 
 app.get('*', (req, res) => {
   res.render(path.join(__dirname, '/build/index.html'))
 })
-/* Server Funktion, die ich später noch brauchen werde.
-app.get('/all', async (req, res) => {
-  const messages = await Message.find()
-  const messages2 = await MessageTuev.find()
-  res.json({ messages, messages2 })
-}) */

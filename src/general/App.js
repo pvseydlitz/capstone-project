@@ -53,17 +53,18 @@ export default function App() {
   }
   function createMessage(messageData) {
     postMessage(messageData).then(message => {
-      setMessages([...messages, message])
+      setMessages([message, ...messages])
     })
   }
   function createMessage2(messageData) {
     postMessageTuev(messageData).then(messageTuev => {
-      setMessagesTuev([...messagesTuev, messageTuev])
+      setMessagesTuev([messageTuev, ...messagesTuev])
     })
   }
   function createMessageNotice(messageData) {
     postMessageNotice(messageData).then(messageNotice => {
-      setMessagesNotice([...messagesNotice, messageNotice])
+      confirmSuccessfulUpload()
+      setMessagesNotice([messageNotice, ...messagesNotice])
     })
   }
   function removeMessage(id) {
@@ -125,7 +126,9 @@ export default function App() {
       buttons: [
         {
           label: 'Ja',
-          onClick: () => removeMessage(id),
+          onClick: () => {
+            removeMessage(id)
+          },
         },
         {
           label: 'Nein',
@@ -163,6 +166,24 @@ export default function App() {
       ],
     })
   }
+
+  function confirmSuccessfulUpload() {
+    confirmAlert({
+      title: 'Ihre Meldung wurde erfolgreich hochgeladen.',
+      buttons: [
+        {
+          label: 'Zur Home Seite',
+          onClick: () => {
+            window.location.href = '/'
+          },
+        },
+        {
+          label: 'Weitere Meldung hochladen',
+        },
+      ],
+    })
+  }
+
   return (
     <Router>
       <Switch>

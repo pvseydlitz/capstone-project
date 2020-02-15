@@ -6,6 +6,8 @@ import Password from '../first-page/Password'
 import cross from '../icons/cross.svg'
 import download from '../icons/download.svg'
 
+const URL = process.env.REACT_APP_URL.replace('3000', '3333')
+
 export default function Card({ deleteFile, file }) {
   const [showInputPassword, setShowInputPassword] = useState(false)
   function saveEvent(event) {
@@ -15,7 +17,7 @@ export default function Card({ deleteFile, file }) {
   return (
     <CardLayout key={file.index}>
       <a
-        href={`http://192.168.178.20:3333/api/files/${file.filename}`}
+        href={`${URL}/api/files/${file.filename}`}
         target="_blank"
         rel="noopener noreferrer"
         style={{ textDecoration: 'none', width: '250px', marginRight: '50px' }}
