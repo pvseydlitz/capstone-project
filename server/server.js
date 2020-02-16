@@ -5,10 +5,6 @@ const express = require('express')
 const withAuth = require('./middleware')
 const path = require('path')
 
-/* const {
-  MONGODB_URI = 'mongodb://localhost:27017/capstone-project',
-  PORT = 3333,
-} = process.env */
 //online Datenbank
 const db = process.env.MONGODB_URI
 mongoose.connect(db, {
@@ -34,12 +30,6 @@ const PORT = process.env.PORT || 3333
 app.listen(PORT, () => console.log(`Express ready on port ${PORT}`))
 
 app.use(cors())
-/* app */
-/* .use(express.static(path.join(__dirname, 'public'))) */
-/* .set('views', path.join(__dirname, 'views')) */
-/* .set('view engine', 'ejs') */
-/* .get('/', (req, res) => res.render('pages/index'))
-  .get('/cool', (req, res) => res.send(cool())) */
 
 app.use(function(req, res, next) {
   res.setHeader(
