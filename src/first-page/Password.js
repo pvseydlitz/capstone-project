@@ -29,7 +29,7 @@ export default function password({ passwordApproved, hidePassword, text }) {
           autoFocus
           type="password"
           placeholder="Passwort eingeben"
-          onChange={event => checkPasswordInput(event.target.value)}
+          onChange={(event) => checkPasswordInput(event.target.value)}
         ></Input>
       </PasswordWrapper>
       <Label3

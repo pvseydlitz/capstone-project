@@ -105,6 +105,8 @@ export default function Form({ onSubmit1 }) {
       bereich.push('Sondereigentum')
     }
     data.bereich = bereich
+    data.anzeigen = true
+    console.log(data)
     if (data.file.name === '') {
       confirmAlert({
         title: 'Bestätigung',
@@ -154,7 +156,7 @@ export default function Form({ onSubmit1 }) {
         },
       })
       .then(onImageSave)
-      .catch(err => console.error(err))
+      .catch((err) => console.error(err))
 
     function onImageSave(response) {
       data.url = response.data.url
@@ -177,11 +179,11 @@ export default function Form({ onSubmit1 }) {
       url: data.url,
     }
     emailjs.send(SERVICEID, TEMPLATEID, templateParams, USERID).then(
-      function(response) {
+      function (response) {
         console.log('SUCCESS!', response.status, response.text)
         confirmSuccessfulUpload()
       },
-      function(error) {
+      function (error) {
         console.log('FAILED...', error)
       }
     )

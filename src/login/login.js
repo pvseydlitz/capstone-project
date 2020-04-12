@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
 import Globalstyles from '../general/Globalstyles'
@@ -27,11 +26,6 @@ export default function Login() {
         />
         <Button type="submit" className="btn btn-primary">
           Login
-        </Button>
-        <Button>
-          <Link to="/register" style={{ color: 'rgb(253 252 251)' }}>
-            Registrieren
-          </Link>
         </Button>
       </Form>
     </Wrapper>
@@ -61,7 +55,7 @@ export default function Login() {
         'Content-Type': 'application/json',
       },
     })
-      .then(res => {
+      .then((res) => {
         if (res.status === 200) {
           window.location.href = `/`
         } else {
@@ -69,9 +63,9 @@ export default function Login() {
           throw error
         }
       })
-      .catch(err => {
+      .catch((err) => {
         console.error(err)
-        alert('Error logging in please try again')
+        //alert('Error logging in please try again')
       })
   }
 }
@@ -91,7 +85,7 @@ const Logo = styled.img`
 `
 const Form = styled.form`
   display: grid;
-  grid-template-rows: repeat(5, auto);
+  grid-template-rows: repeat(4, auto);
   grid-gap: 15px;
 `
 const Button = styled.button`

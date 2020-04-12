@@ -15,6 +15,7 @@ export default function FormTuev({ onSubmit2 }) {
     const formData = new FormData(form)
     const data = Object.fromEntries(formData)
     data.status = 1
+    data.anzeigen = true
     if (data.password === PASSWORD) {
       onSubmit2(data)
       form.reset()

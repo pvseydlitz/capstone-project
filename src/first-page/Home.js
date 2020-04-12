@@ -69,6 +69,7 @@ export default function Home({
     setShowFilterMenu(false)
     setShowFilterMenuTuevMessages(false)
   }
+
   return (
     <Grid>
       <Globalstyles></Globalstyles>
@@ -92,13 +93,13 @@ export default function Home({
           <FilterMenu
             handleClick={() => setIsOnlyBookmarkShown(!isOnlyBookmarkShown)}
             filterActive={isOnlyBookmarkShown}
-            checkInput={event =>
+            checkInput={(event) =>
               setSearchedWord(event.target.value.toLowerCase())
             }
             searchedWord={searchedWord}
-            handleChangeMonth={event => setSelectedMonth(event.target.value)}
+            handleChangeMonth={(event) => setSelectedMonth(event.target.value)}
             selectedMonth={selectedMonth}
-            handleChangeYear={event => setSelectedYear(event.target.value)}
+            handleChangeYear={(event) => setSelectedYear(event.target.value)}
             selectedYear={selectedYear}
           ></FilterMenu>
         ) : (
@@ -106,23 +107,25 @@ export default function Home({
         )}
         {showFilterMenuTuevMessages ? (
           <FilterMenuTuevMessages
-            checkInput={event =>
+            checkInput={(event) =>
               setSearchedWordFilter2(event.target.value.toLowerCase())
             }
-            handleFilterStatus={event => setSelectedStatus(event.target.value)}
+            handleFilterStatus={(event) =>
+              setSelectedStatus(event.target.value)
+            }
           ></FilterMenuTuevMessages>
         ) : (
           ''
         )}
         {showFilterMenuNoticeMessages ? (
           <FilterMenuNoticeMessages
-            handleChangeKategorie={event =>
+            handleChangeKategorie={(event) =>
               setSelectedKategorie(event.target.value)
             }
             selectedKategorie={selectedKategorie}
-            handleChangeMonth={event => setSelectedMonth3(event.target.value)}
+            handleChangeMonth={(event) => setSelectedMonth3(event.target.value)}
             selectedMonth={selectedMonth3}
-            handleChangeYear={event => setSelectedYear3(event.target.value)}
+            handleChangeYear={(event) => setSelectedYear3(event.target.value)}
             selectedYear={selectedYear3}
           ></FilterMenuNoticeMessages>
         ) : (
@@ -139,7 +142,7 @@ export default function Home({
         {isClicked1
           ? isOnlyBookmarkShown
             ? messages
-                .filter(message => message.isBookmarked === true)
+                .filter((message) => message.isBookmarked === true)
                 .map((message, index) => (
                   <Message
                     message={message}
@@ -150,7 +153,8 @@ export default function Home({
                   ></Message>
                 ))
             : messages
-                .filter(message => {
+                .filter((message) => message.anzeigen === true)
+                .filter((message) => {
                   const bereich = message.bereich.join().toLowerCase()
                   const wohnung = message.wohnung.toLowerCase()
                   const raumbezeichnung = message.raumbezeichnung.toLowerCase()
@@ -162,12 +166,12 @@ export default function Home({
                     raumbezeichnung.includes(query)
                   )
                 })
-                .filter(message => {
+                .filter((message) => {
                   const datumMonth = message.datum.slice(5, 7)
                   const queryMonth = selectedMonth
                   return queryMonth === '' || datumMonth.includes(queryMonth)
                 })
-                .filter(message => {
+                .filter((message) => {
                   const datumYear = message.datum.slice(2, 4)
                   const queryYear = selectedYear
                   return queryYear === '' || datumYear.includes(queryYear)
@@ -184,7 +188,8 @@ export default function Home({
           : ''}
         {isClicked2
           ? messagesTuev
-              .filter(messageTuev => {
+              .filter((messageTuev) => messageTuev.anzeigen === true)
+              .filter((messageTuev) => {
                 const nummer = String(messageTuev.nummer)
                 const ort = messageTuev.ort.toLowerCase()
                 const query = searchedWordFilter2
@@ -192,7 +197,7 @@ export default function Home({
                   query === '' || nummer.includes(query) || ort.includes(query)
                 )
               })
-              .filter(messageTuev => {
+              .filter((messageTuev) => {
                 const status = String(messageTuev.status)
                 const query = selectedStatus
                 return query === '' || status.includes(query)
@@ -208,17 +213,18 @@ export default function Home({
           : ''}
         {isClicked3
           ? messagesNotice
-              .filter(messageNotice => {
+              .filter((messageNotice) => messageNotice.anzeigen === true)
+              .filter((messageNotice) => {
                 const kategorie = messageNotice.kategorie
                 const query = selectedKategorie
                 return query === '' || kategorie.includes(query)
               })
-              .filter(messageNotice => {
+              .filter((messageNotice) => {
                 const datumMonth = messageNotice.datum.slice(5, 7)
                 const queryMonth = selectedMonth3
                 return queryMonth === '' || datumMonth.includes(queryMonth)
               })
-              .filter(messageNotice => {
+              .filter((messageNotice) => {
                 const datumYear = messageNotice.datum.slice(2, 4)
                 const queryYear = selectedYear3
                 return queryYear === '' || datumYear.includes(queryYear)

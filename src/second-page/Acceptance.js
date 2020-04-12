@@ -71,4 +71,5 @@ const Button = styled.button`
   display: flex;
   justify-content: center;
   cursor: pointer;
+  max-width: 192px;
 `

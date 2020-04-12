@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 
 const messageSchema = {
+  anzeigen: Boolean,
   kategorie: String,
   name: String,
   telefonnummer: String,
