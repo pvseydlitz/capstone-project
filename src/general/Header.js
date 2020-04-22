@@ -114,7 +114,8 @@ const Label = styled.label`
 `
 const Filter = styled.p`
   margin: 0px;
-  color: ${props => (props.active ? 'rgb(187 179 163)' : 'rgb(107, 107, 107)')};
+  color: ${(props) =>
+    props.active ? 'rgb(187 179 163)' : 'rgb(107, 107, 107)'};
   font-size: 16px;
   position: absolute;
   top: 18px;
@@ -135,6 +136,7 @@ const MenuLabel2 = styled.label`
   right: 0;
   height: 500px;
   width: 300px;
+  z-index: 1;
 `
 const MenuButton = styled.img`
   position: absolute;

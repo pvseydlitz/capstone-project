@@ -101,7 +101,7 @@ export default function Message({
       </Wrapper>
 
       <ShowMoreButton onClick={() => setShowContent(!showContent)}>
-        {showContent ? 'Show less' : 'Show more'}
+        {showContent ? 'Weniger anzeigen' : 'Mehr anzeigen'}
       </ShowMoreButton>
       {showInputPassword ? (
         <Password
@@ -121,7 +121,7 @@ const MessageLayout = styled.div`
   margin-top: 10px;
   padding: 10px 20px;
   position: relative;
-  max-height: ${props => (props.active ? '700px' : '265px')};
+  max-height: ${(props) => (props.active ? '700px' : '265px')};
   background: rgb(238, 238, 238);
   border-radius: 10px;
   @media (min-width: 768px) {
@@ -143,7 +143,7 @@ const Headline = styled.h2`
 `
 const Wrapper = styled.div`
   display: grid;
-  grid-template-rows: ${props =>
+  grid-template-rows: ${(props) =>
     props.active ? 'repeat(5, 30px) 16px' : 'repeat(6, 30px) auto auto 29px'};
 `
 const Description = styled.p`

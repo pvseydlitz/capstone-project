@@ -19,20 +19,22 @@ export default function Create({ onSubmit1, onSubmit2, onSubmit3 }) {
     <Grid>
       <Globalstyles></Globalstyles>
       <Header showSearchIcon={false}></Header>
-      <Wrapper>
+      <Wrapper id="wrapper-form">
         <Headline>Neue Meldung erstellen</Headline>
         <Category>
           <Headline2>Kategorie der Meldung</Headline2>
           <DropDown
-            handleChange={event => setSelectedValue(event.target.value)}
+            handleChange={(event) => setSelectedValue(event.target.value)}
           ></DropDown>
         </Category>
         {selectedValue === 'Gewährleistungsmangel' ? (
           showAcceptance ? (
             <Acceptance
-              handleAccept={event => {
+              handleAccept={(event) => {
                 event.preventDefault()
                 setShowAcceptance(false)
+                const wrapperForm = document.querySelector('#wrapper-form')
+                wrapperForm.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
               }}
             ></Acceptance>
           ) : (
