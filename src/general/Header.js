@@ -9,6 +9,7 @@ import logo from '../icons/logo.svg'
 import filterIcon from '../icons/filterbutton.svg'
 import filterIconClicked from '../icons/filterbutton-clicked.svg'
 import menu from '../icons/menu.svg'
+import menuClicked from '../icons/menu-clicked.svg'
 export default function Header({
   showFilter1,
   showFilter2,
@@ -72,7 +73,7 @@ export default function Header({
         ''
       )}
       <MenuLabel1 onClick={() => setShowMenu(!showMenu)}>
-        <MenuButton src={menu}></MenuButton>
+        <MenuButton src={showMenu ? menuClicked : menu}></MenuButton>
       </MenuLabel1>
       {showMenu ? (
         <MenuLabel2 onClick={() => setShowMenu(false)}>
@@ -135,7 +136,7 @@ const MenuLabel2 = styled.label`
   top: 0;
   right: 0;
   height: 500px;
-  width: 300px;
+  width: 400px;
   z-index: 1;
 `
 const MenuButton = styled.img`

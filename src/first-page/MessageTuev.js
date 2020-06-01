@@ -56,7 +56,7 @@ export default function MessageTuev({
         <Content>{showContent ? messageTuev.beschreibung : ''}</Content>
       </Wrapper>
       <ShowMoreButton onClick={() => setShowContent(!showContent)}>
-        {showContent ? 'Show less' : 'Show more'}
+        {showContent ? 'Weniger anzeigen' : 'Mehr anzeigen'}
       </ShowMoreButton>
       {showInputPassword ? (
         <Password
@@ -78,7 +78,7 @@ const MessageLayout = styled.div`
   position: relative;
   background: rgb(238, 238, 238);
   border-radius: 10px;
-  max-height: ${props => (props.active ? '' : '205px')};
+  max-height: ${(props) => (props.active ? '' : '205px')};
   @media (min-width: 768px) {
     margin: 50px 2vw;
     margin-top: 20px;
@@ -98,7 +98,7 @@ const Headline = styled.h2`
 `
 const Wrapper = styled.div`
   display: grid;
-  grid-template-rows: ${props =>
+  grid-template-rows: ${(props) =>
     props.active ? 'repeat(3, 30px) 16px' : 'repeat(3, 30px) 50px auto 29px'};
   width: 100%;
 `

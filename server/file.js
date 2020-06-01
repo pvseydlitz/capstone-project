@@ -9,7 +9,7 @@ Grid.mongo = mongoose.mongo
 const connection = mongoose.connection
 connection.on('error', console.error.bind(console, 'connection error:'))
 
-connection.once('open', function() {
+connection.once('open', function () {
   const gfs = Grid(connection.db)
   const storage = require('multer-gridfs-storage')({
     db: connection.db,
@@ -21,7 +21,7 @@ connection.once('open', function() {
   })
   const singleUpload = multer({ storage: storage }).single('file')
 
-  router.route('/files/:filename').get(withAuth, function(req, res) {
+  router.route('/files/:filename').get(withAuth, function (req, res) {
     gfs.files.find({ filename: req.params.filename }).toArray((err, files) => {
       if (!files || files.length === 0) {
         return res.status(404).json({
@@ -37,7 +37,7 @@ connection.once('open', function() {
     })
   })
 
-  router.route('/files').get(withAuth, function(req, res) {
+  router.route('/files').get(withAuth, function (req, res) {
     gfs.files.find().toArray((err, files) => {
       if (!files || files.length === 0) {
         return res.status(404).json({
@@ -58,8 +58,8 @@ connection.once('open', function() {
     res.send({ success: false })
   })
 
-  router.route('/files/:id').delete(function(req, res) {
-    gfs.remove({ _id: req.params.id }, err => {
+  router.route('/files/:id').delete(function (req, res) {
+    gfs.remove({ _id: req.params.id }, (err) => {
       if (err) return res.status(500).json({ success: false })
       return res.json({ success: true })
     })

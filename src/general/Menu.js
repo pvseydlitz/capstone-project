@@ -9,12 +9,15 @@ import plusSignIcon from '../icons/plus-sign.svg'
 import plusSignIconClicked from '../icons/plus-sign-clicked.svg'
 import archiveIcon from '../icons/archive.svg'
 import archiveIconClicked from '../icons/archive-clicked.svg'
+import phoneIcon from '../icons/phone.svg'
+import phoneIconClicked from '../icons/phone-clicked.svg'
 import logout from '../icons/logout.svg'
 
 export default function Menu({ position }) {
   const [homeClicked, setHomeClicked] = useState(true)
   const [createClicked, setCreateClicked] = useState(false)
   const [archiveClicked, setArchiveClicked] = useState(false)
+  const [phoneClicked, setPhoneClicked] = useState(false)
 
   function handleLogout() {
     fetch('/logout', {
@@ -22,18 +25,18 @@ export default function Menu({ position }) {
       method: 'POST',
       headers: { 'content-type': 'application json' },
     })
-      .then(function(response) {
+      .then(function (response) {
         if (response.status === 200) {
           return (window.location.href = `/`)
         }
       })
-      .catch(function(err) {
+      .catch(function (err) {
         console.log(err)
       })
   }
   const Background = styled.div`
-    width: 180px;
-    height: 293px;
+    width: 300px;
+    /* height: 293px; */
     background: rgb(255, 255, 255);
     border: 2px solid rgb(201 193 171);
     position: absolute;
@@ -48,14 +51,15 @@ export default function Menu({ position }) {
       <Grid>
         <NavLink
           to="/"
-          isActive={match => {
+          isActive={(match) => {
             if (!match) {
               return false
             }
             return (
               setHomeClicked(true) +
               setCreateClicked(false) +
-              setArchiveClicked(false)
+              setArchiveClicked(false) +
+              setPhoneClicked(false)
             )
           }}
         >
@@ -70,14 +74,15 @@ export default function Menu({ position }) {
 
         <NavLink
           to="/create"
-          isActive={match => {
+          isActive={(match) => {
             if (!match) {
               return false
             }
             return (
               setHomeClicked(false) +
               setCreateClicked(true) +
-              setArchiveClicked(false)
+              setArchiveClicked(false) +
+              setPhoneClicked(false)
             )
           }}
         >
@@ -92,14 +97,15 @@ export default function Menu({ position }) {
 
         <NavLink
           to="/upload"
-          isActive={match => {
+          isActive={(match) => {
             if (!match) {
               return false
             }
             return (
               setHomeClicked(false) +
               setCreateClicked(false) +
-              setArchiveClicked(true)
+              setArchiveClicked(true) +
+              setPhoneClicked(false)
             )
           }}
         >
@@ -111,6 +117,29 @@ export default function Menu({ position }) {
             <Headline2>Dokumente</Headline2>
           </NavButton>
         </NavLink>
+        <NavLink
+          to="/impressum"
+          isActive={(match) => {
+            if (!match) {
+              return false
+            }
+            return (
+              setHomeClicked(false) +
+              setCreateClicked(false) +
+              setArchiveClicked(false) +
+              setPhoneClicked(true)
+            )
+          }}
+        >
+          <NavButton>
+            <img
+              src={phoneClicked ? phoneIconClicked : phoneIcon}
+              alt="phone button"
+            ></img>
+            <Headline2>Kontakt & Impressum</Headline2>
+          </NavButton>
+        </NavLink>
+
         <NavButton onClick={handleLogout}>
           <Logout src={logout}></Logout>
           <Headline2>Abmelden</Headline2>
@@ -125,7 +154,7 @@ Menu.propTypes = {
 
 const Grid = styled.div`
   display: grid;
-  grid-template-rows: repeat(4, 40px);
+  grid-template-rows: repeat(5, 40px);
   grid-gap: 20px;
   margin-top: 10px;
 `

@@ -11,6 +11,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css'
 import Home from '../first-page/Home'
 import Create from '../second-page/Create'
 import Upload from '../third-page/Upload'
+import Impressum from '../fourth-page/Impressum'
 import Login from '../login/login'
 import Register from '../login/Registration'
 import WithAuth from '../login/withAuth'
@@ -274,6 +275,13 @@ export default function App() {
         <Route path="/upload">
           {WithAuth() === 'right token' ? (
             <Upload></Upload>
+          ) : (
+            <Redirect to="/login"></Redirect>
+          )}
+        </Route>
+        <Route path="/impressum">
+          {WithAuth() === 'right token' ? (
+            <Impressum></Impressum>
           ) : (
             <Redirect to="/login"></Redirect>
           )}
