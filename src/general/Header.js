@@ -20,8 +20,13 @@ export default function Header({
   filterMenu1Active,
   filterMenu2Active,
   filterMenu3Active,
+  backgroundInvisible,
 }) {
   const [showMenu, setShowMenu] = useState(false)
+  function handleShowMenu() {
+    setShowMenu(!showMenu)
+    backgroundInvisible()
+  }
   function filter1Clicked() {
     handleClick1()
     const menu = document.querySelector('#messageWrapper')
@@ -72,11 +77,11 @@ export default function Header({
       ) : (
         ''
       )}
-      <MenuLabel1 onClick={() => setShowMenu(!showMenu)}>
+      <MenuLabel1 onClick={() => handleShowMenu()}>
         <MenuButton src={showMenu ? menuClicked : menu}></MenuButton>
       </MenuLabel1>
       {showMenu ? (
-        <MenuLabel2 onClick={() => setShowMenu(false)}>
+        <MenuLabel2 onClick={() => handleShowMenu()}>
           <Menu position={'97px'}></Menu>
         </MenuLabel2>
       ) : (
@@ -135,8 +140,8 @@ const MenuLabel2 = styled.label`
   position: absolute;
   top: 0;
   right: 0;
-  height: 500px;
-  width: 400px;
+  height: 100vh;
+  width: 100vw;
   z-index: 1;
 `
 const MenuButton = styled.img`

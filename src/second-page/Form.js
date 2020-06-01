@@ -106,7 +106,7 @@ export default function Form({ onSubmit1 }) {
     }
     data.bereich = bereich
     data.anzeigen = true
-    console.log(data)
+    //console.log(data)
     if (data.file.name === '') {
       confirmAlert({
         title: 'Bestätigung',
@@ -228,7 +228,7 @@ const Wrapper = styled.form`
   position: relative;
   margin: 0 20px;
   @media (min-width: 768px) {
-    margin: 0 100px;
+    margin: 0 20%;
   }
 `
 const GridWer = styled.div`

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 
 import Globalstyles from '../general/Globalstyles'
@@ -6,11 +6,14 @@ import Grid from '../general/Grid2'
 import Header from '../general/Header2'
 
 export default function Impressum() {
+  const [backgroundWhite, setBackgroundWhite] = useState(false)
   return (
     <Grid>
       <Globalstyles></Globalstyles>
-      <Header></Header>
-      <Wrapper>
+      <Header
+        backgroundInvisible={() => setBackgroundWhite(!backgroundWhite)}
+      ></Header>
+      <Wrapper active={backgroundWhite}>
         <Headline>Kontakt</Headline>
         <Text>
           Wenn Sie Ihr Passwort vergessen haben oder Ihnen technische Probleme
@@ -25,6 +28,8 @@ export default function Impressum() {
   )
 }
 const Wrapper = styled.section`
+  background-color: ${(props) => (props.active ? 'white' : '')};
+  opacity: ${(props) => (props.active ? '10%' : '')};
   margin: 0 20px;
 `
 const Headline = styled.h1`
@@ -40,5 +45,3 @@ const Text = styled.p`
 const Link = styled.a`
   color: rgb(107, 107, 107);
 `
-
-//REACT_APP_URL = "http://192.168.0.143:3000"

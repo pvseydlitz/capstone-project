@@ -48,6 +48,8 @@ export default function Home({
   const [selectedMonth3, setSelectedMonth3] = useState('')
   const [selectedYear3, setSelectedYear3] = useState('')
 
+  const [backgroundWhite, setBackgroundWhite] = useState(false)
+
   function handleClick1() {
     setIsClicked1(true)
     setIsClicked2(false)
@@ -87,8 +89,9 @@ export default function Home({
         filterMenu1Active={showFilterMenu}
         filterMenu2Active={showFilterMenuTuevMessages}
         filterMenu3Active={showFilterMenuNoticeMessages}
+        backgroundInvisible={() => setBackgroundWhite(!backgroundWhite)}
       ></Header>
-      <MessageWrapper id="messageWrapper">
+      <MessageWrapper id="messageWrapper" active={backgroundWhite}>
         {showFilterMenu ? (
           <FilterMenu
             handleClick={() => setIsOnlyBookmarkShown(!isOnlyBookmarkShown)}
@@ -245,6 +248,8 @@ export default function Home({
 const MessageWrapper = styled.div`
   overflow-y: scroll;
   width: 100%;
+  background-color: ${(props) => (props.active ? 'white' : '')};
+  opacity: ${(props) => (props.active ? '10%' : '')};
   @media (min-width: 768px) {
     grid-column: 1/3;
     display: grid;

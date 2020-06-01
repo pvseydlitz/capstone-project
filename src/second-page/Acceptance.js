@@ -43,7 +43,7 @@ const Wrapper = styled.div`
   top: 100px;
   margin-bottom: 40px;
   @media (min-width: 768px) {
-    margin: 0 100px;
+    margin: 0 20%;
   }
 `
 const Grid = styled.form`

@@ -14,12 +14,15 @@ import FormNotice from './FormNotice'
 export default function Create({ onSubmit1, onSubmit2, onSubmit3 }) {
   const [selectedValue, setSelectedValue] = useState('Gewährleistungsmangel')
   const [showAcceptance, setShowAcceptance] = useState(true)
-
+  const [backgroundWhite, setBackgroundWhite] = useState(false)
   return (
     <Grid>
       <Globalstyles></Globalstyles>
-      <Header showSearchIcon={false}></Header>
-      <Wrapper id="wrapper-form">
+      <Header
+        showSearchIcon={false}
+        backgroundInvisible={() => setBackgroundWhite(!backgroundWhite)}
+      ></Header>
+      <Wrapper id="wrapper-form" active={backgroundWhite}>
         <Headline>Neue Meldung erstellen</Headline>
         <Category>
           <Headline2>Kategorie der Meldung</Headline2>
@@ -62,6 +65,8 @@ const Wrapper = styled.div`
   flex-direction: column;
   position: relative;
   overflow-y: scroll;
+  background-color: ${(props) => (props.active ? 'white' : '')};
+  opacity: ${(props) => (props.active ? '10%' : '')};
   @media (min-width: 768px) {
     grid-column: 1/3;
     justify-items: center;
@@ -83,6 +88,6 @@ const Category = styled.div`
   top: 55px;
   margin: 0 20px;
   @media (min-width: 768px) {
-    margin: 0 100px;
+    margin: 0 20%;
   }
 `
