@@ -15,6 +15,7 @@ export default function FormTuev({ onSubmit2 }) {
     const formData = new FormData(form)
     const data = Object.fromEntries(formData)
     data.status = 1
+    data.anzeigen = true
     if (data.password === PASSWORD) {
       onSubmit2(data)
       form.reset()
@@ -51,7 +52,7 @@ const Wrapper = styled.form`
   position: relative;
   margin: 0 20px;
   @media (min-width: 768px) {
-    margin: 0 100px;
+    margin: 0 20%;
   }
 `
 const Grid = styled.div`

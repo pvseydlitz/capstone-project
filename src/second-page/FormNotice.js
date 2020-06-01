@@ -44,7 +44,7 @@ const Wrapper = styled.form`
   position: relative;
   margin: 0 20px;
   @media (min-width: 768px) {
-    margin: 0 100px;
+    margin: 0 20%;
   }
 `
 const Grid = styled.div`

@@ -6,6 +6,7 @@ import Menu from './Menu'
 
 import logo from '../icons/logo.svg'
 import menu from '../icons/menu.svg'
+import menuClicked from '../icons/menu-clicked.svg'
 import searchIcon from '../icons/search.svg'
 
 export default function Header2({
@@ -13,10 +14,14 @@ export default function Header2({
   checkInput,
   searchedItem,
   active,
+  backgroundInvisible,
 }) {
   const [showSearchBar, setShowSearchBar] = useState(false)
   const [showMenu, setShowMenu] = useState(false)
-
+  function handleShowMenu() {
+    setShowMenu(!showMenu)
+    backgroundInvisible()
+  }
   return (
     <Line>
       <Logo src={logo} alt="logo"></Logo>
@@ -42,11 +47,11 @@ export default function Header2({
       ) : (
         ''
       )}
-      <MenuLabel1 onClick={() => setShowMenu(!showMenu)}>
-        <MenuButton src={menu}></MenuButton>
+      <MenuLabel1 onClick={() => handleShowMenu()}>
+        <MenuButton src={showMenu ? menuClicked : menu}></MenuButton>
       </MenuLabel1>
       {showMenu ? (
-        <MenuLabel2 onClick={() => setShowMenu(false)}>
+        <MenuLabel2 onClick={() => handleShowMenu()}>
           <Menu position={'60px'}></Menu>
         </MenuLabel2>
       ) : (
@@ -91,8 +96,9 @@ const MenuLabel2 = styled.label`
   position: absolute;
   top: 0;
   right: 0;
-  height: 500px;
-  width: 300px;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1;
 `
 const Search = styled.img`
   position: absolute;

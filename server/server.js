@@ -6,17 +6,17 @@ const withAuth = require('./middleware')
 const path = require('path')
 
 //online Datenbank
-const db = process.env.MONGODB_URI
+/* const db = process.env.MONGODB_URI
 mongoose.connect(db, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-})
+}) */
 //lokale datenbank
-/* mongoose.connect('mongodb://localhost:27017/capstone-project', {
+mongoose.connect('mongodb://localhost:27017/capstone-project', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
-}) */
+})
 
 const registrationRoutes = require('./registration')
 const cookieParser = require('cookie-parser')
@@ -25,13 +25,16 @@ const cors = require('cors')
 
 const app = express()
 app.use(express.json())
-app.use(express.static(path.join(__dirname, '../build')))
+console.log(__dirname)
+console.log(__filename)
+app.use('/static', express.static(path.join(__dirname, '/../public')))
+
 const PORT = process.env.PORT || 3333
 app.listen(PORT, () => console.log(`Express ready on port ${PORT}`))
 
 app.use(cors())
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.setHeader(
     'Access-Control-Allow-Methods',
     'POST, PUT, OPTIONS, DELETE, GET'
@@ -50,58 +53,58 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use('/registration', registrationRoutes)
 
-app.get('/checkToken', withAuth, function(req, res) {
+app.get('/checkToken', withAuth, function (req, res) {
   res.sendStatus(200)
 })
 
 app.get('/messages', withAuth, (req, res) => {
   Message.find()
-    .then(messages => res.json(messages))
-    .catch(err => res.json(err))
+    .then((messages) => res.json(messages))
+    .catch((err) => res.json(err))
 })
 
 app.get('/messages/:id', (req, res) => {
   Message.findById(req.params.id)
-    .then(message => res.json(message))
-    .catch(err => res.json(err))
+    .then((message) => res.json(message))
+    .catch((err) => res.json(err))
 })
 
 app.post('/messages', (req, res) => {
   Message.create(req.body)
-    .then(message => res.json(message))
-    .catch(err => res.json(err))
+    .then((message) => res.json(message))
+    .catch((err) => res.json(err))
 })
 
 app.get('/messagesTuev', withAuth, (req, res) => {
   MessageTuev.find()
-    .then(messages => res.json(messages))
-    .catch(err => res.json(err))
+    .then((messages) => res.json(messages))
+    .catch((err) => res.json(err))
 })
 app.post('/messagesTuev', (req, res) => {
   MessageTuev.create(req.body)
-    .then(message => res.json(message))
-    .catch(err => res.json(err))
+    .then((message) => res.json(message))
+    .catch((err) => res.json(err))
 })
 
 app.patch('/messages/:id', (req, res) => {
   Message.findByIdAndUpdate(req.params.id, req.body, { new: true })
-    .then(message => res.json(message))
-    .catch(err => res.json(err))
+    .then((message) => res.json(message))
+    .catch((err) => res.json(err))
 })
 app.patch('/messagesTuev/:id', (req, res) => {
   MessageTuev.findByIdAndUpdate(req.params.id, req.body, { new: true })
-    .then(message => res.json(message))
-    .catch(err => res.json(err))
+    .then((message) => res.json(message))
+    .catch((err) => res.json(err))
 })
 app.delete('/messages/:id', (req, res) => {
   Message.findByIdAndDelete(req.params.id)
-    .then(message => res.json(message))
-    .catch(err => res.json(err))
+    .then((message) => res.json(message))
+    .catch((err) => res.json(err))
 })
 app.delete('/messagestuev/:id', (req, res) => {
   MessageTuev.findByIdAndDelete(req.params.id)
-    .then(message => res.json(message))
-    .catch(err => res.json(err))
+    .then((message) => res.json(message))
+    .catch((err) => res.json(err))
 })
 
 const messageNoticeRoute = require('./notice')
@@ -113,11 +116,11 @@ const file = require('./file')
 app.use(logger('dev'))
 app.use('/api/', file)
 
-app.post('/logout', function(req, res) {
+app.post('/logout', function (req, res) {
   res.clearCookie('token', { path: '/' })
   return res.sendStatus(200)
 })
 
 app.get('*', (req, res) => {
-  res.render(path.join(__dirname, '/build/index.html'))
+  res.sendFile(path.join(__dirname + '/../public/index.html'))
 })

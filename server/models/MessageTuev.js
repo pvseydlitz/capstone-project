@@ -5,6 +5,7 @@ const messageTuevSchema = {
   ort: String,
   beschreibung: String,
   status: Number,
+  anzeigen: Boolean,
 }
 
 module.exports = mongoose.model('MessageTuev', messageTuevSchema)

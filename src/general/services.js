@@ -1,11 +1,11 @@
 export function getMessages() {
-  return fetch('/messages').then(res => res.json())
+  return fetch('/messages').then((res) => res.json())
 }
 export function getMessagesTuev() {
-  return fetch('/messagesTuev').then(res => res.json())
+  return fetch('/messagesTuev').then((res) => res.json())
 }
 export function getMessagesNotice() {
-  return fetch('/messagesNotice').then(res => res.json())
+  return fetch('/messagesNotice').then((res) => res.json())
 }
 export function postMessage(message) {
   return fetch('/messages', {
@@ -14,7 +14,7 @@ export function postMessage(message) {
     headers: {
       'content-type': 'application/json',
     },
-  }).then(res => res.json())
+  }).then((res) => res.json())
 }
 export function postMessageTuev(message) {
   return fetch('/messagesTuev', {
@@ -23,7 +23,7 @@ export function postMessageTuev(message) {
     headers: {
       'content-type': 'application/json',
     },
-  }).then(res => res.json())
+  }).then((res) => res.json())
 }
 export function postMessageNotice(message) {
   return fetch('/messagesNotice', {
@@ -32,7 +32,7 @@ export function postMessageNotice(message) {
     headers: {
       'content-type': 'application/json',
     },
-  }).then(res => res.json())
+  }).then((res) => res.json())
 }
 export function patchMessage(message) {
   return fetch('/messages/' + message._id, {
@@ -41,7 +41,7 @@ export function patchMessage(message) {
     headers: {
       'content-type': 'application/json',
     },
-  }).then(res => res.json())
+  }).then((res) => res.json())
 }
 export function patchMessageTuev(message) {
   return fetch('/messagesTuev/' + message._id, {
@@ -50,7 +50,7 @@ export function patchMessageTuev(message) {
     headers: {
       'content-type': 'application/json',
     },
-  }).then(res => res.json())
+  }).then((res) => res.json())
 }
 export function patchMessageNotice(message) {
   return fetch('/messagesNotice/' + message._id, {
@@ -59,21 +59,21 @@ export function patchMessageNotice(message) {
     headers: {
       'content-type': 'application/json',
     },
-  }).then(res => res.json())
+  }).then((res) => res.json())
 }
 export function deleteMessage(id) {
   return fetch('/messages/' + id, {
     method: 'DELETE',
-  }).then(res => res.json())
+  }).then((res) => res.json())
 }
 
 export function deleteMessageTuev(id) {
   return fetch('/messagesTuev/' + id, {
     method: 'DELETE',
-  }).then(res => res.json())
+  }).then((res) => res.json())
 }
 export function deleteMessageNotice(id) {
   return fetch('/messagesNotice/' + id, {
     method: 'DELETE',
-  }).then(res => res.json())
+  }).then((res) => res.json())
 }

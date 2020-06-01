@@ -13,14 +13,15 @@ export default function Upload() {
   const [picture, setPicture] = useState('Kein Dokument ausgewählt')
   const [showForm, setShowForm] = useState(false)
   const [searchedItem, setSearchedItem] = useState('')
+  const [backgroundWhite, setBackgroundWhite] = useState(false)
   useEffect(() => {
     loadFiles()
   }, [])
 
   function loadFiles() {
     fetch('/api/files')
-      .then(res => res.json())
-      .then(files => {
+      .then((res) => res.json())
+      .then((files) => {
         if (files.message) {
         } else {
           setFiles(files)
@@ -46,8 +47,8 @@ export default function Upload() {
       method: 'POST',
       body: data,
     })
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         if (data.success) {
           loadFiles()
           setShowForm(false)
@@ -61,8 +62,8 @@ export default function Upload() {
     fetch('/api/files/' + id, {
       method: 'DELETE',
     })
-      .then(res => res.json())
-      .then(response => {
+      .then((res) => res.json())
+      .then((response) => {
         console.log(response)
         if (response.success) loadFiles()
         else alert('Delete Failed')
@@ -79,8 +80,9 @@ export default function Upload() {
         showSearchIcon={true}
         checkInput={checkInput}
         searchedItem={searchedItem.toLowerCase()}
+        backgroundInvisible={() => setBackgroundWhite(!backgroundWhite)}
       ></Header>
-      <Section>
+      <Section active={backgroundWhite}>
         <Form
           uploadFile={uploadFile}
           fileChanged={fileChanged}
@@ -89,7 +91,7 @@ export default function Upload() {
           picture={picture}
         ></Form>
         {files
-          .filter(file => {
+          .filter((file) => {
             const name = file.filename.toLowerCase()
             const query = searchedItem
             return query === '' || name.includes(query)
@@ -103,7 +105,8 @@ export default function Upload() {
 }
 const Section = styled.div`
   overflow-y: scroll;
-
+  background-color: ${(props) => (props.active ? 'white' : '')};
+  opacity: ${(props) => (props.active ? '10%' : '')};
   @media (min-width: 768px) {
     grid-column: 1/3;
     display: grid;

@@ -11,6 +11,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css'
 import Home from '../first-page/Home'
 import Create from '../second-page/Create'
 import Upload from '../third-page/Upload'
+import Impressum from '../fourth-page/Impressum'
 import Login from '../login/login'
 import Register from '../login/Registration'
 import WithAuth from '../login/withAuth'
@@ -22,11 +23,12 @@ import {
   postMessage,
   postMessageTuev,
   postMessageNotice,
-  deleteMessage,
+  /* deleteMessage,
   deleteMessageTuev,
-  deleteMessageNotice,
+  deleteMessageNotice, */
   patchMessage,
   patchMessageTuev,
+  patchMessageNotice,
 } from './services'
 
 export default function App() {
@@ -52,51 +54,96 @@ export default function App() {
     ])
   }
   function createMessage(messageData) {
-    postMessage(messageData).then(message => {
+    postMessage(messageData).then((message) => {
       setMessages([message, ...messages])
     })
   }
   function createMessage2(messageData) {
-    postMessageTuev(messageData).then(messageTuev => {
+    postMessageTuev(messageData).then((messageTuev) => {
       setMessagesTuev([messageTuev, ...messagesTuev])
     })
   }
   function createMessageNotice(messageData) {
-    postMessageNotice(messageData).then(messageNotice => {
+    postMessageNotice(messageData).then((messageNotice) => {
       confirmSuccessfulUpload()
       setMessagesNotice([messageNotice, ...messagesNotice])
     })
   }
   function removeMessage(id) {
-    deleteMessage(id).then(deletedMessage => {
-      setMessages(messages.filter(message => message.id !== deletedMessage.id))
+    /* deleteMessage(id).then((deletedMessage) => {
+      setMessages(
+        messages.filter((message) => message.id !== deletedMessage.id)
+      )
       getMessages().then(setMessages)
+    }) */
+    let messageToDelete = messages.filter((message) => message._id === id)
+    messageToDelete[0].anzeigen = false
+    patchMessage(messageToDelete[0]).then((patchedMessage) => {
+      const index = messages.findIndex(
+        (message) => message._id === patchedMessage._id
+      )
+      messages[index] = patchedMessage
+      setMessages([
+        ...messages.slice(0, index),
+        patchedMessage,
+        ...messages.slice(index + 1),
+      ])
     })
   }
   function removeMessageTuev(id) {
-    deleteMessageTuev(id).then(deletedMessageTuev => {
+    /* deleteMessageTuev(id).then((deletedMessageTuev) => {
       setMessagesTuev(
         messagesTuev.filter(
-          messageTuev => messageTuev.id !== deletedMessageTuev.id
+          (messageTuev) => messageTuev.id !== deletedMessageTuev.id
         )
       )
       getMessagesTuev().then(setMessagesTuev)
+    }) */
+    let messageToDelete = messagesTuev.filter(
+      (messageTuev) => messageTuev._id === id
+    )
+    messageToDelete[0].anzeigen = false
+    patchMessageTuev(messageToDelete).then((patchedMessage) => {
+      const index = messagesTuev.findIndex(
+        (messageTuev) => messageTuev._id === patchedMessage._id
+      )
+      messagesTuev[index] = patchedMessage
+      setMessagesTuev([
+        ...messagesTuev.slice(0, index),
+        patchedMessage,
+        ...messagesTuev.slice(index + 1),
+      ])
     })
   }
   function removeMessageNotice(id) {
-    deleteMessageNotice(id).then(deletedMessageNotice => {
+    /* deleteMessageNotice(id).then((deletedMessageNotice) => {
       setMessagesNotice(
         messagesNotice.filter(
-          messageNotice => messageNotice.id !== deletedMessageNotice.id
+          (messageNotice) => messageNotice.id !== deletedMessageNotice.id
         )
       )
       getMessagesNotice().then(setMessagesNotice)
+    }) */
+    let messageToDelete = messagesNotice.filter(
+      (messageNotice) => messageNotice._id === id
+    )
+    messageToDelete[0].anzeigen = false
+    patchMessageNotice(messageToDelete[0]).then((patchedMessage) => {
+      const index = messagesNotice.findIndex(
+        (messageNotice) => messageNotice._id === patchedMessage._id
+      )
+      messagesNotice[index] = patchedMessage
+      setMessages([
+        ...messagesNotice.slice(0, index),
+        patchedMessage,
+        ...messagesNotice.slice(index + 1),
+      ])
     })
   }
   function handleStatus(message) {
-    patchMessage(message).then(patchedMessage => {
+    patchMessage(message).then((patchedMessage) => {
       const index = messages.findIndex(
-        message => message._id === patchedMessage._id
+        (message) => message._id === patchedMessage._id
       )
       messages[index] = patchedMessage
       setMessages([
@@ -107,9 +154,9 @@ export default function App() {
     })
   }
   function handleStatusTuev(messageTuev) {
-    patchMessageTuev(messageTuev).then(patchedMessage => {
+    patchMessageTuev(messageTuev).then((patchedMessage) => {
       const index = messagesTuev.findIndex(
-        messageTuev => messageTuev._id === patchedMessage._id
+        (messageTuev) => messageTuev._id === patchedMessage._id
       )
       messagesTuev[index] = patchedMessage
       setMessagesTuev([
@@ -218,12 +265,23 @@ export default function App() {
         <Route path="/login">
           <Login></Login>
         </Route>
-        <Route path="/register">
-          <Register></Register>
+        <Route path="/registernewuser">
+          {WithAuth() === 'right token' ? (
+            <Register></Register>
+          ) : (
+            <Redirect to="/login"></Redirect>
+          )}
         </Route>
         <Route path="/upload">
           {WithAuth() === 'right token' ? (
             <Upload></Upload>
+          ) : (
+            <Redirect to="/login"></Redirect>
+          )}
+        </Route>
+        <Route path="/impressum">
+          {WithAuth() === 'right token' ? (
+            <Impressum></Impressum>
           ) : (
             <Redirect to="/login"></Redirect>
           )}

@@ -43,7 +43,7 @@ const Wrapper = styled.div`
   top: 100px;
   margin-bottom: 40px;
   @media (min-width: 768px) {
-    margin: 0 100px;
+    margin: 0 20%;
   }
 `
 const Grid = styled.form`
@@ -71,4 +71,5 @@ const Button = styled.button`
   display: flex;
   justify-content: center;
   cursor: pointer;
+  max-width: 192px;
 `

@@ -9,6 +9,7 @@ import logo from '../icons/logo.svg'
 import filterIcon from '../icons/filterbutton.svg'
 import filterIconClicked from '../icons/filterbutton-clicked.svg'
 import menu from '../icons/menu.svg'
+import menuClicked from '../icons/menu-clicked.svg'
 export default function Header({
   showFilter1,
   showFilter2,
@@ -19,8 +20,13 @@ export default function Header({
   filterMenu1Active,
   filterMenu2Active,
   filterMenu3Active,
+  backgroundInvisible,
 }) {
   const [showMenu, setShowMenu] = useState(false)
+  function handleShowMenu() {
+    setShowMenu(!showMenu)
+    backgroundInvisible()
+  }
   function filter1Clicked() {
     handleClick1()
     const menu = document.querySelector('#messageWrapper')
@@ -71,11 +77,11 @@ export default function Header({
       ) : (
         ''
       )}
-      <MenuLabel1 onClick={() => setShowMenu(!showMenu)}>
-        <MenuButton src={menu}></MenuButton>
+      <MenuLabel1 onClick={() => handleShowMenu()}>
+        <MenuButton src={showMenu ? menuClicked : menu}></MenuButton>
       </MenuLabel1>
       {showMenu ? (
-        <MenuLabel2 onClick={() => setShowMenu(false)}>
+        <MenuLabel2 onClick={() => handleShowMenu()}>
           <Menu position={'97px'}></Menu>
         </MenuLabel2>
       ) : (
@@ -114,7 +120,8 @@ const Label = styled.label`
 `
 const Filter = styled.p`
   margin: 0px;
-  color: ${props => (props.active ? 'rgb(187 179 163)' : 'rgb(107, 107, 107)')};
+  color: ${(props) =>
+    props.active ? 'rgb(187 179 163)' : 'rgb(107, 107, 107)'};
   font-size: 16px;
   position: absolute;
   top: 18px;
@@ -133,8 +140,9 @@ const MenuLabel2 = styled.label`
   position: absolute;
   top: 0;
   right: 0;
-  height: 500px;
-  width: 300px;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1;
 `
 const MenuButton = styled.img`
   position: absolute;
