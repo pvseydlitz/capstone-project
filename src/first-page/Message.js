@@ -97,7 +97,13 @@ export default function Message({
           <br></br>
           {showContent ? message.beschreibung : ''}
         </Content>
-        {showContent ? <Image src={message.url} alt=""></Image> : ''}
+        {showContent ? (
+          <Link href={message.url} rel="noopener noreferrer" target="_blank">
+            <Image src={message.url} alt=""></Image>
+          </Link>
+        ) : (
+          ''
+        )}
       </Wrapper>
 
       <ShowMoreButton onClick={() => setShowContent(!showContent)}>
@@ -161,9 +167,11 @@ const WrapperDropdown = styled.div`
   grid-template-columns: auto 3fr 1fr;
   grid-gap: 20px;
 `
+const Link = styled.a`
+  justify-self: center;
+`
 const Image = styled.img`
   margin-top: 20px;
   width: 200px;
   height: auto;
-  justify-self: center;
 `

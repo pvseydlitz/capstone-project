@@ -25,7 +25,10 @@ const cors = require('cors')
 
 const app = express()
 app.use(express.json())
-app.use(express.static(path.join(__dirname, '../build')))
+console.log(__dirname)
+console.log(__filename)
+app.use('/static', express.static(path.join(__dirname, '/../public')))
+
 const PORT = process.env.PORT || 3333
 app.listen(PORT, () => console.log(`Express ready on port ${PORT}`))
 
@@ -119,5 +122,5 @@ app.post('/logout', function (req, res) {
 })
 
 app.get('*', (req, res) => {
-  res.render(path.join(__dirname, '/build/index.html'))
+  res.sendFile(path.join(__dirname + '/../public/index.html'))
 })

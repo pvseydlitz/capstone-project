@@ -29,7 +29,8 @@ export default function Form({
               <input
                 style={{ display: 'none' }}
                 type="file"
-                onChange={event => fileChanged(event)}
+                onChange={(event) => fileChanged(event)}
+                accept=".pdf"
               />
             </UploadWrapper>
             <ChoosenPicture>
@@ -67,7 +68,7 @@ Form.propTypes = {
 const Wrapper = styled.div`
   position: relative;
   margin: 20px;
-  height: ${props => (props.active ? '120px' : '')};
+  height: ${(props) => (props.active ? '120px' : '')};
   @media (min-width: 768px) {
     grid-column: 1/3;
   }

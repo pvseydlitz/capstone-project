@@ -4,7 +4,7 @@ export default function WithAuth() {
   const [loading, setLoading] = useState()
 
   fetch('/checkToken')
-    .then(res => {
+    .then((res) => {
       if (res.status === 200) {
         setLoading(false)
       } else {
@@ -12,7 +12,7 @@ export default function WithAuth() {
         throw error
       }
     })
-    .catch(err => {
+    .catch((err) => {
       console.error(err)
 
       setLoading(true)
