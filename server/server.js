@@ -28,7 +28,7 @@ app.use(express.json())
 console.log(__dirname)
 console.log(__filename)
 //app.use('/static', express.static(path.join(__dirname, '/../public')))
-app.use(express.static(path.join(__dirname, '../build')))
+app.use(express.static(path.join(__dirname, '../public')))
 const PORT = process.env.PORT || 3333
 app.listen(PORT, () => console.log(`Express ready on port ${PORT}`))
 
@@ -123,5 +123,5 @@ app.post('/logout', function (req, res) {
 
 app.get('*', (req, res) => {
   //res.sendFile(path.join(__dirname + '/../public/index.html'))
-  app.use(express.static(path.join(__dirname, '../build')))
+  res.render(path.join(__dirname, '/../public/index.html'))
 })

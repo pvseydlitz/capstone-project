@@ -12,6 +12,7 @@ export default function FormNotice({ onSubmit3 }) {
     const form = event.target
     const formData = new FormData(form)
     const data = Object.fromEntries(formData)
+    data.anzeigen = true
     onSubmit3(data)
     form.reset()
   }
