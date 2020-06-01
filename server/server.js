@@ -6,17 +6,17 @@ const withAuth = require('./middleware')
 const path = require('path')
 
 //online Datenbank
-/* const db = process.env.MONGODB_URI
+const db = process.env.MONGODB_URI
 mongoose.connect(db, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-}) */
+})
 //lokale datenbank
-mongoose.connect('mongodb://localhost:27017/capstone-project', {
+/* mongoose.connect('mongodb://localhost:27017/capstone-project', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
-})
+}) */
 
 const registrationRoutes = require('./registration')
 const cookieParser = require('cookie-parser')
