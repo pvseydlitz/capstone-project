@@ -4,19 +4,20 @@ const MessageTuev = require('./models/MessageTuev')
 const express = require('express')
 const withAuth = require('./middleware')
 const path = require('path')
-
+const URL = process.env.REACT_APP_URL
+console.log(URL)
 //online Datenbank
-const db = process.env.MONGODB_URI
+/* const db = process.env.MONGODB_URI
 mongoose.connect(db, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-})
+}) */
 //lokale datenbank
-/* mongoose.connect('mongodb://localhost:27017/capstone-project', {
+mongoose.connect('mongodb://localhost:27017/capstone-project', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
-}) */
+})
 
 const registrationRoutes = require('./registration')
 const cookieParser = require('cookie-parser')
@@ -25,8 +26,6 @@ const cors = require('cors')
 
 const app = express()
 app.use(express.json())
-console.log(__dirname)
-console.log(__filename)
 //app.use('/static', express.static(path.join(__dirname, '/../public')))
 app.use(express.static(path.join(__dirname, '../build')))
 
@@ -53,9 +52,22 @@ app.use(cookieParser())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use('/registration', registrationRoutes)
-
+//Bearbeiten - evtl. withAuth raus
 app.get('/checkToken', withAuth, function (req, res) {
   res.sendStatus(200)
+})
+
+app.get('/create', function (req, res) {
+  res.redirect(`${URL}/`)
+})
+app.get('/upload', function (req, res) {
+  res.redirect(`${URL}/`)
+})
+app.get('/impressum', function (req, res) {
+  res.redirect(`${URL}/`)
+})
+app.get('/login', function (req, res) {
+  res.redirect(`${URL}/`)
 })
 
 app.get('/messages', withAuth, (req, res) => {
@@ -121,7 +133,6 @@ app.post('/logout', function (req, res) {
   res.clearCookie('token', { path: '/' })
   return res.sendStatus(200)
 })
-console.log(path.join(__dirname, '/../public/index.html'))
 app.get('*', (req, res) => {
   //res.sendFile(path.join(__dirname + '/../public/index.html'))
   res.render(path.join(__dirname, '/build/index.html'))

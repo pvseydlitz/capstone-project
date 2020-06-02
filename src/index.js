@@ -4,7 +4,7 @@ import App from './general/App'
 //import Create from './second-page/Create'
 import * as serviceWorker from './general/serviceWorker'
 
-let route = window.location.href
+/* let route = window.location.href
 const position = route.lastIndexOf('/')
 route = route.substring(position)
 console.log(route)
@@ -13,10 +13,13 @@ if (route === '/') {
 } else if (
   route === '/create' ||
   route === '/upload' ||
-  route === '/impressum'
+  route === '/impressum' ||
+  route === '/login'
 ) {
   window.location.href = '/'
-}
+} */
+
+ReactDOM.render(<App />, document.getElementById('root'))
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
