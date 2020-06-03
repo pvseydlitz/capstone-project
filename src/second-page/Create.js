@@ -22,7 +22,7 @@ export default function Create({ onSubmit1, onSubmit2, onSubmit3 }) {
         showSearchIcon={false}
         backgroundInvisible={() => setBackgroundWhite(!backgroundWhite)}
       ></Header>
-      <Wrapper id="wrapper-form" active={backgroundWhite}>
+      <Wrapper id="wrapper" active={backgroundWhite}>
         <Headline>Neue Meldung erstellen</Headline>
         <Category>
           <Headline2>Kategorie der Meldung</Headline2>
@@ -36,7 +36,7 @@ export default function Create({ onSubmit1, onSubmit2, onSubmit3 }) {
               handleAccept={(event) => {
                 event.preventDefault()
                 setShowAcceptance(false)
-                const wrapperForm = document.querySelector('#wrapper-form')
+                const wrapperForm = document.querySelector('#wrapper')
                 wrapperForm.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
               }}
             ></Acceptance>

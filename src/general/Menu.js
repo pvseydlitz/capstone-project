@@ -34,9 +34,9 @@ export default function Menu({ position }) {
         console.log(err)
       })
   }
+
   const Background = styled.div`
     width: 300px;
-    /* height: 293px; */
     background: rgb(255, 255, 255);
     border: 2px solid rgb(201 193 171);
     position: absolute;
@@ -68,7 +68,7 @@ export default function Menu({ position }) {
               src={homeClicked ? homeIconClicked : homeIcon}
               alt="home button"
             ></img>
-            <Headline2>Home</Headline2>
+            <Headline2 active={homeClicked}>Home</Headline2>
           </NavButton>
         </NavLink>
 
@@ -91,7 +91,7 @@ export default function Menu({ position }) {
               src={createClicked ? plusSignIconClicked : plusSignIcon}
               alt="create button"
             ></img>
-            <Headline2>Hochladen</Headline2>
+            <Headline2 id="link2">Hochladen</Headline2>
           </NavButton>
         </NavLink>
 
@@ -136,7 +136,7 @@ export default function Menu({ position }) {
               src={phoneClicked ? phoneIconClicked : phoneIcon}
               alt="phone button"
             ></img>
-            <Headline2>Kontakt & Impressum</Headline2>
+            <Headline2>Kontakt & Impressumm</Headline2>
           </NavButton>
         </NavLink>
 

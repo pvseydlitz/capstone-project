@@ -24,21 +24,23 @@ export default function Header({
 }) {
   const [showMenu, setShowMenu] = useState(false)
   function handleShowMenu() {
+    scrollToTop()
     setShowMenu(!showMenu)
     backgroundInvisible()
   }
   function filter1Clicked() {
     handleClick1()
-    const menu = document.querySelector('#messageWrapper')
-    menu.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+    scrollToTop()
   }
   function filter2Clicked() {
     handleClick2()
-    const menu = document.querySelector('#messageWrapper')
-    menu.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+    scrollToTop()
   }
   function filter3Clicked() {
     handleClick3()
+    scrollToTop()
+  }
+  function scrollToTop() {
     const menu = document.querySelector('#messageWrapper')
     menu.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
   }

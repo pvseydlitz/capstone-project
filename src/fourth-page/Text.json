@@ -1,0 +1,31 @@
+[
+  {
+    "headline": "Kontakt",
+    "text": "Wenn Sie Ihr Passwort vergessen haben oder Ihnen technische Probleme an der Anwendung aufgefallen sind, schreiben Sie gerne eine E-Mail an:",
+    "mail": "app@langenfelderdamm.de"
+  },
+  {
+    "headline": "Impressum",
+    "headline2": "AUSSENALSTER TS2 GMBH",
+    "kontakt": [
+      "Telefon: +49 (0) 40-41 42 76–400",
+      "Fax +49 (0) 40–41 42 76–409",
+      "Hochallee 77",
+      "20149 Hamburg",
+      "info@aussenalster.de",
+      "Sitz der Gesellschaft: Hamburg",
+      "Registergericht: AG Hamburg HRB 83480",
+      "Geschäftsführung: Eckart von Seydlitz",
+      "Steuernummer: 42/704/01495"
+    ]
+  },
+  {
+    "headline": "Informationen zur Online-Streitbeilegung:",
+    "text": "Gemäß der Richtlinie 2013/11/EU richtet die EU-Kommission ein Internetplattform zur Online-Beilegung von Streitigkeiten („OS-Plattform“) zwischen Unternehmern und Verbrauchern ein. Diese ist unter folgendem Link erreichbar:",
+    "link": " https://webgate.ec.europa.eu/"
+  },
+  {
+    "headline": "Website",
+    "text": "Design & Relaisierung: Philipp von Seydlitz"
+  }
+]

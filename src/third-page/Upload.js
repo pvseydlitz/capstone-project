@@ -82,7 +82,7 @@ export default function Upload() {
         searchedItem={searchedItem.toLowerCase()}
         backgroundInvisible={() => setBackgroundWhite(!backgroundWhite)}
       ></Header>
-      <Section active={backgroundWhite}>
+      <Section id="wrapper" active={backgroundWhite}>
         <Form
           uploadFile={uploadFile}
           fileChanged={fileChanged}

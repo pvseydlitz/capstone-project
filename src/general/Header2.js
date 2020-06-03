@@ -21,6 +21,8 @@ export default function Header2({
   function handleShowMenu() {
     setShowMenu(!showMenu)
     backgroundInvisible()
+    const menu = document.querySelector('#wrapper')
+    menu.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
   }
   return (
     <Line>
