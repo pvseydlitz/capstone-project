@@ -26,6 +26,7 @@ export default function Menu({ position }) {
       headers: { 'content-type': 'application json' },
     })
       .then(function (response) {
+        localStorage.removeItem('time')
         if (response.status === 200) {
           return (window.location.href = `/`)
         }

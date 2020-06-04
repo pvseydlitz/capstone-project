@@ -12,6 +12,8 @@ import Message from './Message'
 import MessageTuev from './MessageTuev'
 import MessageNotice from './MessageNotice'
 
+import checkTime from '../general/checkTime.js'
+
 export default function Home({
   messages,
   messagesTuev,
@@ -73,7 +75,7 @@ export default function Home({
   }
 
   return (
-    <Grid>
+    <Grid onMouseEnter={() => checkTime()}>
       <Globalstyles></Globalstyles>
       <Header
         showFilter1={isClicked1}

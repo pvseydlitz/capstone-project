@@ -5,13 +5,14 @@ import Globalstyles from '../general/Globalstyles'
 import Grid from '../general/Grid2'
 import Header from '../general/Header2'
 
+import checkTime from '../general/checkTime.js'
 import Texte from './Text.json'
 
 export default function Impressum() {
   const [backgroundWhite, setBackgroundWhite] = useState(false)
 
   return (
-    <Grid>
+    <Grid onMouseEnter={() => checkTime()}>
       <Globalstyles></Globalstyles>
       <Header
         backgroundInvisible={() => setBackgroundWhite(!backgroundWhite)}

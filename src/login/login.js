@@ -34,7 +34,6 @@ export default function Login() {
   function handleSubmit(event) {
     event.preventDefault()
     const form = event.target
-
     onSubmit(form)
   }
   async function onSubmit(form) {
@@ -57,6 +56,8 @@ export default function Login() {
     })
       .then((res) => {
         if (res.status === 200) {
+          const time = Date.now()
+          localStorage.setItem('time', time)
           window.location.href = `/`
         } else {
           const error = new Error(res.error)
