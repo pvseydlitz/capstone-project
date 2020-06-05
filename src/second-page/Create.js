@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components/macro'
 
 import Globalstyles from '../general/Globalstyles'
@@ -17,6 +17,16 @@ export default function Create({ onSubmit1, onSubmit2, onSubmit3 }) {
   const [selectedValue, setSelectedValue] = useState('Gewährleistungsmangel')
   const [showAcceptance, setShowAcceptance] = useState(true)
   const [backgroundWhite, setBackgroundWhite] = useState(false)
+
+  useEffect(() => {
+    checkAccept()
+  }, [])
+  function checkAccept() {
+    const accepted = sessionStorage.getItem('accept')
+    if (accepted === 'true') {
+      setShowAcceptance(false)
+    }
+  }
   return (
     <Grid onMouseEnter={() => checkTime()}>
       <Globalstyles></Globalstyles>
@@ -38,6 +48,7 @@ export default function Create({ onSubmit1, onSubmit2, onSubmit3 }) {
               handleAccept={(event) => {
                 event.preventDefault()
                 setShowAcceptance(false)
+                sessionStorage.setItem('accept', 'true')
                 const wrapperForm = document.querySelector('#wrapper')
                 wrapperForm.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
               }}

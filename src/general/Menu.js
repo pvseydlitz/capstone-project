@@ -26,7 +26,8 @@ export default function Menu({ position }) {
       headers: { 'content-type': 'application json' },
     })
       .then(function (response) {
-        localStorage.removeItem('time')
+        sessionStorage.removeItem('time')
+        sessionStorage.removeItem('accept')
         if (response.status === 200) {
           return (window.location.href = `/`)
         }
@@ -51,6 +52,7 @@ export default function Menu({ position }) {
       <Headline>Menu</Headline>
       <Grid>
         <NavLink
+          style={{ textDecoration: 'none' }}
           to="/"
           isActive={(match) => {
             if (!match) {
@@ -69,11 +71,12 @@ export default function Menu({ position }) {
               src={homeClicked ? homeIconClicked : homeIcon}
               alt="home button"
             ></img>
-            <Headline2 active={homeClicked}>Home</Headline2>
+            <Headline21 active={homeClicked}>Home</Headline21>
           </NavButton>
         </NavLink>
 
         <NavLink
+          style={{ textDecoration: 'none' }}
           to="/create"
           isActive={(match) => {
             if (!match) {
@@ -92,11 +95,12 @@ export default function Menu({ position }) {
               src={createClicked ? plusSignIconClicked : plusSignIcon}
               alt="create button"
             ></img>
-            <Headline2 id="link2">Hochladen</Headline2>
+            <Headline22 active={createClicked}>Hochladen</Headline22>
           </NavButton>
         </NavLink>
 
         <NavLink
+          style={{ textDecoration: 'none' }}
           to="/upload"
           isActive={(match) => {
             if (!match) {
@@ -115,10 +119,11 @@ export default function Menu({ position }) {
               src={archiveClicked ? archiveIconClicked : archiveIcon}
               alt="document button"
             ></img>
-            <Headline2>Dokumente</Headline2>
+            <Headline23 active={archiveClicked}>Dokumente</Headline23>
           </NavButton>
         </NavLink>
         <NavLink
+          style={{ textDecoration: 'none' }}
           to="/impressum"
           isActive={(match) => {
             if (!match) {
@@ -137,13 +142,13 @@ export default function Menu({ position }) {
               src={phoneClicked ? phoneIconClicked : phoneIcon}
               alt="phone button"
             ></img>
-            <Headline2>Kontakt & Impressumm</Headline2>
+            <Headline24 active={phoneClicked}>Kontakt & Impressum</Headline24>
           </NavButton>
         </NavLink>
 
         <NavButton onClick={handleLogout}>
           <Logout src={logout}></Logout>
-          <Headline2>Abmelden</Headline2>
+          <Headline25>Abmelden</Headline25>
         </NavButton>
       </Grid>
     </Background>
@@ -174,10 +179,50 @@ const NavButton = styled.label`
   grid-gap: 10px;
   cursor: pointer;
 `
-const Headline2 = styled.h3`
+const Headline21 = styled.h3`
   margin: 0;
-  color: rgb(107, 107, 107);
+  color: ${(props) =>
+    props.active ? 'rgb(187 179 163)' : 'rgb(107, 107, 107)'};
   font-size: 16px;
+  &:hover {
+    font-size: 18px;
+  }
+`
+const Headline22 = styled.h3`
+  margin: 0;
+  color: ${(props) =>
+    props.active ? 'rgb(187 179 163)' : 'rgb(107, 107, 107)'};
+  font-size: 16px;
+  &:hover {
+    font-size: 18px;
+  }
+`
+const Headline23 = styled.h3`
+  margin: 0;
+  color: ${(props) =>
+    props.active ? 'rgb(187 179 163)' : 'rgb(107, 107, 107)'};
+  font-size: 16px;
+  &:hover {
+    font-size: 18px;
+  }
+`
+const Headline24 = styled.h3`
+  margin: 0;
+  color: ${(props) =>
+    props.active ? 'rgb(187 179 163)' : 'rgb(107, 107, 107)'};
+  font-size: 16px;
+  &:hover {
+    font-size: 18px;
+  }
+`
+const Headline25 = styled.h3`
+  margin: 0;
+  color: ${(props) =>
+    props.active ? 'rgb(187 179 163)' : 'rgb(107, 107, 107)'};
+  font-size: 16px;
+  &:hover {
+    font-size: 18px;
+  }
 `
 const Logout = styled.img`
   cursor: pointer;

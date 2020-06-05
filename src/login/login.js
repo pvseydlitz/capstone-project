@@ -57,7 +57,7 @@ export default function Login() {
       .then((res) => {
         if (res.status === 200) {
           const time = Date.now()
-          localStorage.setItem('time', time)
+          sessionStorage.setItem('time', time)
           window.location.href = `/`
         } else {
           const error = new Error(res.error)
