@@ -131,9 +131,8 @@ const MessageLayout = styled.div`
   background: rgb(238, 238, 238);
   border-radius: 10px;
   @media (min-width: 768px) {
-    margin: 50px 2vw;
+    margin: 50px 8%;
     margin-top: 20px;
-    width: 46vw;
   }
 `
 const Cross = styled.img`

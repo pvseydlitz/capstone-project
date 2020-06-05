@@ -22,7 +22,7 @@ export default function FormNotice({ onSubmit3 }) {
       <Grid>
         <Headline3>Kategorie</Headline3>
         <Wrapper2>
-          <DropDown name="kategorie">
+          <DropDown name="kategorie" required>
             <option value="">Bitte auswählen</option>
             <option value="Allgemeine Informationen">
               Allgemeine Informationen

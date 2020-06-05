@@ -16,5 +16,6 @@ export default styled.div`
   @media (min-width: 1000px) {
     width: 1000px;
     margin: 0 auto;
+    border: 2px solid rgb(187 179 163);
   }
 `

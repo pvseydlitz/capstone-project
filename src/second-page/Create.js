@@ -82,6 +82,9 @@ const Headline = styled.h1`
   position: absolute;
   top: 10px;
   margin: 0 20px;
+  @media (min-width: 768px) {
+    margin: 0 20%;
+  }
 `
 const Category = styled.div`
   display: grid;

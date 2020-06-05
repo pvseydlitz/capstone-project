@@ -76,6 +76,12 @@ const Wrapper = styled.div`
   height: 100vh;
   align-items: center;
   position: relative;
+  background: rgb(255, 255, 255);
+  @media (min-width: 1000px) {
+    width: 1000px;
+    margin: 0 auto;
+    border: 2px solid rgb(187 179 163);
+  }
 `
 const Logo = styled.img`
   position: absolute;

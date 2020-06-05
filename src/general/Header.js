@@ -110,7 +110,7 @@ const Line = styled.div`
   }
 `
 const Logo = styled.img`
-  z-index: -1;
+  z-index: 1;
 `
 const Label = styled.label`
   height: 50px;
