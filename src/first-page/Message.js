@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components/macro'
 
 import ShowMoreButton from './ShowMoreButton'
@@ -15,7 +15,10 @@ export default function Message({
 }) {
   const [showContent, setShowContent] = useState(false)
   const [showInputPassword, setShowInputPassword] = useState(false)
-
+  const [isBookmarked, setIsBookmarked] = useState(false)
+  useEffect(() => {
+    setBookmarks()
+  }, [])
   function handleChangeDropdown(number) {
     message.status = number
     handleStatus(message)
@@ -23,12 +26,39 @@ export default function Message({
   function saveMessageId(id) {
     localStorage.setItem('id', id)
   }
-
+  function setBookmarks() {
+    let bookmarkedMessages = [
+      '5e0ddc9c515fb04e62c0d2c2',
+      '5e1c5fade97021057a15f5bd',
+    ]
+    bookmarkedMessages.forEach((id) => {
+      if (bookmarkedMessages.indexOf(message._id) !== -1) {
+        setIsBookmarked(true)
+      }
+    })
+  }
+  function bookmarkMessage(id) {
+    let bookmarkedMessages = [
+      '5e0ddc9c515fb04e62c0d2c2',
+      '5e1c5fade97021057a15f5bd',
+    ]
+    console.log(bookmarkedMessages)
+    if (bookmarkedMessages.indexOf(id) === -1) {
+      bookmarkedMessages.push(id)
+      setIsBookmarked(true)
+      //toggleBookmarked()
+    } else {
+      console.log('already there')
+      setIsBookmarked(false)
+    }
+    console.log(bookmarkedMessages)
+  }
   return (
     <MessageLayout active={showContent}>
       <Bookmark
-        onClick={toggleBookmarked}
-        active={message.isBookmarked}
+        /* onClick={toggleBookmarked} */
+        onClick={() => bookmarkMessage(message._id)}
+        active={isBookmarked}
       ></Bookmark>
       <Cross
         src={cross}

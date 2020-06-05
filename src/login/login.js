@@ -3,6 +3,7 @@ import styled from 'styled-components/macro'
 
 import Globalstyles from '../general/Globalstyles'
 import LoginService from './services/LoginService'
+import UserService from './services/UserService'
 import Headline2 from '../second-page/Headline2'
 import Headline3 from '../second-page/Headline3'
 import Input from '../second-page/Input'
@@ -56,9 +57,7 @@ export default function Login() {
     })
       .then((res) => {
         if (res.status === 200) {
-          const time = Date.now()
-          sessionStorage.setItem('time', time)
-          window.location.href = `/`
+          setUserId(data.user_name)
         } else {
           const error = new Error(res.error)
           throw error
@@ -68,6 +67,13 @@ export default function Login() {
         console.error(err)
         //alert('Error logging in please try again')
       })
+  }
+  async function setUserId(user_name) {
+    const id = await UserService(user_name)
+    sessionStorage.setItem('user', id)
+    const time = Date.now()
+    sessionStorage.setItem('time', time)
+    window.location.href = `/`
   }
 }
 const Wrapper = styled.div`

@@ -4,6 +4,7 @@ export default function checkTime() {
   const duration = currentTime - loginTime
   if (duration >= 3600000) {
     sessionStorage.removeItem('time')
+    sessionStorage.removeItem('user')
     window.location.reload()
   }
 }

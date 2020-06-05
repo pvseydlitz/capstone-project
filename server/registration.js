@@ -53,5 +53,10 @@ registrationRoutes.route('/allData').get(withAuth, function (req, res) {
     err ? res.status(400).send('Error occured') : res.json(data)
   )
 })
+registrationRoutes.route('/oneUser').post(function (req, res) {
+  Registration.findOne({ user_name: req.body.user_name }).then((user) =>
+    user ? res.json(user._id) : res.sendStatus(204)
+  )
+})
 
 module.exports = registrationRoutes

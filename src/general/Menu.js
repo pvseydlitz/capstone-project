@@ -28,6 +28,7 @@ export default function Menu({ position }) {
       .then(function (response) {
         sessionStorage.removeItem('time')
         sessionStorage.removeItem('accept')
+        sessionStorage.removeItem('user')
         if (response.status === 200) {
           return (window.location.href = `/`)
         }
