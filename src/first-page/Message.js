@@ -27,32 +27,52 @@ export default function Message({
     localStorage.setItem('id', id)
   }
   function setBookmarks() {
-    let bookmarkedMessages = [
-      '5e0ddc9c515fb04e62c0d2c2',
-      '5e1c5fade97021057a15f5bd',
-    ]
-    bookmarkedMessages.forEach((id) => {
-      if (bookmarkedMessages.indexOf(message._id) !== -1) {
-        setIsBookmarked(true)
+    getBookmarkedMessages().then((bookmarkedMessages) =>
+      bookmarkedMessages.forEach(() => {
+        if (bookmarkedMessages.indexOf(message._id) !== -1) {
+          setIsBookmarked(true)
+        }
+      })
+    )
+  }
+
+  function bookmarkMessage(id) {
+    getBookmarkedMessages().then((bookmarkedMessages) => {
+      if (bookmarkedMessages.indexOf(id) === -1) {
+        bookmarkedMessages.push(id)
+        changeBookmarkedMessages(bookmarkedMessages).then(() =>
+          setIsBookmarked(true)
+        )
+      } else {
+        const index = bookmarkedMessages.indexOf(message._id)
+        bookmarkedMessages.splice(index, 1)
+        changeBookmarkedMessages(bookmarkedMessages).then(() =>
+          setIsBookmarked(false)
+        )
       }
     })
   }
-  function bookmarkMessage(id) {
-    let bookmarkedMessages = [
-      '5e0ddc9c515fb04e62c0d2c2',
-      '5e1c5fade97021057a15f5bd',
-    ]
-    console.log(bookmarkedMessages)
-    if (bookmarkedMessages.indexOf(id) === -1) {
-      bookmarkedMessages.push(id)
-      setIsBookmarked(true)
-      //toggleBookmarked()
-    } else {
-      console.log('already there')
-      setIsBookmarked(false)
-    }
-    console.log(bookmarkedMessages)
+
+  async function getBookmarkedMessages() {
+    const user = sessionStorage.getItem('user')
+    let bookmarkedMessages = await fetch(
+      `/registration/allData/${user}`
+    ).then((res) => res.json())
+    return bookmarkedMessages
   }
+
+  async function changeBookmarkedMessages(bookmarkedMessages) {
+    const data = { bookmarked_messages: bookmarkedMessages }
+    const user = sessionStorage.getItem('user')
+    return await fetch(`/registration/allData/${user}`, {
+      method: 'PATCH',
+      body: JSON.stringify(data),
+      headers: {
+        'content-type': 'application/json',
+      },
+    }).then((res) => res.json())
+  }
+
   return (
     <MessageLayout active={showContent}>
       <Bookmark
