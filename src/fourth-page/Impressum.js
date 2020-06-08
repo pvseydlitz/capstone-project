@@ -24,6 +24,7 @@ export default function Impressum() {
             {Texte[0].text}
             <Link href="mailto:app@langenfelderdamm.de">{Texte[0].mail}</Link>.
           </Text>
+          <br />
           <Headline>{Texte[1].headline}</Headline>
           <Headline2>{Texte[1].headline2}</Headline2>
           <Text>
@@ -59,6 +60,30 @@ export default function Impressum() {
             <br />
             <strong>{Texte[3].headline}</strong> <br />
             {Texte[3].text}
+          </Text>
+          <br />
+          <Headline>{Texte[4].headline}</Headline>
+          <Text>
+            {Texte[4].kontakt[0]}
+            <br /> {Texte[4].kontakt[1]} <br /> {Texte[4].kontakt[2]} <br />{' '}
+            {Texte[4].kontakt[3]}
+            <br /> <br />
+            <strong>{Texte[4].headline2}</strong>
+            <br />
+            {Texte[4].text2}
+            <br /> <br />
+            <strong>{Texte[4].headline3}</strong>
+            <br />
+            {Texte[4].text3}
+            <br /> <br />
+            <strong>{Texte[4].headline4}</strong>
+            <br />
+            {Texte[4].text4}
+            <br /> <br />
+            <strong>{Texte[4].headline5}</strong>
+            <br />
+            {Texte[4].text5}
+            <br /> <br />
           </Text>
         </Margin>
       </Wrapper>

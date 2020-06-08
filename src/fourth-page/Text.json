@@ -27,5 +27,22 @@
   {
     "headline": "Website",
     "text": "Design & Relaisierung: Philipp von Seydlitz"
+  },
+  {
+    "headline": "Datenschutzerklärung",
+    "kontakt": [
+      "Verantwortlich im Sinne der Datenschutzgesetzes:",
+      "Aussenalster TS2 GmbH",
+      "Hochallee 77",
+      "20149 Hamburg"
+    ],
+    "headline2": "Erfassung von Daten",
+    "text2": "Während Sie auf unsere Webseiten zugreifen, erfassen wir automatisch Daten von allgemeiner Natur. Diese Daten (Server-Logfiles) umfassen zum Beispiel die Art ihres Browsers, ihr Betriebssystem, den Domainnamen Ihres Internetanbieters sowie weitere ähnliche allgemeine Daten. Diese Daten sind absolut Personen unabhängig und werden genutzt, um Ihnen die Webseiten korrekt darzustellen und werden bei jeder Nutzung des Internets abgerufen. Die absolut anonymen Daten werden statistisch ausgewertet um unseren Service für Sie zu verbessern.",
+    "headline3": "Anmeldung auf unserer Webseite",
+    "text3": "Um auf diese Website zu gelangen ist eine Anmeldung nötig. Ohne Anmeldung sind die Inhalte nicht erreichbar und einsehbar. Für die Anmeldung werden keine persönlichen Daten von den Benutzern gespeichert. Jeder Zugang ist nur an die jeweilige Wohnung und nicht an eine Person gebunden kann auch keiner bestimmten Person zugeordnet werden.",
+    "headline4": "Persönliche Angaben in Formularen",
+    "text4": "Für die Bearbeitung der Gewährleistungsmängel müssen persönliche Daten wie Name, E-Mail Adresse und Telefonnummer angegeben werden. Diese werden per E-Mail an die Aussenalster TS2 GMBH geschickt, sind aber nicht für andere Nutzer auf der Website sichtbar. Sobald die Gewährleistungsmängel abgeschlossen sind, werden alle persönlichen Daten gelöscht.",
+    "headline5": "Löschung oder Sperrung von Daten",
+    "text5": "Ihre persönlichen Daten werden nur so lange gespeichert, wie dies absolut notwendig ist um die angegebenen Dienste zu leisten und es vom Gesetz vorgeschrieben ist. Nach Ablauf dieser Fristen werden die persönlichen Daten der Nutzer regelmäßig gesperrt oder gelöscht."
   }
 ]
