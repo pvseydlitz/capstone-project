@@ -18,7 +18,6 @@ export default function Home({
   messages,
   messagesTuev,
   messagesNotice,
-  toggleBookmarked,
   handleDelete,
   handleDeleteTuev,
   handleDeleteNotice,
@@ -152,7 +151,6 @@ export default function Home({
                   <Message
                     message={message}
                     key={index}
-                    toggleBookmarked={() => toggleBookmarked(index)}
                     handleDelete={handleDelete}
                     handleStatus={handleStatus}
                   ></Message>
@@ -185,7 +183,6 @@ export default function Home({
                   <Message
                     message={message}
                     key={index}
-                    toggleBookmarked={() => toggleBookmarked(index)}
                     handleDelete={handleDelete}
                     handleStatus={handleStatus}
                   ></Message>

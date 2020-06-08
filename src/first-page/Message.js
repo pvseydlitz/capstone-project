@@ -7,18 +7,13 @@ import cross from '../icons/cross.svg'
 import DropdownMenu from './DropdownMenu'
 import Password from './Password'
 
-export default function Message({
-  message,
-  toggleBookmarked,
-  handleStatus,
-  handleDelete,
-}) {
+export default function Message({ message, handleStatus, handleDelete }) {
   const [showContent, setShowContent] = useState(false)
   const [showInputPassword, setShowInputPassword] = useState(false)
   const [isBookmarked, setIsBookmarked] = useState(false)
   useEffect(() => {
     setBookmarks()
-  }, [])
+  })
   function handleChangeDropdown(number) {
     message.status = number
     handleStatus(message)
@@ -31,6 +26,7 @@ export default function Message({
       bookmarkedMessages.forEach(() => {
         if (bookmarkedMessages.indexOf(message._id) !== -1) {
           setIsBookmarked(true)
+          message.isBookmarked = true
         }
       })
     )
@@ -40,15 +36,17 @@ export default function Message({
     getBookmarkedMessages().then((bookmarkedMessages) => {
       if (bookmarkedMessages.indexOf(id) === -1) {
         bookmarkedMessages.push(id)
-        changeBookmarkedMessages(bookmarkedMessages).then(() =>
+        changeBookmarkedMessages(bookmarkedMessages).then(() => {
           setIsBookmarked(true)
-        )
+          message.isBookmarked = true
+        })
       } else {
         const index = bookmarkedMessages.indexOf(message._id)
         bookmarkedMessages.splice(index, 1)
-        changeBookmarkedMessages(bookmarkedMessages).then(() =>
+        changeBookmarkedMessages(bookmarkedMessages).then(() => {
           setIsBookmarked(false)
-        )
+          message.isBookmarked = false
+        })
       }
     })
   }
@@ -76,7 +74,6 @@ export default function Message({
   return (
     <MessageLayout active={showContent}>
       <Bookmark
-        /* onClick={toggleBookmarked} */
         onClick={() => bookmarkMessage(message._id)}
         active={isBookmarked}
       ></Bookmark>
