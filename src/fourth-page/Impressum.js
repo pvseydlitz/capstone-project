@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import styled from 'styled-components/macro'
 
 import Globalstyles from '../general/Globalstyles'
@@ -8,9 +9,18 @@ import Header from '../general/Header2'
 import checkTime from '../general/checkTime.js'
 import Texte from './Text.json'
 
+const PASSWORD = process.env.REACT_APP_PASSWORD
+
 export default function Impressum() {
   const [backgroundWhite, setBackgroundWhite] = useState(false)
-
+  function checkPasswordInput(input) {
+    const data = input.target.value
+    console.log(data)
+    if (data === PASSWORD) {
+      const link = document.getElementById('link')
+      link.style.display = 'inline-block'
+    }
+  }
   return (
     <Grid onMouseEnter={() => checkTime()}>
       <Globalstyles></Globalstyles>
@@ -85,6 +95,17 @@ export default function Impressum() {
             {Texte[4].text5}
             <br /> <br />
           </Text>
+          <Input
+            type="password"
+            placeholder="Zum Admin Bereich"
+            onChange={(event) => checkPasswordInput(event)}
+          ></Input>
+          <LinkWrapper id="link">
+            <NavLink to="/registernewuser" style={{ cursor: 'pointer' }}>
+              <Text>Admin Bereich</Text>
+            </NavLink>
+          </LinkWrapper>
+          <br /> <br />
         </Margin>
       </Wrapper>
     </Grid>
@@ -120,6 +141,14 @@ const Text = styled.p`
 const Link = styled.a`
   color: rgb(107, 107, 107);
 `
-
+const Input = styled.input`
+  height: 32px;
+  width: auto;
+  border: solid 2px rgb(201 193 171);
+`
+const LinkWrapper = styled.div`
+  margin: 0 20px;
+  display: none;
+`
 //1230px maximal Breite, dann Hintergrund rgb(242, 242, 242)
 //Texte als JSON Datei
