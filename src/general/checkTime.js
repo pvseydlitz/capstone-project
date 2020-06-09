@@ -1,11 +1,11 @@
 export default function checkTime() {
-  const loginTime = sessionStorage.getItem('time')
+  const loginTime = localStorage.getItem('time')
   const currentTime = Date.now()
   const duration = currentTime - loginTime
   if (duration >= 3600000) {
-    sessionStorage.removeItem('time')
-    sessionStorage.removeItem('user')
-    sessionStorage.removeItem('accept')
+    localStorage.removeItem('time')
+    localStorage.removeItem('user')
+    localStorage.removeItem('accept')
     window.location.reload()
   }
 }

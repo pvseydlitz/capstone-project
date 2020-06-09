@@ -43,7 +43,7 @@ export default function RadioButtons({
         <UnderHeadline>
           Allgemeine Informationen und Ankündigungen für die Hausgemeinschaft
           werden hier gesammelt und können auch von Bewohnern auf der zweiten
-          Seite unter der Auswahl Allgemeines hochgeladen werden.
+          Seite unter der Auswahl "Allgemeines" hochgeladen werden.
         </UnderHeadline>
       ) : (
         ''

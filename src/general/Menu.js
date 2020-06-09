@@ -26,9 +26,9 @@ export default function Menu({ position }) {
       headers: { 'content-type': 'application json' },
     })
       .then(function (response) {
-        sessionStorage.removeItem('time')
-        sessionStorage.removeItem('accept')
-        sessionStorage.removeItem('user')
+        localStorage.removeItem('time')
+        localStorage.removeItem('accept')
+        localStorage.removeItem('user')
         if (response.status === 200) {
           return (window.location.href = `/`)
         }
