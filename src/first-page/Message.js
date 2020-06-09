@@ -52,7 +52,7 @@ export default function Message({ message, handleStatus, handleDelete }) {
   }
 
   async function getBookmarkedMessages() {
-    const user = sessionStorage.getItem('user')
+    const user = localStorage.getItem('user')
     let bookmarkedMessages = await fetch(
       `/registration/allData/${user}`
     ).then((res) => res.json())
@@ -61,7 +61,7 @@ export default function Message({ message, handleStatus, handleDelete }) {
 
   async function changeBookmarkedMessages(bookmarkedMessages) {
     const data = { bookmarked_messages: bookmarkedMessages }
-    const user = sessionStorage.getItem('user')
+    const user = localStorage.getItem('user')
     return await fetch(`/registration/allData/${user}`, {
       method: 'PATCH',
       body: JSON.stringify(data),

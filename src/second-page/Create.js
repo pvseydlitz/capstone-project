@@ -22,7 +22,7 @@ export default function Create({ onSubmit1, onSubmit2, onSubmit3 }) {
     checkAccept()
   }, [])
   function checkAccept() {
-    const accepted = sessionStorage.getItem('accept')
+    const accepted = localStorage.getItem('accept')
     if (accepted === 'true') {
       setShowAcceptance(false)
     }
@@ -48,7 +48,7 @@ export default function Create({ onSubmit1, onSubmit2, onSubmit3 }) {
               handleAccept={(event) => {
                 event.preventDefault()
                 setShowAcceptance(false)
-                sessionStorage.setItem('accept', 'true')
+                localStorage.setItem('accept', 'true')
                 const wrapperForm = document.querySelector('#wrapper')
                 wrapperForm.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
               }}

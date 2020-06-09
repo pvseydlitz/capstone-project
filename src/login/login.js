@@ -70,9 +70,9 @@ export default function Login() {
   }
   async function setUserId(user_name) {
     const id = await UserService(user_name)
-    sessionStorage.setItem('user', id)
+    localStorage.setItem('user', id)
     const time = Date.now()
-    sessionStorage.setItem('time', time)
+    localStorage.setItem('time', time)
     window.location.href = `/`
   }
 }
