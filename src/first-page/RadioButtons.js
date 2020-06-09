@@ -61,6 +61,7 @@ const RadioButtonsLayout = styled.section`
   grid-auto-flow: row;
   @media (min-width: 768px) {
     grid-column: 1/3;
+    max-height: 200px;
   }
 `
 const Button = styled.input`
@@ -73,8 +74,9 @@ const Label1 = styled.label`
   padding: 0.5em;
   display: flex;
   justify-content: center;
-  color: ${props => (props.active ? 'rgb(253 252 251)' : 'rgb(107, 107, 107)')};
-  background: ${props => (props.active ? 'rgb(187 179 163)' : '')};
+  color: ${(props) =>
+    props.active ? 'rgb(253 252 251)' : 'rgb(107, 107, 107)'};
+  background: ${(props) => (props.active ? 'rgb(187 179 163)' : '')};
   cursor: pointer;
 `
 const Label2 = styled.label`
@@ -84,8 +86,9 @@ const Label2 = styled.label`
   padding: 0.5em;
   display: flex;
   justify-content: center;
-  color: ${props => (props.active ? 'rgb(253 252 251)' : 'rgb(107, 107, 107)')};
-  background: ${props => (props.active ? 'rgb(187 179 163)' : '')};
+  color: ${(props) =>
+    props.active ? 'rgb(253 252 251)' : 'rgb(107, 107, 107)'};
+  background: ${(props) => (props.active ? 'rgb(187 179 163)' : '')};
   cursor: pointer;
 `
 const Label3 = styled.label`
@@ -95,8 +98,9 @@ const Label3 = styled.label`
   padding: 0.5em;
   display: flex;
   justify-content: center;
-  color: ${props => (props.active ? 'rgb(253 252 251)' : 'rgb(107, 107, 107)')};
-  background: ${props => (props.active ? 'rgb(187 179 163)' : '')};
+  color: ${(props) =>
+    props.active ? 'rgb(253 252 251)' : 'rgb(107, 107, 107)'};
+  background: ${(props) => (props.active ? 'rgb(187 179 163)' : '')};
   cursor: pointer;
 `
 const UnderHeadline = styled.h3`

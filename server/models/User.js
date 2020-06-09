@@ -18,6 +18,9 @@ const RegistrationShema = {
     required: true,
     trim: true,
   },
+  bookmarked_messages: {
+    type: Array,
+  },
 }
 
 module.exports = mongoose.model('Registration', RegistrationShema)

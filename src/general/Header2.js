@@ -21,6 +21,8 @@ export default function Header2({
   function handleShowMenu() {
     setShowMenu(!showMenu)
     backgroundInvisible()
+    const menu = document.querySelector('#wrapper')
+    menu.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
   }
   return (
     <Line>
@@ -75,7 +77,7 @@ const Line = styled.div`
   }
 `
 const Logo = styled.img`
-  z-index: -1;
+  z-index: 1;
 `
 const MenuButton = styled.img`
   position: absolute;

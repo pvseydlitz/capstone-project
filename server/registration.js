@@ -53,5 +53,24 @@ registrationRoutes.route('/allData').get(withAuth, function (req, res) {
     err ? res.status(400).send('Error occured') : res.json(data)
   )
 })
+registrationRoutes.route('/allData/:id').get(withAuth, function (req, res) {
+  Registration.findById({ _id: req.params.id })
+    .then((user) => res.json(user.bookmarked_messages))
+    .catch((err) => res.json(err))
+})
+
+registrationRoutes.patch('/allData/:id', withAuth, (req, res) => {
+  Registration.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+  })
+    .then((user) => res.json(user.bookmarked_messages))
+    .catch((err) => res.json(err))
+})
+
+registrationRoutes.route('/oneUser').post(function (req, res) {
+  Registration.findOne({ user_name: req.body.user_name }).then((user) =>
+    user ? res.json(user._id) : res.sendStatus(204)
+  )
+})
 
 module.exports = registrationRoutes

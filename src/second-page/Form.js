@@ -10,6 +10,7 @@ import Input from './Input'
 import Description from './Description'
 import Checkboxes from './Checkboxes'
 import FinishButton from './FinishButton'
+import ModalPleaseWait from './ModalPleaseWait'
 import uploadIcon from '../icons/upload.svg'
 
 const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET
@@ -81,6 +82,9 @@ export default function Form({ onSubmit1 }) {
         </UploadWrapper>
         <ChoosenPicture>{picture}</ChoosenPicture>
       </div>
+      <Modal id="modal">
+        <ModalPleaseWait></ModalPleaseWait>
+      </Modal>
     </Wrapper>
   )
 
@@ -115,6 +119,8 @@ export default function Form({ onSubmit1 }) {
           {
             label: 'Ja',
             onClick: () => {
+              const modal = document.getElementById('modal')
+              modal.style.display = 'block'
               onSubmit1(data)
               sendEmail(data)
               confirmSuccessfulUpload()
@@ -134,6 +140,8 @@ export default function Form({ onSubmit1 }) {
           {
             label: 'Ja',
             onClick: () => {
+              const modal = document.getElementById('modal')
+              modal.style.display = 'block'
               postImage(formData, data, form)
             },
           },
@@ -181,6 +189,8 @@ export default function Form({ onSubmit1 }) {
     emailjs.send(SERVICEID, TEMPLATEID, templateParams, USERID).then(
       function (response) {
         console.log('SUCCESS!', response.status, response.text)
+        const modal = document.getElementById('modal')
+        modal.style.display = 'none'
         confirmSuccessfulUpload()
       },
       function (error) {
@@ -188,14 +198,6 @@ export default function Form({ onSubmit1 }) {
       }
     )
   }
-  /* function showStatus() {
-    confirmAlert({
-      title: 'Ihre Meldung wird hochgeladen...',
-      buttons: [],
-      closeOnEscape: true,
-      closeOnClickOutside: false,
-    })
-  } */
 
   function confirmSuccessfulUpload() {
     confirmAlert({
@@ -262,4 +264,7 @@ const ChoosenPicture = styled.p`
   font-size: 14px;
   position: absolute;
   top: 1238px;
+`
+const Modal = styled.div`
+  display: none;
 `

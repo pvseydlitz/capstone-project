@@ -57,8 +57,8 @@ export default function Registration() {
         </Button>
 
         <Button>
-          <Link to="/login" style={{ color: 'rgb(253 252 251)' }}>
-            Login
+          <Link to="/" style={{ color: 'rgb(253 252 251)' }}>
+            Home-Seite
           </Link>
         </Button>
       </Form>
@@ -109,6 +109,7 @@ const Wrapper = styled.div`
   height: 100vh;
   align-items: center;
   position: relative;
+  background: rgb(255, 255, 255);
 `
 const Logo = styled.img`
   position: absolute;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components/macro'
 
 import ShowMoreButton from './ShowMoreButton'
@@ -7,15 +7,13 @@ import cross from '../icons/cross.svg'
 import DropdownMenu from './DropdownMenu'
 import Password from './Password'
 
-export default function Message({
-  message,
-  toggleBookmarked,
-  handleStatus,
-  handleDelete,
-}) {
+export default function Message({ message, handleStatus, handleDelete }) {
   const [showContent, setShowContent] = useState(false)
   const [showInputPassword, setShowInputPassword] = useState(false)
-
+  const [isBookmarked, setIsBookmarked] = useState(false)
+  useEffect(() => {
+    setBookmarks()
+  })
   function handleChangeDropdown(number) {
     message.status = number
     handleStatus(message)
@@ -23,12 +21,61 @@ export default function Message({
   function saveMessageId(id) {
     localStorage.setItem('id', id)
   }
+  function setBookmarks() {
+    getBookmarkedMessages().then((bookmarkedMessages) =>
+      bookmarkedMessages.forEach(() => {
+        if (bookmarkedMessages.indexOf(message._id) !== -1) {
+          setIsBookmarked(true)
+          message.isBookmarked = true
+        }
+      })
+    )
+  }
+
+  function bookmarkMessage(id) {
+    getBookmarkedMessages().then((bookmarkedMessages) => {
+      if (bookmarkedMessages.indexOf(id) === -1) {
+        bookmarkedMessages.push(id)
+        changeBookmarkedMessages(bookmarkedMessages).then(() => {
+          setIsBookmarked(true)
+          message.isBookmarked = true
+        })
+      } else {
+        const index = bookmarkedMessages.indexOf(message._id)
+        bookmarkedMessages.splice(index, 1)
+        changeBookmarkedMessages(bookmarkedMessages).then(() => {
+          setIsBookmarked(false)
+          message.isBookmarked = false
+        })
+      }
+    })
+  }
+
+  async function getBookmarkedMessages() {
+    const user = sessionStorage.getItem('user')
+    let bookmarkedMessages = await fetch(
+      `/registration/allData/${user}`
+    ).then((res) => res.json())
+    return bookmarkedMessages
+  }
+
+  async function changeBookmarkedMessages(bookmarkedMessages) {
+    const data = { bookmarked_messages: bookmarkedMessages }
+    const user = sessionStorage.getItem('user')
+    return await fetch(`/registration/allData/${user}`, {
+      method: 'PATCH',
+      body: JSON.stringify(data),
+      headers: {
+        'content-type': 'application/json',
+      },
+    }).then((res) => res.json())
+  }
 
   return (
     <MessageLayout active={showContent}>
       <Bookmark
-        onClick={toggleBookmarked}
-        active={message.isBookmarked}
+        onClick={() => bookmarkMessage(message._id)}
+        active={isBookmarked}
       ></Bookmark>
       <Cross
         src={cross}
@@ -131,9 +178,8 @@ const MessageLayout = styled.div`
   background: rgb(238, 238, 238);
   border-radius: 10px;
   @media (min-width: 768px) {
-    margin: 50px 2vw;
+    margin: 50px 8%;
     margin-top: 20px;
-    width: 46vw;
   }
 `
 const Cross = styled.img`

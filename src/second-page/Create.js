@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components/macro'
 
 import Globalstyles from '../general/Globalstyles'
@@ -11,18 +11,30 @@ import Form from './Form'
 import FormTuev from './FormTuev'
 import FormNotice from './FormNotice'
 
+import checkTime from '../general/checkTime.js'
+
 export default function Create({ onSubmit1, onSubmit2, onSubmit3 }) {
   const [selectedValue, setSelectedValue] = useState('Gewährleistungsmangel')
   const [showAcceptance, setShowAcceptance] = useState(true)
   const [backgroundWhite, setBackgroundWhite] = useState(false)
+
+  useEffect(() => {
+    checkAccept()
+  }, [])
+  function checkAccept() {
+    const accepted = sessionStorage.getItem('accept')
+    if (accepted === 'true') {
+      setShowAcceptance(false)
+    }
+  }
   return (
-    <Grid>
+    <Grid onMouseEnter={() => checkTime()}>
       <Globalstyles></Globalstyles>
       <Header
         showSearchIcon={false}
         backgroundInvisible={() => setBackgroundWhite(!backgroundWhite)}
       ></Header>
-      <Wrapper id="wrapper-form" active={backgroundWhite}>
+      <Wrapper id="wrapper" active={backgroundWhite}>
         <Headline>Neue Meldung erstellen</Headline>
         <Category>
           <Headline2>Kategorie der Meldung</Headline2>
@@ -36,7 +48,8 @@ export default function Create({ onSubmit1, onSubmit2, onSubmit3 }) {
               handleAccept={(event) => {
                 event.preventDefault()
                 setShowAcceptance(false)
-                const wrapperForm = document.querySelector('#wrapper-form')
+                sessionStorage.setItem('accept', 'true')
+                const wrapperForm = document.querySelector('#wrapper')
                 wrapperForm.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
               }}
             ></Acceptance>
@@ -80,6 +93,9 @@ const Headline = styled.h1`
   position: absolute;
   top: 10px;
   margin: 0 20px;
+  @media (min-width: 768px) {
+    margin: 0 20%;
+  }
 `
 const Category = styled.div`
   display: grid;

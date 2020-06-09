@@ -36,6 +36,7 @@ export default function App() {
   useEffect(() => {
     getMessages().then(setMessages)
   }, [])
+
   const [messagesTuev, setMessagesTuev] = useState([])
   useEffect(() => {
     getMessagesTuev().then(setMessagesTuev)
@@ -45,14 +46,6 @@ export default function App() {
     getMessagesNotice().then(setMessagesNotice)
   }, [])
 
-  function toggleBookmarked(index) {
-    const message = messages[index]
-    setMessages([
-      ...messages.slice(0, index),
-      { ...message, isBookmarked: !message.isBookmarked },
-      ...messages.slice(index + 1),
-    ])
-  }
   function createMessage(messageData) {
     postMessage(messageData).then((message) => {
       setMessages([message, ...messages])
@@ -179,6 +172,7 @@ export default function App() {
         },
         {
           label: 'Nein',
+          onClick: () => {},
         },
       ],
     })
@@ -240,7 +234,7 @@ export default function App() {
               messages={messages}
               messagesTuev={messagesTuev}
               messagesNotice={messagesNotice}
-              toggleBookmarked={toggleBookmarked}
+              //toggleBookmarked={toggleBookmarked}
               handleDelete={handleDelete}
               handleDeleteTuev={handleDeleteTuev}
               handleDeleteNotice={handleDeleteNotice}

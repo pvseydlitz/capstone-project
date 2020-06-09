@@ -50,6 +50,11 @@ const MessageLayout = styled.div`
   position: relative;
   background: rgb(238, 238, 238);
   border-radius: 10px;
+  max-width: 450px;
+  @media (min-width: 768px) {
+    margin: 50px 8%;
+    margin-top: 20px;
+  }
 `
 const Cross = styled.img`
   position: absolute;
@@ -64,7 +69,7 @@ const Headline = styled.h2`
 `
 const Wrapper = styled.div`
   display: grid;
-  grid-template-rows: 30px 30px auto;
+  grid-template-rows: 30px auto;
   width: 100%;
 `
 const Description = styled.p`

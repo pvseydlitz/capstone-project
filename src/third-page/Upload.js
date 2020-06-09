@@ -7,6 +7,8 @@ import Header from '../general/Header2'
 import Form from './Form'
 import Card from './Card'
 
+import checkTime from '../general/checkTime.js'
+
 export default function Upload() {
   const [files, setFiles] = useState([])
   const [singleFile, setSingleFile] = useState('')
@@ -74,7 +76,7 @@ export default function Upload() {
   }
 
   return (
-    <Grid>
+    <Grid onMouseEnter={() => checkTime()}>
       <Globalstyles></Globalstyles>
       <Header
         showSearchIcon={true}
@@ -82,7 +84,7 @@ export default function Upload() {
         searchedItem={searchedItem.toLowerCase()}
         backgroundInvisible={() => setBackgroundWhite(!backgroundWhite)}
       ></Header>
-      <Section active={backgroundWhite}>
+      <Section id="wrapper" active={backgroundWhite}>
         <Form
           uploadFile={uploadFile}
           fileChanged={fileChanged}

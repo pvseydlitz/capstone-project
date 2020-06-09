@@ -12,11 +12,12 @@ import Message from './Message'
 import MessageTuev from './MessageTuev'
 import MessageNotice from './MessageNotice'
 
+import checkTime from '../general/checkTime.js'
+
 export default function Home({
   messages,
   messagesTuev,
   messagesNotice,
-  toggleBookmarked,
   handleDelete,
   handleDeleteTuev,
   handleDeleteNotice,
@@ -73,7 +74,7 @@ export default function Home({
   }
 
   return (
-    <Grid>
+    <Grid onMouseEnter={() => checkTime()}>
       <Globalstyles></Globalstyles>
       <Header
         showFilter1={isClicked1}
@@ -142,104 +143,106 @@ export default function Home({
           isClicked2={isClicked2}
           isClicked3={isClicked3}
         ></RadioButtons>
-        {isClicked1
-          ? isOnlyBookmarkShown
-            ? messages
-                .filter((message) => message.isBookmarked === true)
-                .map((message, index) => (
-                  <Message
-                    message={message}
-                    key={index}
-                    toggleBookmarked={() => toggleBookmarked(index)}
-                    handleDelete={handleDelete}
-                    handleStatus={handleStatus}
-                  ></Message>
-                ))
-            : messages
-                .filter((message) => message.anzeigen === true)
-                .filter((message) => {
-                  const bereich = message.bereich.join().toLowerCase()
-                  const wohnung = message.wohnung.toLowerCase()
-                  const raumbezeichnung = message.raumbezeichnung.toLowerCase()
-                  const query = searchedWord
+        <MessageWrapper2>
+          {isClicked1
+            ? isOnlyBookmarkShown
+              ? messages
+                  .filter((message) => message.isBookmarked === true)
+                  .map((message, index) => (
+                    <Message
+                      message={message}
+                      key={index}
+                      handleDelete={handleDelete}
+                      handleStatus={handleStatus}
+                    ></Message>
+                  ))
+              : messages
+                  .filter((message) => message.anzeigen === true)
+                  .filter((message) => {
+                    const bereich = message.bereich.join().toLowerCase()
+                    const wohnung = message.wohnung.toLowerCase()
+                    const raumbezeichnung = message.raumbezeichnung.toLowerCase()
+                    const query = searchedWord
+                    return (
+                      query === '' ||
+                      bereich.includes(query) ||
+                      wohnung.includes(query) ||
+                      raumbezeichnung.includes(query)
+                    )
+                  })
+                  .filter((message) => {
+                    const datumMonth = message.datum.slice(5, 7)
+                    const queryMonth = selectedMonth
+                    return queryMonth === '' || datumMonth.includes(queryMonth)
+                  })
+                  .filter((message) => {
+                    const datumYear = message.datum.slice(2, 4)
+                    const queryYear = selectedYear
+                    return queryYear === '' || datumYear.includes(queryYear)
+                  })
+                  .map((message, index) => (
+                    <Message
+                      message={message}
+                      key={index}
+                      handleDelete={handleDelete}
+                      handleStatus={handleStatus}
+                    ></Message>
+                  ))
+            : ''}
+          {isClicked2
+            ? messagesTuev
+                .filter((messageTuev) => messageTuev.anzeigen === true)
+                .filter((messageTuev) => {
+                  const nummer = String(messageTuev.nummer)
+                  const ort = messageTuev.ort.toLowerCase()
+                  const query = searchedWordFilter2
                   return (
                     query === '' ||
-                    bereich.includes(query) ||
-                    wohnung.includes(query) ||
-                    raumbezeichnung.includes(query)
+                    nummer.includes(query) ||
+                    ort.includes(query)
                   )
                 })
-                .filter((message) => {
-                  const datumMonth = message.datum.slice(5, 7)
-                  const queryMonth = selectedMonth
+                .filter((messageTuev) => {
+                  const status = String(messageTuev.status)
+                  const query = selectedStatus
+                  return query === '' || status.includes(query)
+                })
+                .map((messageTuev, index) => (
+                  <MessageTuev
+                    messageTuev={messageTuev}
+                    key={index}
+                    handleDeleteTuev={handleDeleteTuev}
+                    handleStatusTuev={handleStatusTuev}
+                  ></MessageTuev>
+                ))
+            : ''}
+          {isClicked3
+            ? messagesNotice
+                .filter((messageNotice) => messageNotice.anzeigen === true)
+                .filter((messageNotice) => {
+                  const kategorie = messageNotice.kategorie
+                  const query = selectedKategorie
+                  return query === '' || kategorie.includes(query)
+                })
+                .filter((messageNotice) => {
+                  const datumMonth = messageNotice.datum.slice(5, 7)
+                  const queryMonth = selectedMonth3
                   return queryMonth === '' || datumMonth.includes(queryMonth)
                 })
-                .filter((message) => {
-                  const datumYear = message.datum.slice(2, 4)
-                  const queryYear = selectedYear
+                .filter((messageNotice) => {
+                  const datumYear = messageNotice.datum.slice(2, 4)
+                  const queryYear = selectedYear3
                   return queryYear === '' || datumYear.includes(queryYear)
                 })
-                .map((message, index) => (
-                  <Message
-                    message={message}
+                .map((messageNotice, index) => (
+                  <MessageNotice
+                    messageNotice={messageNotice}
                     key={index}
-                    toggleBookmarked={() => toggleBookmarked(index)}
-                    handleDelete={handleDelete}
-                    handleStatus={handleStatus}
-                  ></Message>
+                    handleDeleteNotice={handleDeleteNotice}
+                  ></MessageNotice>
                 ))
-          : ''}
-        {isClicked2
-          ? messagesTuev
-              .filter((messageTuev) => messageTuev.anzeigen === true)
-              .filter((messageTuev) => {
-                const nummer = String(messageTuev.nummer)
-                const ort = messageTuev.ort.toLowerCase()
-                const query = searchedWordFilter2
-                return (
-                  query === '' || nummer.includes(query) || ort.includes(query)
-                )
-              })
-              .filter((messageTuev) => {
-                const status = String(messageTuev.status)
-                const query = selectedStatus
-                return query === '' || status.includes(query)
-              })
-              .map((messageTuev, index) => (
-                <MessageTuev
-                  messageTuev={messageTuev}
-                  key={index}
-                  handleDeleteTuev={handleDeleteTuev}
-                  handleStatusTuev={handleStatusTuev}
-                ></MessageTuev>
-              ))
-          : ''}
-        {isClicked3
-          ? messagesNotice
-              .filter((messageNotice) => messageNotice.anzeigen === true)
-              .filter((messageNotice) => {
-                const kategorie = messageNotice.kategorie
-                const query = selectedKategorie
-                return query === '' || kategorie.includes(query)
-              })
-              .filter((messageNotice) => {
-                const datumMonth = messageNotice.datum.slice(5, 7)
-                const queryMonth = selectedMonth3
-                return queryMonth === '' || datumMonth.includes(queryMonth)
-              })
-              .filter((messageNotice) => {
-                const datumYear = messageNotice.datum.slice(2, 4)
-                const queryYear = selectedYear3
-                return queryYear === '' || datumYear.includes(queryYear)
-              })
-              .map((messageNotice, index) => (
-                <MessageNotice
-                  messageNotice={messageNotice}
-                  key={index}
-                  handleDeleteNotice={handleDeleteNotice}
-                ></MessageNotice>
-              ))
-          : ''}
+            : ''}
+        </MessageWrapper2>
       </MessageWrapper>
     </Grid>
   )
@@ -252,6 +255,12 @@ const MessageWrapper = styled.div`
   opacity: ${(props) => (props.active ? '10%' : '')};
   @media (min-width: 768px) {
     grid-column: 1/3;
+  }
+`
+const MessageWrapper2 = styled.div`
+  @media (min-width: 768px) {
+    grid-column: 1/3;
     display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 `

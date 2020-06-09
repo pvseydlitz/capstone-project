@@ -80,9 +80,8 @@ const MessageLayout = styled.div`
   border-radius: 10px;
   max-height: ${(props) => (props.active ? '' : '205px')};
   @media (min-width: 768px) {
-    margin: 50px 2vw;
+    margin: 50px 8%;
     margin-top: 20px;
-    width: 46vw;
   }
 `
 const Cross = styled.img`
