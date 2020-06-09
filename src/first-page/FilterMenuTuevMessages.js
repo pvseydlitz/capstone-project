@@ -19,7 +19,7 @@ export default function FilterMenuTuevMessages({
         value={searchedWord}
       ></Input>
       <Text start={'3'} startTabletRow={'1'} tabletColumn={'3/5'}>
-        Nach Bearbeitungsstatus sortieren
+        Nach Bearbeitungsstatus filtern
       </Text>
       <Wrapper>
         <DropDown
@@ -64,14 +64,14 @@ const Input = styled.input`
   max-width: 250px;
 `
 const Text = styled.h3`
-  grid-row-start: ${props => props.start};
+  grid-row-start: ${(props) => props.start};
   grid-column: 1 / 3;
   margin: 0;
   font-size: 16px;
   color: rgb(107, 107, 107);
   @media (min-width: 768px) {
-    grid-row-start: ${props => props.startTabletRow};
-    grid-column: ${props => props.tabletColumn};
+    grid-row-start: ${(props) => props.startTabletRow};
+    grid-column: ${(props) => props.tabletColumn};
   }
 `
 

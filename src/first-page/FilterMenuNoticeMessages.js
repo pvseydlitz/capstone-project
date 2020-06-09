@@ -11,7 +11,7 @@ export default function FilterMenuNoticeMessages({
 }) {
   return (
     <Menu>
-      <Text start={'1'}>Nach Kategorie sortieren</Text>
+      <Text start={'1'}>Nach Kategorie filtern</Text>
       <Wrapper start={'2'} column={'1 / 3'}>
         <DropDown
           name="kategorie"
@@ -27,7 +27,7 @@ export default function FilterMenuNoticeMessages({
         </DropDown>
       </Wrapper>
       <Text start={'3'} startTabletRow={'1'} tabletColumn={'3/5'}>
-        Nach Monat oder Jahr sortieren
+        Nach Monat oder Jahr filtern
       </Text>
       <Wrapper start={'4'} startTabletRow={'2'} startTabletColumn={'3'}>
         <DropDown
@@ -84,14 +84,14 @@ const Menu = styled.div`
   }
 `
 const Text = styled.h3`
-  grid-row-start: ${props => props.start};
+  grid-row-start: ${(props) => props.start};
   grid-column: 1 / 3;
   margin: 0;
   font-size: 16px;
   color: rgb(107, 107, 107);
   @media (min-width: 768px) {
-    grid-row-start: ${props => props.startTabletRow};
-    grid-column: ${props => props.tabletColumn};
+    grid-row-start: ${(props) => props.startTabletRow};
+    grid-column: ${(props) => props.tabletColumn};
   }
 `
 
@@ -113,11 +113,11 @@ const DropDown = styled.select`
 `
 const Wrapper = styled.div`
   position: relative;
-  grid-row-start: ${props => props.start};
-  grid-column: ${props => props.column};
+  grid-row-start: ${(props) => props.start};
+  grid-column: ${(props) => props.column};
   max-width: 250px;
   @media (min-width: 768px) {
-    grid-row-start: ${props => props.startTabletRow};
-    grid-column-start: ${props => props.startTabletColumn};
+    grid-row-start: ${(props) => props.startTabletRow};
+    grid-column-start: ${(props) => props.startTabletColumn};
   }
 `

@@ -26,7 +26,7 @@ export default function FilterMenu({
         onChange={checkInput}
         value={searchedWord}
       ></Input>
-      <Text2>Nach Monat oder Jahr sortieren</Text2>
+      <Text2>Nach Monat oder Jahr filtern</Text2>
       <Wrapper columnStart={'3'}>
         <DropDown
           name="monat"

@@ -5,6 +5,7 @@ export default function checkTime() {
   if (duration >= 3600000) {
     sessionStorage.removeItem('time')
     sessionStorage.removeItem('user')
+    sessionStorage.removeItem('accept')
     window.location.reload()
   }
 }
