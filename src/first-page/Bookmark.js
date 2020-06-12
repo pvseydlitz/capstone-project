@@ -9,6 +9,7 @@ export default function Bookmark({ active, onClick }) {
     position: absolute;
     top: -15px;
     left: 20px;
+    cursor: pointer;
   `
 
   return (

@@ -9,6 +9,8 @@ import Headline3 from './Headline3'
 import Input from './Input'
 import Description from './Description'
 import Checkboxes from './Checkboxes'
+import DropdownMenuEtage from './DropdownMenuEtage'
+import DropdownMenuWohnung from './DropdownmenuWohnung'
 import FinishButton from './FinishButton'
 import ModalPleaseWait from './ModalPleaseWait'
 import uploadIcon from '../icons/upload.svg'
@@ -20,6 +22,7 @@ const TEMPLATEID = process.env.REACT_APP_EMAILJS_TEMPLATEID
 const SERVICEID = process.env.REACT_APP_EMAILJS_SERVICEID
 
 const MainForm = memo(() => {
+  const [choosenEtage, setChoosenEtage] = useState('')
   return (
     <>
       <GridWer>
@@ -41,9 +44,20 @@ const MainForm = memo(() => {
           required
           //onChange={event => console.log(event.target.value)}
         ></Input>
-        <Headline3>Etage/Wohnung</Headline3>
-        <Input type="text" name="wohnung" required></Input>
-        <Headline3>Raumbezeichnung</Headline3>
+        <GridEtage>
+          <Headline3>Etage</Headline3>
+          <Headline3>Wohnung</Headline3>
+        </GridEtage>
+
+        <GridEtage>
+          <DropdownMenuEtage
+            handleSelect={(event) => {
+              setChoosenEtage(event.target.value)
+            }}
+          ></DropdownMenuEtage>
+          <DropdownMenuWohnung floor={choosenEtage}></DropdownMenuWohnung>
+        </GridEtage>
+        <Headline3>Raum-/Ortsbezeichnung</Headline3>
         <Input type="text" name="raumbezeichnung" required></Input>
       </GridWo>
       <Checkboxes></Checkboxes>
@@ -246,6 +260,11 @@ const GridWo = styled.div`
   width: 100%;
   position: absolute;
   top: 460px;
+`
+const GridEtage = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
 `
 const UploadWrapper = styled.label`
   display: grid;
