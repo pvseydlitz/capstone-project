@@ -4,7 +4,7 @@ import styled from 'styled-components/macro'
 export default function DropdownMenuEtage({ handleSelect }) {
   return (
     <Wrapper>
-      <DropDown name="Etage" required onChange={handleSelect}>
+      <DropDown name="etage" required onChange={handleSelect}>
         <option value="">Bitte auswählen</option>
         <option value="Außenbereich">Außenbereich</option>
         <option value="Keller">Keller</option>

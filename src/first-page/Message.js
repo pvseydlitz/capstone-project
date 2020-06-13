@@ -100,7 +100,9 @@ export default function Message({ message, handleStatus, handleDelete }) {
         </b>
         <Description>{message.bereich.join(', ')}</Description>
         <Description>
-          {message.wohnung}, {message.raumbezeichnung}
+          {message.etage},
+          {message.wohnung !== '' ? ` Wohnung ${message.wohnung},` : ''}{' '}
+          {message.raumbezeichnung}
         </Description>
         <Description>
           <b>Datum: </b>

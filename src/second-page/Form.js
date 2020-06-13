@@ -124,7 +124,11 @@ export default function Form({ onSubmit1 }) {
     }
     data.bereich = bereich
     data.anzeigen = true
-    //console.log(data)
+    delete data.gemeinschaftseigentum
+    delete data.sondereigentum
+    delete data.innenbereich
+    delete data.außenbereich
+    console.log(data)
     if (data.file.name === '') {
       confirmAlert({
         title: 'Bestätigung',
@@ -137,7 +141,6 @@ export default function Form({ onSubmit1 }) {
               modal.style.display = 'block'
               onSubmit1(data)
               sendEmail(data)
-              confirmSuccessfulUpload()
             },
           },
           {
@@ -195,6 +198,7 @@ export default function Form({ onSubmit1 }) {
       email: data.email,
       bereich: data.bereich.join(', '),
       datum: data.datum,
+      etage: data.etage,
       wohnung: data.wohnung,
       raumbezeichnung: data.raumbezeichnung,
       beschreibung: data.beschreibung,

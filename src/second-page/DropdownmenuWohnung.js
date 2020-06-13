@@ -4,7 +4,7 @@ import styled from 'styled-components/macro'
 export default function DropdownMenuWohnung(floor) {
   return (
     <Wrapper>
-      <DropDown name="Wohnung" id="dropdown-wohnung">
+      <DropDown name="wohnung" id="dropdown-wohnung">
         {floor.floor === '' ? (
           <option value="">Zuerst Etage auswählen</option>
         ) : (
