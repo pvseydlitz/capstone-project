@@ -124,6 +124,7 @@ export default function Form({ onSubmit1 }) {
     }
     data.bereich = bereich
     data.anzeigen = true
+    data.status = 1
     delete data.gemeinschaftseigentum
     delete data.sondereigentum
     delete data.innenbereich

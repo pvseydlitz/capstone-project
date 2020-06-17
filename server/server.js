@@ -5,7 +5,7 @@ const express = require('express')
 const withAuth = require('./middleware')
 const path = require('path')
 const URL = process.env.REACT_APP_URL
-console.log(URL)
+
 //online Datenbank
 /* const db = process.env.MONGODB_URI
 mongoose.connect(db, {

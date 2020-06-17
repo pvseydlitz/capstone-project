@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components/macro'
+import PropTypes from 'prop-types'
 
 import ShowMoreButton from './ShowMoreButton'
 import Bookmark from './Bookmark'
@@ -7,7 +8,12 @@ import cross from '../icons/cross.svg'
 import DropdownMenu from './DropdownMenu'
 import Password from './Password'
 
-export default function Message({ message, handleStatus, handleDelete }) {
+export default function Message({
+  message,
+  handleStatus,
+  handleDelete,
+  updateBookmarks,
+}) {
   const [showContent, setShowContent] = useState(false)
   const [showInputPassword, setShowInputPassword] = useState(false)
   const [isBookmarked, setIsBookmarked] = useState(false)
@@ -27,6 +33,9 @@ export default function Message({ message, handleStatus, handleDelete }) {
         if (bookmarkedMessages.indexOf(message._id) !== -1) {
           setIsBookmarked(true)
           message.isBookmarked = true
+        } else {
+          message.isBookmarked = false
+          setIsBookmarked(false)
         }
       })
     )
@@ -51,6 +60,15 @@ export default function Message({ message, handleStatus, handleDelete }) {
     })
   }
 
+  function deleteBookmarkedMessage() {
+    getBookmarkedMessages().then((bookmarkedMessages) => {
+      if (bookmarkedMessages.indexOf(message._id) !== -1) {
+        const index = bookmarkedMessages.indexOf(message._id)
+        bookmarkedMessages.splice(index, 1)
+        changeBookmarkedMessages(bookmarkedMessages)
+      }
+    })
+  }
   async function getBookmarkedMessages() {
     const user = localStorage.getItem('user')
     let bookmarkedMessages = await fetch(
@@ -70,12 +88,14 @@ export default function Message({ message, handleStatus, handleDelete }) {
       },
     }).then((res) => res.json())
   }
-
+  if (updateBookmarks === true) {
+    setBookmarks()
+  }
   return (
     <MessageLayout active={showContent}>
       <Bookmark
         onClick={() => bookmarkMessage(message._id)}
-        active={isBookmarked}
+        bookmarked={isBookmarked}
       ></Bookmark>
       <Cross
         src={cross}
@@ -162,13 +182,18 @@ export default function Message({ message, handleStatus, handleDelete }) {
         <Password
           text={'Passwort eingeben zum Löschen'}
           passwordApproved={handleDelete}
-          hidePassword={() => setShowInputPassword(false)}
+          hidePassword={() =>
+            setShowInputPassword(false) + deleteBookmarkedMessage()
+          }
         ></Password>
       ) : (
         ''
       )}
     </MessageLayout>
   )
+}
+Message.propTypes = {
+  updateBookmarks: PropTypes.bool,
 }
 
 const MessageLayout = styled.div`
