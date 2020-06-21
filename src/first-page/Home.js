@@ -148,16 +148,19 @@ export default function Home({
             ? isOnlyBookmarkShown
               ? messages
                   .filter((message) => message.isBookmarked === true)
+                  .reverse()
                   .map((message, index) => (
                     <Message
                       message={message}
                       key={index}
                       handleDelete={handleDelete}
                       handleStatus={handleStatus}
+                      updateBookmarks={!isOnlyBookmarkShown}
                     ></Message>
                   ))
               : messages
                   .filter((message) => message.anzeigen === true)
+                  .reverse()
                   .filter((message) => {
                     const bereich = message.bereich.join().toLowerCase()
                     const wohnung = message.wohnung.toLowerCase()
@@ -186,6 +189,7 @@ export default function Home({
                       key={index}
                       handleDelete={handleDelete}
                       handleStatus={handleStatus}
+                      updateBookmarks={!isOnlyBookmarkShown}
                     ></Message>
                   ))
             : ''}

@@ -35,6 +35,7 @@ export function postMessageNotice(message) {
   }).then((res) => res.json())
 }
 export function patchMessage(message) {
+  delete message.isBookmarked
   return fetch('/messages/' + message._id, {
     method: 'PATCH',
     body: JSON.stringify(message),

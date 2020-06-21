@@ -7,6 +7,7 @@ const messageSchema = {
   telefonnummer: String,
   email: String,
   datum: Date,
+  etage: String,
   wohnung: String,
   raumbezeichnung: String,
   innenbereich: String,
