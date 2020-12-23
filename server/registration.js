@@ -72,5 +72,10 @@ registrationRoutes.route('/oneUser').post(function (req, res) {
     user ? res.json(user._id) : res.sendStatus(204)
   )
 })
+registrationRoutes.route('/oneUserRole').post(function (req, res) {
+  Registration.findOne({ user_name: req.body.user_name }).then((user) =>
+    user ? res.json(user.role_admin) : res.sendStatus(204)
+  )
+})
 
 module.exports = registrationRoutes

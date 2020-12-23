@@ -83,6 +83,7 @@ export default function Registration() {
       last_name: form.lastName.value,
       user_name: form.username.value,
       password: form.password.value,
+      role_admin: false,
     }
 
     const registerStatus = await UserRegistration(data)

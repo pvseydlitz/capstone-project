@@ -4,6 +4,7 @@ import styled from 'styled-components/macro'
 import Globalstyles from '../general/Globalstyles'
 import LoginService from './services/LoginService'
 import UserService from './services/UserService'
+import UserRoleService from './services/UserRoleService'
 import Headline2 from '../second-page/Headline2'
 import Headline3 from '../second-page/Headline3'
 import Input from '../second-page/Input'
@@ -71,6 +72,8 @@ export default function Login() {
   async function setUserId(user_name) {
     const id = await UserService(user_name)
     localStorage.setItem('user', id)
+    const userRole = await UserRoleService(user_name)
+    localStorage.setItem('role', userRole)
     const time = Date.now()
     localStorage.setItem('time', time)
     window.location.href = `/`

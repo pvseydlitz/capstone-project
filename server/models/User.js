@@ -21,6 +21,9 @@ const RegistrationShema = {
   bookmarked_messages: {
     type: Array,
   },
+  role_admin: {
+    type: Boolean,
+  },
 }
 
 module.exports = mongoose.model('Registration', RegistrationShema)
