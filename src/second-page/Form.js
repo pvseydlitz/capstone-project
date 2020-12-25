@@ -21,7 +21,7 @@ const USERID = process.env.REACT_APP_EMAILJS_USERID
 const TEMPLATEID = process.env.REACT_APP_EMAILJS_TEMPLATEID
 const SERVICEID = process.env.REACT_APP_EMAILJS_SERVICEID
 
-const MainForm = memo(() => {
+const MainForm = memo(({ date }) => {
   const [choosenEtage, setChoosenEtage] = useState('')
   return (
     <>
@@ -40,23 +40,24 @@ const MainForm = memo(() => {
         <Input
           type="date"
           name="datum"
-          placeholder={'nach datum suchen'}
+          placeholder={'tt.mm.jjjj'}
           required
-          //onChange={event => console.log(event.target.value)}
+          defaultValue={date}
         ></Input>
-        <GridEtage>
-          <Headline3>Etage</Headline3>
-          <Headline3>Wohnung</Headline3>
-        </GridEtage>
-
-        <GridEtage>
-          <DropdownMenuEtage
-            handleSelect={(event) => {
-              setChoosenEtage(event.target.value)
-            }}
-          ></DropdownMenuEtage>
-          <DropdownMenuWohnung floor={choosenEtage}></DropdownMenuWohnung>
-        </GridEtage>
+        <GridDropdowns>
+          <GridColumns>
+            <Headline3>Etage</Headline3>
+            <DropdownMenuEtage
+              handleSelect={(event) => {
+                setChoosenEtage(event.target.value)
+              }}
+            ></DropdownMenuEtage>
+          </GridColumns>
+          <GridColumns>
+            <Headline3>Wohnung</Headline3>
+            <DropdownMenuWohnung floor={choosenEtage}></DropdownMenuWohnung>
+          </GridColumns>
+        </GridDropdowns>
         <Headline3>Raum-/Ortsbezeichnung</Headline3>
         <Input type="text" name="raumbezeichnung" required></Input>
       </GridWo>
@@ -71,31 +72,28 @@ const MainForm = memo(() => {
 
 export default function Form({ onSubmit1 }) {
   const [picture, setPicture] = useState('Kein Bild ausgewählt')
-
   return (
     <Wrapper onSubmit={handleSubmit} id="form">
-      <MainForm />
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <FinishButton
-          style={{ position: 'absolute', top: '1280px', marginBottom: '40px' }}
-        >
-          Meldung hochladen
-        </FinishButton>
-        <UploadWrapper>
-          <Headline3 style={{ color: 'rgb(253 252 251)' }}>
-            Foto Hochladen
-          </Headline3>
-          <input
-            style={{ display: 'none' }}
-            type="file"
-            name="file"
-            onChange={onInput}
-            multiple
-          ></input>
-          <img src={uploadIcon} alt={'upload icon'}></img>
-        </UploadWrapper>
-        <ChoosenPicture>{picture}</ChoosenPicture>
-      </div>
+      <MainForm></MainForm>
+      <FlexBox>
+        <GridEnd>
+          <UploadWrapper>
+            <Headline3 style={{ color: 'rgb(253 252 251)' }}>
+              Foto Hochladen
+            </Headline3>
+            <input
+              style={{ display: 'none' }}
+              type="file"
+              name="file"
+              onChange={onInput}
+              multiple
+            ></input>
+            <img src={uploadIcon} alt={'upload icon'}></img>
+          </UploadWrapper>
+          <ChoosenPicture>{picture}</ChoosenPicture>
+          <FinishButton>Meldung hochladen</FinishButton>
+        </GridEnd>
+      </FlexBox>
       <Modal id="modal">
         <ModalPleaseWait></ModalPleaseWait>
       </Modal>
@@ -254,29 +252,39 @@ const Wrapper = styled.form`
 `
 const GridWer = styled.div`
   display: grid;
-  grid-template-rows: 43px 28px 53px 28px 53px 28px 32px;
+  grid-template-rows: repeat(7, auto);
+  grid-gap: 15px;
   width: 100%;
-  position: absolute;
-  top: 170px;
+  margin: 20px 0 30px 0;
 `
 const GridWo = styled.div`
   display: grid;
-  grid-template-rows: 75px 28px 53px 28px 53px 28px 32px;
+  grid-template-rows: repeat(7, auto);
+  grid-gap: 15px;
   width: 100%;
-  position: absolute;
-  top: 460px;
+  margin-top: 30px;
 `
-const GridEtage = styled.div`
+const GridDropdowns = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 20px;
+  grid-template-columns: 1fr;
+  grid-gap: 15px;
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
+`
+const GridColumns = styled.div`
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+  grid-gap: 15px;
+`
+const FlexBox = styled.div`
+  display: flex;
+  justify-content: center;
 `
 const UploadWrapper = styled.label`
   display: grid;
   grid-template-columns: 150px 1fr;
   align-items: center;
-  position: absolute;
-  top: 1193px;
   background: rgb(201 193 171);
   padding: 4px 10px;
   border-radius: 5px;
@@ -286,8 +294,13 @@ const ChoosenPicture = styled.p`
   margin: 0;
   color: rgb(107, 107, 107);
   font-size: 14px;
-  position: absolute;
-  top: 1238px;
+  margin-bottom: 15px;
+`
+const GridEnd = styled.div`
+  display: grid;
+  grid-template-rows: repeat(3, auto);
+  justify-items: center;
+  margin-bottom: 30px;
 `
 const Modal = styled.div`
   display: none;

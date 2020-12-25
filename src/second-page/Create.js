@@ -90,20 +90,16 @@ const Headline = styled.h1`
   color: rgb(187 179 163);
   font-size: 21px;
   font-weight: bold;
-  position: absolute;
-  top: 10px;
-  margin: 0 20px;
+  margin: 20px 20px;
   @media (min-width: 768px) {
-    margin: 0 20%;
+    margin: 20px 20%;
   }
 `
 const Category = styled.div`
   display: grid;
   grid-template-rows: 32px 32px;
-  position: absolute;
-  top: 55px;
-  margin: 0 20px;
+  margin: 0 20px 20px 20px;
   @media (min-width: 768px) {
-    margin: 0 20%;
+    margin: 20px 20%;
   }
 `

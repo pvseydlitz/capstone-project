@@ -10,9 +10,9 @@ export default function DropdownMenuEtage({ handleSelect }) {
         <option value="Keller">Keller</option>
         <option value="Erdgeschoss">Erdgeschoss</option>
         <option value="1. Stock">1. Stock</option>
-        <option value="1. Stock">2. Stock</option>
-        <option value="1. Stock">3. Stock</option>
-        <option value="1. Stock">4. Stock</option>
+        <option value="2. Stock">2. Stock</option>
+        <option value="3. Stock">3. Stock</option>
+        <option value="4. Stock">4. Stock</option>
         <option value="5. Stock">5. Stock</option>
         <option value="Dachgeschoss">Dachgeschoss</option>
       </DropDown>

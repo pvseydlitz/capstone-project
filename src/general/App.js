@@ -34,7 +34,14 @@ import {
 export default function App() {
   const [messages, setMessages] = useState([])
   useEffect(() => {
-    getMessages().then(setMessages)
+    getMessages().then((loadedMessages) => {
+      const userRole = localStorage.getItem('role')
+      console.log(userRole)
+      if (userRole === 'true') {
+        setMessages(loadedMessages)
+        console.log('admin')
+      }
+    })
   }, [])
 
   const [messagesTuev, setMessagesTuev] = useState([])
