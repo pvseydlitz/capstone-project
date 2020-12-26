@@ -38,6 +38,9 @@ export default function App() {
       const userRole = localStorage.getItem('role')
       if (userRole === 'true') {
         setMessages(loadedMessages)
+      } else {
+        const user = localStorage.getItem('user')
+        setMessages(loadedMessages.filter((message) => message.user === user))
       }
     })
   }, [])

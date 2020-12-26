@@ -249,7 +249,7 @@ const Link = styled.a`
   justify-self: center;
 `
 const Image = styled.img`
-  margin-top: 20px;
+  margin: 20px 0;
   width: 200px;
   height: auto;
 `

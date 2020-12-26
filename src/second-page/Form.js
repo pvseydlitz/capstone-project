@@ -32,16 +32,32 @@ const MainForm = memo(({ date }) => {
         <Input type="text" name="name" required></Input>
         <Headline3>Telefonnummer</Headline3>
         <Input type="text" name="telefonnummer" required></Input>
-        <Headline3>E-Mail Adresse</Headline3>
-        <Input type="text" name="email" required></Input>
+        <Inline>
+          <Headline3>E-Mail Adresse</Headline3>
+          <Span id={'mailFormat'}>
+            &nbsp;&nbsp;&nbsp;&nbsp;Bitte eine gültige E-Mail angeben
+          </Span>
+        </Inline>
+        <Input
+          type="text"
+          name="email"
+          onBlur={(event) => checkEmail(event)}
+          required
+        ></Input>
       </GridWer>
       <GridWo>
         <Headline2>Wann und wo wurde der Mangel festgelstellt?</Headline2>
-        <Headline3>Datum</Headline3>
+        <Inline>
+          <Headline3>Datum</Headline3>
+          <Span id={'datumFormat'}>
+            &nbsp;&nbsp;&nbsp;&nbsp;Bitte das Datum im Format tt.mm.jjjj angeben
+          </Span>
+        </Inline>
         <Input
           type="date"
           name="datum"
           placeholder={'tt.mm.jjjj'}
+          onBlur={(event) => checkDate(event)}
           required
           defaultValue={date}
         ></Input>
@@ -127,7 +143,9 @@ export default function Form({ onSubmit1 }) {
     delete data.sondereigentum
     delete data.innenbereich
     delete data.außenbereich
-    console.log(data.file.size)
+
+    const user = localStorage.getItem('user')
+    data.user = user
     if (data.file.size > 10000000) {
       imageTooLarge()
     } else {
@@ -266,6 +284,39 @@ function imageTooLarge() {
     ],
   })
 }
+function checkEmail(event) {
+  console.log(event.target.value)
+  const input = event.target.value
+  const span = document.getElementById('mailFormat')
+  span.style.display = 'block'
+  if (input.includes('.') && input.includes('@')) {
+    span.style.display = 'none'
+  }
+}
+function checkDate(event) {
+  const input = event.target.value
+  const span = document.getElementById('datumFormat')
+  span.style.display = 'block'
+  if (
+    Number.isInteger(Number(input.slice(0, 2))) &&
+    input.slice(2, 3) === '.' &&
+    Number.isInteger(Number(input.slice(3, 5))) &&
+    input.slice(5, 6) === '.' &&
+    Number.isInteger(Number(input.slice(6, 10))) &&
+    input.length === 10
+  ) {
+    span.style.display = 'none'
+  } else if (
+    Number.isInteger(Number(input.slice(0, 4))) &&
+    input.slice(4, 5) === '-' &&
+    Number.isInteger(Number(input.slice(5, 7))) &&
+    input.slice(7, 8) === '-' &&
+    Number.isInteger(Number(input.slice(8, 10))) &&
+    input.length === 10
+  ) {
+    span.style.display = 'none'
+  }
+}
 const Wrapper = styled.form`
   position: relative;
   margin: 0 20px;
@@ -326,5 +377,16 @@ const GridEnd = styled.div`
   margin-bottom: 30px;
 `
 const Modal = styled.div`
+  display: none;
+`
+const Inline = styled.div`
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  align-items: flex-end;
+`
+const Span = styled.span`
+  color: red;
+  font-size: 12px;
   display: none;
 `
