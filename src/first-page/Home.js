@@ -164,13 +164,15 @@ export default function Home({
                     const wohnung = message.wohnung.toLowerCase()
                     const etage = message.etage.toLowerCase()
                     const raumbezeichnung = message.raumbezeichnung.toLowerCase()
+                    const number = String(message.number)
                     const query = searchedWord
                     return (
                       query === '' ||
                       bereich.includes(query) ||
                       wohnung.includes(query) ||
                       raumbezeichnung.includes(query) ||
-                      etage.includes(query)
+                      etage.includes(query) ||
+                      number.includes(query)
                     )
                   })
                   .filter((message) => {

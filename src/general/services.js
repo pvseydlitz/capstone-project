@@ -78,3 +78,11 @@ export function deleteMessageNotice(id) {
     method: 'DELETE',
   }).then((res) => res.json())
 }
+export function findNumberMessage() {
+  return fetch('/numberMessage', {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+    },
+  }).then((res) => res.json())
+}

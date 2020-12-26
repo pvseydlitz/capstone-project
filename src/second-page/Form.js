@@ -14,6 +14,7 @@ import DropdownMenuWohnung from './DropdownmenuWohnung'
 import FinishButton from './FinishButton'
 import ModalPleaseWait from './ModalPleaseWait'
 import uploadIcon from '../icons/upload.svg'
+import { findNumberMessage } from '../general/services.js'
 
 const PRESET = process.env.REACT_APP_CLOUDINARY_PRESET
 const CLOUDNAME = process.env.REACT_APP_CLOUDINARY_CLOUDNAME
@@ -99,7 +100,6 @@ export default function Form({ onSubmit1 }) {
       </Modal>
     </Wrapper>
   )
-
   function handleSubmit(event) {
     event.preventDefault()
     const form = event.target
@@ -127,45 +127,56 @@ export default function Form({ onSubmit1 }) {
     delete data.sondereigentum
     delete data.innenbereich
     delete data.außenbereich
-    console.log(data)
-    if (data.file.name === '') {
-      confirmAlert({
-        title: 'Bestätigung',
-        message: 'Möchten Sie ihre Meldung wirklich hochladen?',
-        buttons: [
-          {
-            label: 'Ja',
-            onClick: () => {
-              const modal = document.getElementById('modal')
-              modal.style.display = 'block'
-              onSubmit1(data)
-              sendEmail(data)
-            },
-          },
-          {
-            label: 'Nein',
-          },
-        ],
-      })
-      form.reset()
+    console.log(data.file.size)
+    if (data.file.size > 10000000) {
+      imageTooLarge()
     } else {
-      confirmAlert({
-        title: 'Bestätigung',
-        message: 'Möchten Sie ihre Meldung wirklich hochladen?',
-        buttons: [
-          {
-            label: 'Ja',
-            onClick: () => {
-              const modal = document.getElementById('modal')
-              modal.style.display = 'block'
-              postImage(formData, data, form)
+      if (data.file.name === '') {
+        confirmAlert({
+          title: 'Bestätigung',
+          message: 'Möchten Sie ihre Meldung wirklich hochladen?',
+          buttons: [
+            {
+              label: 'Ja',
+              onClick: () => {
+                const modal = document.getElementById('modal')
+                modal.style.display = 'block'
+                findNumberMessage().then((number) => {
+                  data.number = number
+                  console.log(data)
+                  onSubmit1(data)
+                  sendEmail(data)
+                })
+              },
             },
-          },
-          {
-            label: 'Nein',
-          },
-        ],
-      })
+            {
+              label: 'Nein',
+            },
+          ],
+        })
+        form.reset()
+      } else {
+        confirmAlert({
+          title: 'Bestätigung',
+          message: 'Möchten Sie ihre Meldung wirklich hochladen?',
+          buttons: [
+            {
+              label: 'Ja',
+              onClick: () => {
+                const modal = document.getElementById('modal')
+                modal.style.display = 'block'
+                findNumberMessage().then((number) => {
+                  data.number = number
+                  postImage(formData, data, form)
+                })
+              },
+            },
+            {
+              label: 'Nein',
+            },
+          ],
+        })
+      }
     }
   }
 
@@ -180,7 +191,7 @@ export default function Form({ onSubmit1 }) {
         },
       })
       .then(onImageSave)
-      .catch((err) => console.error(err))
+      .catch((err) => alert(err.message))
 
     function onImageSave(response) {
       data.url = response.data.url
@@ -192,6 +203,7 @@ export default function Form({ onSubmit1 }) {
 
   function sendEmail(data) {
     const templateParams = {
+      number: data.number,
       name: data.name,
       telefonnummer: data.telefonnummer,
       email: data.email,
@@ -242,7 +254,18 @@ export default function Form({ onSubmit1 }) {
     }
   }
 }
-
+function imageTooLarge() {
+  confirmAlert({
+    title: 'Bild zu groß',
+    message:
+      'Ihr Bild ist zu groß. Die Maximal erlaubte Größe ist 10 MB. Bitte wählen Sie ein kleineres Bild aus.',
+    buttons: [
+      {
+        label: 'Hinweis schließen',
+      },
+    ],
+  })
+}
 const Wrapper = styled.form`
   position: relative;
   margin: 0 20px;

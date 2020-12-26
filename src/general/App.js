@@ -36,10 +36,8 @@ export default function App() {
   useEffect(() => {
     getMessages().then((loadedMessages) => {
       const userRole = localStorage.getItem('role')
-      console.log(userRole)
       if (userRole === 'true') {
         setMessages(loadedMessages)
-        console.log('admin')
       }
     })
   }, [])

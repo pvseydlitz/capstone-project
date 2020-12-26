@@ -22,7 +22,7 @@ export default function FilterMenu({
       ></ToggleButton>
       <Input
         type="text"
-        placeholder="Nach Bereich, Etage, Wohnung oder Raum suchen"
+        placeholder="Nach Nummer, Bereich, Etage, Wohnung oder Raum suchen"
         onChange={checkInput}
         value={searchedWord}
       ></Input>
@@ -93,7 +93,7 @@ const Input = styled.input`
   grid-row-start: 2;
   grid-column: 1/3;
   height: 20px;
-  width: 80%;
+  width: 90%;
 `
 const Text2 = styled.h3`
   grid-row-start: 3;

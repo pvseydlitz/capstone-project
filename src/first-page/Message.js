@@ -104,7 +104,7 @@ export default function Message({
           saveMessageId(message._id)
         }}
       ></Cross>
-      <Headline>Gewährleistungsmangel</Headline>
+      <Headline>Gewährleistungsmangel Nr. {message.number}</Headline>
 
       <Wrapper active={!showContent}>
         <b>

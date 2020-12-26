@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Message = require('./models/Message')
+const NumberMessage = require('./models/NumberMessage')
 const MessageTuev = require('./models/MessageTuev')
 const express = require('express')
 const withAuth = require('./middleware')
@@ -102,6 +103,19 @@ app.post('/messagesTuev', (req, res) => {
 app.patch('/messages/:id', (req, res) => {
   Message.findByIdAndUpdate(req.params.id, req.body, { new: true })
     .then((message) => res.json(message))
+    .catch((err) => res.json(err))
+})
+app.post('/numberMessage', (req, res) => {
+  NumberMessage.find().then((numbers) => {
+    const length = numbers.length
+    NumberMessage.create({ numberMessage: length + 1 })
+      .then((number) => res.json(number.numberMessage))
+      .catch((err) => res.json(err))
+  })
+})
+app.get('/numberMessage', (req, res) => {
+  NumberMessage.find()
+    .then((number) => res.json(number))
     .catch((err) => res.json(err))
 })
 app.patch('/messagesTuev/:id', (req, res) => {

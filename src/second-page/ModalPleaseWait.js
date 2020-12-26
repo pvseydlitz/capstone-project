@@ -6,7 +6,7 @@ export default function modalPleaseWait() {
     <Overlay className="react-confirm-alert-overlay">
       <Body className="react-confirm-alert">
         <Headline1>Bitte Warten</Headline1>
-        Ihre Meldung wird hochgeladen...
+        Ihre Meldung wird hochgeladen... Dies kann bis zu 3 Minuten dauern.
       </Body>
     </Overlay>
   )
