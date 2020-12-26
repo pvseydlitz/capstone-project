@@ -32,8 +32,10 @@ export default function FormNotice({ onSubmit3 }) {
         </Wrapper2>
         <Headline3>Datum</Headline3>
         <Input type="date" name="datum" required></Input>
+        <Headline3>Absender</Headline3>
+        <Input type="text" name="absender" required></Input>
       </Grid>
-      <Description headline={'Mitteilung'} position={'362px'}></Description>
+      <Description headline={'Mitteilung'} name={'beschreibung'}></Description>
       <GridFinish>
         <FinishButton style={{ top: '524px' }}>Meldung hochladen</FinishButton>
       </GridFinish>
@@ -50,19 +52,16 @@ const Wrapper = styled.form`
 `
 const Grid = styled.div`
   display: grid;
-  grid-template-rows: 28px 53px 28px 53px;
+  grid-template-rows: repeat(6, auto);
+  grid-gap: 15px;
   width: 100%;
-  position: absolute;
-  top: 170px;
 `
 const GridFinish = styled.div`
   display: grid;
-  grid-template-rows: 32px 26px;
+  grid-template-rows: repeat(2, auto);
   width: 100%;
   grid-gap: 15px;
   justify-items: center;
-  position: absolute;
-  top: 524px;
   margin-bottom: 40px;
 `
 const DropDown = styled.select`

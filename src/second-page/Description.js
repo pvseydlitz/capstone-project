@@ -3,11 +3,11 @@ import styled from 'styled-components/macro'
 import PropTypes from 'prop-types'
 import Headline2 from './Headline2'
 
-export default function Description({ headline }) {
+export default function Description({ headline, name }) {
   return (
     <GridDescription>
       <Headline2>{headline}</Headline2>
-      <Input rows="5" name="beschreibung" required></Input>
+      <Input rows="5" name={name} required></Input>
     </GridDescription>
   )
 }
@@ -24,4 +24,5 @@ const Input = styled.textarea`
 `
 Description.propTypes = {
   headline: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
 }

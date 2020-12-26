@@ -4,7 +4,7 @@ const messageTuevSchema = {
   nummer: Number,
   ort: String,
   beschreibung: String,
-  status: Number,
+  status: String,
   anzeigen: Boolean,
 }
 

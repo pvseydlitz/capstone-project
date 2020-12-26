@@ -1,29 +1,27 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 
-import ShowMoreButton from './ShowMoreButton'
 import cross from '../icons/cross.svg'
-import DropdownMenu from './DropdownMenu'
+//import DropdownMenu from './DropdownMenu'
 import Password from './Password'
 
 export default function MessageTuev({
   messageTuev,
-  handleStatusTuev,
+  //handleStatusTuev,
   handleDeleteTuev,
 }) {
-  const [showContent, setShowContent] = useState(false)
   const [showInputPassword, setShowInputPassword] = useState(false)
 
-  function handleChangeDropdown(number) {
+  /* function handleChangeDropdown(number) {
     messageTuev.status = number
     handleStatusTuev(messageTuev)
-  }
+  } */
   function saveMessageId(id) {
     localStorage.setItem('id', id)
   }
 
   return (
-    <MessageLayout active={showContent}>
+    <MessageLayout>
       <Cross
         src={cross}
         onClick={() => {
@@ -32,14 +30,14 @@ export default function MessageTuev({
         }}
       ></Cross>
       <Headline>TÜV-Mangel</Headline>
-      <Wrapper active={!showContent}>
+      <Wrapper>
         <Description>
           <b>Nummer:</b> {messageTuev.nummer}
         </Description>
         <Description>
-          <b>Ort / Bauteil:</b> {messageTuev.ort}
+          <b>Ort/Bauteil:</b> {messageTuev.ort}
         </Description>
-        <WrapperDropdown>
+        {/* <WrapperDropdown>
           <Description>
             <b>Status:</b>
           </Description>
@@ -48,16 +46,14 @@ export default function MessageTuev({
             selected={messageTuev.status}
             showValue0={false}
           ></DropdownMenu>
-        </WrapperDropdown>
+        </WrapperDropdown> */}
         <Description>
-          <br></br>
-          <b>{showContent ? 'Mangel / Feststellung / Hinweis' : ''}</b>
+          <b>Status:</b> {messageTuev.status}
         </Description>
-        <Content>{showContent ? messageTuev.beschreibung : ''}</Content>
+        <Description>
+          <b>Kurzbeschreibung:</b> {messageTuev.beschreibung}
+        </Description>
       </Wrapper>
-      <ShowMoreButton onClick={() => setShowContent(!showContent)}>
-        {showContent ? 'Weniger anzeigen' : 'Mehr anzeigen'}
-      </ShowMoreButton>
       {showInputPassword ? (
         <Password
           text={'Passwort eingeben zum Löschen'}
@@ -78,7 +74,7 @@ const MessageLayout = styled.div`
   position: relative;
   background: rgb(238, 238, 238);
   border-radius: 10px;
-  max-height: ${(props) => (props.active ? '' : '205px')};
+  //max-height: ${(props) => (props.active ? '' : '205px')};
   @media (min-width: 768px) {
     margin: 50px 8%;
     margin-top: 20px;
@@ -97,8 +93,8 @@ const Headline = styled.h2`
 `
 const Wrapper = styled.div`
   display: grid;
-  grid-template-rows: ${(props) =>
-    props.active ? 'repeat(3, 30px) 16px' : 'repeat(3, 30px) 50px auto 29px'};
+  grid-template-rows: repeat(5, auto);
+  grid-gap: 15px;
   width: 100%;
 `
 const Description = styled.p`
@@ -106,13 +102,9 @@ const Description = styled.p`
   font-size: 16px;
   color: rgb(107, 107, 107);
 `
-const Content = styled.p`
-  margin: 0;
-  font-size: 16px;
-  color: rgb(107, 107, 107);
-`
-const WrapperDropdown = styled.div`
+
+/* const WrapperDropdown = styled.div`
   display: grid;
   grid-template-columns: auto 3fr 1fr;
   grid-gap: 20px;
-`
+` */

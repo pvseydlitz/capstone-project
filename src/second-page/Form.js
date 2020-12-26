@@ -63,8 +63,8 @@ const MainForm = memo(({ date }) => {
       </GridWo>
       <Checkboxes></Checkboxes>
       <Description
-        position={'1018px'}
         headline={'Genaue Mangelbeschreibung'}
+        name={'beschreibung'}
       ></Description>
     </>
   )

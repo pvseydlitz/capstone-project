@@ -153,7 +153,7 @@ export default function App() {
       ])
     })
   }
-  function handleStatusTuev(messageTuev) {
+  /* function handleStatusTuev(messageTuev) {
     patchMessageTuev(messageTuev).then((patchedMessage) => {
       const index = messagesTuev.findIndex(
         (messageTuev) => messageTuev._id === patchedMessage._id
@@ -165,7 +165,7 @@ export default function App() {
         ...messagesTuev.slice(index + 1),
       ])
     })
-  }
+  } */
   function handleDelete(id) {
     confirmAlert({
       title: 'Löschen bestätigen',
@@ -246,7 +246,7 @@ export default function App() {
               handleDeleteTuev={handleDeleteTuev}
               handleDeleteNotice={handleDeleteNotice}
               handleStatus={handleStatus}
-              handleStatusTuev={handleStatusTuev}
+              //handleStatusTuev={handleStatusTuev}
             ></Home>
           ) : (
             <Redirect to="/login"></Redirect>

@@ -22,7 +22,7 @@ export default function Home({
   handleDeleteTuev,
   handleDeleteNotice,
   handleStatus,
-  handleStatusTuev,
+  //handleStatusTuev,
 }) {
   //Radio Buttons
   const [isClicked1, setIsClicked1] = useState(true)
@@ -216,7 +216,7 @@ export default function Home({
                     messageTuev={messageTuev}
                     key={index}
                     handleDeleteTuev={handleDeleteTuev}
-                    handleStatusTuev={handleStatusTuev}
+                    //handleStatusTuev={handleStatusTuev}
                   ></MessageTuev>
                 ))
             : ''}

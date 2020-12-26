@@ -14,7 +14,7 @@ export default function FormTuev({ onSubmit2 }) {
     const form = event.target
     const formData = new FormData(form)
     const data = Object.fromEntries(formData)
-    data.status = 1
+    //data.status = 1
     data.anzeigen = true
     if (data.password === PASSWORD) {
       onSubmit2(data)
@@ -31,9 +31,10 @@ export default function FormTuev({ onSubmit2 }) {
         <Input type="text" name="ort" required></Input>
       </Grid>
       <Description
-        headline={'Mangel / Feststellung / Hinweis'}
-        position={'362px'}
+        headline={'Kurzbeschreibung gemäß TÜV-Protokoll'}
+        name={'beschreibung'}
       ></Description>
+      <Description headline={'Status'} name={'status'}></Description>
       <GridFinish>
         <Input
           style={{ width: '100%' }}
@@ -42,7 +43,7 @@ export default function FormTuev({ onSubmit2 }) {
           placeholder="Admin Passwort eingeben zum Hochladen"
           required
         ></Input>
-        <FinishButton style={{ top: '524px' }}>Meldung hochladen</FinishButton>
+        <FinishButton>Meldung hochladen</FinishButton>
       </GridFinish>
     </Wrapper>
   )
@@ -57,18 +58,15 @@ const Wrapper = styled.form`
 `
 const Grid = styled.div`
   display: grid;
-  grid-template-rows: 28px 53px 28px 53px;
+  grid-template-rows: repeat(4, auto);
+  grid-gap: 15px;
   width: 100%;
-  position: absolute;
-  top: 170px;
 `
 const GridFinish = styled.div`
   display: grid;
-  grid-template-rows: 32px 26px;
+  grid-template-rows: repeat(2, auto);
   width: 100%;
   grid-gap: 15px;
   justify-items: center;
-  position: absolute;
-  top: 524px;
   margin-bottom: 40px;
 `
