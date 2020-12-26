@@ -20,7 +20,7 @@ export default function FormNotice({ onSubmit3 }) {
   return (
     <Wrapper onSubmit={handleSubmit}>
       <Grid>
-        <Headline3>Kategorie</Headline3>
+        {/* <Headline3>Kategorie</Headline3>
         <Wrapper2>
           <DropDown name="kategorie" required>
             <option value="">Bitte auswählen</option>
@@ -29,15 +29,24 @@ export default function FormNotice({ onSubmit3 }) {
             </option>
             <option value="Ankündigung">Ankündigung</option>
           </DropDown>
-        </Wrapper2>
+        </Wrapper2> */}
         <Headline3>Datum</Headline3>
-        <Input type="date" name="datum" required></Input>
+        <Input
+          type="date"
+          name="datum"
+          placeholder={'tt.mm.jjjj'}
+          required
+        ></Input>
         <Headline3>Absender</Headline3>
-        <Input type="text" name="absender" required></Input>
+        <Input type="text" name="name" required></Input>
       </Grid>
-      <Description headline={'Mitteilung'} name={'beschreibung'}></Description>
+      <Description
+        headline={'Mitteilung'}
+        name={'beschreibung'}
+        required
+      ></Description>
       <GridFinish>
-        <FinishButton style={{ top: '524px' }}>Meldung hochladen</FinishButton>
+        <FinishButton>Meldung hochladen</FinishButton>
       </GridFinish>
     </Wrapper>
   )
@@ -52,7 +61,7 @@ const Wrapper = styled.form`
 `
 const Grid = styled.div`
   display: grid;
-  grid-template-rows: repeat(6, auto);
+  grid-template-rows: repeat(4, auto);
   grid-gap: 15px;
   width: 100%;
 `
@@ -64,7 +73,7 @@ const GridFinish = styled.div`
   justify-items: center;
   margin-bottom: 40px;
 `
-const DropDown = styled.select`
+/* const DropDown = styled.select`
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
@@ -84,4 +93,4 @@ const Wrapper2 = styled.div`
   position: relative;
   min-width: 220px;
   max-width: 300px;
-`
+` */

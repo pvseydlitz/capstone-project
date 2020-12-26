@@ -22,7 +22,7 @@ export default function FilterMenu({
       ></ToggleButton>
       <Input
         type="text"
-        placeholder="Suche eingeben"
+        placeholder="Nach Bereich, Etage, Wohnung oder Raum suchen"
         onChange={checkInput}
         value={searchedWord}
       ></Input>

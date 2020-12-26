@@ -13,12 +13,23 @@ export default function FilterMenuTuevMessages({
         Nach Nummer oder Ort/Bauteil suchen
       </Text>
       <Input
+        start={'2'}
         type="text"
-        placeholder="Suchbegriff eingeben"
+        placeholder="Nummer oder Ort/Bauteil"
         onChange={checkInput}
         value={searchedWord}
       ></Input>
       <Text start={'3'} startTabletRow={'1'} tabletColumn={'3/5'}>
+        Nach Status oder Kurzbeschreibung suchen
+      </Text>
+      <Input
+        start={'4'}
+        type="text"
+        placeholder="Status oder Kurzbeschreibung"
+        onChange={handleFilterStatus}
+        value={selectedStatus}
+      ></Input>
+      {/* <Text start={'3'} startTabletRow={'1'} tabletColumn={'3/5'}>
         Nach Bearbeitungsstatus filtern
       </Text>
       <Wrapper>
@@ -32,7 +43,7 @@ export default function FilterMenuTuevMessages({
           <option value="2">Handwerker kommt</option>
           <option value="3">Mangel behoben</option>
         </DropDown>
-      </Wrapper>
+      </Wrapper> */}
     </Menu>
   )
 }
@@ -57,7 +68,7 @@ const Menu = styled.div`
 
 const Input = styled.input`
   border: solid 2px rgb(201 193 171);
-  grid-row-start: 2;
+  grid-row-start: ${(props) => props.start};
   grid-column: 1/3;
   height: 20px;
   width: 80%;
@@ -75,7 +86,7 @@ const Text = styled.h3`
   }
 `
 
-const DropDown = styled.select`
+/* const DropDown = styled.select`
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
@@ -95,4 +106,4 @@ const Wrapper = styled.div`
   position: relative;
   min-width: 180px;
   max-width: 250px;
-`
+` */

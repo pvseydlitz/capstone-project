@@ -118,11 +118,15 @@ export default function Message({
             Ort des Schadens:
           </p>
         </b>
-        <Description>{message.bereich.join(', ')}</Description>
         <Description>
-          {message.etage},
-          {message.wohnung !== '' ? ` Wohnung ${message.wohnung},` : ''}{' '}
-          {message.raumbezeichnung}
+          <b>Bereich:</b> {message.bereich.join(', ')}
+        </Description>
+        <Description>
+          <b>Etage & Wohnung:</b> {message.etage}
+          {message.wohnung !== '' ? `, Wohnung ${message.wohnung}` : ''}{' '}
+        </Description>
+        <Description>
+          <b>Raum:</b> {message.raumbezeichnung}
         </Description>
         <Description>
           <b>Datum: </b>
@@ -139,41 +143,41 @@ export default function Message({
             showValue0={true}
           ></DropdownMenu>
         </WrapperDropdown>
-
-        {/* <b>
-          <p
-            style={{
-              margin: '0',
-              color: 'rgb(107, 107, 107)',
-              fontSize: '16px',
-            }}
-          >
-            {showContent ? 'Wer hat den Schaden gemeldet?' : ''}
-          </p>
-        </b>
-        <Description>{showContent ? message.name : ''}</Description>
-        <Description>{showContent ? message.telefonnummer : ''}</Description>
-        <Description>{showContent ? message.email : ''}</Description> */}
-        {showContent ? (
+      </Wrapper>
+      {showContent ? (
+        <Wrapper>
+          <b>
+            <p
+              style={{
+                margin: '0',
+                color: 'rgb(107, 107, 107)',
+                fontSize: '16px',
+              }}
+            >
+              Wer hat den Schaden gemeldet?
+            </p>
+          </b>
+          <Description>
+            <b>Name:</b> {message.name}
+          </Description>
+          <Description>
+            <b>Telefonnummer:</b> {message.telefonnummer}{' '}
+          </Description>
+          <Description>
+            <b>E-Mail Adresse:</b> {message.email}{' '}
+          </Description>
           <Description>
             <br></br>
             <b>Mangel Beschreibung</b>
           </Description>
-        ) : (
-          ''
-        )}
-        <Content>
-          <br></br>
-          {showContent ? message.beschreibung : ''}
-        </Content>
-        {showContent ? (
+          <Content>{message.beschreibung}</Content>
           <Link href={message.url} rel="noopener noreferrer" target="_blank">
             <Image src={message.url} alt=""></Image>
           </Link>
-        ) : (
-          ''
-        )}
-      </Wrapper>
+        </Wrapper>
+      ) : (
+        ''
+      )}
 
       <ShowMoreButton onClick={() => setShowContent(!showContent)}>
         {showContent ? 'Weniger anzeigen' : 'Mehr anzeigen'}
@@ -201,10 +205,10 @@ const MessageLayout = styled.div`
   margin-top: 10px;
   padding: 10px 20px;
   position: relative;
-  max-height: ${(props) => (props.active ? '700px' : '265px')};
   background: rgb(238, 238, 238);
   border-radius: 10px;
   @media (min-width: 768px) {
+    max-height: ${(props) => (props.active ? '' : '330px')};
     margin: 50px 8%;
     margin-top: 20px;
   }
@@ -222,8 +226,8 @@ const Headline = styled.h2`
 `
 const Wrapper = styled.div`
   display: grid;
-  grid-template-rows: ${(props) =>
-    props.active ? 'repeat(5, 30px) 16px' : 'repeat(6, 30px) auto auto 29px'};
+  grid-template-rows: repeat(7, auto);
+  grid-gap: 15px;
 `
 const Description = styled.p`
   margin: 0;
@@ -239,6 +243,7 @@ const WrapperDropdown = styled.div`
   display: grid;
   grid-template-columns: auto 3fr 1fr;
   grid-gap: 20px;
+  margin: 10px 0;
 `
 const Link = styled.a`
   justify-self: center;

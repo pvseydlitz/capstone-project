@@ -45,7 +45,7 @@ export default function Home({
     showFilterMenuNoticeMessages,
     setShowFilterMenuNoticeMessages,
   ] = useState(false)
-  const [selectedKategorie, setSelectedKategorie] = useState('')
+  const [searchedWord2, setSearchedWord2] = useState('')
   const [selectedMonth3, setSelectedMonth3] = useState('')
   const [selectedYear3, setSelectedYear3] = useState('')
 
@@ -123,10 +123,8 @@ export default function Home({
         )}
         {showFilterMenuNoticeMessages ? (
           <FilterMenuNoticeMessages
-            handleChangeKategorie={(event) =>
-              setSelectedKategorie(event.target.value)
-            }
-            selectedKategorie={selectedKategorie}
+            checkInput={(event) => setSearchedWord2(event.target.value)}
+            selectedWord={searchedWord2}
             handleChangeMonth={(event) => setSelectedMonth3(event.target.value)}
             selectedMonth={selectedMonth3}
             handleChangeYear={(event) => setSelectedYear3(event.target.value)}
@@ -164,13 +162,15 @@ export default function Home({
                   .filter((message) => {
                     const bereich = message.bereich.join().toLowerCase()
                     const wohnung = message.wohnung.toLowerCase()
+                    const etage = message.etage.toLowerCase()
                     const raumbezeichnung = message.raumbezeichnung.toLowerCase()
                     const query = searchedWord
                     return (
                       query === '' ||
                       bereich.includes(query) ||
                       wohnung.includes(query) ||
-                      raumbezeichnung.includes(query)
+                      raumbezeichnung.includes(query) ||
+                      etage.includes(query)
                     )
                   })
                   .filter((message) => {
@@ -208,8 +208,16 @@ export default function Home({
                 })
                 .filter((messageTuev) => {
                   const status = String(messageTuev.status)
+                  const beschreibung = messageTuev.beschreibung.toLowerCase()
                   const query = selectedStatus
-                  return query === '' || status.includes(query)
+                  return (
+                    query === '' ||
+                    status.includes(query) ||
+                    beschreibung.includes(query)
+                  )
+                })
+                .sort(function (a, b) {
+                  return a.nummer - b.nummer
                 })
                 .map((messageTuev, index) => (
                   <MessageTuev
@@ -224,9 +232,14 @@ export default function Home({
             ? messagesNotice
                 .filter((messageNotice) => messageNotice.anzeigen === true)
                 .filter((messageNotice) => {
-                  const kategorie = messageNotice.kategorie
-                  const query = selectedKategorie
-                  return query === '' || kategorie.includes(query)
+                  const absender = messageNotice.name.toLowerCase()
+                  const beschreibung = messageNotice.beschreibung.toLowerCase()
+                  const query = searchedWord2
+                  return (
+                    query === '' ||
+                    absender.includes(query) ||
+                    beschreibung.includes(query)
+                  )
                 })
                 .filter((messageNotice) => {
                   const datumMonth = messageNotice.datum.slice(5, 7)
@@ -238,10 +251,12 @@ export default function Home({
                   const queryYear = selectedYear3
                   return queryYear === '' || datumYear.includes(queryYear)
                 })
+                .reverse()
                 .map((messageNotice, index) => (
                   <MessageNotice
                     messageNotice={messageNotice}
                     key={index}
+                    index={index}
                     handleDeleteNotice={handleDeleteNotice}
                   ></MessageNotice>
                 ))

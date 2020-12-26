@@ -1,9 +1,8 @@
 const mongoose = require('mongoose')
 
 const messageNoticeShema = {
-  kategorie: String,
   datum: Date,
-  absender: String,
+  name: String,
   beschreibung: String,
   anzeigen: Boolean,
 }

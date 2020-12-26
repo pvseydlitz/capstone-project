@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components/macro'
 
 export default function FilterMenuNoticeMessages({
-  handleChangeKategorie,
-  selectedKategorie,
+  checkInput,
+  searchedWord,
   handleChangeMonth,
   selectedMonth,
   handleChangeYear,
@@ -11,21 +11,14 @@ export default function FilterMenuNoticeMessages({
 }) {
   return (
     <Menu>
-      <Text start={'1'}>Nach Kategorie filtern</Text>
-      <Wrapper start={'2'} column={'1 / 3'}>
-        <DropDown
-          name="kategorie"
-          onChange={handleChangeKategorie}
-          value={selectedKategorie}
-        >
-          <option value="">Bitte auswählen</option>
-          <option value="Handwerker Termin">Handwerker Termin</option>
-          <option value="Allgemeine Informationen">
-            Allgemeine Informationen
-          </option>
-          <option value="Dachterasse">Dachterasse</option>
-        </DropDown>
-      </Wrapper>
+      <Text start={'1'}>Nach Absender oder Mitteilung suchen</Text>
+      <Input
+        start={'2'}
+        type="text"
+        placeholder="Suche eingeben"
+        onChange={checkInput}
+        value={searchedWord}
+      ></Input>
       <Text start={'3'} startTabletRow={'1'} tabletColumn={'3/5'}>
         Nach Monat oder Jahr filtern
       </Text>
@@ -94,7 +87,14 @@ const Text = styled.h3`
     grid-column: ${(props) => props.tabletColumn};
   }
 `
-
+const Input = styled.input`
+  border: solid 2px rgb(201 193 171);
+  grid-row-start: 2;
+  grid-column: 1/3;
+  height: 20px;
+  width: 80%;
+  max-width: 250px;
+`
 const DropDown = styled.select`
   -moz-appearance: none;
   -webkit-appearance: none;

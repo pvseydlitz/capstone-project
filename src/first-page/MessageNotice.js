@@ -4,7 +4,11 @@ import styled from 'styled-components/macro'
 import cross from '../icons/cross.svg'
 import Password from './Password'
 
-export default function MessageTuev({ messageNotice, handleDeleteNotice }) {
+export default function MessageTuev({
+  messageNotice,
+  handleDeleteNotice,
+  index,
+}) {
   const [showInputPassword, setShowInputPassword] = useState(false)
 
   function saveMessageId(id) {
@@ -20,11 +24,14 @@ export default function MessageTuev({ messageNotice, handleDeleteNotice }) {
           saveMessageId(messageNotice._id)
         }}
       ></Cross>
-      <Headline>{messageNotice.kategorie}</Headline>
+      <Headline>Nr. {index + 1}</Headline>
       <Wrapper>
         <Description>
           <b>Datum:</b> {messageNotice.datum.slice(8, 10)}.
           {messageNotice.datum.slice(5, 7)}.{messageNotice.datum.slice(0, 4)}
+        </Description>
+        <Description>
+          <b>Absender:</b> {messageNotice.name}
         </Description>
         <Description>
           <b>Mitteilung:</b> {messageNotice.beschreibung}
@@ -46,7 +53,7 @@ export default function MessageTuev({ messageNotice, handleDeleteNotice }) {
 const MessageLayout = styled.div`
   margin: 50px 20px;
   margin-top: 20px;
-  padding: 10px 20px;
+  padding: 20px;
   position: relative;
   background: rgb(238, 238, 238);
   border-radius: 10px;
@@ -63,13 +70,14 @@ const Cross = styled.img`
   cursor: pointer;
 `
 const Headline = styled.h2`
-  margin-bottom: 10px;
   font-size: 20px;
   color: rgb(187 179 163);
+  margin: 0;
+  margin-bottom: 10px;
 `
 const Wrapper = styled.div`
   display: grid;
-  grid-template-rows: 30px auto;
+  grid-template-rows: 30px 30px auto;
   width: 100%;
 `
 const Description = styled.p`
