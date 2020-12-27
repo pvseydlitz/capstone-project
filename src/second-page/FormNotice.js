@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components/macro'
+import { confirmAlert } from 'react-confirm-alert'
 
 import Headline3 from './Headline3'
 import Input from './Input'
@@ -13,8 +14,22 @@ export default function FormNotice({ onSubmit3 }) {
     const formData = new FormData(form)
     const data = Object.fromEntries(formData)
     data.anzeigen = true
-    onSubmit3(data)
-    form.reset()
+    confirmAlert({
+      title: 'Bestätigung',
+      message: 'Möchten Sie ihre Meldung wirklich hochladen?',
+      buttons: [
+        {
+          label: 'Ja',
+          onClick: () => {
+            onSubmit3(data)
+            form.reset()
+          },
+        },
+        {
+          label: 'Nein',
+        },
+      ],
+    })
   }
 
   return (
@@ -30,11 +45,17 @@ export default function FormNotice({ onSubmit3 }) {
             <option value="Ankündigung">Ankündigung</option>
           </DropDown>
         </Wrapper2> */}
-        <Headline3>Datum</Headline3>
+        <Inline>
+          <Headline3>Datum</Headline3>
+          <Span id={'datumFormat'}>
+            &nbsp;&nbsp;&nbsp;&nbsp;Bitte das Datum im Format tt.mm.jjjj angeben
+          </Span>
+        </Inline>
         <Input
           type="date"
           name="datum"
           placeholder={'tt.mm.jjjj'}
+          onBlur={(event) => checkDate(event)}
           required
         ></Input>
         <Headline3>Absender</Headline3>
@@ -50,6 +71,30 @@ export default function FormNotice({ onSubmit3 }) {
       </GridFinish>
     </Wrapper>
   )
+  function checkDate(event) {
+    const input = event.target.value
+    const span = document.getElementById('datumFormat')
+    span.style.display = 'block'
+    if (
+      Number.isInteger(Number(input.slice(0, 2))) &&
+      input.slice(2, 3) === '.' &&
+      Number.isInteger(Number(input.slice(3, 5))) &&
+      input.slice(5, 6) === '.' &&
+      Number.isInteger(Number(input.slice(6, 10))) &&
+      input.length === 10
+    ) {
+      span.style.display = 'none'
+    } else if (
+      Number.isInteger(Number(input.slice(0, 4))) &&
+      input.slice(4, 5) === '-' &&
+      Number.isInteger(Number(input.slice(5, 7))) &&
+      input.slice(7, 8) === '-' &&
+      Number.isInteger(Number(input.slice(8, 10))) &&
+      input.length === 10
+    ) {
+      span.style.display = 'none'
+    }
+  }
 }
 
 const Wrapper = styled.form`
@@ -72,6 +117,17 @@ const GridFinish = styled.div`
   grid-gap: 15px;
   justify-items: center;
   margin-bottom: 40px;
+`
+const Inline = styled.div`
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  align-items: flex-end;
+`
+const Span = styled.span`
+  color: red;
+  font-size: 12px;
+  display: none;
 `
 /* const DropDown = styled.select`
   -moz-appearance: none;

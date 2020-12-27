@@ -63,14 +63,15 @@ export default function Home({
     setIsClicked2(true)
     setIsClicked3(false)
     setShowFilterMenu(false)
-    setShowFilterMenuNoticeMessages(false)
+    setShowFilterMenuTuevMessages(false)
   }
   function handleClick3() {
     setIsClicked1(false)
     setIsClicked2(false)
     setIsClicked3(true)
+
     setShowFilterMenu(false)
-    setShowFilterMenuTuevMessages(false)
+    setShowFilterMenuNoticeMessages(false)
   }
 
   return (
@@ -82,10 +83,10 @@ export default function Home({
         showFilter3={isClicked3}
         handleClick1={() => setShowFilterMenu(!showFilterMenu)}
         handleClick2={() =>
-          setShowFilterMenuTuevMessages(!showFilterMenuTuevMessages)
+          setShowFilterMenuNoticeMessages(!showFilterMenuNoticeMessages)
         }
         handleClick3={() =>
-          setShowFilterMenuNoticeMessages(!showFilterMenuNoticeMessages)
+          setShowFilterMenuTuevMessages(!showFilterMenuTuevMessages)
         }
         filterMenu1Active={showFilterMenu}
         filterMenu2Active={showFilterMenuTuevMessages}
@@ -109,18 +110,6 @@ export default function Home({
         ) : (
           ''
         )}
-        {showFilterMenuTuevMessages ? (
-          <FilterMenuTuevMessages
-            checkInput={(event) =>
-              setSearchedWordFilter2(event.target.value.toLowerCase())
-            }
-            handleFilterStatus={(event) =>
-              setSelectedStatus(event.target.value)
-            }
-          ></FilterMenuTuevMessages>
-        ) : (
-          ''
-        )}
         {showFilterMenuNoticeMessages ? (
           <FilterMenuNoticeMessages
             checkInput={(event) => setSearchedWord2(event.target.value)}
@@ -130,6 +119,18 @@ export default function Home({
             handleChangeYear={(event) => setSelectedYear3(event.target.value)}
             selectedYear={selectedYear3}
           ></FilterMenuNoticeMessages>
+        ) : (
+          ''
+        )}
+        {showFilterMenuTuevMessages ? (
+          <FilterMenuTuevMessages
+            checkInput={(event) =>
+              setSearchedWordFilter2(event.target.value.toLowerCase())
+            }
+            handleFilterStatus={(event) =>
+              setSelectedStatus(event.target.value)
+            }
+          ></FilterMenuTuevMessages>
         ) : (
           ''
         )}
@@ -195,7 +196,41 @@ export default function Home({
                     ></Message>
                   ))
             : ''}
+
           {isClicked2
+            ? messagesNotice
+                .filter((messageNotice) => messageNotice.anzeigen === true)
+                .filter((messageNotice) => {
+                  const absender = messageNotice.name.toLowerCase()
+                  const beschreibung = messageNotice.beschreibung.toLowerCase()
+                  const query = searchedWord2
+                  return (
+                    query === '' ||
+                    absender.includes(query) ||
+                    beschreibung.includes(query)
+                  )
+                })
+                .filter((messageNotice) => {
+                  const datumMonth = messageNotice.datum.slice(5, 7)
+                  const queryMonth = selectedMonth3
+                  return queryMonth === '' || datumMonth.includes(queryMonth)
+                })
+                .filter((messageNotice) => {
+                  const datumYear = messageNotice.datum.slice(2, 4)
+                  const queryYear = selectedYear3
+                  return queryYear === '' || datumYear.includes(queryYear)
+                })
+                .reverse()
+                .map((messageNotice, index) => (
+                  <MessageNotice
+                    messageNotice={messageNotice}
+                    key={index}
+                    index={index}
+                    handleDeleteNotice={handleDeleteNotice}
+                  ></MessageNotice>
+                ))
+            : ''}
+          {isClicked3
             ? messagesTuev
                 .filter((messageTuev) => messageTuev.anzeigen === true)
                 .filter((messageTuev) => {
@@ -228,39 +263,6 @@ export default function Home({
                     handleDeleteTuev={handleDeleteTuev}
                     //handleStatusTuev={handleStatusTuev}
                   ></MessageTuev>
-                ))
-            : ''}
-          {isClicked3
-            ? messagesNotice
-                .filter((messageNotice) => messageNotice.anzeigen === true)
-                .filter((messageNotice) => {
-                  const absender = messageNotice.name.toLowerCase()
-                  const beschreibung = messageNotice.beschreibung.toLowerCase()
-                  const query = searchedWord2
-                  return (
-                    query === '' ||
-                    absender.includes(query) ||
-                    beschreibung.includes(query)
-                  )
-                })
-                .filter((messageNotice) => {
-                  const datumMonth = messageNotice.datum.slice(5, 7)
-                  const queryMonth = selectedMonth3
-                  return queryMonth === '' || datumMonth.includes(queryMonth)
-                })
-                .filter((messageNotice) => {
-                  const datumYear = messageNotice.datum.slice(2, 4)
-                  const queryYear = selectedYear3
-                  return queryYear === '' || datumYear.includes(queryYear)
-                })
-                .reverse()
-                .map((messageNotice, index) => (
-                  <MessageNotice
-                    messageNotice={messageNotice}
-                    key={index}
-                    index={index}
-                    handleDeleteNotice={handleDeleteNotice}
-                  ></MessageNotice>
                 ))
             : ''}
         </MessageWrapper2>

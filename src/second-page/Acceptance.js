@@ -39,8 +39,6 @@ export default function acceptance({ handleAccept }) {
 }
 const Wrapper = styled.div`
   margin: 0 20px;
-  position: absolute;
-  top: 100px;
   margin-bottom: 40px;
   @media (min-width: 768px) {
     margin: 0 20%;
@@ -48,9 +46,8 @@ const Wrapper = styled.div`
 `
 const Grid = styled.form`
   display: grid;
-  grid-template-rows: 2fr auto 1fr 1fr;
+  grid-template-rows: 1fr auto 1fr 1fr;
   grid-gap: 20px;
-  margin-top: 50px;
   margin-bottom: 40px;
 `
 const Text = styled.p`

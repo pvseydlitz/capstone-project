@@ -6,8 +6,8 @@ export default function DropdownMenu({ handleChange, selected }) {
     <Wrapper>
       <DropDown name="kategorie" onChange={handleChange} value={selected}>
         <option value="Gewährleistungsmangel">Gewährleistungsmangel</option>
-        <option value="Tüv-Mangel">TÜV-Mangel</option>
         <option value="Allgemeines">Allgemeines</option>
+        <option value="Tüv-Mangel">TÜV-Mangel</option>
       </DropDown>
     </Wrapper>
   )

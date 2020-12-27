@@ -6,6 +6,7 @@ export default function checkTime() {
     localStorage.removeItem('time')
     localStorage.removeItem('user')
     localStorage.removeItem('accept')
+    localStorage.removeItem('role')
     window.location.reload()
   }
 }

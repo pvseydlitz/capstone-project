@@ -15,13 +15,14 @@ export default function RadioButtons({
         <Button type="radio" />
         Mangelmeldungen
       </Label1>
+
       <Label2 onClick={handleClick2} active={isClicked2}>
         <Button type="radio" />
-        TÜV-Mängel
+        Allgemeines
       </Label2>
       <Label3 onClick={handleClick3} active={isClicked3}>
         <Button type="radio" />
-        Allgemeines
+        TÜV-Mängel
       </Label3>
       {isClicked1 ? (
         <UnderHeadline>
@@ -33,17 +34,17 @@ export default function RadioButtons({
       )}
       {isClicked2 ? (
         <UnderHeadline>
-          Hier wird über den Bearbeitungsstatus der Mängel laut TÜV-Protokoll im
-          Gemeinschaftseigentum informiert.
+          Allgemeine Informationen und Ankündigungen für die Hausgemeinschaft
+          werden hier gesammelt und können auch von Bewohnern auf der zweiten
+          Seite unter der Auswahl "Allgemeines" hochgeladen werden.
         </UnderHeadline>
       ) : (
         ''
       )}
       {isClicked3 ? (
         <UnderHeadline>
-          Allgemeine Informationen und Ankündigungen für die Hausgemeinschaft
-          werden hier gesammelt und können auch von Bewohnern auf der zweiten
-          Seite unter der Auswahl "Allgemeines" hochgeladen werden.
+          Hier wird über den Bearbeitungsstatus der Mängel laut TÜV-Protokoll im
+          Gemeinschaftseigentum informiert.
         </UnderHeadline>
       ) : (
         ''
