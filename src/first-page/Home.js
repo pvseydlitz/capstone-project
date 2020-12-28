@@ -39,7 +39,7 @@ export default function Home({
     false
   )
   const [searchedWordFilter2, setSearchedWordFilter2] = useState('')
-  const [selectedStatus, setSelectedStatus] = useState('')
+  //const [selectedStatus, setSelectedStatus] = useState('')
   //Third type of message 'Allgemeines'
   const [
     showFilterMenuNoticeMessages,
@@ -89,8 +89,8 @@ export default function Home({
           setShowFilterMenuTuevMessages(!showFilterMenuTuevMessages)
         }
         filterMenu1Active={showFilterMenu}
-        filterMenu2Active={showFilterMenuTuevMessages}
-        filterMenu3Active={showFilterMenuNoticeMessages}
+        filterMenu2Active={showFilterMenuNoticeMessages}
+        filterMenu3Active={showFilterMenuTuevMessages}
         backgroundInvisible={() => setBackgroundWhite(!backgroundWhite)}
       ></Header>
       <MessageWrapper id="messageWrapper" active={backgroundWhite}>
@@ -127,9 +127,9 @@ export default function Home({
             checkInput={(event) =>
               setSearchedWordFilter2(event.target.value.toLowerCase())
             }
-            handleFilterStatus={(event) =>
+            /* handleFilterStatus={(event) =>
               setSelectedStatus(event.target.value)
-            }
+            } */
           ></FilterMenuTuevMessages>
         ) : (
           ''
@@ -243,7 +243,7 @@ export default function Home({
                     ort.includes(query)
                   )
                 })
-                .filter((messageTuev) => {
+                /* .filter((messageTuev) => {
                   const status = String(messageTuev.status)
                   const beschreibung = messageTuev.beschreibung.toLowerCase()
                   const query = selectedStatus
@@ -252,7 +252,7 @@ export default function Home({
                     status.includes(query) ||
                     beschreibung.includes(query)
                   )
-                })
+                }) */
                 .sort(function (a, b) {
                   return a.nummer - b.nummer
                 })
