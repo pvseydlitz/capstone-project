@@ -6,8 +6,6 @@ import Input from './Input'
 import Description from './Description'
 import FinishButton from './FinishButton'
 
-const PASSWORD = process.env.REACT_APP_PASSWORD
-
 export default function FormTuev({ onSubmit2 }) {
   function handleSubmit(event) {
     event.preventDefault()
@@ -16,10 +14,8 @@ export default function FormTuev({ onSubmit2 }) {
     const data = Object.fromEntries(formData)
     //data.status = 1
     data.anzeigen = true
-    if (data.password === PASSWORD) {
-      onSubmit2(data)
-      form.reset()
-    }
+    onSubmit2(data)
+    form.reset()
   }
 
   return (
@@ -36,13 +32,6 @@ export default function FormTuev({ onSubmit2 }) {
       ></Description>
       <Description headline={'Status'} name={'status'}></Description>
       <GridFinish>
-        <Input
-          style={{ width: '100%' }}
-          type="password"
-          name="password"
-          placeholder="Admin Passwort eingeben zum Hochladen"
-          required
-        ></Input>
         <FinishButton>Meldung hochladen</FinishButton>
       </GridFinish>
     </Wrapper>
@@ -64,7 +53,7 @@ const Grid = styled.div`
 `
 const GridFinish = styled.div`
   display: grid;
-  grid-template-rows: repeat(2, auto);
+  grid-template-rows: repeat(1, auto);
   width: 100%;
   grid-gap: 15px;
   justify-items: center;

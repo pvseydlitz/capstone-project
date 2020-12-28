@@ -281,6 +281,7 @@ const MessageWrapper = styled.div`
   }
 `
 const MessageWrapper2 = styled.div`
+  padding-bottom: 30px;
   @media (min-width: 768px) {
     grid-column: 1/3;
     display: grid;

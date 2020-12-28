@@ -103,8 +103,9 @@ export default function App() {
     let messageToDelete = messagesTuev.filter(
       (messageTuev) => messageTuev._id === id
     )
+    console.log(messageToDelete)
     messageToDelete[0].anzeigen = false
-    patchMessageTuev(messageToDelete).then((patchedMessage) => {
+    patchMessageTuev(messageToDelete[0]).then((patchedMessage) => {
       const index = messagesTuev.findIndex(
         (messageTuev) => messageTuev._id === patchedMessage._id
       )

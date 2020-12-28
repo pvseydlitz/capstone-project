@@ -1,13 +1,23 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components/macro'
 
 export default function DropdownMenu({ handleChange, selected }) {
+  useEffect(() => {
+    checkUser()
+  })
+  const [userAdmin, setUserAdmin] = useState(false)
+  function checkUser() {
+    const userRole = localStorage.getItem('role')
+    if (userRole === 'true') {
+      setUserAdmin(true)
+    }
+  }
   return (
     <Wrapper>
       <DropDown name="kategorie" onChange={handleChange} value={selected}>
         <option value="Gewährleistungsmangel">Gewährleistungsmangel</option>
         <option value="Allgemeines">Allgemeines</option>
-        <option value="Tüv-Mangel">TÜV-Mangel</option>
+        {userAdmin ? <option value="Tüv-Mangel">TÜV-Mangel</option> : ''}
       </DropDown>
     </Wrapper>
   )

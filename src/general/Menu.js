@@ -96,7 +96,7 @@ export default function Menu({ position }) {
               src={createClicked ? plusSignIconClicked : plusSignIcon}
               alt="create button"
             ></img>
-            <Headline22 active={createClicked}>Hochladen</Headline22>
+            <Headline22 active={createClicked}>Meldung erstellen</Headline22>
           </NavButton>
         </NavLink>
 

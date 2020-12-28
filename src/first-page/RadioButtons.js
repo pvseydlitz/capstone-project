@@ -26,7 +26,7 @@ export default function RadioButtons({
       </Label3>
       {isClicked1 ? (
         <UnderHeadline>
-          Hier werden gemeldete Gewährleistungsmängel gesammelt, die vom
+          Hier werden Ihre gemeldeten Gewährleistungsmängel gesammelt, die vom
           Bauträger abgearbeitet werden.
         </UnderHeadline>
       ) : (
@@ -34,9 +34,9 @@ export default function RadioButtons({
       )}
       {isClicked2 ? (
         <UnderHeadline>
-          Allgemeine Informationen und Ankündigungen für die Hausgemeinschaft
-          werden hier gesammelt und können auch von Bewohnern auf der zweiten
-          Seite unter der Auswahl "Allgemeines" hochgeladen werden.
+          Allgemeine Informationen für die Hausgemeinschaft werden hier
+          gesammelt und können auch von den Bewohnern unter dem Menüpunkt
+          "Meldung erstellen" hochgeladen werden
         </UnderHeadline>
       ) : (
         ''

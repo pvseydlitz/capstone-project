@@ -1,34 +1,41 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components/macro'
 
 import cross from '../icons/cross.svg'
 //import DropdownMenu from './DropdownMenu'
-import Password from './Password'
 
 export default function MessageTuev({
   messageTuev,
   //handleStatusTuev,
   handleDeleteTuev,
 }) {
-  const [showInputPassword, setShowInputPassword] = useState(false)
-
   /* function handleChangeDropdown(number) {
     messageTuev.status = number
     handleStatusTuev(messageTuev)
   } */
-  function saveMessageId(id) {
-    localStorage.setItem('id', id)
+  useEffect(() => {
+    checkUser()
+  })
+  const [userAdmin, setUserAdmin] = useState(false)
+  function checkUser() {
+    const userRole = localStorage.getItem('role')
+    if (userRole === 'true') {
+      setUserAdmin(true)
+    }
   }
 
   return (
     <MessageLayout>
-      <Cross
-        src={cross}
-        onClick={() => {
-          setShowInputPassword(true)
-          saveMessageId(messageTuev._id)
-        }}
-      ></Cross>
+      {userAdmin ? (
+        <Cross
+          src={cross}
+          onClick={() => {
+            handleDeleteTuev(messageTuev._id)
+          }}
+        ></Cross>
+      ) : (
+        ''
+      )}
       <Headline>TÜV-Mangel</Headline>
       <Wrapper>
         <Description>
@@ -54,15 +61,6 @@ export default function MessageTuev({
           <b>Kurzbeschreibung:</b> {messageTuev.beschreibung}
         </Description>
       </Wrapper>
-      {showInputPassword ? (
-        <Password
-          text={'Passwort eingeben zum Löschen'}
-          passwordApproved={handleDeleteTuev}
-          hidePassword={() => setShowInputPassword(false)}
-        ></Password>
-      ) : (
-        ''
-      )}
     </MessageLayout>
   )
 }

@@ -6,7 +6,6 @@ import ShowMoreButton from './ShowMoreButton'
 import Bookmark from './Bookmark'
 import cross from '../icons/cross.svg'
 import DropdownMenu from './DropdownMenu'
-import Password from './Password'
 
 export default function Message({
   message,
@@ -15,17 +14,21 @@ export default function Message({
   updateBookmarks,
 }) {
   const [showContent, setShowContent] = useState(false)
-  const [showInputPassword, setShowInputPassword] = useState(false)
   const [isBookmarked, setIsBookmarked] = useState(false)
   useEffect(() => {
     setBookmarks()
+    checkUser()
   })
+  const [userAdmin, setUserAdmin] = useState(false)
+  function checkUser() {
+    const userRole = localStorage.getItem('role')
+    if (userRole === 'true') {
+      setUserAdmin(true)
+    }
+  }
   function handleChangeDropdown(number) {
     message.status = number
     handleStatus(message)
-  }
-  function saveMessageId(id) {
-    localStorage.setItem('id', id)
   }
   function setBookmarks() {
     getBookmarkedMessages().then((bookmarkedMessages) =>
@@ -97,13 +100,17 @@ export default function Message({
         onClick={() => bookmarkMessage(message._id)}
         bookmarked={isBookmarked}
       ></Bookmark>
-      <Cross
-        src={cross}
-        onClick={() => {
-          setShowInputPassword(true)
-          saveMessageId(message._id)
-        }}
-      ></Cross>
+      {userAdmin ? (
+        <Cross
+          src={cross}
+          onClick={() => {
+            handleDelete(message._id)
+            deleteBookmarkedMessage()
+          }}
+        ></Cross>
+      ) : (
+        ''
+      )}
       <Headline>Gewährleistungsmangel Nr. {message.number}</Headline>
 
       <Wrapper active={!showContent}>
@@ -182,17 +189,6 @@ export default function Message({
       <ShowMoreButton onClick={() => setShowContent(!showContent)}>
         {showContent ? 'Weniger anzeigen' : 'Mehr anzeigen'}
       </ShowMoreButton>
-      {showInputPassword ? (
-        <Password
-          text={'Passwort eingeben zum Löschen'}
-          passwordApproved={handleDelete}
-          hidePassword={() =>
-            setShowInputPassword(false) + deleteBookmarkedMessage()
-          }
-        ></Password>
-      ) : (
-        ''
-      )}
     </MessageLayout>
   )
 }
@@ -215,7 +211,7 @@ const MessageLayout = styled.div`
 `
 const Cross = styled.img`
   position: absolute;
-  right: 20px;
+  right: 10px;
   top: 28px;
   cursor: pointer;
 `
