@@ -103,7 +103,7 @@ export default function Form({ onSubmit1 }) {
               type="file"
               name="file"
               onChange={onInput}
-              multiple
+              accept="image/png, image/jpeg"
             ></input>
             <img src={uploadIcon} alt={'upload icon'}></img>
           </UploadWrapper>
@@ -138,12 +138,21 @@ export default function Form({ onSubmit1 }) {
     }
     data.bereich = bereich
     data.anzeigen = true
-    data.status = 1
+    data.status = 0
     delete data.gemeinschaftseigentum
     delete data.sondereigentum
     delete data.innenbereich
     delete data.außenbereich
 
+    if (data.datum.includes('-') === false) {
+      data.datum = new Date(
+        data.datum.slice(6, 10) +
+          '-' +
+          data.datum.slice(3, 5) +
+          '-' +
+          data.datum.slice(0, 2)
+      )
+    }
     const user = localStorage.getItem('user')
     data.user = user
     if (data.file.size > 10000000) {

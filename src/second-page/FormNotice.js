@@ -13,6 +13,15 @@ export default function FormNotice({ onSubmit3 }) {
     const form = event.target
     const formData = new FormData(form)
     const data = Object.fromEntries(formData)
+    if (data.datum.includes('-') === false) {
+      data.datum = new Date(
+        data.datum.slice(6, 10) +
+          '-' +
+          data.datum.slice(3, 5) +
+          '-' +
+          data.datum.slice(0, 2)
+      )
+    }
     data.anzeigen = true
     confirmAlert({
       title: 'Bestätigung',
