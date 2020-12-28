@@ -4,8 +4,8 @@ import styled from 'styled-components/macro'
 export default function FilterMenuTuevMessages({
   checkInput,
   searchedWord,
-  handleFilterStatus,
-  selectedStatus,
+  //handleFilterStatus,
+  //selectedStatus,
 }) {
   return (
     <Menu>
@@ -19,7 +19,7 @@ export default function FilterMenuTuevMessages({
         onChange={checkInput}
         value={searchedWord}
       ></Input>
-      <Text start={'3'} startTabletRow={'1'} tabletColumn={'3/5'}>
+      {/* <Text start={'3'} startTabletRow={'1'} tabletColumn={'3/5'}>
         Nach Status oder Kurzbeschreibung suchen
       </Text>
       <Input
@@ -28,7 +28,7 @@ export default function FilterMenuTuevMessages({
         placeholder="Status oder Kurzbeschreibung"
         onChange={handleFilterStatus}
         value={selectedStatus}
-      ></Input>
+      ></Input> */}
       {/* <Text start={'3'} startTabletRow={'1'} tabletColumn={'3/5'}>
         Nach Bearbeitungsstatus filtern
       </Text>
@@ -50,12 +50,12 @@ export default function FilterMenuTuevMessages({
 
 const Menu = styled.div`
   position: relative;
-  height: 150px;
   margin: 20px;
   margin-top: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 15px;
   column-gap: 20px;
   align-items: center;
   @media (min-width: 768px) {
