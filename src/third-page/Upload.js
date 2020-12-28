@@ -25,12 +25,21 @@ export default function Upload() {
       .then((res) => res.json())
       .then((files) => {
         if (files.message) {
+          setFiles([])
         } else {
+          /* fetch('/api/fileDescription')
+            .then((res) => res.json())
+            .then((descriptions) => {
+              files.forEach((file, index) => {
+                if (file._id === descriptions[index].documentId) {
+                  file.description = descriptions[index].description
+                }
+              })  */
           setFiles(files)
+          /* }) */
         }
       })
   }
-
   function fileChanged(event) {
     const f = event.target.files[0]
     setSingleFile(f)
@@ -44,20 +53,33 @@ export default function Upload() {
 
   function uploadFile() {
     let data = new FormData()
-    data.append('file', singleFile)
-    fetch('/api/files', {
-      method: 'POST',
-      body: data,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          loadFiles()
-          setShowForm(false)
-        } else {
-          alert('Upload failed')
-        }
+    if (singleFile === '') {
+      alert('Kein Dokument ausgewählt')
+    } else {
+      data.append('file', singleFile)
+      fetch('/api/files', {
+        method: 'POST',
+        body: data,
       })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.success) {
+            /* data.fileName = data.file.filename
+          data.documentId = data.file.id
+          delete data.file
+          fetch('/api/fileDescription', {
+            method: 'POST',
+            body: data,
+          }).then((res) => res.json())
+            .then(() => {  */
+            loadFiles()
+            setShowForm(false)
+            /* }) */
+          } else {
+            alert('Upload failed')
+          }
+        })
+    }
   }
 
   function deleteFile(id) {
@@ -92,15 +114,17 @@ export default function Upload() {
           showForm={showForm}
           picture={picture}
         ></Form>
-        {files
-          .filter((file) => {
-            const name = file.filename.toLowerCase()
-            const query = searchedItem
-            return query === '' || name.includes(query)
-          })
-          .map((file, index) => (
-            <Card file={file} key={index} deleteFile={deleteFile}></Card>
-          ))}
+        <Flexbox>
+          {files
+            .filter((file) => {
+              const name = file.filename.toLowerCase()
+              const query = searchedItem
+              return query === '' || name.includes(query)
+            })
+            .map((file, index) => (
+              <Card file={file} key={index} deleteFile={deleteFile}></Card>
+            ))}
+        </Flexbox>
       </Section>
     </Grid>
   )
@@ -112,5 +136,15 @@ const Section = styled.div`
   @media (min-width: 768px) {
     grid-column: 1/3;
     display: grid;
+    grid-template-rows: 100px auto;
+    align-items: start;
+    margin: 0 10%;
+  }
+`
+const Flexbox = styled.div`
+  @media (min-width: 768px) {
+    grid-column: 1/3;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 `

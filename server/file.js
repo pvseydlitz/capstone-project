@@ -3,6 +3,7 @@ const multer = require('multer')
 const Grid = require('gridfs-stream')
 const mongoose = require('mongoose')
 const withAuth = require('./middleware')
+const FileDescription = require('./models/FileDescription')
 
 mongoose.Promise = global.Promise
 Grid.mongo = mongoose.mongo
@@ -65,4 +66,15 @@ connection.once('open', function () {
     })
   })
 })
+router.route('/fileDescription').post(function (req, res) {
+  FileDescription.create(req.body)
+    .then((description) => res.json(description))
+    .catch((err) => res.json(err))
+})
+router.route('/fileDescription').get(function (req, res) {
+  FileDescription.find()
+    .then((descriptions) => res.json(descriptions))
+    .catch((err) => res.json(err))
+})
+
 module.exports = router

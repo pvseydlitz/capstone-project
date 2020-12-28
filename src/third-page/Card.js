@@ -1,7 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components/macro'
-
-import Password from '../first-page/Password'
 
 import cross from '../icons/cross.svg'
 import download from '../icons/download.svg'
@@ -9,10 +7,17 @@ import download from '../icons/download.svg'
 const URL = process.env.REACT_APP_URL.replace('3000', '3333')
 
 export default function Card({ deleteFile, file }) {
-  const [showInputPassword, setShowInputPassword] = useState(false)
-  function saveEvent(event) {
-    localStorage.setItem('id', event.target.id)
+  useEffect(() => {
+    checkUser()
+  })
+  const [userAdmin, setUserAdmin] = useState(false)
+  function checkUser() {
+    const userRole = localStorage.getItem('role')
+    if (userRole === 'true') {
+      setUserAdmin(true)
+    }
   }
+
   var d = new Date(file.uploadDate)
   return (
     <CardLayout key={file.index}>
@@ -31,20 +36,14 @@ export default function Card({ deleteFile, file }) {
         Hinzugefügt am:
         {` ${d.toLocaleDateString()} ${d.toLocaleTimeString()}`}
       </DateText>
-      <Cross
-        src={cross}
-        onClick={event => {
-          saveEvent(event)
-          setShowInputPassword(true)
-        }}
-        id={file._id}
-      ></Cross>
-      {showInputPassword ? (
-        <Password
-          text={'Passwort eingeben zum Löschen'}
-          passwordApproved={deleteFile}
-          hidePassword={() => setShowInputPassword(false)}
-        ></Password>
+      {userAdmin ? (
+        <Cross
+          src={cross}
+          onClick={(event) => {
+            deleteFile(event.target.id)
+          }}
+          id={file._id}
+        ></Cross>
       ) : (
         ''
       )}
@@ -53,10 +52,11 @@ export default function Card({ deleteFile, file }) {
 }
 const CardLayout = styled.section`
   margin: 30px 20px;
-  padding: 10px 20px;
+  padding: 20px;
   position: relative;
   background: rgb(238, 238, 238);
   border-radius: 10px;
+  max-height: 124px;
 `
 const Grid = styled.div`
   display: grid;
@@ -72,7 +72,7 @@ const FileName = styled.p`
 `
 const Cross = styled.img`
   position: absolute;
-  top: 10px;
+  top: 20px;
   right: 20px;
   cursor: pointer;
 `
@@ -80,4 +80,5 @@ const DateText = styled.p`
   margin-top: 20px;
   color: rgb(107, 107, 107);
   font-size: 14px;
+  margin: 0;
 `
